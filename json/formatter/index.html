@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JSON Formatter — DevNova Tools</title>
+<meta name="description" content="Format, beautify and pretty-print JSON with customizable indentation. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/json/formatter/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/json/">JSON & Data</a> <span>›</span>
+      <span>JSON Formatter</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00C89622;border:1px solid #00C89644">🟦</div>
+      <h1 class="tool-name">JSON Formatter</h1>
+    </div>
+    <p class="tool-desc">Format, beautify and pretty-print JSON with customizable indentation.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><div class="form-group"><label>Indent</label><select id="indent" onchange="run()"><option value="2">2 spaces</option><option value="4">4 spaces</option><option value="1">1 tab</option></select></div></div>
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Paste your JSON here..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Formatted JSON</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const input=document.getElementById('input').value.trim();
+      const out=document.getElementById('output');
+      const status=document.getElementById('status');
+      if(!input){out.textContent='';setStatus('','');return}
+      try{
+        const indent=parseInt(document.getElementById('indent').value)||2;
+        const parsed=JSON.parse(input);
+        out.textContent=JSON.stringify(parsed,null,indent);
+        setStatus('valid','✓ Valid JSON — '+JSON.stringify(parsed,null,indent).split('\n').length+' lines');
+      }catch(e){out.textContent='';setStatus('error','✗ '+e.message)}
+    }
+    function setStatus(type,msg){
+      const s=document.getElementById('status');
+      s.className='badge badge-'+(type==='valid'?'success':type==='error'?'error':'info');
+      s.textContent=msg;
+    }
+</script>
+</body>
+</html>

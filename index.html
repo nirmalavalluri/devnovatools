@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DevNova Tools — Every Developer Tool You'll Ever Need</title>
+<meta name="description" content="78+ free developer tools — JSON formatter, JWT decoder, regex tester, CSS generator, and more. No login, no ads, works offline."/>
+<meta property="og:title" content="DevNova Tools — Every Developer Tool You'll Ever Need"/>
+<meta property="og:description" content="78+ free developer tools. JSON, API, Text, DevOps, Frontend — all in one place. No login required."/>
+<meta property="og:url" content="https://devnovatools.com"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://devnovatools.com/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-eyebrow"><span class="hero-dot"></span> Free forever · No login · No ads</div>
+  <h1>Every developer tool<br><span>you'll ever need</span></h1>
+  <p class="hero-sub">78+ powerful tools for JSON, APIs, Text, DevOps and Frontend — all in one tab that never closes.</p>
+  <div class="hero-search-wrap">
+    <span class="hero-search-icon">🔍</span>
+    <input id="hero-search" class="hero-search" type="text" placeholder="Search tools... try 'jwt', 'regex', 'cron'" autocomplete="off"/>
+    <div id="hero-search-results" class="hero-search-results nav-search-results"></div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">78+</div><div class="hero-stat-label">Developer Tools</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">5</div><div class="hero-stat-label">Categories</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-label">Login Required</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Free Forever</div></div>
+  </div>
+</section>
+
+<section class="categories-section">
+  <div class="section-title">Browse by Category <span>5 categories</span></div>
+  <div class="cat-grid" id="cat-grid"></div>
+
+  <div id="all-tools-section">
+    <div class="section-title">All Tools <span id="tool-count"></span></div>
+    <div class="tool-grid" id="tool-grid"></div>
+  </div>
+</section>
+
+<script src="/assets/layout.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  // Hero search
+  DevNova.initSearch('hero-search','hero-search-results');
+
+  // Category cards
+  const catGrid=document.getElementById('cat-grid');
+  DevNova.CATS.forEach(c=>{
+    const count=DevNova.ALL_TOOLS.filter(t=>t.catId===c.id).length;
+    const card=document.createElement('a');
+    card.href=`/${c.id}/`;
+    card.className='cat-card';
+    card.style.setProperty('--cat-color',c.color);
+    card.innerHTML=`<div class="cat-icon">${c.icon}</div><div class="cat-name">${c.name}</div><div class="cat-count">${count} tools</div><div class="cat-bar"></div>`;
+    catGrid.appendChild(card);
+  });
+
+  // Tool grid
+  const toolGrid=document.getElementById('tool-grid');
+  document.getElementById('tool-count').textContent=DevNova.ALL_TOOLS.length+' tools';
+  DevNova.ALL_TOOLS.forEach(t=>{
+    const cat=DevNova.CATS.find(c=>c.id===t.catId);
+    const card=document.createElement('a');
+    card.href=t.path;
+    card.className='tool-card';
+    card.style.setProperty('--cat-color',cat?cat.color:'var(--green)');
+    card.innerHTML=`<span class="tool-card-icon">${t.icon}</span><div><div class="tool-card-name">${t.name}</div><div class="tool-card-desc">${t.desc}</div></div>`;
+    toolGrid.appendChild(card);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Markdown Preview — DevNova Tools</title>
+<meta name="description" content="Write Markdown and see a live HTML preview side by side. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/text/markdown-preview/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/text/">Text & Parsing</a> <span>›</span>
+      <span>Markdown Preview</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">📝</div>
+      <h1 class="tool-name">Markdown Preview</h1>
+    </div>
+    <p class="tool-desc">Write Markdown and see a live HTML preview side by side.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="# Hello World
+
+Write **Markdown** here and see the *preview*.
+
+- Item 1
+- Item 2
+
+`code snippet`" oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Preview</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const input=document.getElementById('input').value;
+      const out=document.getElementById('output');
+      let html=input
+        .replace(/^### (.+)$/gm,'<h3>$1</h3>').replace(/^## (.+)$/gm,'<h2>$1</h2>').replace(/^# (.+)$/gm,'<h1>$1</h1>')
+        .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>')
+        .replace(/```([\s\S]*?)```/g,'<pre><code>$1</code></pre>').replace(/`(.+?)`/g,'<code>$1</code>')
+        .replace(/^- (.+)$/gm,'<li>$1</li>').replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>')
+        .replace(/^(?!<[h|l|p|u])(.*\S.*)$/gm,'<p>$1</p>');
+      out.innerHTML='<div style="font-family:var(--font);line-height:1.7;color:var(--text);padding:14px">'+html+'</div>';
+    }
+</script>
+</body>
+</html>

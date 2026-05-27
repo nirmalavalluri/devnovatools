@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Case Converter — DevNova Tools</title>
+<meta name="description" content="Convert text between camelCase, snake_case, PascalCase, kebab-case and more. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/text/case-converter/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/text/">Text & Parsing</a> <span>›</span>
+      <span>Case Converter</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">Aa</div>
+      <h1 class="tool-name">Case Converter</h1>
+    </div>
+    <p class="tool-desc">Convert text between camelCase, snake_case, PascalCase, kebab-case and more.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><div class="form-group"><label>Convert to</label><select id="caseType" onchange="run()">
+    <option value="lower">lowercase</option><option value="upper">UPPERCASE</option>
+    <option value="title">Title Case</option><option value="camel">camelCase</option>
+    <option value="pascal">PascalCase</option><option value="snake">snake_case</option>
+    <option value="kebab">kebab-case</option><option value="constant">CONSTANT_CASE</option>
+    <option value="dot">dot.case</option>
+   </select></div></div>
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Enter text to convert..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Converted Text</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){convert(document.getElementById('caseType').value)}
+    function convert(type){
+      const input=document.getElementById('input').value;
+      const out=document.getElementById('output');
+      const words=input.replace(/([A-Z])/g,' $1').replace(/[-_]+/g,' ').toLowerCase().trim().split(/\s+/).filter(Boolean);
+      const result={
+        'lower':input.toLowerCase(),
+        'upper':input.toUpperCase(),
+        'title':words.map(w=>w[0].toUpperCase()+w.slice(1)).join(' '),
+        'camel':words.map((w,i)=>i?w[0].toUpperCase()+w.slice(1):w).join(''),
+        'pascal':words.map(w=>w[0].toUpperCase()+w.slice(1)).join(''),
+        'snake':words.join('_'),
+        'kebab':words.join('-'),
+        'constant':words.join('_').toUpperCase(),
+        'dot':words.join('.'),
+      }[type]||input;
+      out.textContent=result;
+      document.getElementById('status').textContent=type+' applied';
+    }
+</script>
+</body>
+</html>

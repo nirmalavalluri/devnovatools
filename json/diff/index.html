@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JSON Diff — DevNova Tools</title>
+<meta name="description" content="Compare two JSON objects and highlight the differences. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/json/diff/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/json/">JSON & Data</a> <span>›</span>
+      <span>JSON Diff</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00C89622;border:1px solid #00C89644">🔀</div>
+      <h1 class="tool-name">JSON Diff</h1>
+    </div>
+    <p class="tool-desc">Compare two JSON objects and highlight the differences.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    
+  </div>
+
+  <div class="tool-body triple">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Paste first JSON..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <div class="panel"><div class="panel-header"><span class="panel-label">JSON B</span></div><div class="panel-body"><textarea id="input2" class="panel-textarea" placeholder="Paste second JSON..." oninput="run()"></textarea></div></div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Differences</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const a=document.getElementById('input').value.trim();
+      const b=document.getElementById('input2').value.trim();
+      const out=document.getElementById('output');
+      if(!a||!b){out.textContent='Enter JSON in both panels';return}
+      try{
+        const obj1=JSON.parse(a),obj2=JSON.parse(b);
+        const diffs=diff(obj1,obj2,'');
+        out.textContent=diffs.length?diffs.join('\n'):'✓ No differences found — JSON objects are identical';
+      }catch(e){out.textContent='✗ '+e.message}
+    }
+    function diff(a,b,prefix){
+      const res=[];
+      const keys=new Set([...Object.keys(a||{}),...Object.keys(b||{})]);
+      keys.forEach(k=>{
+        const path=prefix?prefix+'.'+k:k;
+        if(!(k in a))res.push('+ '+path+': '+JSON.stringify(b[k]));
+        else if(!(k in b))res.push('- '+path+': '+JSON.stringify(a[k]));
+        else if(typeof a[k]==='object'&&typeof b[k]==='object'&&a[k]&&b[k])res.push(...diff(a[k],b[k],path));
+        else if(JSON.stringify(a[k])!==JSON.stringify(b[k]))res.push('~ '+path+'\n  was: '+JSON.stringify(a[k])+'\n  now: '+JSON.stringify(b[k]));
+      });
+      return res;
+    }
+</script>
+</body>
+</html>

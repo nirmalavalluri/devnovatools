@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Regex Tester — DevNova Tools</title>
+<meta name="description" content="Test and debug regular expressions with live highlighting and match details. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/text/regex-tester/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/text/">Text & Parsing</a> <span>›</span>
+      <span>Regex Tester</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">✍️</div>
+      <h1 class="tool-name">Regex Tester</h1>
+    </div>
+    <p class="tool-desc">Test and debug regular expressions with live highlighting and match details.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    <div class="form-row">
+    <div class="form-group" style="flex:1"><label>Pattern</label><input id="pattern" type="text" placeholder="e.g. \d+" oninput="run()" style="width:100%"/></div>
+    <div class="form-group"><label>Flags</label><input id="flags" type="text" value="gi" style="width:70px" oninput="run()"/></div>
+   </div>
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Enter test string here..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Match Results</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const pattern=document.getElementById('pattern').value;
+      const flags=document.getElementById('flags').value;
+      const input=document.getElementById('input').value;
+      const out=document.getElementById('output');
+      if(!pattern){out.textContent=input;return}
+      try{
+        const regex=new RegExp(pattern,flags);
+        const matches=[...input.matchAll(new RegExp(pattern,'g'+flags.replace('g','').replace('i','')))];
+        if(!matches.length){out.textContent='No matches found\n\nInput text:\n'+input;document.getElementById('status').textContent='0 matches';return}
+        let result='✓ '+matches.length+' match(es) found\n\n';
+        matches.forEach((m,i)=>{result+='Match '+(i+1)+': "'+m[0]+'" at index '+m.index+'\n';if(m.length>1)m.slice(1).forEach((g,j)=>result+='  Group '+(j+1)+': '+(g||'undefined')+'\n')});
+        out.textContent=result;
+        document.getElementById('status').textContent=matches.length+' match(es)';
+      }catch(e){out.textContent='✗ Invalid regex: '+e.message;document.getElementById('status').textContent='Invalid regex'}
+    }
+</script>
+</body>
+</html>

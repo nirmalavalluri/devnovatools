@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>IP Address Lookup — DevNova Tools</title>
+<meta name="description" content="Look up geolocation and info for any IP address. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/api/ip-lookup/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/api/">API & Security</a> <span>›</span>
+      <span>IP Address Lookup</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#0066FF22;border:1px solid #0066FF44">🌍</div>
+      <h1 class="tool-name">IP Address Lookup</h1>
+    </div>
+    <p class="tool-desc">Look up geolocation and info for any IP address.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    <button class="btn btn-primary btn-sm" onclick="run()">Lookup IP</button>
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Enter IP address (leave blank for your IP)..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">IP Information</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    async function run(){
+      const input=document.getElementById('input').value.trim()||'';
+      const out=document.getElementById('output');
+      out.textContent='Looking up...';
+      try{
+        const ip=input||'';
+        const res=await fetch('https://ipapi.co/'+(ip||'json')+'/json/');
+        const data=await res.json();
+        out.textContent=['IP: '+data.ip,'City: '+(data.city||'N/A'),'Region: '+(data.region||'N/A'),'Country: '+(data.country_name||'N/A'),'Timezone: '+(data.timezone||'N/A'),'ISP: '+(data.org||'N/A'),'Latitude: '+(data.latitude||'N/A'),'Longitude: '+(data.longitude||'N/A')].join('\n');
+        document.getElementById('status').textContent='Lookup complete';
+      }catch(e){out.textContent='✗ Lookup failed: '+e.message}
+    }
+</script>
+</body>
+</html>

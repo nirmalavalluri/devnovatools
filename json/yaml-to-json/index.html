@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>YAML to JSON — DevNova Tools</title>
+<meta name="description" content="Convert YAML to JSON format instantly. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/json/yaml-to-json/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/json/">JSON & Data</a> <span>›</span>
+      <span>YAML to JSON</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00C89622;border:1px solid #00C89644">🔄</div>
+      <h1 class="tool-name">YAML to JSON</h1>
+    </div>
+    <p class="tool-desc">Convert YAML to JSON format instantly.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Paste YAML here..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">JSON Output</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const input=document.getElementById('input').value.trim();
+      const out=document.getElementById('output');
+      if(!input){out.textContent='';return}
+      try{
+        // Simple YAML parser for common cases
+        const lines=input.split('\n');
+        const result=parseYaml(lines,0,0).obj;
+        out.textContent=JSON.stringify(result,null,2);
+      }catch(e){out.textContent='✗ Could not parse YAML: '+e.message}
+    }
+    function parseYaml(lines,start,depth){
+      const obj={};let arr=[];let isArr=false;let i=start;
+      while(i<lines.length){
+        const line=lines[i];const trimmed=line.trimStart();
+        const indent=line.length-trimmed.length;
+        if(indent<depth&&i>start)break;
+        if(trimmed.startsWith('- ')){isArr=true;arr.push(trimmed.slice(2).trim());i++}
+        else if(trimmed.includes(': ')){const idx=trimmed.indexOf(': ');const key=trimmed.slice(0,idx);const val=trimmed.slice(idx+2).trim();
+          if(val){obj[key]=isNaN(val)?val==='true'?true:val==='false'?false:val:Number(val)}else{i++;const sub=parseYaml(lines,i,indent+2);obj[key]=sub.obj;i=sub.i;continue}i++}
+        else{i++}
+      }
+      return{obj:isArr?arr:obj,i};
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Box Shadow Generator — DevNova Tools</title>
+<meta name="description" content="Generate CSS box shadows visually with live preview. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/frontend/box-shadow/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/frontend/">Frontend Tools</a> <span>›</span>
+      <span>Box Shadow Generator</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00D4FF22;border:1px solid #00D4FF44">🪟</div>
+      <h1 class="tool-name">Box Shadow Generator</h1>
+    </div>
+    <p class="tool-desc">Generate CSS box shadows visually with live preview.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+    <div class="form-group"><label>X Offset</label><input type="range" id="x" min="-50" max="50" value="5" oninput="run()"/></div>
+    <div class="form-group"><label>Y Offset</label><input type="range" id="y" min="-50" max="50" value="5" oninput="run()"/></div>
+    <div class="form-group"><label>Blur</label><input type="range" id="blur" min="0" max="100" value="15" oninput="run()"/></div>
+    <div class="form-group"><label>Spread</label><input type="range" id="spread" min="-50" max="50" value="0" oninput="run()"/></div>
+   </div>
+   <div class="form-row">
+    <div class="form-group"><label>Color</label><input type="color" id="scolor" value="#000000" oninput="run()"/></div>
+    <div class="form-group"><label>Inset</label><input type="checkbox" id="inset" onchange="run()"/></div>
+   </div>
+   <div id="preview" style="width:100%;height:80px;background:var(--bg-card);border-radius:10px;border:1px solid var(--border);margin-bottom:8px"></div>
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Enter input..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">CSS Output</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){updateShadow()}
+    function updateShadow(){
+      const x=document.getElementById('x').value;const y=document.getElementById('y').value;
+      const blur=document.getElementById('blur').value;const spread=document.getElementById('spread').value;
+      const color=document.getElementById('scolor').value;const inset=document.getElementById('inset').checked;
+      const css=(inset?'inset ':'')+x+'px '+y+'px '+blur+'px '+spread+'px '+color;
+      document.getElementById('preview').style.boxShadow=css;
+      document.getElementById('output').textContent='box-shadow: '+css+';';
+    }
+    updateShadow();
+</script>
+</body>
+</html>

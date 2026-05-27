@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HTTP Status Codes — DevNova Tools</title>
+<meta name="description" content="Complete reference for all HTTP status codes with descriptions. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/http-status/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/devops/">DevOps & Infra</a> <span>›</span>
+      <span>HTTP Status Codes</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">📡</div>
+      <h1 class="tool-name">HTTP Status Codes</h1>
+    </div>
+    <p class="tool-desc">Complete reference for all HTTP status codes with descriptions.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Search by code or description... (leave blank to see all)" oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">HTTP Status Codes</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    const CODES={
+      100:'Continue',101:'Switching Protocols',102:'Processing',
+      200:'OK',201:'Created',202:'Accepted',204:'No Content',206:'Partial Content',
+      301:'Moved Permanently',302:'Found',304:'Not Modified',307:'Temporary Redirect',308:'Permanent Redirect',
+      400:'Bad Request',401:'Unauthorized',403:'Forbidden',404:'Not Found',405:'Method Not Allowed',409:'Conflict',410:'Gone',422:'Unprocessable Entity',429:'Too Many Requests',
+      500:'Internal Server Error',501:'Not Implemented',502:'Bad Gateway',503:'Service Unavailable',504:'Gateway Timeout'
+    };
+    function run(){
+      const q=document.getElementById('input').value.trim();
+      const out=document.getElementById('output');
+      if(!q){showAll();return}
+      const matches=Object.entries(CODES).filter(([code,desc])=>code.includes(q)||desc.toLowerCase().includes(q.toLowerCase()));
+      out.textContent=matches.length?matches.map(([c,d])=>c+' — '+d).join('\n'):'No matching status codes found';
+    }
+    function showAll(){
+      const groups={1:'1xx Informational',2:'2xx Success',3:'3xx Redirection',4:'4xx Client Errors',5:'5xx Server Errors'};
+      let result='';
+      Object.entries(groups).forEach(([prefix,title])=>{
+        result+='── '+title+' ──\n';
+        Object.entries(CODES).filter(([c])=>c.startsWith(prefix)).forEach(([c,d])=>result+=c+' — '+d+'\n');
+        result+='\n';
+      });
+      document.getElementById('output').textContent=result;
+    }
+    showAll();
+</script>
+</body>
+</html>

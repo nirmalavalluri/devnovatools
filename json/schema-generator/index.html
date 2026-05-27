@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JSON Schema Generator — DevNova Tools</title>
+<meta name="description" content="Automatically generate a JSON Schema from any JSON sample. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/json/schema-generator/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/json/">JSON & Data</a> <span>›</span>
+      <span>JSON Schema Generator</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00C89622;border:1px solid #00C89644">📐</div>
+      <h1 class="tool-name">JSON Schema Generator</h1>
+    </div>
+    <p class="tool-desc">Automatically generate a JSON Schema from any JSON sample.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Paste JSON sample..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">JSON Schema</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const input=document.getElementById('input').value.trim();
+      const out=document.getElementById('output');
+      if(!input){out.textContent='';return}
+      try{out.textContent=JSON.stringify(genSchema(JSON.parse(input)),null,2)}
+      catch(e){out.textContent='✗ '+e.message}
+    }
+    function genSchema(val){
+      if(val===null)return{type:'null'};
+      if(Array.isArray(val)){const s={type:'array'};if(val.length)s.items=genSchema(val[0]);return s}
+      if(typeof val==='object'){const p={};Object.keys(val).forEach(k=>p[k]=genSchema(val[k]));return{type:'object',properties:p,required:Object.keys(val)}}
+      return{type:typeof val};
+    }
+</script>
+</body>
+</html>

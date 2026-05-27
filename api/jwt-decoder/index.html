@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JWT Decoder — DevNova Tools</title>
+<meta name="description" content="Decode and inspect JWT tokens — header, payload and signature. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/api/jwt-decoder/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/api/">API & Security</a> <span>›</span>
+      <span>JWT Decoder</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#0066FF22;border:1px solid #0066FF44">🔐</div>
+      <h1 class="tool-name">JWT Decoder</h1>
+    </div>
+    <p class="tool-desc">Decode and inspect JWT tokens — header, payload and signature.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Paste your JWT token here...
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Decoded Token</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const input=document.getElementById('input').value.trim();
+      const out=document.getElementById('output');
+      if(!input){out.textContent='';return}
+      try{
+        const parts=input.split('.');
+        if(parts.length!==3){out.textContent='✗ Invalid JWT — must have 3 parts';return}
+        const decode=b64=>{try{return JSON.parse(atob(b64.replace(/-/g,'+').replace(/_/g,'/')))}catch{return atob(b64.replace(/-/g,'+').replace(/_/g,'/'))}}
+        const header=decode(parts[0]),payload=decode(parts[1]);
+        const exp=payload.exp?new Date(payload.exp*1000).toLocaleString():'N/A';
+        const iat=payload.iat?new Date(payload.iat*1000).toLocaleString():'N/A';
+        const expired=payload.exp&&Date.now()/1000>payload.exp;
+        out.textContent='── HEADER ──\n'+JSON.stringify(header,null,2)+'\n\n── PAYLOAD ──\n'+JSON.stringify(payload,null,2)+'\n\n── INFO ──\nIssued At: '+iat+'\nExpires: '+exp+'\nStatus: '+(expired?'⚠️ EXPIRED':'✓ Valid');
+        document.getElementById('status').className='badge badge-'+(expired?'error':'success');
+        document.getElementById('status').textContent=expired?'⚠️ Token Expired':'✓ Token Decoded';
+      }catch(e){out.textContent='✗ '+e.message}
+    }
+</script>
+</body>
+</html>

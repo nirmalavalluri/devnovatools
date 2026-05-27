@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>URL Encoder/Decoder — DevNova Tools</title>
+<meta name="description" content="Encode special characters for URLs or decode URL-encoded strings. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/api/url-encoder/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/api/">API & Security</a> <span>›</span>
+      <span>URL Encoder/Decoder</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#0066FF22;border:1px solid #0066FF44">🌐</div>
+      <h1 class="tool-name">URL Encoder/Decoder</h1>
+    </div>
+    <p class="tool-desc">Encode special characters for URLs or decode URL-encoded strings.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><button class="btn btn-primary btn-sm" onclick="encode()">Encode →</button><button class="btn btn-secondary btn-sm" onclick="decode()">← Decode</button></div>
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Enter URL or text to encode/decode..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Result</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function encode(){
+      const input=document.getElementById('input').value;
+      document.getElementById('output').textContent=encodeURIComponent(input);
+      setStatus('success','Encoded');
+    }
+    function decode(){
+      try{document.getElementById('output').textContent=decodeURIComponent(document.getElementById('input').value);setStatus('success','Decoded')}
+      catch(e){document.getElementById('output').textContent='✗ Invalid URL encoding';setStatus('error','Invalid encoding')}
+    }
+    function run(){encode()}
+    function setStatus(t,m){const s=document.getElementById('status');s.className='badge badge-'+t;s.textContent=m}
+</script>
+</body>
+</html>

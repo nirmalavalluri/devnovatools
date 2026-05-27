@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Color Converter — DevNova Tools</title>
+<meta name="description" content="Convert colors between HEX, RGB, HSL and HSB formats. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/frontend/color-converter/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/frontend/">Frontend Tools</a> <span>›</span>
+      <span>Color Converter</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00D4FF22;border:1px solid #00D4FF44">🎨</div>
+      <h1 class="tool-name">Color Converter</h1>
+    </div>
+    <p class="tool-desc">Convert colors between HEX, RGB, HSL and HSB formats.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    <div id="swatch" style="width:60px;height:60px;border-radius:8px;border:1px solid var(--border);margin-bottom:8px;transition:background 0.3s"></div>
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Enter color: #ff6b35 or rgb(255,107,53)..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Color Values</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const input=document.getElementById('input').value.trim();
+      const out=document.getElementById('output');
+      if(!input){out.textContent='';return}
+      try{
+        let r,g,b;
+        if(input.startsWith('#')){
+          const hex=input.replace('#','');
+          r=parseInt(hex.substring(0,2),16);g=parseInt(hex.substring(2,4),16);b=parseInt(hex.substring(4,6),16);
+        }else if(input.startsWith('rgb')){
+          const m=input.match(/\d+/g);r=+m[0];g=+m[1];b=+m[2];
+        }else{out.textContent='✗ Enter HEX (#rrggbb) or RGB (rgb(r,g,b))';return}
+        const hex='#'+[r,g,b].map(v=>v.toString(16).padStart(2,'0')).join('');
+        const rn=r/255,gn=g/255,bn=b/255;
+        const max=Math.max(rn,gn,bn),min=Math.min(rn,gn,bn);
+        const l=(max+min)/2;
+        const s=max===min?0:(l>0.5?(max-min)/(2-max-min):(max-min)/(max+min));
+        let h=0;
+        if(max!==min){if(max===rn)h=((gn-bn)/(max-min)+6)%6;else if(max===gn)h=(bn-rn)/(max-min)+2;else h=(rn-gn)/(max-min)+4;h/=6}
+        out.textContent=['HEX: '+hex,'RGB: rgb('+r+', '+g+', '+b+')','HSL: hsl('+Math.round(h*360)+', '+Math.round(s*100)+'%, '+Math.round(l*100)+'%)','Luminance: '+Math.round(l*100)+'%'].join('\n');
+        document.getElementById('swatch').style.background=hex;
+      }catch(e){out.textContent='✗ '+e.message}
+    }
+</script>
+</body>
+</html>

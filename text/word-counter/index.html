@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Word Counter — DevNova Tools</title>
+<meta name="description" content="Count words, characters, sentences, paragraphs and reading time. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/text/word-counter/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/text/">Text & Parsing</a> <span>›</span>
+      <span>Word Counter</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">🔢</div>
+      <h1 class="tool-name">Word Counter</h1>
+    </div>
+    <p class="tool-desc">Count words, characters, sentences, paragraphs and reading time.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Type or paste your text here..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Statistics</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const input=document.getElementById('input').value;
+      const words=input.trim()?input.trim().split(/\s+/).length:0;
+      const chars=input.length;
+      const charsNoSpace=input.replace(/\s/g,'').length;
+      const sentences=input.split(/[.!?]+/).filter(s=>s.trim()).length;
+      const paragraphs=input.split(/\n\n+/).filter(p=>p.trim()).length;
+      const readTime=Math.max(1,Math.round(words/200));
+      document.getElementById('output').textContent=[
+        'Words: '+words,'Characters: '+chars,'Characters (no spaces): '+charsNoSpace,
+        'Sentences: '+sentences,'Paragraphs: '+paragraphs,'Reading time: ~'+readTime+' min'
+      ].join('\n');
+    }
+</script>
+</body>
+</html>

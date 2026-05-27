@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Timestamp Converter — DevNova Tools</title>
+<meta name="description" content="Convert Unix timestamps to readable dates and vice versa. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/timestamp/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/devops/">DevOps & Infra</a> <span>›</span>
+      <span>Timestamp Converter</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">🕐</div>
+      <h1 class="tool-name">Timestamp Converter</h1>
+    </div>
+    <p class="tool-desc">Convert Unix timestamps to readable dates and vice versa.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    <button class="btn btn-secondary btn-sm" onclick="showNow()">Now</button>
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Enter Unix timestamp or date string...
+e.g. 1716825600 or 2025-01-01" oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Converted Time</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const input=document.getElementById('input').value.trim();
+      const out=document.getElementById('output');
+      if(!input){showNow();return}
+      if(/^\d{10,13}$/.test(input)){
+        const ms=input.length===10?input*1000:parseInt(input);
+        const d=new Date(ms);
+        out.textContent='Unix: '+input+'\nUTC: '+d.toUTCString()+'\nLocal: '+d.toLocaleString()+'\nISO: '+d.toISOString()+'\nRelative: '+relTime(d);
+      }else{
+        const d=new Date(input);
+        if(isNaN(d)){out.textContent='✗ Invalid date';return}
+        out.textContent='Unix (s): '+Math.floor(d.getTime()/1000)+'\nUnix (ms): '+d.getTime()+'\nUTC: '+d.toUTCString()+'\nISO: '+d.toISOString()+'\nRelative: '+relTime(d);
+      }
+    }
+    function showNow(){
+      const d=new Date();
+      document.getElementById('output').textContent='Current time:\nUnix (s): '+Math.floor(d.getTime()/1000)+'\nUnix (ms): '+d.getTime()+'\nUTC: '+d.toUTCString()+'\nISO: '+d.toISOString();
+    }
+    function relTime(d){const s=Math.floor((Date.now()-d)/1000);const m=Math.floor(s/60),h=Math.floor(m/60),days=Math.floor(h/24);return days>0?days+' days ago':h>0?h+' hours ago':m>0?m+' minutes ago':s+' seconds ago'}
+    showNow();
+</script>
+</body>
+</html>

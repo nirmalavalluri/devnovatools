@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Text Diff Checker — DevNova Tools</title>
+<meta name="description" content="Compare two texts and highlight all additions and removals. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/text/diff-checker/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/text/">Text & Parsing</a> <span>›</span>
+      <span>Text Diff Checker</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">↔️</div>
+      <h1 class="tool-name">Text Diff Checker</h1>
+    </div>
+    <p class="tool-desc">Compare two texts and highlight all additions and removals.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    
+  </div>
+
+  <div class="tool-body triple">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Enter original text..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <div class="panel"><div class="panel-header"><span class="panel-label">Modified Text</span></div><div class="panel-body"><textarea id="input2" class="panel-textarea" placeholder="Enter modified text..." oninput="run()"></textarea></div></div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Diff Result</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const a=document.getElementById('input').value;
+      const b=document.getElementById('input2').value;
+      const out=document.getElementById('output');
+      const aLines=a.split('\n'),bLines=b.split('\n');
+      let result='',adds=0,removes=0;
+      const maxLen=Math.max(aLines.length,bLines.length);
+      for(let i=0;i<maxLen;i++){
+        if(aLines[i]===bLines[i]){result+='  '+( aLines[i]||'')+'\n'}
+        else{
+          if(i<aLines.length){result+='- '+aLines[i]+'\n';removes++}
+          if(i<bLines.length){result+='+ '+bLines[i]+'\n';adds++}
+        }
+      }
+      out.textContent=result||'Texts are identical';
+      document.getElementById('status').textContent=adds+' additions, '+removes+' removals';
+    }
+</script>
+</body>
+</html>

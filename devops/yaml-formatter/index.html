@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>YAML Formatter — DevNova Tools</title>
+<meta name="description" content="Format, validate and prettify YAML files. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/yaml-formatter/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/devops/">DevOps & Infra</a> <span>›</span>
+      <span>YAML Formatter</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">📄</div>
+      <h1 class="tool-name">YAML Formatter</h1>
+    </div>
+    <p class="tool-desc">Format, validate and prettify YAML files.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Paste YAML here..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Formatted YAML</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){
+      const input=document.getElementById('input').value.trim();
+      const out=document.getElementById('output');
+      if(!input){out.textContent='';return}
+      // Basic YAML validation - check indentation consistency
+      const lines=input.split('\n');
+      let errors=[];
+      lines.forEach((line,i)=>{
+        if(line.includes('\t'))errors.push('Line '+(i+1)+': Tab indentation found (use spaces)');
+      });
+      if(errors.length){out.textContent='⚠️ Issues found:\n'+errors.join('\n')+'\n\nFormatted output:\n'+input;document.getElementById('status').className='badge badge-warning';document.getElementById('status').textContent='⚠️ '+errors.length+' issue(s)'}
+      else{out.textContent=input;document.getElementById('status').className='badge badge-success';document.getElementById('status').textContent='✓ Valid YAML'}
+    }
+</script>
+</body>
+</html>

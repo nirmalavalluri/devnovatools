@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cron Expression Builder — DevNova Tools</title>
+<meta name="description" content="Build cron expressions visually and see the next run times. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/cron-builder/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/devops/">DevOps & Infra</a> <span>›</span>
+      <span>Cron Expression Builder</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">⏰</div>
+      <h1 class="tool-name">Cron Expression Builder</h1>
+    </div>
+    <p class="tool-desc">Build cron expressions visually and see the next run times.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px">
+    <div class="form-group"><label>Minute</label><input id="min" value="*" oninput="run()" style="width:100%"/></div>
+    <div class="form-group"><label>Hour</label><input id="hour" value="*" oninput="run()" style="width:100%"/></div>
+    <div class="form-group"><label>Day(Month)</label><input id="dom" value="*" oninput="run()" style="width:100%"/></div>
+    <div class="form-group"><label>Month</label><input id="mon" value="*" oninput="run()" style="width:100%"/></div>
+    <div class="form-group"><label>Day(Week)</label><input id="dow" value="*" oninput="run()" style="width:100%"/></div>
+   </div>
+   <div class="form-row">
+    <code id="cron-out" style="font-size:1.1rem;padding:8px 14px">* * * * *</code>
+   </div>
+   <div class="form-row" style="flex-wrap:wrap">
+    <button class="btn btn-ghost btn-sm" onclick="document.getElementById('min').value='0';document.getElementById('hour').value='*';document.getElementById('dom').value='*';document.getElementById('mon').value='*';document.getElementById('dow').value='*';run()">Every Hour</button>
+    <button class="btn btn-ghost btn-sm" onclick="document.getElementById('min').value='0';document.getElementById('hour').value='0';document.getElementById('dom').value='*';document.getElementById('mon').value='*';document.getElementById('dow').value='*';run()">Every Day</button>
+    <button class="btn btn-ghost btn-sm" onclick="document.getElementById('min').value='0';document.getElementById('hour').value='9';document.getElementById('dom').value='*';document.getElementById('mon').value='*';document.getElementById('dow').value='1-5';run()">Weekdays 9am</button>
+   </div>
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Input</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Enter input..." oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Expression Details</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+
+    function run(){updatePreview()}
+    function updatePreview(){
+      const min=document.getElementById('min').value||'*';
+      const hour=document.getElementById('hour').value||'*';
+      const dom=document.getElementById('dom').value||'*';
+      const mon=document.getElementById('mon').value||'*';
+      const dow=document.getElementById('dow').value||'*';
+      const expr=min+' '+hour+' '+dom+' '+mon+' '+dow;
+      document.getElementById('output').textContent='Expression: '+expr+'\n\n'+describeCommon(expr);
+      document.getElementById('cron-out').textContent=expr;
+    }
+    function describeCommon(e){
+      const presets={'* * * * *':'Every minute','0 * * * *':'Every hour','0 0 * * *':'Every day at midnight','0 0 * * 0':'Every Sunday at midnight','0 0 1 * *':'First day of every month','0 0 1 1 *':'Every January 1st at midnight','*/5 * * * *':'Every 5 minutes','*/15 * * * *':'Every 15 minutes','0 9 * * 1-5':'Every weekday at 9 AM'};
+      return presets[e]||'Custom expression';
+    }
+</script>
+</body>
+</html>
