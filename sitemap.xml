@@ -97,4 +97,13 @@
   <url><loc>https://devnovatools.com/frontend/favicon-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://devnovatools.com/frontend/breakpoints/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
+
+  <!-- Blog -->
+  <url><loc>https://devnovatools.com/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://devnovatools.com/blog/what-is-jwt-token/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://devnovatools.com/blog/cron-job-expressions-guide/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://devnovatools.com/blog/10-regex-patterns-developers/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://devnovatools.com/blog/json-vs-yaml-vs-toml/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://devnovatools.com/blog/http-status-codes-guide/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://devnovatools.com/blog/css-grid-vs-flexbox/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>DevNova Tools — Every Developer Tool You'll Ever Need</title>
 <meta name="description" content="76+ free developer tools — JSON formatter, JWT decoder, regex tester, CSS generator, and more. No login, no ads, works offline."/>
+<meta name="author" content="DevNova Tools"/>
+<meta name="copyright" content="© 2026 DevNova Tools — devnovatools.com"/>
+<meta name="robots" content="index, follow"/>
 <meta property="og:title" content="DevNova Tools — Every Developer Tool You'll Ever Need"/>
 <meta property="og:description" content="76+ free developer tools. JSON, API, Text, DevOps, Frontend — all in one place. No login required."/>
 <meta property="og:url" content="https://devnovatools.com"/>
@@ -14,19 +17,17 @@
 <meta property="og:image:height" content="630"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://devnovatools.com/assets/og-image.png"/>
-<meta name="twitter:site" content="@devnovatools"/>
-<link rel="canonical" href="https://devnovatools.com/"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <link rel="apple-touch-icon" href="/favicon.svg"/>
-<meta name="author" content="DevNova Tools"/>
-<meta name="copyright" content="© 2026 DevNova Tools — devnovatools.com"/>
-<meta name="robots" content="index, follow"/>
-<meta name="revisit-after" content="7 days"/>
+<link rel="canonical" href="https://devnovatools.com/"/>
 <link rel="stylesheet" href="/assets/shared.css"/>
+<link rel="stylesheet" href="/assets/community.css"/>
 </head>
 <body>
+
+<!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-eyebrow"><span class="hero-dot"></span> Free forever · No login · No ads</div>
+  <div class="hero-eyebrow"><span class="hero-dot"></span> Free forever · No login · No ads · Built for developers</div>
   <h1>Every developer tool<br><span>you'll ever need</span></h1>
   <p class="hero-sub">76+ powerful tools for JSON, APIs, Text, DevOps and Frontend — all in one tab that never closes.</p>
   <div class="hero-search-wrap">
@@ -41,6 +42,34 @@
     <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Free Forever</div></div>
   </div>
 </section>
+
+<!-- ── LIVE STATS ── -->
+<section class="stats-section" id="live-stats">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number" id="stat-runs">0+</div>
+      <div class="stat-label">Total Tool Runs</div>
+      <div class="stat-live"><span class="stat-live-dot"></span> Live</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" id="stat-devs">0+</div>
+      <div class="stat-label">Developers Served</div>
+      <div class="stat-live"><span class="stat-live-dot"></span> Growing</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" id="stat-tools">76</div>
+      <div class="stat-label">Free Tools Available</div>
+      <div class="stat-live"><span class="stat-live-dot"></span> More coming</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" id="stat-countries">0+</div>
+      <div class="stat-label">Countries Reached</div>
+      <div class="stat-live"><span class="stat-live-dot"></span> Worldwide</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TOOL CATEGORIES ── -->
 <section class="categories-section">
   <div class="section-title">Browse by Category <span>5 categories</span></div>
   <div class="cat-grid" id="cat-grid"></div>
@@ -48,33 +77,90 @@
     <div class="section-title">All Tools <span id="tool-count"></span></div>
     <div class="tool-grid" id="tool-grid"></div>
   </div>
+
+  <!-- Community Banner -->
+  <div class="community-banner">
+    <div class="community-banner-text">
+      <h3>🚀 Built for developers, by a developer</h3>
+      <p>DevNova Tools is free, open and growing. Every tool runs in your browser — your data never leaves your computer. More tools added regularly.</p>
+    </div>
+    <div class="community-banner-actions">
+      <a href="#newsletter" class="btn btn-primary">📧 Stay Updated</a>
+      <a href="/blog/" class="btn btn-secondary">📝 Read the Blog</a>
+    </div>
+  </div>
 </section>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials-section">
+  <div class="testimonials-inner">
+    <div class="section-header">
+      <h2>Loved by developers worldwide</h2>
+      <p>Thousands of developers use DevNova Tools every day to build, debug and ship faster.</p>
+    </div>
+    <div class="testimonials-grid" id="testimonials-grid"></div>
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ── -->
+<section class="newsletter-section" id="newsletter">
+  <div class="newsletter-inner">
+    <div class="newsletter-badge">📬 Developer Newsletter</div>
+    <h2 class="newsletter-title">Stay ahead of the curve</h2>
+    <p class="newsletter-sub">Get notified when new tools launch, plus practical developer tips, tutorials and resources — delivered straight to your inbox. No spam, ever.</p>
+    <form class="newsletter-form" id="newsletter-form">
+      <input type="email" id="newsletter-email" class="newsletter-input" placeholder="your@email.com" required/>
+      <button type="submit" id="newsletter-btn" class="newsletter-btn">Subscribe Free →</button>
+    </form>
+    <div class="newsletter-success" id="newsletter-success">
+      🎉 You're in! Welcome to the DevNova community. Check your inbox for a confirmation.
+    </div>
+    <p class="newsletter-privacy">🔒 No spam. Unsubscribe anytime. We respect your privacy.</p>
+  </div>
+</section>
+
+<!-- ── BLOG ── -->
+<section class="blog-section" id="blog">
+  <div class="blog-inner">
+    <div class="section-header">
+      <h2>Developer guides & tutorials</h2>
+      <p>Practical articles to help you work smarter — written by developers, for developers.</p>
+    </div>
+    <div class="blog-grid" id="blog-grid"></div>
+    <div class="blog-cta">
+      <a href="/blog/" class="btn btn-secondary btn-lg">View all articles →</a>
+    </div>
+  </div>
+</section>
+
 <script src="/assets/layout.js"></script>
+<script src="/assets/community.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded',()=>{
+const BUILT_CATS = ['json','api','text','devops','frontend'];
+document.addEventListener('DOMContentLoaded', () => {
   DevNova.initSearch('hero-search','hero-search-results');
-  const BUILT_CATS=['json','api','text','devops','frontend'];
-  const catGrid=document.getElementById('cat-grid');
-  DevNova.CATS.filter(c=>BUILT_CATS.includes(c.id)).forEach(c=>{
-    const count=DevNova.ALL_TOOLS.filter(t=>t.catId===c.id).length;
-    if(!count)return;
-    const card=document.createElement('a');
-    card.href='/'+c.id+'/';
-    card.className='cat-card';
-    card.style.setProperty('--cat-color',c.color);
-    card.innerHTML='<span class="cat-icon">'+c.icon+'</span><div class="cat-name">'+c.name+'</div><div class="cat-count">'+count+' tools</div><div class="cat-bar"></div>';
+
+  const catGrid = document.getElementById('cat-grid');
+  DevNova.CATS.filter(c => BUILT_CATS.includes(c.id)).forEach(c => {
+    const count = DevNova.ALL_TOOLS.filter(t => t.catId === c.id).length;
+    const card = document.createElement('a');
+    card.href = '/' + c.id + '/';
+    card.className = 'cat-card';
+    card.style.setProperty('--cat-color', c.color);
+    card.innerHTML = `<span class="cat-icon">${c.icon}</span><div class="cat-name">${c.name}</div><div class="cat-count">${count} tools</div><div class="cat-bar"></div>`;
     catGrid.appendChild(card);
   });
-  const toolGrid=document.getElementById('tool-grid');
-  const tools=DevNova.ALL_TOOLS.filter(t=>BUILT_CATS.includes(t.catId));
-  document.getElementById('tool-count').textContent=tools.length+' tools';
-  tools.forEach(t=>{
-    const cat=DevNova.CATS.find(c=>c.id===t.catId);
-    const card=document.createElement('a');
-    card.href=t.path;
-    card.className='tool-card';
-    card.style.setProperty('--cat-color',cat?cat.color:'var(--green)');
-    card.innerHTML='<span class="tool-card-icon">'+t.icon+'</span><div><div class="tool-card-name">'+t.name+'</div><div class="tool-card-desc">'+t.desc+'</div></div>';
+
+  const toolGrid = document.getElementById('tool-grid');
+  const tools = DevNova.ALL_TOOLS.filter(t => BUILT_CATS.includes(t.catId));
+  document.getElementById('tool-count').textContent = tools.length + ' tools';
+  tools.forEach(t => {
+    const cat = DevNova.CATS.find(c => c.id === t.catId);
+    const card = document.createElement('a');
+    card.href = t.path;
+    card.className = 'tool-card';
+    card.style.setProperty('--cat-color', cat ? cat.color : 'var(--green)');
+    card.innerHTML = `<span class="tool-card-icon">${t.icon}</span><div><div class="tool-card-name">${t.name}</div><div class="tool-card-desc">${t.desc}</div></div>`;
     toolGrid.appendChild(card);
   });
 });
