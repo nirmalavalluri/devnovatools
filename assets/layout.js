@@ -263,6 +263,8 @@ function injectFooter(){
 }
 
 function init(){injectNav();injectSidebar();injectFooter()}
-return{init,ALL_TOOLS,CATS,copyToClipboard,initSearch,getTheme,setTheme};
+return{init,ALL_TOOLS,CATS,copyToClipboard,initSearch,getTheme,setTheme,toggleCat};
 })();
+// Expose toggleCat globally for onclick handlers
+function toggleCat(catId){DevNova.toggleCat(catId)}
 document.addEventListener('DOMContentLoaded',()=>DevNova.init());
