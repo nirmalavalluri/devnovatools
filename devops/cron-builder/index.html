@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Cron Expression Builder — DevNova Tools</title>
-<meta name="description" content="Build cron expressions visually and see the next run times. Free, fast, no login required."/>
+<title>Cron Expression Builder — Build Cron Jobs Visually</title>
+<meta name="description" content="Free visual cron expression builder. Create cron schedules with a simple UI and understand what each expression means. Perfect for Linux and cloud schedulers."/>
 <link rel="canonical" href="https://devnovatools.com/devops/cron-builder/"/>
 <link rel="stylesheet" href="/assets/shared.css"/>
 </head>
@@ -94,5 +94,128 @@
       return presets[e]||'Custom expression';
     }
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <!-- Ad slot: Top banner -->
+    <div class="ad-slot ad-slot-banner" id="ad-top">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: top-banner -->
+      <!-- Activate when traffic reaches 100+ daily visitors -->
+    </div>
+
+    <!-- What is this tool -->
+    <div class="seo-section">
+      <h2>📖 What is Cron Expression Builder?</h2>
+      <p>A cron expression is a string of 5 fields that defines when a scheduled task should run. This builder lets you set the minute, hour, day, month and weekday values visually, then generates the correct cron expression. Used in Linux crontab, AWS EventBridge, GitHub Actions, Kubernetes CronJobs and more.</p>
+    </div>
+
+    <!-- Example -->
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Every weekday at 9 AM</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">0 9 * * 1-5
+
+Meaning: At 9:00 AM, Monday through Friday</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use cases -->
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Scheduling database backups at midnight</li>
+<li>Running daily report generation jobs</li>
+<li>Setting up hourly health checks</li>
+<li>Scheduling weekly data cleanup tasks</li>
+<li>Configuring CI/CD pipeline triggers</li></ul>
+    </div>
+
+    <!-- FAQ -->
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What do the 5 cron fields mean? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">From left to right: Minute (0-59), Hour (0-23), Day of month (1-31), Month (1-12), Day of week (0-7, where 0 and 7 are Sunday).</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What does */ mean in a cron expression? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The '/' means 'every'. So '*/15' means 'every 15'. '*/15 * * * *' means 'every 15 minutes'. '0 */2 * * *' means 'every 2 hours'.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I run a job every weekday? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use '1-5' for the day-of-week field. '0 9 * * 1-5' runs at 9 AM Monday through Friday.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What timezone does cron use? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Cron uses the server's local timezone. For cloud services like AWS EventBridge, you can specify the timezone explicitly.</div>
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser using JavaScript. Nothing is ever sent to our servers. You can even use this tool offline after the page loads.</div>
+    </div>
+
+    <!-- Related tools -->
+    <div class="seo-section"><h2>🔗 Related Tools</h2><div class="related-grid"><a href="/devops/cron-tester/" class="related-card"><span>🧪</span><span class="related-card-name">Cron Tester</span></a><a href="/devops/timestamp/" class="related-card"><span>🕐</span><span class="related-card-name">Timestamp Converter</span></a><a href="/devops/env-editor/" class="related-card"><span>🔧</span><span class="related-card-name">Env Editor</span></a><a href="/devops/gitignore/" class="related-card"><span>🚫</span><span class="related-card-name">GitIgnore Generator</span></a></div></div>
+
+    <!-- Ad slot: Bottom banner -->
+    <div class="ad-slot ad-slot-banner" id="ad-bottom">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: bottom-banner -->
+    </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="seo-sidebar">
+
+    <!-- Sidebar ad -->
+    <div class="ad-slot ad-slot-sidebar" id="ad-sidebar">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: sidebar -->
+    </div>
+
+    <!-- Affiliate recommendations -->
+    <div class="seo-section"><h2>🚀 Recommended Tools</h2><a href="https://aws.amazon.com" class="affiliate-card" target="_blank" rel="noopener sponsored">
+      <span class="affiliate-badge">Sponsored</span>
+      <div class="affiliate-name">AWS</div>
+      <div class="affiliate-desc">Cloud Computing</div>
+    </a><a href="https://digitalocean.com" class="affiliate-card" target="_blank" rel="noopener sponsored">
+      <span class="affiliate-badge">Sponsored</span>
+      <div class="affiliate-name">DigitalOcean</div>
+      <div class="affiliate-desc">Developer Cloud</div>
+    </a></div>
+
+    <!-- Quick tips -->
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>Ctrl+Enter</code> to run</li>
+        <li>Use <code>Copy Output</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+
+    <!-- More tools -->
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/" style="color:var(--cat-json)">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/" style="color:var(--cat-api)">🔐 API & Security Tools</a></li>
+        <li><a href="/text/" style="color:var(--cat-text)">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/" style="color:var(--cat-devops)">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/" style="color:var(--cat-frontend)">🟢 Frontend Tools</a></li>
+      </ul>
+    </div>
+
+  </aside>
+</section>
+
 </body>
 </html>

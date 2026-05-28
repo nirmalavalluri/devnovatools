@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Timestamp Converter — DevNova Tools</title>
-<meta name="description" content="Convert Unix timestamps to readable dates and vice versa. Free, fast, no login required."/>
+<title>Unix Timestamp Converter — Convert Timestamps Online</title>
+<meta name="description" content="Free Unix timestamp converter. Convert Unix timestamps to readable dates and dates to Unix timestamps. Supports seconds, milliseconds and ISO 8601."/>
 <link rel="canonical" href="https://devnovatools.com/devops/timestamp/"/>
 <link rel="stylesheet" href="/assets/shared.css"/>
 </head>
@@ -86,5 +86,129 @@ e.g. 1716825600 or 2025-01-01" oninput="run()" spellcheck="false"></textarea>
     function relTime(d){const s=Math.floor((Date.now()-d)/1000);const m=Math.floor(s/60),h=Math.floor(m/60),days=Math.floor(h/24);return days>0?days+' days ago':h>0?h+' hours ago':m>0?m+' minutes ago':s+' seconds ago'}
     showNow();
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <!-- Ad slot: Top banner -->
+    <div class="ad-slot ad-slot-banner" id="ad-top">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: top-banner -->
+      <!-- Activate when traffic reaches 100+ daily visitors -->
+    </div>
+
+    <!-- What is this tool -->
+    <div class="seo-section">
+      <h2>📖 What is Timestamp Converter?</h2>
+      <p>A Unix timestamp is the number of seconds elapsed since January 1, 1970 (the Unix epoch). This converter translates between Unix timestamps and human-readable dates in UTC, local time and ISO 8601 format. Essential for debugging logs, APIs and database timestamps.</p>
+    </div>
+
+    <!-- Example -->
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">1716825600</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Unix(s):  1716825600
+UTC:      Thu, 27 May 2025 16:00:00 GMT
+ISO:      2025-05-27T16:00:00.000Z
+Local:    5/27/2025, 12:00:00 PM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use cases -->
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Debugging timestamps in API responses and logs</li>
+<li>Converting database datetime fields</li>
+<li>Understanding token expiry times in JWTs</li>
+<li>Comparing event timestamps across timezones</li>
+<li>Generating test fixtures with specific dates</li></ul>
+    </div>
+
+    <!-- FAQ -->
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is a Unix timestamp? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">A Unix timestamp counts the number of seconds since January 1, 1970 00:00:00 UTC (the Unix epoch). It is timezone-independent and used universally in programming.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the difference between seconds and milliseconds timestamps? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Unix timestamps in seconds are 10 digits (e.g. 1716825600). JavaScript uses milliseconds which are 13 digits (e.g. 1716825600000). Always check which your system uses.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the 2038 problem? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">32-bit systems store timestamps as signed integers. In January 2038, they will overflow and reset to 1901. Modern 64-bit systems are not affected.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I get the current timestamp in code? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">JavaScript: Date.now() (ms) or Math.floor(Date.now()/1000) (s). Python: import time; time.time(). Linux: date +%s</div>
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser using JavaScript. Nothing is ever sent to our servers. You can even use this tool offline after the page loads.</div>
+    </div>
+
+    <!-- Related tools -->
+    <div class="seo-section"><h2>🔗 Related Tools</h2><div class="related-grid"><a href="/devops/cron-builder/" class="related-card"><span>⏰</span><span class="related-card-name">Cron Builder</span></a><a href="/devops/cron-tester/" class="related-card"><span>🧪</span><span class="related-card-name">Cron Tester</span></a><a href="/productivity/timezone/" class="related-card"><span>🌍</span><span class="related-card-name">Timezone Converter</span></a><a href="/api/jwt-decoder/" class="related-card"><span>🔐</span><span class="related-card-name">JWT Decoder (check exp)</span></a></div></div>
+
+    <!-- Ad slot: Bottom banner -->
+    <div class="ad-slot ad-slot-banner" id="ad-bottom">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: bottom-banner -->
+    </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="seo-sidebar">
+
+    <!-- Sidebar ad -->
+    <div class="ad-slot ad-slot-sidebar" id="ad-sidebar">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: sidebar -->
+    </div>
+
+    <!-- Affiliate recommendations -->
+    <div class="seo-section"><h2>🚀 Recommended Tools</h2><a href="https://datadoghq.com" class="affiliate-card" target="_blank" rel="noopener sponsored">
+      <span class="affiliate-badge">Sponsored</span>
+      <div class="affiliate-name">Datadog</div>
+      <div class="affiliate-desc">Monitoring & Logs</div>
+    </a><a href="https://newrelic.com" class="affiliate-card" target="_blank" rel="noopener sponsored">
+      <span class="affiliate-badge">Sponsored</span>
+      <div class="affiliate-name">New Relic</div>
+      <div class="affiliate-desc">Observability Platform</div>
+    </a></div>
+
+    <!-- Quick tips -->
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>Ctrl+Enter</code> to run</li>
+        <li>Use <code>Copy Output</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+
+    <!-- More tools -->
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/" style="color:var(--cat-json)">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/" style="color:var(--cat-api)">🔐 API & Security Tools</a></li>
+        <li><a href="/text/" style="color:var(--cat-text)">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/" style="color:var(--cat-devops)">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/" style="color:var(--cat-frontend)">🟢 Frontend Tools</a></li>
+      </ul>
+    </div>
+
+  </aside>
+</section>
+
 </body>
 </html>

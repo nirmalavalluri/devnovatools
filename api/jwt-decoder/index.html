@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>JWT Decoder — DevNova Tools</title>
-<meta name="description" content="Decode and inspect JWT tokens — header, payload and signature. Free, fast, no login required."/>
+<title>JWT Decoder — Decode & Inspect JWT Tokens Online</title>
+<meta name="description" content="Free JWT decoder. Instantly decode JWT tokens, inspect the header and payload, check expiry and understand the structure. No login required."/>
 <link rel="canonical" href="https://devnovatools.com/api/jwt-decoder/"/>
 <link rel="stylesheet" href="/assets/shared.css"/>
 </head>
@@ -83,5 +83,139 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." oninput="run()" spellcheck="false"></te
       }catch(e){out.textContent='✗ '+e.message}
     }
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <!-- Ad slot: Top banner -->
+    <div class="ad-slot ad-slot-banner" id="ad-top">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: top-banner -->
+      <!-- Activate when traffic reaches 100+ daily visitors -->
+    </div>
+
+    <!-- What is this tool -->
+    <div class="seo-section">
+      <h2>📖 What is JWT Decoder?</h2>
+      <p>A JWT (JSON Web Token) Decoder lets you inspect the contents of a JWT without needing the secret key. It decodes the Base64-encoded header and payload sections, revealing the claims, algorithm, expiry time and other metadata inside the token.</p>
+    </div>
+
+    <!-- Example -->
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0IiwibmFtZSI6IkFsaWNlIiwiaWF0IjoxNTE2MjM5MDIyfQ.sig</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">── HEADER ──
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+── PAYLOAD ──
+{
+  "sub": "1234",
+  "name": "Alice",
+  "iat": 1516239022
+}
+
+Status: ✓ Valid</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use cases -->
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Debugging authentication issues in APIs</li>
+<li>Inspecting token claims during development</li>
+<li>Checking token expiry without running code</li>
+<li>Understanding JWT structure for learning</li>
+<li>Verifying token contents in code reviews</li></ul>
+    </div>
+
+    <!-- FAQ -->
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">Is it safe to decode a JWT here? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Decoding is safe — the decoder only reads the Base64-encoded payload which is publicly readable. The signature is not verified here. Never share JWTs with sensitive payloads in untrusted tools.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can this tool verify JWT signatures? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">No — signature verification requires the secret key. This tool only decodes the readable parts (header and payload). Use the JWT Generator to create signed tokens.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is a JWT used for? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">JWTs are used for authentication (login tokens), authorization (permission claims), and secure data exchange between services. They are commonly used in REST APIs with Bearer token authentication.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Why is my token showing as expired? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">JWTs contain an 'exp' claim (Unix timestamp). If the current time is past that timestamp, the token is expired. Generate a new token or extend the expiry time.</div>
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser using JavaScript. Nothing is ever sent to our servers. You can even use this tool offline after the page loads.</div>
+    </div>
+
+    <!-- Related tools -->
+    <div class="seo-section"><h2>🔗 Related Tools</h2><div class="related-grid"><a href="/api/jwt-generator/" class="related-card"><span>🔑</span><span class="related-card-name">JWT Generator</span></a><a href="/api/base64/" class="related-card"><span>🔒</span><span class="related-card-name">Base64 Decoder</span></a><a href="/api/hmac-generator/" class="related-card"><span>🛡️</span><span class="related-card-name">HMAC Generator</span></a><a href="/api/uuid-generator/" class="related-card"><span>🆔</span><span class="related-card-name">UUID Generator</span></a></div></div>
+
+    <!-- Ad slot: Bottom banner -->
+    <div class="ad-slot ad-slot-banner" id="ad-bottom">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: bottom-banner -->
+    </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="seo-sidebar">
+
+    <!-- Sidebar ad -->
+    <div class="ad-slot ad-slot-sidebar" id="ad-sidebar">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: sidebar -->
+    </div>
+
+    <!-- Affiliate recommendations -->
+    <div class="seo-section"><h2>🚀 Recommended Tools</h2><a href="https://auth0.com" class="affiliate-card" target="_blank" rel="noopener sponsored">
+      <span class="affiliate-badge">Sponsored</span>
+      <div class="affiliate-name">Auth0</div>
+      <div class="affiliate-desc">Authentication Platform</div>
+    </a><a href="https://clerk.com" class="affiliate-card" target="_blank" rel="noopener sponsored">
+      <span class="affiliate-badge">Sponsored</span>
+      <div class="affiliate-name">Clerk</div>
+      <div class="affiliate-desc">User Management</div>
+    </a></div>
+
+    <!-- Quick tips -->
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>Ctrl+Enter</code> to run</li>
+        <li>Use <code>Copy Output</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+
+    <!-- More tools -->
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/" style="color:var(--cat-json)">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/" style="color:var(--cat-api)">🔐 API & Security Tools</a></li>
+        <li><a href="/text/" style="color:var(--cat-text)">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/" style="color:var(--cat-devops)">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/" style="color:var(--cat-frontend)">🟢 Frontend Tools</a></li>
+      </ul>
+    </div>
+
+  </aside>
+</section>
+
 </body>
 </html>

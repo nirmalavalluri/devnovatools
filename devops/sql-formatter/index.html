@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SQL Formatter — DevNova Tools</title>
-<meta name="description" content="Format and beautify SQL queries for better readability. Free, fast, no login required."/>
+<title>SQL Formatter — Format & Beautify SQL Queries Online</title>
+<meta name="description" content="Free SQL formatter. Instantly format, beautify and prettify SQL queries for better readability. Supports SELECT, INSERT, UPDATE, DELETE and JOIN statements."/>
 <link rel="canonical" href="https://devnovatools.com/devops/sql-formatter/"/>
 <link rel="stylesheet" href="/assets/shared.css"/>
 </head>
@@ -76,5 +76,129 @@
       document.getElementById('status').textContent='SQL formatted';
     }
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <!-- Ad slot: Top banner -->
+    <div class="ad-slot ad-slot-banner" id="ad-top">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: top-banner -->
+      <!-- Activate when traffic reaches 100+ daily visitors -->
+    </div>
+
+    <!-- What is this tool -->
+    <div class="seo-section">
+      <h2>📖 What is SQL Formatter?</h2>
+      <p>This SQL Formatter takes unformatted SQL queries and restructures them with proper keyword capitalization, indentation and line breaks. Readable SQL is easier to understand, review, debug and maintain — especially for complex queries with multiple JOINs and subqueries.</p>
+    </div>
+
+    <!-- Example -->
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">select u.id,u.name from users u inner join orders o on u.id=o.user_id where o.total&gt;100 order by o.total desc</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">SELECT u.id,
+  u.name
+FROM users u
+INNER JOIN orders o
+  ON u.id = o.user_id
+WHERE o.total &gt; 100
+ORDER BY o.total DESC</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use cases -->
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Formatting SQL before committing to version control</li>
+<li>Making complex queries readable for code review</li>
+<li>Cleaning up auto-generated ORM queries</li>
+<li>Documenting database queries</li>
+<li>Debugging slow queries before running EXPLAIN</li></ul>
+    </div>
+
+    <!-- FAQ -->
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">Does formatting change how SQL runs? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">No — formatting only changes whitespace. The execution plan and results are identical. Formatting is purely cosmetic for readability.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Should SQL keywords be uppercase? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">By convention yes, but it's not required. Uppercase keywords (SELECT, FROM, WHERE) make them stand out from table/column names, improving readability.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Does this support all SQL dialects? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The formatter handles standard SQL keywords. Most syntax works for MySQL, PostgreSQL, SQLite and SQL Server. Dialect-specific features may not be perfectly formatted.</div>
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser using JavaScript. Nothing is ever sent to our servers. You can even use this tool offline after the page loads.</div>
+    </div>
+
+    <!-- Related tools -->
+    <div class="seo-section"><h2>🔗 Related Tools</h2><div class="related-grid"><a href="/database/sql-to-orm/" class="related-card"><span>🗄️</span><span class="related-card-name">SQL to ORM</span></a><a href="/database/query-explainer/" class="related-card"><span>🔍</span><span class="related-card-name">Query Explainer</span></a><a href="/devops/yaml-formatter/" class="related-card"><span>📄</span><span class="related-card-name">YAML Formatter</span></a><a href="/devops/xml-formatter/" class="related-card"><span>📋</span><span class="related-card-name">XML Formatter</span></a></div></div>
+
+    <!-- Ad slot: Bottom banner -->
+    <div class="ad-slot ad-slot-banner" id="ad-bottom">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: bottom-banner -->
+    </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="seo-sidebar">
+
+    <!-- Sidebar ad -->
+    <div class="ad-slot ad-slot-sidebar" id="ad-sidebar">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: sidebar -->
+    </div>
+
+    <!-- Affiliate recommendations -->
+    <div class="seo-section"><h2>🚀 Recommended Tools</h2><a href="https://planetscale.com" class="affiliate-card" target="_blank" rel="noopener sponsored">
+      <span class="affiliate-badge">Sponsored</span>
+      <div class="affiliate-name">PlanetScale</div>
+      <div class="affiliate-desc">MySQL-compatible serverless DB</div>
+    </a><a href="https://neon.tech" class="affiliate-card" target="_blank" rel="noopener sponsored">
+      <span class="affiliate-badge">Sponsored</span>
+      <div class="affiliate-name">Neon</div>
+      <div class="affiliate-desc">Serverless PostgreSQL</div>
+    </a></div>
+
+    <!-- Quick tips -->
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>Ctrl+Enter</code> to run</li>
+        <li>Use <code>Copy Output</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+
+    <!-- More tools -->
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/" style="color:var(--cat-json)">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/" style="color:var(--cat-api)">🔐 API & Security Tools</a></li>
+        <li><a href="/text/" style="color:var(--cat-text)">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/" style="color:var(--cat-devops)">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/" style="color:var(--cat-frontend)">🟢 Frontend Tools</a></li>
+      </ul>
+    </div>
+
+  </aside>
+</section>
+
 </body>
 </html>

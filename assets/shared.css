@@ -219,3 +219,47 @@ label{font-size:.84rem;font-weight:600;color:var(--text-secondary);display:block
   .footer-grid{grid-template-columns:1fr}
   .hero{padding:50px 16px 36px}
 }
+
+/* ── SEO CONTENT SECTIONS ── */
+.seo-content{max-width:1200px;margin:0 auto;padding:0 24px 60px;display:grid;grid-template-columns:1fr 300px;gap:32px;margin-top:40px}
+.seo-main{display:flex;flex-direction:column;gap:32px}
+.seo-sidebar{display:flex;flex-direction:column;gap:20px}
+.seo-section{background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--r-xl);padding:24px}
+.seo-section h2{font-size:1.1rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;color:var(--text)}
+.seo-section h3{font-size:.95rem;font-weight:600;margin-bottom:8px;color:var(--text)}
+.seo-section p{font-size:.9rem;color:var(--text-secondary);line-height:1.7;margin-bottom:8px}
+.seo-section ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.seo-section ul li{font-size:.88rem;color:var(--text-secondary);padding-left:16px;position:relative;line-height:1.6}
+.seo-section ul li::before{content:'→';position:absolute;left:0;color:var(--green);font-size:.8rem}
+.example-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.example-box{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--r-lg);padding:12px}
+.example-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);margin-bottom:8px}
+.example-code{font-family:var(--mono);font-size:.82rem;color:var(--green);line-height:1.6;white-space:pre-wrap;word-break:break-all}
+.faq-item{border-bottom:1px solid var(--border);padding:14px 0}
+.faq-item:last-child{border-bottom:none;padding-bottom:0}
+.faq-q{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:6px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-a{font-size:.85rem;color:var(--text-secondary);line-height:1.7}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.related-card{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--r-md);padding:10px 12px;text-decoration:none;transition:all var(--transition);display:flex;align-items:center;gap:8px}
+.related-card:hover{border-color:var(--green);transform:translateY(-1px)}
+.related-card-name{font-size:.82rem;font-weight:600;color:var(--text)}
+.privacy-box{background:var(--success-bg);border:1px solid rgba(0,214,143,0.25);border-radius:var(--r-lg);padding:14px 16px;display:flex;gap:10px;align-items:flex-start}
+.privacy-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px}
+.privacy-text{font-size:.84rem;color:var(--text-secondary);line-height:1.6}
+
+/* ── AD SLOTS ── */
+.ad-slot{background:var(--bg-surface);border:1.5px dashed var(--border);border-radius:var(--r-lg);min-height:90px;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:.8rem;text-align:center;padding:12px}
+.ad-slot-banner{min-height:90px}
+.ad-slot-sidebar{min-height:250px}
+.affiliate-card{background:var(--bg-card);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:14px;text-decoration:none;display:block;transition:all var(--transition)}
+.affiliate-card:hover{border-color:var(--blue);transform:translateY(-1px)}
+.affiliate-badge{font-size:.7rem;font-weight:700;background:var(--info-bg);color:var(--info);padding:2px 7px;border-radius:var(--r-full);display:inline-block;margin-bottom:8px;border:1px solid rgba(77,166,255,.2)}
+.affiliate-name{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.affiliate-desc{font-size:.8rem;color:var(--text-muted);line-height:1.5}
+
+@media(max-width:900px){
+  .seo-content{grid-template-columns:1fr}
+  .seo-sidebar{display:none}
+  .example-grid{grid-template-columns:1fr}
+  .related-grid{grid-template-columns:1fr}
+}

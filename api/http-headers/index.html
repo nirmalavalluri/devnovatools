@@ -42,5 +42,122 @@
 const H={'Accept':'Tells server what content types the client can handle. e.g. application/json, text/html','Authorization':'Authentication credentials. e.g. Bearer <token> or Basic <base64>','Content-Type':'Media type of the body. e.g. application/json, multipart/form-data','Cache-Control':'Caching directives. e.g. no-cache, max-age=3600, public, private','Access-Control-Allow-Origin':'CORS - which origins can access. e.g. * or https://example.com','ETag':'Version identifier for cache validation','X-Request-ID':'Unique request ID for distributed tracing','Strict-Transport-Security':'Force HTTPS (HSTS). e.g. max-age=31536000; includeSubDomains','Content-Security-Policy':'Prevent XSS by controlling loaded resources','X-Frame-Options':'Prevent clickjacking. Values: DENY, SAMEORIGIN','Accept-Encoding':'Compression formats accepted. e.g. gzip, deflate, br','User-Agent':'Client software identifier','Cookie':'HTTP cookies sent to server','Set-Cookie':'Server directive to store a cookie','Location':'Redirect URL for 3xx responses','Retry-After':'Wait time before retry for rate-limited requests','X-Content-Type-Options':'Prevent MIME sniffing. Value: nosniff','Referrer-Policy':'Controls referrer info sent. e.g. strict-origin-when-cross-origin','Last-Modified':'Date resource was last modified','Vary':'Which request headers affect the response','WWW-Authenticate':'Auth scheme required. e.g. Bearer realm=api','X-RateLimit-Limit':'Max requests allowed in time window','X-RateLimit-Remaining':'Requests remaining in current window','Forwarded':'Original client info when using proxies'};
 function run(){const q=document.getElementById('input').value.trim().toLowerCase();const o=document.getElementById('output');const m=Object.entries(H).filter(([k,v])=>!q||k.toLowerCase().includes(q)||v.toLowerCase().includes(q));o.textContent=m.map(([k,v])=>k+'\n  '+v).join('\n\n');document.getElementById('status').textContent=m.length+' header(s)'}
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <!-- Ad slot: Top banner -->
+    <div class="ad-slot ad-slot-banner" id="ad-top">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: top-banner -->
+      <!-- Activate when traffic reaches 100+ daily visitors -->
+    </div>
+
+    <!-- What is this tool -->
+    <div class="seo-section">
+      <h2>📖 What is HTTP Header Analyzer?</h2>
+      <p>HTTP Header Analyzer is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+    </div>
+
+    <!-- Example -->
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Paste your input and click Run</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Processed output appears here</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Use cases -->
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Speed up your development workflow</li>
+<li>Debug and test your data</li>
+<li>Share results with your team</li>
+<li>Learn how the format works</li></ul>
+    </div>
+
+    <!-- FAQ -->
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — all processing runs in your browser. Your data is never sent to any server.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Does it work offline? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — once the page is loaded, the tool works without an internet connection.</div>
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser using JavaScript. Nothing is ever sent to our servers. You can even use this tool offline after the page loads.</div>
+    </div>
+
+    <!-- Related tools -->
+    
+
+    <!-- Ad slot: Bottom banner -->
+    <div class="ad-slot ad-slot-banner" id="ad-bottom">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: bottom-banner -->
+    </div>
+
+  </div>
+
+  <!-- Sidebar -->
+  <aside class="seo-sidebar">
+
+    <!-- Sidebar ad -->
+    <div class="ad-slot ad-slot-sidebar" id="ad-sidebar">
+      <!-- Google AdSense: ca-pub-XXXXXXXX / slot: sidebar -->
+    </div>
+
+    <!-- Affiliate recommendations -->
+    <div class="seo-section"><h2>🚀 Recommended Tools</h2><a href="https://digitalocean.com" class="affiliate-card" target="_blank" rel="noopener sponsored">
+      <span class="affiliate-badge">Sponsored</span>
+      <div class="affiliate-name">DigitalOcean</div>
+      <div class="affiliate-desc">$200 Free Credit for Developers</div>
+    </a><a href="https://linode.com" class="affiliate-card" target="_blank" rel="noopener sponsored">
+      <span class="affiliate-badge">Sponsored</span>
+      <div class="affiliate-name">Linode (Akamai)</div>
+      <div class="affiliate-desc">Simple Cloud Hosting</div>
+    </a></div>
+
+    <!-- Quick tips -->
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>Ctrl+Enter</code> to run</li>
+        <li>Use <code>Copy Output</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+
+    <!-- More tools -->
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/" style="color:var(--cat-json)">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/" style="color:var(--cat-api)">🔐 API & Security Tools</a></li>
+        <li><a href="/text/" style="color:var(--cat-text)">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/" style="color:var(--cat-devops)">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/" style="color:var(--cat-frontend)">🟢 Frontend Tools</a></li>
+      </ul>
+    </div>
+
+  </aside>
+</section>
+
 </body>
 </html>
