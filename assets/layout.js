@@ -212,7 +212,7 @@ function initSearch(inputId,resultsId){
   input.addEventListener('input',()=>{
     const q=input.value.trim().toLowerCase();
     if(!q){results.classList.remove('show');results.innerHTML='';return}
-    const matches=ALL_TOOLS.filter(t=>t.name.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q)||t.cat.toLowerCase().includes(q)).slice(0,8);
+    const BUILT=['/json/formatter/','/json/validator/','/json/minifier/','/json/diff/','/json/csv-to-json/','/json/json-to-csv/','/json/schema-generator/','/json/yaml-to-json/','/json/json-to-yaml/','/api/jwt-decoder/','/api/base64/','/api/url-encoder/','/api/hash-generator/','/api/uuid-generator/','/api/password-generator/','/api/ip-lookup/','/text/regex-tester/','/text/diff-checker/','/text/case-converter/','/text/word-counter/','/text/markdown-preview/','/text/slug-generator/','/text/lorem-ipsum/','/devops/cron-builder/','/devops/timestamp/','/devops/yaml-formatter/','/devops/sql-formatter/','/devops/gitignore/','/devops/http-status/','/frontend/css-minifier/','/frontend/color-converter/','/frontend/gradient-generator/','/frontend/box-shadow/','/frontend/border-radius/'];const matches=ALL_TOOLS.filter(t=>BUILT.includes(t.path)&&(t.name.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q)||t.cat.toLowerCase().includes(q))).slice(0,8);
     if(!matches.length){results.classList.remove('show');return}
     results.innerHTML=matches.map(t=>`<a class="search-result-item" href="${t.path}"><span>${t.icon}</span><span>${t.name}</span><span class="search-result-cat">${t.cat}</span></a>`).join('');
     results.classList.add('show');
