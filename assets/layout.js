@@ -141,8 +141,8 @@ function injectNav(){
 
 function injectSidebar(){
   const curPath=window.location.pathname;
-  const curCat=CATS.find(c=>curPath.startsWith('/'+c.id+'/'));
 
+  // Add overlay
   const overlay=document.createElement('div');
   overlay.className='sidebar-overlay';overlay.id='sidebar-overlay';
   overlay.addEventListener('click',()=>{
@@ -151,82 +151,64 @@ function injectSidebar(){
   });
   document.body.appendChild(overlay);
 
+  // Build sidebar HTML
   const sidebar=document.createElement('aside');
   sidebar.className='dnt-sidebar';sidebar.id='dnt-sidebar';
 
-  let sidebarHTML=`
-    <div class="sidebar-search">
-      <div class="sidebar-search-wrap">
-        <span class="sidebar-search-icon">🔍</span>
-        <input class="sidebar-search-input" id="sidebar-search" type="text" placeholder="Filter tools..." autocomplete="off"/>
-      </div>
+  let html=`<div class="sidebar-search">
+    <div class="sidebar-search-wrap">
+      <span class="sidebar-search-icon">🔍</span>
+      <input class="sidebar-search-input" id="sidebar-search" type="text" placeholder="Filter tools..." autocomplete="off"/>
     </div>
-    <div class="sidebar-inner">
-      <a href="/" class="sidebar-home-link">🏠 <span>Home — All Tools</span></a>`;
+  </div>
+  <div class="sidebar-inner">
+    <a href="/" class="sidebar-home-link">🏠 <span>Home — All Tools</span></a>`;
 
   CATS.forEach(cat=>{
     const tools=ALL_TOOLS.filter(t=>t.catId===cat.id);
-    const isActiveCat=curPath.startsWith('/'+cat.id+'/');
-    sidebarHTML+=`
-      <div class="sidebar-section">
-        <button class="sidebar-cat-btn${isActiveCat?' active':''}" style="--cat-color:${cat.color}" onclick="toggleCat('${cat.id}')">
-          <span class="sidebar-cat-icon">${cat.icon}</span>
-          <span class="sidebar-cat-name">${cat.name}</span>
-          <span class="sidebar-cat-count">${tools.length}</span>
-          <span class="sidebar-chevron" id="chevron-${cat.id}">${isActiveCat?'▾':'▸'}</span>
-        </button>
-        <div class="sidebar-tools${isActiveCat?' open':''}" id="tools-${cat.id}">
-          ${tools.map(t=>`<a href="${t.path}" class="sidebar-tool-link${curPath===t.path?' active':''}" style="${curPath===t.path?'--cat-color:'+cat.color:''}">${t.icon} ${t.name}</a>`).join('')}
-        </div>
-      </div>`;
+    const isActive=curPath.startsWith('/'+cat.id+'/');
+    html+=`<div class="sidebar-section">
+      <button class="sidebar-cat-btn${isActive?' active':''}" style="--cat-color:${cat.color}" onclick="toggleCat('${cat.id}')">
+        <span class="sidebar-cat-icon">${cat.icon}</span>
+        <span class="sidebar-cat-name">${cat.name}</span>
+        <span class="sidebar-cat-count">${tools.length}</span>
+        <span class="sidebar-chevron" id="chevron-${cat.id}">${isActive?'▾':'▸'}</span>
+      </button>
+      <div class="sidebar-tools${isActive?' open':''}" id="tools-${cat.id}">
+        ${tools.map(t=>`<a href="${t.path}" class="sidebar-tool-link${curPath===t.path?' active':''}" style="${curPath===t.path?'--cat-color:'+cat.color:''}">${t.icon} ${t.name}</a>`).join('')}
+      </div>
+    </div>`;
   });
 
-  sidebarHTML+=`</div>`;
-  sidebar.innerHTML=sidebarHTML;
+  html+=`</div>`;
+  sidebar.innerHTML=html;
 
-  // Insert sidebar after nav
+  // Insert sidebar right after nav — NO DOM wrapping needed
   const nav=document.getElementById('dnt-nav');
-  if(nav&&nav.nextSibling){
-    document.body.insertBefore(sidebar,nav.nextSibling);
-  }else{
-    document.body.appendChild(sidebar);
-  }
+  nav.insertAdjacentElement('afterend',sidebar);
 
-  // Wrap remaining body content in app-layout
-  const appLayout=document.createElement('div');
-  appLayout.className='app-layout';
-  const main=document.createElement('div');
-  main.className='dnt-main';
+  // Add padding to body so content doesn't hide behind fixed sidebar
+  document.body.classList.add('has-sidebar');
 
-  // Move all body children after sidebar into main
-  const children=[];
-  let el=sidebar.nextSibling;
-  while(el){
-    const next=el.nextSibling;
-    if(el.id!=='dnt-footer'&&el.className!=='sidebar-overlay'){
-      children.push(el);
-    }
-    el=next;
-  }
-  children.forEach(c=>main.appendChild(c));
-
-  appLayout.appendChild(sidebar.cloneNode(false));
-  sidebar.replaceWith(appLayout);
-  appLayout.insertBefore(sidebar,appLayout.firstChild);
-  appLayout.appendChild(main);
-
-  // Sidebar search filter
-  const sSearch=document.getElementById('sidebar-search');
-  if(sSearch){
-    sSearch.addEventListener('input',()=>{
-      const q=sSearch.value.toLowerCase();
-      document.querySelectorAll('.sidebar-tool-link').forEach(link=>{
-        link.style.display=!q||link.textContent.toLowerCase().includes(q)?'':'none';
+  // Sidebar filter search
+  const sInput=document.getElementById('sidebar-search');
+  if(sInput){
+    sInput.addEventListener('input',()=>{
+      const q=sInput.value.toLowerCase();
+      document.querySelectorAll('.sidebar-tool-link').forEach(l=>{
+        l.style.display=!q||l.textContent.toLowerCase().includes(q)?'':'none';
       });
-      if(q){document.querySelectorAll('.sidebar-tools').forEach(t=>t.classList.add('open'))}
+      if(q)document.querySelectorAll('.sidebar-tools').forEach(t=>t.classList.add('open'));
     });
   }
+
+  // Hamburger toggle
+  document.getElementById('hamburger')?.addEventListener('click',()=>{
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  });
 }
+
 
 function toggleCat(catId){
   const tools=document.getElementById('tools-'+catId);
