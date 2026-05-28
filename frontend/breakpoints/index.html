@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Responsive Breakpoints — DevNova Tools</title>
+<meta name="description" content="CSS breakpoint reference for popular frameworks. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/frontend/breakpoints/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/frontend/">Frontend Tools</a> <span>›</span> <span>Responsive Breakpoints</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00D4FF22;border:1px solid #00D4FF44">📱</div>
+      <h1 class="tool-name">Responsive Breakpoints</h1>
+    </div>
+    <p class="tool-desc">CSS breakpoint reference for popular frameworks.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Breakpoints Reference</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('output').textContent=`TAILWIND CSS
+  xs:  < 640px  (default)
+  sm: >= 640px  @media (min-width: 640px)
+  md: >= 768px  @media (min-width: 768px)
+  lg: >= 1024px @media (min-width: 1024px)
+  xl: >= 1280px @media (min-width: 1280px)
+ 2xl: >= 1536px @media (min-width: 1536px)
+
+BOOTSTRAP 5
+  xs:  < 576px
+  sm: >= 576px  @media (min-width: 576px)
+  md: >= 768px  @media (min-width: 768px)
+  lg: >= 992px  @media (min-width: 992px)
+  xl: >= 1200px @media (min-width: 1200px)
+ xxl: >= 1400px @media (min-width: 1400px)
+
+COMMON DEVICES
+  Mobile Portrait:  320-480px
+  Mobile Landscape: 481-767px
+  Tablet:           768-1024px
+  Laptop:           1025-1280px
+  Desktop:          1281-1920px
+
+CSS EXAMPLE (Mobile First)
+.container { padding: 16px; }
+@media (min-width: 768px)  { .container { max-width: 768px; margin: 0 auto; } }
+@media (min-width: 1024px) { .container { max-width: 1200px; } }
+@media (prefers-color-scheme: dark) { body { background: #141C2E; } }`});
+function run(){}
+</script>
+</body>
+</html>

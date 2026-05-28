@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Regex Generator — DevNova Tools</title>
+<meta name="description" content="Generate common regex patterns from plain English. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/text/regex-generator/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/text/">Text & Parsing</a> <span>›</span> <span>Regex Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">🤖</div>
+      <h1 class="tool-name">Regex Generator</h1>
+    </div>
+    <p class="tool-desc">Generate common regex patterns from plain English.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Describe what to match (e.g. email, phone, URL, IPv4)..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Generated Regex</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+const P={email:{p:'/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/',d:'Email addresses'},phone:{p:'/^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$/',d:'Phone numbers'},url:{p:'/https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}/',d:'URLs'},ipv4:{p:'/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/',d:'IPv4 addresses'},'hex color':{p:'/^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/',d:'Hex color codes'},date:{p:'/^(19|20)\\d\\d[- /.](0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])$/',d:'Dates YYYY-MM-DD'},zip:{p:'/^\\d{5}(-\\d{4})?$/',d:'US ZIP codes'},uuid:{p:'/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i',d:'UUIDs'},password:{p:'/^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d@$!%*?&]{8,}$/',d:'Strong passwords (8+ chars, upper, lower, number)'},username:{p:'/^[a-zA-Z0-9_-]{3,16}$/',d:'Alphanumeric usernames 3-16 chars'},number:{p:'/^-?\\d+(\\.\\d+)?$/',d:'Integers and decimals'},slug:{p:'/^[a-z0-9]+(?:-[a-z0-9]+)*$/',d:'URL slugs'}};
+function run(){const q=document.getElementById('input').value.trim().toLowerCase();const o=document.getElementById('output');if(!q){o.textContent='Available patterns:\n\n'+Object.entries(P).map(([k,v])=>k+': '+v.d).join('\n');return}const match=Object.entries(P).find(([k])=>q.includes(k)||k.includes(q));if(match){o.textContent='Pattern: '+match[1].p+'\nDescription: '+match[1].d+'\n\nJavaScript usage:\nconst regex = '+match[1].p+';\nconst isValid = regex.test(input);\nconst matches = input.match(regex);';document.getElementById('status').textContent='\u2713 Found'}else{o.textContent='No pattern for "'+q+'"\nTry: '+Object.keys(P).join(', ');document.getElementById('status').textContent='Not found'}}
+</script>
+</body>
+</html>

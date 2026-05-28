@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JSON to TypeScript — DevNova Tools</title>
+<meta name="description" content="Generate TypeScript interfaces from any JSON object. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/json/json-to-typescript/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/json/">JSON & Data</a> <span>›</span> <span>JSON to TypeScript</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00C89622;border:1px solid #00C89644">🔷</div>
+      <h1 class="tool-name">JSON to TypeScript</h1>
+    </div>
+    <p class="tool-desc">Generate TypeScript interfaces from any JSON object.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste JSON to generate TypeScript..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">TypeScript Interface</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}try{const p=JSON.parse(i);o.textContent=genTS(p,'Root');document.getElementById('status').textContent='Interface generated'}catch(e){o.textContent='\u2717 '+e.message}}
+function tsType(v,k){if(v===null)return'null';if(typeof v==='string')return'string';if(typeof v==='number')return'number';if(typeof v==='boolean')return'boolean';if(Array.isArray(v))return(v.length&&typeof v[0]==='object'?k.charAt(0).toUpperCase()+k.slice(1)+'Item':'any')+'[]';if(typeof v==='object')return k.charAt(0).toUpperCase()+k.slice(1);return'any'}
+function genTS(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))return'';const nested=[];const fields=Object.entries(obj).map(([k,v])=>{if(v&&typeof v==='object'&&!Array.isArray(v))nested.push(genTS(v,k.charAt(0).toUpperCase()+k.slice(1)));if(Array.isArray(v)&&v.length&&typeof v[0]==='object')nested.push(genTS(v[0],k.charAt(0).toUpperCase()+k.slice(1)+'Item'));return'  '+k+': '+tsType(v,k)+';'});return(nested.length?nested.join('\n\n')+'\n\n':'')+'interface '+name+' {\n'+fields.join('\n')+'\n}'}
+</script>
+</body>
+</html>

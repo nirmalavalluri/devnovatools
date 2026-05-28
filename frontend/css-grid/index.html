@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CSS Grid Generator — DevNova Tools</title>
+<meta name="description" content="Generate CSS Grid layouts visually. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/frontend/css-grid/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/frontend/">Frontend Tools</a> <span>›</span> <span>CSS Grid Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00D4FF22;border:1px solid #00D4FF44">▦</div>
+      <h1 class="tool-name">CSS Grid Generator</h1>
+    </div>
+    <p class="tool-desc">Generate CSS Grid layouts visually.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row">
+  <div class="form-group"><label>Columns</label><input type="number" id="cols" value="3" min="1" max="12" oninput="run()"/></div>
+  <div class="form-group"><label>Rows</label><input type="number" id="rows" value="3" min="1" max="12" oninput="run()"/></div>
+  <div class="form-group"><label>Gap</label><input type="text" id="gap" value="16px" oninput="run()" style="width:80px"/></div>
+ </div>
+ <div id="preview" style="border:1px solid var(--border);border-radius:8px;padding:8px;min-height:80px;margin-bottom:8px"></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Configure options above..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">CSS Code</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const cols=parseInt(document.getElementById('cols').value)||3;const rows=parseInt(document.getElementById('rows').value)||3;const gap=document.getElementById('gap').value||'16px';const prev=document.getElementById('preview');prev.style.display='grid';prev.style.gridTemplateColumns='repeat('+cols+',1fr)';prev.style.gap=gap;prev.innerHTML=Array.from({length:cols*rows},(_,i)=>'<div style="background:var(--bg-hover);border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;height:40px;font-size:.75rem;color:var(--text-muted)">'+(i+1)+'</div>').join('');document.getElementById('output').textContent='.container {\n  display: grid;\n  grid-template-columns: repeat('+cols+', 1fr);\n  grid-template-rows: repeat('+rows+', 1fr);\n  gap: '+gap+';\n}'}
+document.addEventListener('DOMContentLoaded',run)
+</script>
+</body>
+</html>

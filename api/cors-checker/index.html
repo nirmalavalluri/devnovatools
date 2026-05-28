@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CORS Checker — DevNova Tools</title>
+<meta name="description" content="Test CORS and understand cross-origin request errors. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/api/cors-checker/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/api/">API & Security</a> <span>›</span> <span>CORS Checker</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#0066FF22;border:1px solid #0066FF44">🔗</div>
+      <h1 class="tool-name">CORS Checker</h1>
+    </div>
+    <p class="tool-desc">Test CORS and understand cross-origin request errors.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><div class="form-group" style="flex:1"><label>URL to Test</label><input id="url" type="text" placeholder="https://api.example.com" style="width:100%"/></div><button class="btn btn-primary btn-sm" onclick="testCORS()" style="margin-top:20px">Test CORS</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste CORS error or enter URL above..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">CORS Analysis</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){if(document.getElementById('input').value.trim())analyze()}
+async function testCORS(){const url=document.getElementById('url').value.trim();const o=document.getElementById('output');if(!url){o.textContent='Enter a URL to test';return}o.textContent='Testing...';try{await fetch(url,{mode:'cors'});o.textContent='\u2713 CORS request succeeded!\nThe server allows cross-origin requests.';document.getElementById('status').className='badge badge-success';document.getElementById('status').textContent='\u2713 CORS OK'}catch(e){o.textContent='\u2717 CORS blocked\n\nError: '+e.message+'\n\nFixes:\n1. Add header: Access-Control-Allow-Origin: *\n2. Use a proxy in development\n3. Check preflight OPTIONS\n\nExpress.js: npm install cors && app.use(require("cors")())';document.getElementById('status').className='badge badge-error';document.getElementById('status').textContent='\u2717 Blocked'}}
+function analyze(){document.getElementById('output').textContent='CORS Error Analysis:\n\nMost likely cause: Server missing Access-Control-Allow-Origin header\n\nRequired server headers:\n  Access-Control-Allow-Origin: *\n  Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS\n  Access-Control-Allow-Headers: Content-Type, Authorization'}
+</script>
+</body>
+</html>

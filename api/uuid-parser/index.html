@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>UUID Parser — DevNova Tools</title>
+<meta name="description" content="Parse a UUID and extract its version and components. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/api/uuid-parser/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/api/">API & Security</a> <span>›</span> <span>UUID Parser</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#0066FF22;border:1px solid #0066FF44">🔎</div>
+      <h1 class="tool-name">UUID Parser</h1>
+    </div>
+    <p class="tool-desc">Parse a UUID and extract its version and components.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste UUID here..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">UUID Details</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}const re=/^[0-9a-f]{8}-[0-9a-f]{4}-([0-9a-f])[0-9a-f]{3}-([89ab])[0-9a-f]{3}-[0-9a-f]{12}$/i;const m=i.match(re);if(!m){o.textContent='\u2717 Not a valid UUID format\nExpected: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx';return}const parts=i.split('-');o.textContent='UUID: '+i+'\nVersion: '+m[1]+'\nVariant: RFC 4122\n\nParts:\n  time_low:            '+parts[0]+'\n  time_mid:            '+parts[1]+'\n  time_hi_and_version: '+parts[2]+'\n  clock_seq:           '+parts[3]+'\n  node:                '+parts[4];document.getElementById('status').textContent='v'+m[1]+' UUID'}
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SSH Key Generator — DevNova Tools</title>
+<meta name="description" content="SSH key types reference and generation commands. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/ssh-key/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/devops/">DevOps & Infra</a> <span>›</span> <span>SSH Key Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">🗝️</div>
+      <h1 class="tool-name">SSH Key Generator</h1>
+    </div>
+    <p class="tool-desc">SSH key types reference and generation commands.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">SSH Key Guide</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('output').textContent=`SSH Key Generation Guide
+========================
+
+Recommended: ED25519
+  ssh-keygen -t ed25519 -C "your@email.com"
+
+RSA 4096-bit (max compatibility)
+  ssh-keygen -t rsa -b 4096 -C "your@email.com"
+
+Key types:
+  ed25519  Best: small, fast, modern
+  rsa      Legacy: widely compatible
+  ecdsa    Good: smaller than RSA
+  dsa      Deprecated: avoid
+
+View public key:
+  cat ~/.ssh/id_ed25519.pub
+
+Copy to server:
+  ssh-copy-id user@hostname
+
+Permissions:
+  chmod 700 ~/.ssh
+  chmod 600 ~/.ssh/id_ed25519
+  chmod 644 ~/.ssh/id_ed25519.pub`});
+function run(){}
+</script>
+</body>
+</html>

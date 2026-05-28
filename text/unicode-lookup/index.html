@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Unicode Lookup — DevNova Tools</title>
+<meta name="description" content="Look up Unicode code points for any character. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/text/unicode-lookup/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/text/">Text & Parsing</a> <span>›</span> <span>Unicode Lookup</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">Ω</div>
+      <h1 class="tool-name">Unicode Lookup</h1>
+    </div>
+    <p class="tool-desc">Look up Unicode code points for any character.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter characters to look up..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Unicode Details</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const i=document.getElementById('input').value;const o=document.getElementById('output');if(!i){o.textContent='';return}const chars=[...i].slice(0,50).map(c=>{const cp=c.codePointAt(0);const hex='U+'+cp.toString(16).toUpperCase().padStart(4,'0');return hex.padEnd(10)+c.padEnd(5)+'&#'+cp+';   \\u'+cp.toString(16).padStart(4,'0')});o.textContent='Point     Char  HTML       Escape\n'+'-'.repeat(42)+'\n'+chars.join('\n');document.getElementById('status').textContent=[...i].length+' characters'}
+</script>
+</body>
+</html>

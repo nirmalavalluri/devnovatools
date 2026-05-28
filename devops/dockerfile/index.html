@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Dockerfile Linter — DevNova Tools</title>
+<meta name="description" content="Lint Dockerfile for best practices and common issues. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/dockerfile/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/devops/">DevOps & Infra</a> <span>›</span> <span>Dockerfile Linter</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">🐳</div>
+      <h1 class="tool-name">Dockerfile Linter</h1>
+    </div>
+    <p class="tool-desc">Lint Dockerfile for best practices and common issues.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste Dockerfile here..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Lint Results</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+const RULES=[{re:/^FROM.+:latest/i,msg:'Avoid :latest — pin to specific version',level:'warning'},{re:/^RUN apt-get install(?!.*-y)/i,msg:'Add -y flag to apt-get install',level:'error'},{re:/^RUN apt-get update[^&\n]/i,msg:'Combine apt-get update with install in one RUN',level:'warning'},{re:/^ADD /i,msg:'Use COPY instead of ADD unless extracting tarballs',level:'info'},{re:/^RUN npm install(?!.*ci)/i,msg:'Consider npm ci for reproducible installs',level:'info'},{re:/EXPOSE 22/i,msg:'Exposing SSH port 22 is a security risk',level:'warning'}];
+function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}const lines=i.split('\n');const issues=[];lines.forEach((line,idx)=>{RULES.forEach(r=>{if(r.re.test(line.trim()))issues.push('['+r.level.toUpperCase()+'] Line '+(idx+1)+': '+r.msg)})});if(!lines.some(l=>l.trim().startsWith('USER')))issues.push('[INFO] Add USER instruction to avoid running as root');o.textContent=issues.length?issues.join('\n'):'\u2713 No issues found - Dockerfile looks good!';document.getElementById('status').className='badge badge-'+(issues.some(i=>i.includes('ERROR'))?'error':issues.length?'warning':'success');document.getElementById('status').textContent=issues.length+' issue(s)'}
+</script>
+</body>
+</html>

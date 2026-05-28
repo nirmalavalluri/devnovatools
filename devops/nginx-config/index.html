@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Nginx Config Generator — DevNova Tools</title>
+<meta name="description" content="Generate Nginx server configurations for common setups. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/nginx-config/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/devops/">DevOps & Infra</a> <span>›</span> <span>Nginx Config Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">🌐</div>
+      <h1 class="tool-name">Nginx Config Generator</h1>
+    </div>
+    <p class="tool-desc">Generate Nginx server configurations for common setups.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row">
+  <div class="form-group"><label>Type</label><select id="type" onchange="generate()"><option value="static">Static Site</option><option value="proxy">Reverse Proxy</option><option value="spa">SPA</option></select></div>
+  <div class="form-group" style="flex:1"><label>Domain</label><input id="domain" type="text" value="example.com" oninput="generate()" style="width:100%"/></div>
+ </div>
+ <div class="form-row"><div class="form-group" style="flex:1"><label>Root / Proxy Target</label><input id="root" type="text" value="/var/www/html" oninput="generate()" style="width:100%"/></div></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Configure options above..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Nginx Config</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){}
+function generate(){const type=document.getElementById('type').value;const domain=document.getElementById('domain').value||'example.com';const root=document.getElementById('root').value||'/var/www/html';const configs={static:'server {\n    listen 80;\n    server_name '+domain+';\n    root '+root+';\n    index index.html;\n\n    location / {\n        try_files $uri $uri/ =404;\n    }\n}',proxy:'server {\n    listen 80;\n    server_name '+domain+';\n\n    location / {\n        proxy_pass '+root+';\n        proxy_http_version 1.1;\n        proxy_set_header Upgrade $http_upgrade;\n        proxy_set_header Connection \"upgrade\";\n        proxy_set_header Host $host;\n        proxy_set_header X-Real-IP $remote_addr;\n    }\n}',spa:'server {\n    listen 80;\n    server_name '+domain+';\n    root '+root+';\n    index index.html;\n\n    location / {\n        try_files $uri $uri/ /index.html;\n    }\n\n    location ~* \\.(js|css|png|jpg|jpeg|gif|ico|svg|woff2)$ {\n        expires 1y;\n        add_header Cache-Control \"public, immutable\";\n    }\n}'};document.getElementById('output').textContent=configs[type];document.getElementById('status').textContent='Generated'}
+document.addEventListener('DOMContentLoaded',generate)
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HTTP Header Analyzer — DevNova Tools</title>
+<meta name="description" content="Complete reference for common HTTP headers. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/api/http-headers/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/api/">API & Security</a> <span>›</span> <span>HTTP Header Analyzer</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#0066FF22;border:1px solid #0066FF44">📡</div>
+      <h1 class="tool-name">HTTP Header Analyzer</h1>
+    </div>
+    <p class="tool-desc">Complete reference for common HTTP headers.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Search header name or description..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Header Reference</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+const H={'Accept':'Tells server what content types the client can handle. e.g. application/json, text/html','Authorization':'Authentication credentials. e.g. Bearer <token> or Basic <base64>','Content-Type':'Media type of the body. e.g. application/json, multipart/form-data','Cache-Control':'Caching directives. e.g. no-cache, max-age=3600, public, private','Access-Control-Allow-Origin':'CORS - which origins can access. e.g. * or https://example.com','ETag':'Version identifier for cache validation','X-Request-ID':'Unique request ID for distributed tracing','Strict-Transport-Security':'Force HTTPS (HSTS). e.g. max-age=31536000; includeSubDomains','Content-Security-Policy':'Prevent XSS by controlling loaded resources','X-Frame-Options':'Prevent clickjacking. Values: DENY, SAMEORIGIN','Accept-Encoding':'Compression formats accepted. e.g. gzip, deflate, br','User-Agent':'Client software identifier','Cookie':'HTTP cookies sent to server','Set-Cookie':'Server directive to store a cookie','Location':'Redirect URL for 3xx responses','Retry-After':'Wait time before retry for rate-limited requests','X-Content-Type-Options':'Prevent MIME sniffing. Value: nosniff','Referrer-Policy':'Controls referrer info sent. e.g. strict-origin-when-cross-origin','Last-Modified':'Date resource was last modified','Vary':'Which request headers affect the response','WWW-Authenticate':'Auth scheme required. e.g. Bearer realm=api','X-RateLimit-Limit':'Max requests allowed in time window','X-RateLimit-Remaining':'Requests remaining in current window','Forwarded':'Original client info when using proxies'};
+function run(){const q=document.getElementById('input').value.trim().toLowerCase();const o=document.getElementById('output');const m=Object.entries(H).filter(([k,v])=>!q||k.toLowerCase().includes(q)||v.toLowerCase().includes(q));o.textContent=m.map(([k,v])=>k+'\n  '+v).join('\n\n');document.getElementById('status').textContent=m.length+' header(s)'}
+</script>
+</body>
+</html>

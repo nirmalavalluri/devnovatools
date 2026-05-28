@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JSON Schema Validator — DevNova Tools</title>
+<meta name="description" content="Validate JSON data against a JSON Schema. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/json/schema-validator/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/json/">JSON & Data</a> <span>›</span> <span>JSON Schema Validator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00C89622;border:1px solid #00C89644">🔍</div>
+      <h1 class="tool-name">JSON Schema Validator</h1>
+    </div>
+    <p class="tool-desc">Validate JSON data against a JSON Schema.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body triple">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste JSON data to validate..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel"><div class="panel-header"><span class="panel-label">JSON Schema</span></div><div class="panel-body"><textarea id="input2" class="panel-textarea" placeholder='{"type":"object","required":["name"]}' oninput="run()" spellcheck="false"></textarea></div></div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Validation Result</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const d=document.getElementById('input').value.trim();const s=document.getElementById('input2').value.trim();const o=document.getElementById('output');if(!d||!s){o.textContent='Enter data in left panel and schema in right panel';return}try{const data=JSON.parse(d);const schema=JSON.parse(s);const errors=validate(data,schema,'root');o.textContent=errors.length?'\u2717 Validation failed:\n'+errors.join('\n'):'\u2713 Valid - data matches schema';document.getElementById('status').className='badge badge-'+(errors.length?'error':'success');document.getElementById('status').textContent=errors.length?errors.length+' error(s)':'\u2713 Valid'}catch(e){o.textContent='\u2717 '+e.message}}
+function validate(d,s,p){const e=[];if(s.type){const t=s.type;if(t==='array'&&!Array.isArray(d))e.push(p+': expected array');else if(t==='object'&&(typeof d!=='object'||Array.isArray(d)||d===null))e.push(p+': expected object');else if(t!=='array'&&t!=='object'&&typeof d!==t)e.push(p+': expected '+t+' got '+typeof d)}if(s.required&&Array.isArray(s.required))s.required.forEach(k=>{if(d===null||d===undefined||!(k in d))e.push(p+'.'+k+': required field missing')});if(s.properties&&d&&typeof d==='object')Object.keys(s.properties).forEach(k=>{if(k in d)e.push(...validate(d[k],s.properties[k],p+'.'+k))});if(s.minimum!==undefined&&d<s.minimum)e.push(p+': '+d+' < minimum '+s.minimum);if(s.maxLength!==undefined&&String(d).length>s.maxLength)e.push(p+': exceeds maxLength '+s.maxLength);return e}
+</script>
+</body>
+</html>

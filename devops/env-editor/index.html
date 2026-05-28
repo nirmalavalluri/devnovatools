@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Environment Variable Editor — DevNova Tools</title>
+<meta name="description" content="Parse, edit and validate .env files. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/env-editor/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/devops/">DevOps & Infra</a> <span>›</span> <span>Environment Variable Editor</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">🔧</div>
+      <h1 class="tool-name">Environment Variable Editor</h1>
+    </div>
+    <p class="tool-desc">Parse, edit and validate .env files.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><button class="btn btn-secondary btn-sm" onclick="toJSON()">Parse to JSON</button><button class="btn btn-ghost btn-sm" onclick="fromJSON()">JSON to .env</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste .env contents here..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Parsed Output</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){}
+function toJSON(){const i=document.getElementById('input').value.trim();const vars={};i.split('\n').forEach(line=>{line=line.trim();if(!line||line.startsWith('#'))return;const idx=line.indexOf('=');if(idx<0)return;vars[line.slice(0,idx).trim()]=line.slice(idx+1).trim().replace(/^['"]|['"]$/g,'')});document.getElementById('output').textContent=JSON.stringify(vars,null,2);document.getElementById('status').textContent=Object.keys(vars).length+' variables'}
+function fromJSON(){try{const obj=JSON.parse(document.getElementById('input').value);document.getElementById('output').textContent=Object.entries(obj).map(([k,v])=>k+'='+v).join('\n')}catch(e){document.getElementById('output').textContent='\u2717 Invalid JSON'}}
+</script>
+</body>
+</html>

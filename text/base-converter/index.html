@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Number Base Converter — DevNova Tools</title>
+<meta name="description" content="Convert numbers between decimal, binary, octal and hex. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/text/base-converter/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/text/">Text & Parsing</a> <span>›</span> <span>Number Base Converter</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">🔢</div>
+      <h1 class="tool-name">Number Base Converter</h1>
+    </div>
+    <p class="tool-desc">Convert numbers between decimal, binary, octal and hex.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><div class="form-group"><label>Input Base</label><select id="from" onchange="run()"><option value="10">Decimal (10)</option><option value="2">Binary (2)</option><option value="8">Octal (8)</option><option value="16">Hex (16)</option></select></div></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter number to convert (e.g. 255)..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">All Bases</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}try{const from=parseInt(document.getElementById('from').value);const dec=parseInt(i,from);if(isNaN(dec)){o.textContent='\u2717 Invalid number for base '+from;return}o.textContent='Decimal  (10): '+dec+'\nBinary    (2): '+dec.toString(2)+'\nOctal     (8): '+dec.toString(8)+'\nHex      (16): '+dec.toString(16).toUpperCase()+'\nBase 32      : '+dec.toString(32)}catch(e){o.textContent='\u2717 '+e.message}}
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Flexbox Generator — DevNova Tools</title>
+<meta name="description" content="Generate CSS Flexbox layouts with a live preview. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/frontend/flexbox/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/frontend/">Frontend Tools</a> <span>›</span> <span>Flexbox Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00D4FF22;border:1px solid #00D4FF44">↔️</div>
+      <h1 class="tool-name">Flexbox Generator</h1>
+    </div>
+    <p class="tool-desc">Generate CSS Flexbox layouts with a live preview.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row">
+  <div class="form-group"><label>Direction</label><select id="dir" onchange="run()"><option value="row">row</option><option value="column">column</option><option value="row-reverse">row-reverse</option></select></div>
+  <div class="form-group"><label>Justify</label><select id="jc" onchange="run()"><option value="flex-start">flex-start</option><option value="center">center</option><option value="flex-end">flex-end</option><option value="space-between">space-between</option><option value="space-around">space-around</option></select></div>
+  <div class="form-group"><label>Align</label><select id="ai" onchange="run()"><option value="flex-start">flex-start</option><option value="center">center</option><option value="flex-end">flex-end</option><option value="stretch">stretch</option></select></div>
+  <div class="form-group"><label>Wrap</label><select id="wrap" onchange="run()"><option value="nowrap">nowrap</option><option value="wrap">wrap</option></select></div>
+ </div>
+ <div id="preview" style="border:1px solid var(--border);border-radius:8px;padding:12px;min-height:80px;margin-bottom:8px;background:var(--bg-card)"></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Configure options above..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">CSS Code</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const dir=document.getElementById('dir').value;const jc=document.getElementById('jc').value;const ai=document.getElementById('ai').value;const wrap=document.getElementById('wrap').value;const prev=document.getElementById('preview');prev.style.display='flex';prev.style.flexDirection=dir;prev.style.justifyContent=jc;prev.style.alignItems=ai;prev.style.flexWrap=wrap;prev.innerHTML=['A','B','C','D','E'].map(l=>'<div style="background:var(--bg-hover);border:1px solid var(--border);border-radius:6px;padding:8px 16px;color:var(--text-muted);font-size:.85rem;font-weight:600;margin:4px">'+l+'</div>').join('');document.getElementById('output').textContent='.container {\n  display: flex;\n  flex-direction: '+dir+';\n  justify-content: '+jc+';\n  align-items: '+ai+';\n  flex-wrap: '+wrap+';\n  gap: 8px;\n}'}
+document.addEventListener('DOMContentLoaded',run)
+</script>
+</body>
+</html>

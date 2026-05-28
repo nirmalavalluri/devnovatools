@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>XPath Tester — DevNova Tools</title>
+<meta name="description" content="Test XPath expressions against XML documents. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/text/xpath-tester/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/text/">Text & Parsing</a> <span>›</span> <span>XPath Tester</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">🎯</div>
+      <h1 class="tool-name">XPath Tester</h1>
+    </div>
+    <p class="tool-desc">Test XPath expressions against XML documents.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><div class="form-group" style="flex:1"><label>XPath Expression</label><input id="xpath" type="text" value="//book/title" oninput="run()" style="width:100%"/></div></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste XML here..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">XPath Results</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const xml=document.getElementById('input').value.trim();const xpath=document.getElementById('xpath').value.trim();const o=document.getElementById('output');if(!xml||!xpath){o.textContent='';return}try{const doc=(new DOMParser()).parseFromString(xml,'text/xml');const err=doc.querySelector('parsererror');if(err){o.textContent='\u2717 Invalid XML';return}const result=doc.evaluate(xpath,doc,null,XPathResult.ANY_TYPE,null);const nodes=[];let node=result.iterateNext();while(node){nodes.push(node.textContent||node.nodeValue||node.name);node=result.iterateNext()}o.textContent=nodes.length?nodes.length+' result(s):\n\n'+nodes.join('\n'):'No matches found for: '+xpath;document.getElementById('status').textContent=nodes.length+' result(s)'}catch(e){o.textContent='\u2717 '+e.message}}
+</script>
+</body>
+</html>

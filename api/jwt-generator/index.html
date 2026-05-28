@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JWT Generator — DevNova Tools</title>
+<meta name="description" content="Generate signed JWT tokens with custom payload for testing. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/api/jwt-generator/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/api/">API & Security</a> <span>›</span> <span>JWT Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#0066FF22;border:1px solid #0066FF44">🔑</div>
+      <h1 class="tool-name">JWT Generator</h1>
+    </div>
+    <p class="tool-desc">Generate signed JWT tokens with custom payload for testing.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><div class="form-group" style="flex:1"><label>Secret Key</label><input id="secret" type="text" value="your-secret-key" style="width:100%"/></div><div class="form-group"><label>Algorithm</label><select id="alg"><option>HS256</option><option>HS384</option><option>HS512</option></select></div></div><button class="btn btn-primary btn-sm" onclick="generate()">Generate JWT</button>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter payload JSON..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Generated JWT</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+async function run(){}
+async function generate(){const payload=document.getElementById('input').value.trim();const secret=document.getElementById('secret').value;const alg=document.getElementById('alg').value;const o=document.getElementById('output');try{const header=btoa(JSON.stringify({alg,typ:'JWT'})).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');const pl=btoa(JSON.stringify(JSON.parse(payload||'{}'))).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');const sigInput=header+'.'+pl;const m={'HS256':'SHA-256','HS384':'SHA-384','HS512':'SHA-512'};const key=await crypto.subtle.importKey('raw',new TextEncoder().encode(secret),{name:'HMAC',hash:m[alg]},false,['sign']);const sig=await crypto.subtle.sign('HMAC',key,new TextEncoder().encode(sigInput));const sigB64=btoa(String.fromCharCode(...new Uint8Array(sig))).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');o.textContent=sigInput+'.'+sigB64;document.getElementById('status').textContent='JWT generated'}catch(e){o.textContent='\u2717 '+e.message}}
+</script>
+</body>
+</html>

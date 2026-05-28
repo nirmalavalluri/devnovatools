@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Log Parser — DevNova Tools</title>
+<meta name="description" content="Parse and analyze log files to find errors and patterns. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/log-parser/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/devops/">DevOps & Infra</a> <span>›</span> <span>Log Parser</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">📊</div>
+      <h1 class="tool-name">Log Parser</h1>
+    </div>
+    <p class="tool-desc">Parse and analyze log files to find errors and patterns.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><div class="form-group"><label>Format</label><select id="format" onchange="run()"><option value="auto">Auto Detect</option><option value="nginx">Nginx</option><option value="apache">Apache</option></select></div></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste log content here..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Log Analysis</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}const lines=i.split('\n').filter(l=>l.trim());const errors=lines.filter(l=>/error|ERROR|\b500\b|\b502\b|\b503\b/i.test(l));const warns=lines.filter(l=>/warn|WARN|\b400\b|\b403\b|\b404\b/i.test(l));const ips=[...new Set(lines.map(l=>{const m=l.match(/\b(?:\d{1,3}\.){3}\d{1,3}\b/);return m?m[0]:null}).filter(Boolean))];o.textContent='Summary\n-------\nTotal lines: '+lines.length+'\nErrors: '+errors.length+'\nWarnings: '+warns.length+'\nUnique IPs: '+ips.length+'\n\nTop Errors:\n'+( errors.slice(0,5).join('\n')||'None')+'\n\nTop Warnings:\n'+(warns.slice(0,5).join('\n')||'None')+'\n\nIPs:\n'+(ips.slice(0,10).join('\n')||'None');document.getElementById('status').textContent=errors.length+' errors, '+warns.length+' warnings'}
+</script>
+</body>
+</html>

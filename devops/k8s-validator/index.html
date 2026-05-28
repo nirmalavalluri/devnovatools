@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Kubernetes YAML Validator — DevNova Tools</title>
+<meta name="description" content="Validate Kubernetes manifests for required fields. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/k8s-validator/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/devops/">DevOps & Infra</a> <span>›</span> <span>Kubernetes YAML Validator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">☸️</div>
+      <h1 class="tool-name">Kubernetes YAML Validator</h1>
+    </div>
+    <p class="tool-desc">Validate Kubernetes manifests for required fields.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste Kubernetes YAML manifest..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Validation Result</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}const issues=[];if(!i.includes('apiVersion:'))issues.push('\u2717 Missing: apiVersion');if(!i.includes('kind:'))issues.push('\u2717 Missing: kind');if(!i.includes('metadata:'))issues.push('\u2717 Missing: metadata');if(!i.includes('name:'))issues.push('\u26a0 Missing metadata.name');if(i.includes(':latest'))issues.push('\u26a0 Avoid :latest image tag in production');if(i.includes('privileged: true'))issues.push('\u26a0 Privileged container - security risk');if(!i.includes('limits:'))issues.push('\u2139 No resource limits defined');if(!i.includes('livenessProbe'))issues.push('\u2139 No health probes defined');const kind=(i.match(/kind:\s*(\S+)/)||[])[1]||'unknown';o.textContent=(issues.length?issues.join('\n'):'\u2713 No critical issues')+('\n\nKind: '+kind);document.getElementById('status').className='badge badge-'+(issues.some(x=>x.startsWith('\u2717'))?'error':issues.length?'warning':'success');document.getElementById('status').textContent=issues.length+' issue(s)'}
+</script>
+</body>
+</html>

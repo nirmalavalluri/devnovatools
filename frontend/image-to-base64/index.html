@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Image to Base64 — DevNova Tools</title>
+<meta name="description" content="Convert any image file to a Base64 data URL string. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/frontend/image-to-base64/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/frontend/">Frontend Tools</a> <span>›</span> <span>Image to Base64</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00D4FF22;border:1px solid #00D4FF44">🖼️</div>
+      <h1 class="tool-name">Image to Base64</h1>
+    </div>
+    <p class="tool-desc">Convert any image file to a Base64 data URL string.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel"><div class="panel-header"><span class="panel-label">Upload Image</span></div><div class="panel-body" style="padding:24px;text-align:center"><input type="file" id="fileInput" accept="image/*" onchange="convert(event)" style="width:100%;margin-bottom:12px"/><div id="img-preview"></div></div></div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Base64 Output</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){}function convert(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{const b=ev.target.result;document.getElementById('output').textContent=b;document.getElementById('img-preview').innerHTML='<img src="'+b+'" style="max-width:200px;max-height:200px;border-radius:8px;border:1px solid var(--border);margin-top:8px"/>';document.getElementById('status').textContent=f.name+' - '+Math.round(b.length/1024)+'KB'};r.readAsDataURL(f)}
+</script>
+</body>
+</html>

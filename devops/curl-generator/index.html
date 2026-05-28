@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>cURL Command Generator — DevNova Tools</title>
+<meta name="description" content="Build cURL commands from method, URL, headers and body. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/devops/curl-generator/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/devops/">DevOps & Infra</a> <span>›</span> <span>cURL Command Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FF6B3522;border:1px solid #FF6B3544">💻</div>
+      <h1 class="tool-name">cURL Command Generator</h1>
+    </div>
+    <p class="tool-desc">Build cURL commands from method, URL, headers and body.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row">
+  <div class="form-group"><label>Method</label><select id="method" onchange="generate()"><option>GET</option><option>POST</option><option>PUT</option><option>PATCH</option><option>DELETE</option></select></div>
+  <div class="form-group" style="flex:1"><label>URL</label><input id="url" type="text" value="https://api.example.com/users" oninput="generate()" style="width:100%"/></div>
+ </div>
+ <div class="form-row"><div class="form-group" style="flex:1"><label>Headers (Name: Value)</label><textarea id="headers" style="height:55px;width:100%;background:var(--bg-input);border:1.5px solid var(--border);border-radius:var(--r-md);padding:8px;color:var(--text);font-family:var(--mono);font-size:.85rem;outline:none" placeholder="Content-Type: application/json&#10;Authorization: Bearer token" oninput="generate()"></textarea></div></div>
+ <div class="form-row"><div class="form-group" style="flex:1"><label>Request Body</label><textarea id="body" style="height:55px;width:100%;background:var(--bg-input);border:1.5px solid var(--border);border-radius:var(--r-md);padding:8px;color:var(--text);font-family:var(--mono);font-size:.85rem;outline:none" placeholder='{"key":"value"}' oninput="generate()"></textarea></div></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Configure options above..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">cURL Command</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){}
+function generate(){const method=document.getElementById('method').value;const url=document.getElementById('url').value;const headers=document.getElementById('headers').value.trim().split('\n').filter(l=>l.trim());const body=document.getElementById('body').value.trim();let cmd='curl -X '+method+' \\\n  "'+url+'"';headers.forEach(h=>{if(h.trim())cmd+=' \\\n  -H "'+h.trim()+'"'});if(body)cmd+=' \\\n  -d \''+body+'\'';document.getElementById('output').textContent=cmd;document.getElementById('status').textContent='Generated'}
+document.addEventListener('DOMContentLoaded',generate)
+</script>
+</body>
+</html>

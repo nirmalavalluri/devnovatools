@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HTML Entity Encoder — DevNova Tools</title>
+<meta name="description" content="Encode text to HTML entities or decode back to plain text. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/text/html-entities/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/text/">Text & Parsing</a> <span>›</span> <span>HTML Entity Encoder</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">&amp;</div>
+      <h1 class="tool-name">HTML Entity Encoder</h1>
+    </div>
+    <p class="tool-desc">Encode text to HTML entities or decode back to plain text.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><button class="btn btn-primary btn-sm" onclick="encode()">Encode</button><button class="btn btn-secondary btn-sm" onclick="decode()">Decode</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter text or HTML entities..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Result</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){encode()}function encode(){const i=document.getElementById('input').value;document.getElementById('output').textContent=i.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');setS('success','Encoded')}function decode(){const d=document.createElement('div');d.innerHTML=document.getElementById('input').value;document.getElementById('output').textContent=d.textContent;setS('success','Decoded')}function setS(t,m){const s=document.getElementById('status');s.className='badge badge-'+t;s.textContent=m}
+</script>
+</body>
+</html>

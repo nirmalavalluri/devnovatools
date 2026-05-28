@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Favicon Generator — DevNova Tools</title>
+<meta name="description" content="Generate a simple text/emoji favicon. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/frontend/favicon-generator/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/frontend/">Frontend Tools</a> <span>›</span> <span>Favicon Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00D4FF22;border:1px solid #00D4FF44">⭐</div>
+      <h1 class="tool-name">Favicon Generator</h1>
+    </div>
+    <p class="tool-desc">Generate a simple text/emoji favicon.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row">
+  <div class="form-group"><label>Text</label><input id="txt" type="text" value="D" maxlength="2" style="width:70px" oninput="generate()"/></div>
+  <div class="form-group"><label>Background</label><input type="color" id="bg" value="#141C2E" oninput="generate()"/></div>
+  <div class="form-group"><label>Color</label><input type="color" id="tc" value="#00C896" oninput="generate()"/></div>
+  <button class="btn btn-secondary btn-sm" onclick="download()" style="margin-top:20px">Download</button>
+ </div>
+ <canvas id="canvas" width="64" height="64" style="border-radius:8px;border:1px solid var(--border);margin-bottom:8px;width:64px;height:64px"></canvas>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Configure options above..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">HTML Code</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){}function generate(){const c=document.getElementById('canvas');const ctx=c.getContext('2d');const bg=document.getElementById('bg').value;const tc=document.getElementById('tc').value;const txt=document.getElementById('txt').value||'D';ctx.clearRect(0,0,64,64);ctx.fillStyle=bg;ctx.fillRect(0,0,64,64);ctx.fillStyle=tc;ctx.font='bold '+(txt.length>1?26:38)+'px system-ui,sans-serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(txt,32,33);document.getElementById('output').textContent='<!-- Add to <head> -->\n<link rel="icon" type="image/png" href="favicon.png">\n\n<!-- Inline SVG (no file needed) -->\n<link rel="icon" href="data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect fill=\''+bg+'\' width=\'100\' height=\'100\' rx=\'15\'/><text y=\'.9em\' x=\'50%\' text-anchor=\'middle\' font-size=\'65\' fill=\''+tc+'\'>'+txt+'</text></svg>">'}
+function download(){const a=document.createElement('a');a.download='favicon.png';a.href=document.getElementById('canvas').toDataURL();a.click()}
+document.addEventListener('DOMContentLoaded',generate)
+</script>
+</body>
+</html>

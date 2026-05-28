@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JSON Path Tester — DevNova Tools</title>
+<meta name="description" content="Test JSONPath expressions against your JSON data. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/json/path-tester/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/json/">JSON & Data</a> <span>›</span> <span>JSON Path Tester</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00C89622;border:1px solid #00C89644">🎯</div>
+      <h1 class="tool-name">JSON Path Tester</h1>
+    </div>
+    <p class="tool-desc">Test JSONPath expressions against your JSON data.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><div class="form-group" style="flex:1"><label>JSONPath Expression</label><input id="path" type="text" value="$.name" oninput="run()" style="width:100%"/></div></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste JSON data..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Path Result</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){const i=document.getElementById('input').value.trim();const p=document.getElementById('path').value.trim();const o=document.getElementById('output');if(!i||!p){o.textContent='';return}try{const data=JSON.parse(i);const result=evalPath(data,p);o.textContent=JSON.stringify(result,null,2);document.getElementById('status').textContent='Match found'}catch(e){o.textContent='\u2717 '+e.message}}
+function evalPath(data,path){let cur=data;const parts=path.replace(/^\$\.?/,'').split(/\.(?![^\[]*\])/);for(const p of parts){if(!p)continue;const m=p.match(/^(.+?)\[(\d+)\]$/);if(m){cur=cur[m[1]];if(cur===undefined)return'undefined';cur=cur[parseInt(m[2])]}else cur=cur[p];if(cur===undefined)return'undefined'}return cur}
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HMAC Generator — DevNova Tools</title>
+<meta name="description" content="Generate HMAC signatures for message authentication. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/api/hmac-generator/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/api/">API & Security</a> <span>›</span> <span>HMAC Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#0066FF22;border:1px solid #0066FF44">🛡️</div>
+      <h1 class="tool-name">HMAC Generator</h1>
+    </div>
+    <p class="tool-desc">Generate HMAC signatures for message authentication.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><div class="form-group" style="flex:1"><label>Secret Key</label><input id="secret" type="text" placeholder="Enter secret key..." style="width:100%"/></div><div class="form-group"><label>Algorithm</label><select id="algo"><option value="SHA-256">SHA-256</option><option value="SHA-512">SHA-512</option></select></div></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter message to sign..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">HMAC Signature</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+async function run(){const msg=document.getElementById('input').value;const key=document.getElementById('secret').value;const algo=document.getElementById('algo').value;const o=document.getElementById('output');if(!msg||!key){o.textContent='Enter message and secret key';return}try{const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(key),{name:'HMAC',hash:algo},false,['sign']);const sig=await crypto.subtle.sign('HMAC',k,new TextEncoder().encode(msg));o.textContent=[...new Uint8Array(sig)].map(b=>b.toString(16).padStart(2,'0')).join('');document.getElementById('status').textContent='HMAC-'+algo+' generated'}catch(e){o.textContent='\u2717 '+e.message}}
+</script>
+</body>
+</html>

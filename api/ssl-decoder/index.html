@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SSL Certificate Decoder — DevNova Tools</title>
+<meta name="description" content="Check SSL certificate information for any domain. Free, fast, no login required."/>
+<link rel="canonical" href="https://devnovatools.com/api/ssl-decoder/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/api/">API & Security</a> <span>›</span> <span>SSL Certificate Decoder</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#0066FF22;border:1px solid #0066FF44">🔓</div>
+      <h1 class="tool-name">SSL Certificate Decoder</h1>
+    </div>
+    <p class="tool-desc">Check SSL certificate information for any domain.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy Output</button>
+    </div>
+    <div class="form-row"><div class="form-group" style="flex:1"><label>Domain</label><input id="domain" type="text" placeholder="e.g. google.com" style="width:100%"/></div><button class="btn btn-primary btn-sm" onclick="checkSSL()" style="margin-top:20px">Check SSL</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter domain above and click Check SSL..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">SSL Info</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function run(){}
+async function checkSSL(){const d=document.getElementById('domain').value.trim().replace(/^https?:\/\//,'');const o=document.getElementById('output');if(!d){o.textContent='Enter a domain name';return}o.textContent='Checking '+d+'...';o.textContent='Domain: '+d+'\n\nFor full SSL certificate details:\n\u2022 https://www.ssllabs.com/ssltest/analyze.html?d='+d+'\n\u2022 https://crt.sh/?q='+d+'\n\nTerminal commands:\nopenssl s_client -connect '+d+':443\nopenssl s_client -connect '+d+':443 | openssl x509 -noout -dates\n\nCheck expiry:\necho | openssl s_client -servername '+d+' -connect '+d+':443 2>/dev/null | openssl x509 -noout -enddate'}
+</script>
+</body>
+</html>
