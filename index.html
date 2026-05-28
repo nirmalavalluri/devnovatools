@@ -3,42 +3,73 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>DevNova Tools — Every Developer Tool You'll Ever Need</title>
-<meta name="description" content="76+ free developer tools — JSON formatter, JWT decoder, regex tester, CSS generator, and more. No login, no ads, works offline."/>
+<title>DevNova Tools — Free Developer Tools for JSON, APIs, AI, DevOps & Code</title>
+<meta name="description" content="Use 78+ free developer tools for JSON formatting, API debugging, JWT decoding, Base64, regex testing, timestamps, text conversion, DevOps, frontend, and AI response cleanup. No signup required."/>
 <meta name="author" content="DevNova Tools"/>
 <meta name="copyright" content="© 2026 DevNova Tools — devnovatools.com"/>
 <meta name="robots" content="index, follow"/>
-<meta property="og:title" content="DevNova Tools — Every Developer Tool You'll Ever Need"/>
-<meta property="og:description" content="76+ free developer tools. JSON, API, Text, DevOps, Frontend — all in one place. No login required."/>
+<meta name="keywords" content="JSON formatter, JWT decoder, Base64 encoder, regex tester, cron builder, developer tools, free tools, online tools, API tools"/>
+<meta property="og:title" content="DevNova Tools — Free Developer Tools for JSON, APIs, AI, DevOps & Code"/>
+<meta property="og:description" content="78+ free developer tools. Format JSON, decode JWTs, test regex, convert text, debug APIs and clean AI responses — no signup required."/>
 <meta property="og:url" content="https://devnovatools.com"/>
 <meta property="og:type" content="website"/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="DevNova Tools — Free Developer Tools for JSON, APIs, AI, DevOps & Code"/>
+<meta name="twitter:description" content="78+ free developer tools. No signup. No ads. Privacy-friendly."/>
 <meta name="twitter:image" content="https://devnovatools.com/assets/og-image.png"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
 <link rel="apple-touch-icon" href="/favicon.svg"/>
 <link rel="canonical" href="https://devnovatools.com/"/>
 <link rel="stylesheet" href="/assets/shared.css"/>
 <link rel="stylesheet" href="/assets/community.css"/>
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "DevNova Tools",
+  "url": "https://devnovatools.com",
+  "description": "78+ free developer tools for JSON, APIs, AI, DevOps and code. No signup required.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://devnovatools.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "DevNova Tools",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Free online developer tools for JSON, APIs, regex, DevOps and frontend development.",
+  "url": "https://devnovatools.com"
+}
+</script>
 </head>
 <body>
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-eyebrow"><span class="hero-dot"></span> Free forever · No login · No ads · Built for developers</div>
-  <h1>Every developer tool<br><span>you'll ever need</span></h1>
-  <p class="hero-sub">76+ powerful tools for JSON, APIs, Text, DevOps and Frontend — all in one tab that never closes.</p>
+  <div class="hero-eyebrow"><span class="hero-dot"></span> No signup required · Privacy-friendly · Free forever</div>
+  <h1>Free Developer Tools for<br><span>JSON, APIs, AI & DevOps</span></h1>
+  <p class="hero-sub">Format JSON, decode JWTs, test APIs, convert text, validate data, debug AI responses, and use 78+ free developer tools — all in one fast, privacy-friendly toolbox.</p>
   <div class="hero-search-wrap">
     <span class="hero-search-icon">🔍</span>
-    <input id="hero-search" class="hero-search" type="text" placeholder="Search tools... try 'jwt', 'regex', 'cron'" autocomplete="off"/>
+    <input id="hero-search" class="hero-search" type="text" placeholder="Search JSON formatter, JWT decoder, regex tester, timestamp converter..." autocomplete="off"/>
     <div id="hero-search-results" class="hero-search-results nav-search-results"></div>
   </div>
   <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-num">76+</div><div class="hero-stat-label">Developer Tools</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">78+</div><div class="hero-stat-label">Developer Tools</div></div>
     <div class="hero-stat"><div class="hero-stat-num">5</div><div class="hero-stat-label">Categories</div></div>
-    <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-label">Login Required</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-label">Signup Required</div></div>
     <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">Free Forever</div></div>
   </div>
 </section>
@@ -57,7 +88,7 @@
       <div class="stat-live"><span class="stat-live-dot"></span> Growing</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number" id="stat-tools">76</div>
+      <div class="stat-number" id="stat-tools">78</div>
       <div class="stat-label">Free Tools Available</div>
       <div class="stat-live"><span class="stat-live-dot"></span> More coming</div>
     </div>
@@ -69,8 +100,58 @@
   </div>
 </section>
 
-<!-- ── TOOL CATEGORIES ── -->
-<section class="categories-section">
+<!-- ── GLOBAL PRIVACY NOTE ── -->
+<div style="background:var(--success-bg);border-top:1px solid rgba(0,214,143,.2);border-bottom:1px solid rgba(0,214,143,.2);padding:12px 24px;text-align:center">
+  <span style="font-size:.85rem;color:var(--success);font-weight:500">🔒 Privacy-first — All tools run directly in your browser. Your JSON, tokens, API responses and code are never stored or sent to any server.</span>
+</div>
+
+<!-- ── POPULAR TOOLS ── -->
+<section style="max-width:1200px;margin:0 auto;padding:48px 24px 0">
+  <div class="section-title">⭐ Popular Tools <span>Most used daily</span></div>
+  <div class="tool-grid" id="popular-grid"></div>
+</section>
+
+<!-- ── AI SECTION ── -->
+<section style="max-width:1200px;margin:40px auto;padding:0 24px">
+  <div style="background:linear-gradient(135deg,rgba(0,200,150,.08),rgba(0,102,255,.08));border:1.5px solid rgba(0,200,150,.2);border-radius:20px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center">
+    <div>
+      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,61,113,.12);border:1px solid rgba(255,61,113,.25);border-radius:999px;padding:4px 14px;font-size:.78rem;font-weight:700;color:#FF3D71;margin-bottom:16px">🤖 Built for AI Workflows</div>
+      <h2 style="font-size:1.6rem;font-weight:700;line-height:1.25;margin-bottom:12px;letter-spacing:-.02em">Clean & debug AI responses instantly</h2>
+      <p style="color:var(--text-secondary);line-height:1.7;margin-bottom:20px">Working with OpenAI, Claude, Gemini, Azure AI or any LLM API? DevNova Tools helps you format messy JSON responses, decode tokens, validate schemas and debug API outputs — all without leaving your browser.</p>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--text-secondary)"><span style="color:var(--green)">→</span> Format & validate JSON from LLM API responses</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--text-secondary)"><span style="color:var(--green)">→</span> Decode JWT tokens from AI authentication APIs</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--text-secondary)"><span style="color:var(--green)">→</span> Generate regex patterns to parse AI outputs</div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:.88rem;color:var(--text-secondary)"><span style="color:var(--green)">→</span> Convert & validate data from OpenAI, Claude, Gemini</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <a href="/json/formatter/" style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:14px;text-decoration:none;transition:all .2s" onmouseover="this.style.borderColor='#00C896'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:1.4rem;margin-bottom:6px">🟦</div>
+        <div style="font-size:.85rem;font-weight:600;color:var(--text)">JSON Formatter</div>
+        <div style="font-size:.75rem;color:var(--text-muted)">Format AI responses</div>
+      </a>
+      <a href="/api/jwt-decoder/" style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:14px;text-decoration:none;transition:all .2s" onmouseover="this.style.borderColor='#0066FF'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:1.4rem;margin-bottom:6px">🔐</div>
+        <div style="font-size:.85rem;font-weight:600;color:var(--text)">JWT Decoder</div>
+        <div style="font-size:.75rem;color:var(--text-muted)">Decode API tokens</div>
+      </a>
+      <a href="/json/schema-validator/" style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:14px;text-decoration:none;transition:all .2s" onmouseover="this.style.borderColor='#7B61FF'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:1.4rem;margin-bottom:6px">🔍</div>
+        <div style="font-size:.85rem;font-weight:600;color:var(--text)">Schema Validator</div>
+        <div style="font-size:.75rem;color:var(--text-muted)">Validate AI outputs</div>
+      </a>
+      <a href="/text/regex-tester/" style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:14px;text-decoration:none;transition:all .2s" onmouseover="this.style.borderColor='#FF3D71'" onmouseout="this.style.borderColor='var(--border)'">
+        <div style="font-size:1.4rem;margin-bottom:6px">✍️</div>
+        <div style="font-size:.85rem;font-weight:600;color:var(--text)">Regex Tester</div>
+        <div style="font-size:.75rem;color:var(--text-muted)">Parse AI text output</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CATEGORIES & ALL TOOLS ── -->
+<section class="categories-section" style="padding-top:48px">
   <div class="section-title">Browse by Category <span>5 categories</span></div>
   <div class="cat-grid" id="cat-grid"></div>
   <div id="all-tools-section">
@@ -82,7 +163,7 @@
   <div class="community-banner">
     <div class="community-banner-text">
       <h3>🚀 Built for developers, by a developer</h3>
-      <p>DevNova Tools is free, open and growing. Every tool runs in your browser — your data never leaves your computer. More tools added regularly.</p>
+      <p>Every tool runs in your browser. Your data never leaves your computer. Free forever, no login, no tracking.</p>
     </div>
     <div class="community-banner-actions">
       <a href="#newsletter" class="btn btn-primary">📧 Stay Updated</a>
@@ -99,6 +180,46 @@
       <p>Thousands of developers use DevNova Tools every day to build, debug and ship faster.</p>
     </div>
     <div class="testimonials-grid" id="testimonials-grid"></div>
+  </div>
+</section>
+
+<!-- ── WHY DEVNOVA ── -->
+<section style="max-width:1200px;margin:0 auto;padding:0 24px 60px">
+  <div class="section-header" style="text-align:center;margin-bottom:40px">
+    <h2 style="font-size:1.8rem;font-weight:700">Why developers choose DevNova Tools</h2>
+    <p style="color:var(--text-secondary);max-width:500px;margin:10px auto 0">We built the toolbox we always wanted — fast, private, and always free.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+    <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:24px">
+      <div style="font-size:2rem;margin-bottom:12px">⚡</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px">Instant results</h3>
+      <p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6">Every tool runs in your browser — no server round trips. Results are instant, even offline.</p>
+    </div>
+    <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:24px">
+      <div style="font-size:2rem;margin-bottom:12px">🔒</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px">100% private</h3>
+      <p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6">Your JSON, tokens, API keys and code never leave your browser. Zero data collection.</p>
+    </div>
+    <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:24px">
+      <div style="font-size:2rem;margin-bottom:12px">🎯</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px">No friction</h3>
+      <p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6">No signup, no login, no extensions, no downloads. Open the tool and it just works.</p>
+    </div>
+    <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:24px">
+      <div style="font-size:2rem;margin-bottom:12px">🌙</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px">Dark mode default</h3>
+      <p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6">Developers live in dark mode. DevNova is dark by default with a clean light toggle.</p>
+    </div>
+    <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:24px">
+      <div style="font-size:2rem;margin-bottom:12px">📴</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px">Works offline</h3>
+      <p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6">After first load, every tool works without internet. Perfect for secure environments.</p>
+    </div>
+    <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:24px">
+      <div style="font-size:2rem;margin-bottom:12px">🔗</div>
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:8px">Shareable URLs</h3>
+      <p style="font-size:.85rem;color:var(--text-secondary);line-height:1.6">Every tool has its own URL. Bookmark and share specific tools with your team instantly.</p>
+    </div>
   </div>
 </section>
 
@@ -133,13 +254,67 @@
   </div>
 </section>
 
+<!-- ── FAQ ── -->
+<section style="max-width:800px;margin:0 auto;padding:60px 24px">
+  <div class="section-header" style="text-align:center;margin-bottom:40px">
+    <h2 style="font-size:1.8rem;font-weight:700">Frequently Asked Questions</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:2px">
+    <details style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;cursor:pointer">
+      <summary style="font-weight:600;font-size:.95rem;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center">Is DevNova Tools really free? <span style="color:var(--green)">+</span></summary>
+      <p style="margin-top:12px;font-size:.88rem;color:var(--text-secondary);line-height:1.7">Yes — completely free, no hidden costs, no freemium tiers, no usage limits. All 78+ tools are free forever.</p>
+    </details>
+    <details style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;cursor:pointer;margin-top:4px">
+      <summary style="font-weight:600;font-size:.95rem;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center">Is my data private and secure? <span style="color:var(--green)">+</span></summary>
+      <p style="margin-top:12px;font-size:.88rem;color:var(--text-secondary);line-height:1.7">Yes — all tools run entirely in your browser using JavaScript. Your JSON, tokens, code, API keys and passwords are never sent to any server. We have no access to your data.</p>
+    </details>
+    <details style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;cursor:pointer;margin-top:4px">
+      <summary style="font-weight:600;font-size:.95rem;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center">Do I need to create an account? <span style="color:var(--green)">+</span></summary>
+      <p style="margin-top:12px;font-size:.88rem;color:var(--text-secondary);line-height:1.7">No — zero signup required. Open any tool and it works immediately. No email, no password, no account.</p>
+    </details>
+    <details style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;cursor:pointer;margin-top:4px">
+      <summary style="font-weight:600;font-size:.95rem;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center">Do the tools work offline? <span style="color:var(--green)">+</span></summary>
+      <p style="margin-top:12px;font-size:.88rem;color:var(--text-secondary);line-height:1.7">Yes — once you've loaded a tool page, it works without internet. All processing is client-side JavaScript. Perfect for secure, air-gapped environments.</p>
+    </details>
+    <details style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;cursor:pointer;margin-top:4px">
+      <summary style="font-weight:600;font-size:.95rem;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center">How many tools are available? <span style="color:var(--green)">+</span></summary>
+      <p style="margin-top:12px;font-size:.88rem;color:var(--text-secondary);line-height:1.7">Currently 78+ tools across 5 categories: JSON & Data, API & Security, Text & Parsing, DevOps & Infra, and Frontend Tools. More tools are added regularly — subscribe to the newsletter to stay updated.</p>
+    </details>
+    <details style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;cursor:pointer;margin-top:4px">
+      <summary style="font-weight:600;font-size:.95rem;color:var(--text);list-style:none;display:flex;justify-content:space-between;align-items:center">Can I suggest a new tool? <span style="color:var(--green)">+</span></summary>
+      <p style="margin-top:12px;font-size:.88rem;color:var(--text-secondary);line-height:1.7">Absolutely — this site is built for the developer community. Subscribe to the newsletter and reply with your suggestion. The most requested tools get built first.</p>
+    </details>
+  </div>
+</section>
+
 <script src="/assets/layout.js"></script>
 <script src="/assets/community.js"></script>
 <script>
 const BUILT_CATS = ['json','api','text','devops','frontend'];
+const POPULAR = [
+  '/json/formatter/','/api/jwt-decoder/','/api/base64/','/text/regex-tester/',
+  '/devops/timestamp/','/api/uuid-generator/','/devops/cron-builder/',
+  '/api/hash-generator/','/text/diff-checker/','/devops/sql-formatter/'
+];
+
 document.addEventListener('DOMContentLoaded', () => {
   DevNova.initSearch('hero-search','hero-search-results');
 
+  // Popular tools
+  const popularGrid = document.getElementById('popular-grid');
+  POPULAR.forEach(path => {
+    const t = DevNova.ALL_TOOLS.find(x => x.path === path);
+    if (!t) return;
+    const cat = DevNova.CATS.find(c => c.id === t.catId);
+    const card = document.createElement('a');
+    card.href = t.path;
+    card.className = 'tool-card';
+    card.style.setProperty('--cat-color', cat ? cat.color : 'var(--green)');
+    card.innerHTML = `<span class="tool-card-icon">${t.icon}</span><div><div class="tool-card-name">${t.name}</div><div class="tool-card-desc">${t.desc}</div></div>`;
+    popularGrid.appendChild(card);
+  });
+
+  // Category cards
   const catGrid = document.getElementById('cat-grid');
   DevNova.CATS.filter(c => BUILT_CATS.includes(c.id)).forEach(c => {
     const count = DevNova.ALL_TOOLS.filter(t => t.catId === c.id).length;
@@ -151,6 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
     catGrid.appendChild(card);
   });
 
+  // All tools
   const toolGrid = document.getElementById('tool-grid');
   const tools = DevNova.ALL_TOOLS.filter(t => BUILT_CATS.includes(t.catId));
   document.getElementById('tool-count').textContent = tools.length + ' tools';

@@ -208,7 +208,7 @@ function injectNav(){
  <a href="/" class="nav-brand">DevNova Tools</a>
  <div class="nav-search-wrap">
  <span class="nav-search-icon">🔍</span>
- <input id="nav-search" class="nav-search" type="text" placeholder="Search 76+ tools..." autocomplete="off"/>
+ <input id="nav-search" class="nav-search" type="text" placeholder="Search JSON formatter, JWT decoder, regex tester..." autocomplete="off"/>
  <div id="nav-search-results" class="nav-search-results"></div>
  </div>
  <div class="nav-right">
