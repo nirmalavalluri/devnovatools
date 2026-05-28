@@ -212,7 +212,7 @@ function initSearch(inputId,resultsId){
   input.addEventListener('input',()=>{
     const q=input.value.trim().toLowerCase();
     if(!q){results.classList.remove('show');results.innerHTML='';return}
-    const matches=ALL_TOOLS.filter(t=>(t.name.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q)||t.cat.toLowerCase().includes(q))).slice(0,8);
+    const BUILT_CATS=['json','api','text','devops','frontend'];const matches=ALL_TOOLS.filter(t=>BUILT_CATS.includes(t.catId)&&(t.name.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q)||t.cat.toLowerCase().includes(q))).slice(0,8);
     if(!matches.length){results.classList.remove('show');return}
     results.innerHTML=matches.map(t=>`<a class="search-result-item" href="${t.path}"><span>${t.icon}</span><span>${t.name}</span><span class="search-result-cat">${t.cat}</span></a>`).join('');
     results.classList.add('show');
@@ -236,7 +236,7 @@ function injectNav(){
   document.body.insertBefore(nav,document.body.firstChild);
   const mob=document.createElement('div');
   mob.className='nav-mobile-menu';mob.id='mobile-menu';
-  mob.innerHTML=CATS.map(c=>`<a class="nav-mobile-link" href="/${c.id}/">${c.icon} ${c.name}</a>`).join('')+`<hr style="border-color:var(--border);margin:8px 0"><a class="nav-mobile-link" href="/">🏠 Home</a>`;
+  mob.innerHTML=CATS.filter(c=>['json','api','text','devops','frontend'].includes(c.id)).map(c=>`<a class="nav-mobile-link" href="/${c.id}/">${c.icon} ${c.name}</a>`).join('')+`<hr style="border-color:var(--border);margin:8px 0"><a class="nav-mobile-link" href="/">🏠 Home</a>`;
   document.body.insertBefore(mob,nav.nextSibling);
   document.getElementById('theme-btn').addEventListener('click',()=>{setTheme(getTheme()==='dark'?'light':'dark')});
   document.getElementById('hamburger').addEventListener('click',()=>{mob.classList.toggle('open')});

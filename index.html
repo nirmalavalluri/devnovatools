@@ -41,8 +41,9 @@
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
   DevNova.initSearch('hero-search','hero-search-results');
+  const BUILT_CATS=['json','api','text','devops','frontend'];
   const catGrid=document.getElementById('cat-grid');
-  DevNova.CATS.forEach(c=>{
+  DevNova.CATS.filter(c=>BUILT_CATS.includes(c.id)).forEach(c=>{
     const count=DevNova.ALL_TOOLS.filter(t=>t.catId===c.id).length;
     if(!count)return;
     const card=document.createElement('a');
@@ -53,7 +54,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     catGrid.appendChild(card);
   });
   const toolGrid=document.getElementById('tool-grid');
-  const tools=DevNova.ALL_TOOLS;
+  const tools=DevNova.ALL_TOOLS.filter(t=>BUILT_CATS.includes(t.catId));
   document.getElementById('tool-count').textContent=tools.length+' tools';
   tools.forEach(t=>{
     const cat=DevNova.CATS.find(c=>c.id===t.catId);
