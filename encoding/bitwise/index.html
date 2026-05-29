@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Bitwise Calculator — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Perform bitwise AND, OR, XOR, NOT and shift operations on integers. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/encoding/bitwise/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Bitwise Calculator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Perform bitwise AND, OR, XOR, NOT and shift operations on integers", "url": "https://devnovatools.com/encoding/bitwise/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/encoding/">Encoding & Crypto</a> › <span>Bitwise Calculator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#A78BFA22;border:1px solid #A78BFA44">⚙️</div>
+      <h1 class="tool-name">Bitwise Calculator</h1>
+    </div>
+    <p class="tool-desc">Perform bitwise AND, OR, XOR, NOT and shift operations on integers</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row">
+<div class="form-group" style="flex:1"><label>Value A</label><input id="va" type="text" value="255" oninput="run()" style="width:100%"/></div>
+<div class="form-group"><label>Operation</label><select id="op" onchange="run()"><option value="and">AND (&amp;)</option><option value="or">OR (|)</option><option value="xor">XOR (^)</option><option value="not">NOT (~A)</option><option value="ls">Left Shift (A&lt;&lt;B)</option><option value="rs">Right Shift (A&gt;&gt;B)</option></select></div>
+<div class="form-group" style="flex:1"><label>Value B</label><input id="vb" type="text" value="170" oninput="run()" style="width:100%"/></div>
+</div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Bitwise Result</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){const a=parseInt(document.getElementById('va').value);const b=parseInt(document.getElementById('vb').value);const op=document.getElementById('op').value;const o=document.getElementById('output');if(isNaN(a)){o.textContent='\u2717 Invalid Value A';return}const ops={and:a&b,or:a|b,xor:a^b,not:~a,ls:a<<(isNaN(b)?0:b),rs:a>>(isNaN(b)?0:b)};const result=ops[op];const labels={and:'&',or:'|',xor:'^',not:'~',ls:'<<',rs:'>>'};o.textContent='A = '+a+'   (binary: '+a.toString(2).padStart(8,'0')+')\nB = '+(isNaN(b)?'N/A':b+'   (binary: '+b.toString(2).padStart(8,'0')+')')+'\n\nOperation: A '+labels[op]+' '+(op!=='not'?'B':'')+'\n\nResult: '+(result>>>0)+'\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nDecimal: '+result+'\nBinary:  '+(result>>>0).toString(2).padStart(8,'0')+'\nHex:     0x'+(result>>>0).toString(16).toUpperCase()+'\nOctal:   '+(result>>>0).toString(8)}</script>
+</body></html>

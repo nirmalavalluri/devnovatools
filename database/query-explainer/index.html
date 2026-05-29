@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SQL Query Explainer — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Explain SQL query clauses and keywords in plain English. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/database/query-explainer/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SQL Query Explainer", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Explain SQL query clauses and keywords in plain English", "url": "https://devnovatools.com/database/query-explainer/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/database/">Database Tools</a> › <span>SQL Query Explainer</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#34D39922;border:1px solid #34D39944">🔍</div>
+      <h1 class="tool-name">SQL Query Explainer</h1>
+    </div>
+    <p class="tool-desc">Explain SQL query clauses and keywords in plain English</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste SQL query to explain...&#10;SELECT u.name, COUNT(o.id) as orders&#10;FROM users u&#10;LEFT JOIN orders o ON u.id = o.user_id&#10;WHERE u.active = 1&#10;GROUP BY u.id&#10;HAVING COUNT(o.id) > 2&#10;ORDER BY orders DESC&#10;LIMIT 10" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Query Explanation</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){const sql=document.getElementById('input').value.trim().toUpperCase();const o=document.getElementById('output');if(!sql){o.textContent='';return}const e=[];if(sql.includes('SELECT')){e.push('1\ufe0f\u20e3 SELECT\n   Retrieves specified columns from the database.\n   Use * for all columns, or name specific ones.');if(sql.includes('DISTINCT'))e.push('   + DISTINCT: Removes duplicate rows from results')}if(sql.includes('FROM'))e.push('2\ufe0f\u20e3 FROM\n   Specifies the primary table(s) to query from');if(sql.includes('LEFT JOIN'))e.push('3\ufe0f\u20e3 LEFT JOIN\n   Returns ALL rows from left table + matched rows from right.\n   Unmatched right rows return NULL');else if(sql.includes('RIGHT JOIN'))e.push('3\ufe0f\u20e3 RIGHT JOIN\n   Returns ALL rows from right table + matched from left');else if(sql.includes('INNER JOIN'))e.push('3\ufe0f\u20e3 INNER JOIN\n   Returns only rows that match in BOTH tables');else if(sql.includes('CROSS JOIN'))e.push('3\ufe0f\u20e3 CROSS JOIN\n   Returns every combination of rows from both tables');else if(sql.includes('JOIN'))e.push('3\ufe0f\u20e3 JOIN\n   Combines rows from multiple tables');if(sql.includes('WHERE'))e.push('4\ufe0f\u20e3 WHERE\n   Filters rows BEFORE grouping.\n   Cannot use aggregate functions here (use HAVING instead)');if(sql.includes('GROUP BY'))e.push('5\ufe0f\u20e3 GROUP BY\n   Groups rows sharing the same values.\n   Required when using aggregate functions (COUNT, SUM, AVG)');if(sql.includes('HAVING'))e.push('6\ufe0f\u20e3 HAVING\n   Filters groups AFTER GROUP BY.\n   Can use aggregate functions (unlike WHERE)');if(sql.includes('ORDER BY')){if(sql.includes('DESC'))e.push('7\ufe0f\u20e3 ORDER BY ... DESC\n   Sorts results in descending order (highest first)');else e.push('7\ufe0f\u20e3 ORDER BY ... ASC\n   Sorts results in ascending order (lowest first)')}if(sql.includes('LIMIT'))e.push('8\ufe0f\u20e3 LIMIT\n   Restricts the number of rows returned');if(sql.includes('OFFSET'))e.push('   + OFFSET: Skips N rows before returning results (pagination)');const agg=[];if(sql.includes('COUNT('))agg.push('COUNT() \u2014 counts number of rows');if(sql.includes('SUM('))agg.push('SUM() \u2014 adds up numeric values');if(sql.includes('AVG('))agg.push('AVG() \u2014 calculates average value');if(sql.includes('MAX('))agg.push('MAX() \u2014 finds the largest value');if(sql.includes('MIN('))agg.push('MIN() \u2014 finds the smallest value');if(agg.length)e.push('\u2699\ufe0f Aggregate Functions:\n   '+agg.join('\n   '));o.textContent=e.length?e.join('\n\n'):'No recognized SQL clauses found.\nPaste a valid SELECT statement to analyze.'}</script>
+</body></html>

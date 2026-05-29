@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Binary Text Converter — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Convert text to binary representation or decode binary back to text. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/encoding/binary-text/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Binary Text Converter", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert text to binary representation or decode binary back to text", "url": "https://devnovatools.com/encoding/binary-text/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/encoding/">Encoding & Crypto</a> › <span>Binary Text Converter</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#A78BFA22;border:1px solid #A78BFA44">01</div>
+      <h1 class="tool-name">Binary Text Converter</h1>
+    </div>
+    <p class="tool-desc">Convert text to binary representation or decode binary back to text</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row"><button class="btn btn-primary btn-sm" onclick="toBin()">Text → Binary</button><button class="btn btn-secondary btn-sm" onclick="toText()">Binary → Text</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter text or binary string...&#10;e.g. Hello&#10;or: 01001000 01100101 01101100 01101100 01101111" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Result</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){toBin()}
+function toBin(){document.getElementById('output').textContent=document.getElementById('input').value.split('').map(c=>c.charCodeAt(0).toString(2).padStart(8,'0')).join(' ');document.getElementById('status').textContent='Text \u2192 Binary'}
+function toText(){try{document.getElementById('output').textContent=document.getElementById('input').value.trim().replace(/\s+/g,' ').split(' ').map(b=>String.fromCharCode(parseInt(b,2))).join('');document.getElementById('status').textContent='Binary \u2192 Text'}catch(e){document.getElementById('output').textContent='\u2717 Invalid binary input'}}</script>
+</body></html>

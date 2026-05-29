@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SQL Results to JSON — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Convert SQL SELECT result sets (tab or comma separated) to JSON. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/database/sql-to-json/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SQL Results to JSON", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert SQL SELECT result sets (tab or comma separated) to JSON", "url": "https://devnovatools.com/database/sql-to-json/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/database/">Database Tools</a> › <span>SQL Results to JSON</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#34D39922;border:1px solid #34D39944">🔄</div>
+      <h1 class="tool-name">SQL Results to JSON</h1>
+    </div>
+    <p class="tool-desc">Convert SQL SELECT result sets (tab or comma separated) to JSON</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste SQL query results with headers...&#10;id	name	age	email&#10;1	Alice	30	alice@example.com&#10;2	Bob	25	bob@example.com" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">JSON Output</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}try{const lines=i.split('\n').filter(l=>l.trim());if(lines.length<2){o.textContent='\u2717 Need at least a header row and one data row';return}const sep=lines[0].includes('\t')?'\t':',';const headers=lines[0].split(sep).map(h=>h.trim().replace(/^["'`]|["'`]$/g,''));const rows=lines.slice(1).map(line=>{const vals=line.split(sep).map(v=>v.trim().replace(/^["'`]|["'`]$/g,''));const obj={};headers.forEach((h,i)=>{const val=vals[i]||'';if(val==='NULL'||val==='null')obj[h]=null;else if(!isNaN(val)&&val!=='')obj[h]=Number(val);else if(val==='true'||val==='TRUE')obj[h]=true;else if(val==='false'||val==='FALSE')obj[h]=false;else obj[h]=val});return obj});o.textContent=JSON.stringify(rows,null,2);document.getElementById('status').textContent=rows.length+' row(s) converted'}catch(e){o.textContent='\u2717 '+e.message}}</script>
+</body></html>

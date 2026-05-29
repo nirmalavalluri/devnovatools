@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>PyPI Package Search — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Search Python Package Index and get pip install commands. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/packages/pypi-search/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "PyPI Package Search", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Search Python Package Index and get pip install commands", "url": "https://devnovatools.com/packages/pypi-search/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/packages/">Package & Version</a> › <span>PyPI Package Search</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#60A5FA22;border:1px solid #60A5FA44">🐍</div>
+      <h1 class="tool-name">PyPI Package Search</h1>
+    </div>
+    <p class="tool-desc">Search Python Package Index and get pip install commands</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <button class="btn btn-primary btn-sm" onclick="run()">Search PyPI</button>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter package name...&#10;e.g. requests, numpy, pandas, flask, django" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Package Info</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>async function run(){const q=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!q){o.textContent='Enter a package name to search';return}o.textContent='Searching PyPI...';try{const r=await fetch('https://pypi.org/pypi/'+encodeURIComponent(q)+'/json');if(!r.ok){o.textContent='\u2717 Package "'+q+'" not found on PyPI\n\nBrowse: https://pypi.org/search/?q='+encodeURIComponent(q);return}const d=await r.json();const info=d.info;const releases=Object.keys(d.releases||{}).slice(-5).reverse();o.textContent=['Package:         '+info.name,'Version:         '+info.version,'Description:     '+(info.summary||'N/A'),'Author:          '+(info.author||'N/A'),'License:         '+(info.license||'N/A'),'Homepage:        '+(info.home_page||info.project_url||'N/A'),'Requires Python: '+(info.requires_python||'N/A'),'Keywords:        '+(info.keywords||'N/A'),'','Install Commands:','  pip install '+info.name,'  pip install '+info.name+'=='+info.version,'  poetry add '+info.name,'  pipenv install '+info.name,'','Recent Versions:','  '+releases.join('\n  '),'','PyPI Page:','  https://pypi.org/project/'+info.name].join('\n');document.getElementById('status').textContent='v'+info.version}catch(e){o.textContent='\u2717 '+e.message+'\n\nTip: Try visiting https://pypi.org/project/'+document.getElementById('input').value.trim()}}</script>
+</body></html>

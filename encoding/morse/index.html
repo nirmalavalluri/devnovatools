@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Morse Code Translator — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Encode text to Morse code or decode Morse code to text. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/encoding/morse/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Morse Code Translator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Encode text to Morse code or decode Morse code to text", "url": "https://devnovatools.com/encoding/morse/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/encoding/">Encoding & Crypto</a> › <span>Morse Code Translator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#A78BFA22;border:1px solid #A78BFA44">📡</div>
+      <h1 class="tool-name">Morse Code Translator</h1>
+    </div>
+    <p class="tool-desc">Encode text to Morse code or decode Morse code to text</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row"><button class="btn btn-primary btn-sm" onclick="encode()">Text → Morse</button><button class="btn btn-secondary btn-sm" onclick="decode()">Morse → Text</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter text or Morse code (dots . and dashes -)...&#10;e.g. Hello World&#10;or: .... . .-.. .-.. --- / .-- --- .-. .-.. -.." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Result</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>const M={A:'.-',B:'-...',C:'-.-.',D:'-..',E:'.',F:'..-.',G:'--.',H:'....',I:'..',J:'.---',K:'-.-',L:'.-..',M:'--',N:'-.',O:'---',P:'.--.',Q:'--.-',R:'.-.',S:'...',T:'-',U:'..-',V:'...-',W:'.--',X:'-..-',Y:'-.--',Z:'--..',0:'-----',1:'.----',2:'..---',3:'...--',4:'....-',5:'.....',6:'-....',7:'--...',8:'---..',9:'----.',' ':'/'};
+const R=Object.fromEntries(Object.entries(M).filter(([k])=>k!==' ').map(([k,v])=>[v,k]));
+function run(){encode()}
+function encode(){const i=document.getElementById('input').value.toUpperCase();document.getElementById('output').textContent=i.split('').map(c=>M[c]!==undefined?M[c]:'?').join(' ');document.getElementById('status').textContent='Encoded to Morse'}
+function decode(){document.getElementById('output').textContent=document.getElementById('input').value.trim().split(' / ').map(w=>w.split(' ').map(c=>R[c]||'?').join('')).join(' ');document.getElementById('status').textContent='Decoded from Morse'}</script>
+</body></html>

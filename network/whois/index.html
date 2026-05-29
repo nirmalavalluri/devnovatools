@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>WHOIS Lookup — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Look up domain registration and ownership information. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/network/whois/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "WHOIS Lookup", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Look up domain registration and ownership information", "url": "https://devnovatools.com/network/whois/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/network/">Network & DNS</a> › <span>WHOIS Lookup</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#4DA6FF22;border:1px solid #4DA6FF44">🔍</div>
+      <h1 class="tool-name">WHOIS Lookup</h1>
+    </div>
+    <p class="tool-desc">Look up domain registration and ownership information</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <button class="btn btn-primary btn-sm" onclick="run()">Lookup WHOIS</button>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter domain name...&#10;e.g. google.com" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">WHOIS Info</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>async function run(){const d=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!d){o.textContent='Enter a domain name';return}o.textContent='Looking up...';const parts=d.split('.');const name=parts[0];const zone=parts.slice(1).join('.');try{const r=await fetch('https://api.domainsdb.info/v1/domains/search?domain='+encodeURIComponent(name)+'&zone='+encodeURIComponent(zone));const data=await r.json();if(data.domains?.length){const dom=data.domains[0];o.textContent='Domain:      '+dom.domain+'\nCreate Date: '+(dom.create_date||'N/A')+'\nUpdate Date: '+(dom.update_date||'N/A')+'\nCountry:     '+(dom.country||'N/A');document.getElementById('status').textContent='Found'}else{o.textContent='Domain info not found in database.\n\nUse these tools for full WHOIS:\n\u2022 https://who.is/whois/'+d+'\n\u2022 https://lookup.icann.org/en/lookup?name='+d}}catch(e){o.textContent='Use these free WHOIS tools:\n\u2022 https://who.is/whois/'+d+'\n\u2022 https://lookup.icann.org'}}</script>
+</body></html>

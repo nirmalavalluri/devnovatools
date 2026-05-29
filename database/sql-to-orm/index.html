@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>SQL to ORM Generator — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Generate Prisma, Sequelize or TypeORM models from SQL CREATE TABLE statements. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/database/sql-to-orm/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SQL to ORM Generator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate Prisma, Sequelize or TypeORM models from SQL CREATE TABLE statements", "url": "https://devnovatools.com/database/sql-to-orm/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/database/">Database Tools</a> › <span>SQL to ORM Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#34D39922;border:1px solid #34D39944">🗄️</div>
+      <h1 class="tool-name">SQL to ORM Generator</h1>
+    </div>
+    <p class="tool-desc">Generate Prisma, Sequelize or TypeORM models from SQL CREATE TABLE statements</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row"><div class="form-group"><label>ORM Target</label><select id="orm" onchange="run()"><option value="prisma">Prisma</option><option value="sequelize">Sequelize</option><option value="typeorm">TypeORM</option></select></div></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste SQL CREATE TABLE here...&#10;CREATE TABLE users (&#10;  id INT PRIMARY KEY AUTO_INCREMENT,&#10;  name VARCHAR(255) NOT NULL,&#10;  email VARCHAR(255) UNIQUE,&#10;  created_at DATETIME&#10;);" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">ORM Model</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){const sql=document.getElementById('input').value.trim();const orm=document.getElementById('orm').value;const o=document.getElementById('output');if(!sql){o.textContent='';return}try{const tm=sql.match(/CREATE\s+TABLE\s+[`"']?(\w+)[`"']?/i);if(!tm){o.textContent='\u2717 Could not find CREATE TABLE statement';return}const tableName=tm[1];const model=tableName.charAt(0).toUpperCase()+tableName.slice(1);const body=sql.match(/\(([^;]+)\)/s);if(!body){o.textContent='\u2717 Could not parse table body';return}const cols=[];const cr=/^\s*[`"']?(\w+)[`"']?\s+([\w]+(?:\(\d+\))?)[^,\n]*/gm;let m;while((m=cr.exec(body[1]))!==null){const n=m[1].toUpperCase();if(['PRIMARY','UNIQUE','INDEX','KEY','CONSTRAINT','FOREIGN','CHECK'].includes(n))continue;cols.push({name:m[1],sqlType:m[2].toUpperCase().split('(')[0]})}const tmap={prisma:{INT:'Int',BIGINT:'BigInt',SMALLINT:'Int',TINYINT:'Int',VARCHAR:'String',CHAR:'String',TEXT:'String',MEDIUMTEXT:'String',LONGTEXT:'String',BOOLEAN:'Boolean',BOOL:'Boolean',FLOAT:'Float',DOUBLE:'Float',DECIMAL:'Decimal',DATE:'DateTime',DATETIME:'DateTime',TIMESTAMP:'DateTime',JSON:'Json'},sequelize:{INT:'INTEGER',BIGINT:'BIGINT',VARCHAR:'STRING',TEXT:'TEXT',BOOLEAN:'BOOLEAN',FLOAT:'FLOAT',DOUBLE:'DOUBLE',DECIMAL:'DECIMAL',DATETIME:'DATE',TIMESTAMP:'DATE'},typeorm:{INT:'number',BIGINT:'bigint',VARCHAR:'string',TEXT:'string',BOOLEAN:'boolean',FLOAT:'number',DOUBLE:'number',DATETIME:'Date'}};
+if(orm==='prisma'){o.textContent='model '+model+' {\n'+cols.map(c=>'  '+c.name.padEnd(16)+(tmap.prisma[c.sqlType]||'String')).join('\n')+'\n\n  @@map("'+tableName+'")\n}'}
+else if(orm==='sequelize'){o.textContent="const "+model+" = sequelize.define('"+tableName+"', {\n"+cols.map(c=>'  '+c.name+': { type: DataTypes.'+(tmap.sequelize[c.sqlType]||'STRING')+' }').join(',\n')+'\n});'}
+else{o.textContent='import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";\n\n@Entity("'+tableName+'")\nexport class '+model+' {\n\n'+cols.map(c=>'  @Column()\n  '+c.name+': '+(tmap.typeorm[c.sqlType]||'string')+';').join('\n\n')+'\n}'}
+document.getElementById('status').textContent=cols.length+' column(s) \u2192 '+orm}catch(e){o.textContent='\u2717 '+e.message}}</script>
+</body></html>

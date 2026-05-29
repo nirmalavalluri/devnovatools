@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Changelog Generator — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Generate a professional CHANGELOG.md template following Keep a Changelog format. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/packages/changelog/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Changelog Generator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate a professional CHANGELOG.md template following Keep a Changelog format", "url": "https://devnovatools.com/packages/changelog/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/packages/">Package & Version</a> › <span>Changelog Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#60A5FA22;border:1px solid #60A5FA44">📝</div>
+      <h1 class="tool-name">Changelog Generator</h1>
+    </div>
+    <p class="tool-desc">Generate a professional CHANGELOG.md template following Keep a Changelog format</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row">
+<div class="form-group" style="flex:1"><label>Project Name</label><input id="proj" type="text" value="my-project" oninput="generate()" style="width:100%"/></div>
+<div class="form-group"><label>Version</label><input id="ver" type="text" value="1.0.0" oninput="generate()" style="width:90px"/></div>
+</div>
+<div class="form-row">
+<div class="form-group" style="flex:1"><label>GitHub/GitLab URL</label><input id="repo" type="text" value="https://github.com/username/project" oninput="generate()" style="width:100%"/></div>
+<button class="btn btn-primary btn-sm" onclick="generate()" style="margin-top:20px">Generate</button>
+</div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">CHANGELOG.md</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){}
+function generate(){const proj=document.getElementById('proj').value||'my-project';const ver=document.getElementById('ver').value||'1.0.0';const repo=document.getElementById('repo').value||'https://github.com/username/'+proj;const date=new Date().toISOString().split('T')[0];const changelog='# Changelog\n\nAll notable changes to **'+proj+'** are documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n---\n\n## [Unreleased]\n\n### Added\n- Upcoming feature or improvement\n\n### Changed\n- Planned change\n\n### Fixed\n- Upcoming bug fix\n\n---\n\n## ['+ver+'] - '+date+'\n\n### Added\n- Initial public release\n- Feature A: description of what it does and why\n- Feature B: description of what it does and why\n\n### Changed\n- Updated dependency X from 1.0 to 2.0\n- Improved performance of Y operation\n\n### Fixed\n- Fixed bug where Z happened under specific conditions\n- Resolved issue #123: description\n\n### Removed\n- Deprecated function `oldFunction()` removed\n- Removed support for Node.js < 18\n\n---\n\n## [0.1.0] - '+date+'\n\n### Added\n- Initial development version\n\n---\n\n[Unreleased]: '+repo+'/compare/v'+ver+'...HEAD\n['+ver+']: '+repo+'/releases/tag/v'+ver+'\n[0.1.0]: '+repo+'/releases/tag/v0.1.0';document.getElementById('output').textContent=changelog;document.getElementById('status').textContent='CHANGELOG.md generated'}
+document.addEventListener('DOMContentLoaded',generate)</script>
+</body></html>

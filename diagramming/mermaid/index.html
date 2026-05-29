@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Mermaid Live Editor — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Create Mermaid diagrams with live preview — flowcharts, ERDs, sequences and more. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/diagramming/mermaid/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Mermaid Live Editor", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Create Mermaid diagrams with live preview \u2014 flowcharts, ERDs, sequences and more", "url": "https://devnovatools.com/diagramming/mermaid/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/diagramming/">Diagramming</a> › <span>Mermaid Live Editor</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FB718522;border:1px solid #FB718544">📊</div>
+      <h1 class="tool-name">Mermaid Live Editor</h1>
+    </div>
+    <p class="tool-desc">Create Mermaid diagrams with live preview — flowcharts, ERDs, sequences and more</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row" style="flex-wrap:wrap;gap:8px">
+<button class="btn btn-ghost btn-sm" onclick="setEx('flow')">Flowchart</button>
+<button class="btn btn-ghost btn-sm" onclick="setEx('seq')">Sequence</button>
+<button class="btn btn-ghost btn-sm" onclick="setEx('er')">ERD</button>
+<button class="btn btn-ghost btn-sm" onclick="setEx('gantt')">Gantt</button>
+<button class="btn btn-ghost btn-sm" onclick="setEx('pie')">Pie Chart</button>
+</div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter Mermaid diagram syntax..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Diagram Preview</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>const EX={
+flow:'flowchart TD\n    A[Start] --> B{Decision?}\n    B -->|Yes| C[Take Action]\n    B -->|No| D[Skip]\n    C --> E[End]\n    D --> E',
+seq:'sequenceDiagram\n    participant Client\n    participant API\n    participant DB\n    Client->>API: POST /login\n    API->>DB: Verify credentials\n    DB-->>API: User found\n    API-->>Client: 200 OK + JWT',
+er:'erDiagram\n    USER ||--o{ ORDER : places\n    ORDER ||--|{ LINE_ITEM : contains\n    USER {\n        int id PK\n        string name\n        string email\n    }\n    ORDER {\n        int id PK\n        date created_at\n        decimal total\n    }',
+gantt:'gantt\n    title Project Timeline\n    dateFormat  YYYY-MM-DD\n    section Design\n    Wireframes      :a1, 2026-01-01, 7d\n    section Development\n    Frontend        :a2, after a1, 14d\n    Backend         :a3, after a1, 14d\n    section Testing\n    QA              :a4, after a2, 7d',
+pie:'pie title Browser Share\n    "Chrome" : 65\n    "Firefox" : 15\n    "Safari" : 12\n    "Edge" : 8'};
+async function run(){render()}
+function setEx(name){document.getElementById('input').value=EX[name]||'';render()}
+async function render(){const code=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!code){o.innerHTML='';return}try{if(!window.mermaid){const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';document.head.appendChild(s);await new Promise(r=>s.onload=r);mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'loose'})}const id='m'+Date.now();const{svg}=await mermaid.render(id,code);o.innerHTML=svg;document.getElementById('status').textContent='\u2713 Diagram rendered'}catch(e){o.textContent='\u2717 Syntax error: '+e.message.split('\n')[0]}}
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('input').value=EX.flow;render()})</script>
+</body></html>

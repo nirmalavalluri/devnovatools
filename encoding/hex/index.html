@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hex Encoder/Decoder — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Encode text to hexadecimal or decode hex strings back to text. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/encoding/hex/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Hex Encoder/Decoder", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Encode text to hexadecimal or decode hex strings back to text", "url": "https://devnovatools.com/encoding/hex/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/encoding/">Encoding & Crypto</a> › <span>Hex Encoder/Decoder</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#A78BFA22;border:1px solid #A78BFA44">0x</div>
+      <h1 class="tool-name">Hex Encoder/Decoder</h1>
+    </div>
+    <p class="tool-desc">Encode text to hexadecimal or decode hex strings back to text</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row"><button class="btn btn-primary btn-sm" onclick="encode()">Text → Hex</button><button class="btn btn-secondary btn-sm" onclick="decode()">Hex → Text</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter text or hex string...&#10;e.g. Hello World&#10;or: 48 65 6c 6c 6f" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Result</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){encode()}
+function encode(){document.getElementById('output').textContent=[...document.getElementById('input').value].map(c=>c.charCodeAt(0).toString(16).padStart(2,'0')).join(' ');document.getElementById('status').textContent='Encoded to hex'}
+function decode(){try{const hex=document.getElementById('input').value.replace(/\s/g,'');if(hex.length%2){document.getElementById('output').textContent='\u2717 Odd-length hex string';return}document.getElementById('output').textContent=hex.match(/.{2}/g).map(h=>String.fromCharCode(parseInt(h,16))).join('');document.getElementById('status').textContent='Decoded from hex'}catch(e){document.getElementById('output').textContent='\u2717 Invalid hex input'}}</script>
+</body></html>

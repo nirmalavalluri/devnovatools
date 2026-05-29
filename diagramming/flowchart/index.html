@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Flowchart Builder — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Build flowcharts using Mermaid syntax with live preview. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/diagramming/flowchart/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Flowchart Builder", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Build flowcharts using Mermaid syntax with live preview", "url": "https://devnovatools.com/diagramming/flowchart/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/diagramming/">Diagramming</a> › <span>Flowchart Builder</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FB718522;border:1px solid #FB718544">🔀</div>
+      <h1 class="tool-name">Flowchart Builder</h1>
+    </div>
+    <p class="tool-desc">Build flowcharts using Mermaid syntax with live preview</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row" style="flex-wrap:wrap;gap:8px">
+<button class="btn btn-ghost btn-sm" onclick="setEx('basic')">Basic Flow</button>
+<button class="btn btn-ghost btn-sm" onclick="setEx('dev')">Dev Workflow</button>
+<button class="btn btn-ghost btn-sm" onclick="setEx('lr')">Left-Right</button>
+</div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="flowchart TD&#10;    A[Start] --> B{Is it working?}&#10;    B -->|Yes| C[Ship it! 🚀]&#10;    B -->|No| D[Debug]&#10;    D --> B" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Flowchart Preview</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>const EX={basic:'flowchart TD\n    A[Start] --> B{Decision}\n    B -->|Yes| C[Action 1]\n    B -->|No| D[Action 2]\n    C --> E[End]\n    D --> E',dev:'flowchart TD\n    A[Write Code] --> B[Run Tests]\n    B --> C{Tests Pass?}\n    C -->|No| D[Fix Bugs]\n    D --> A\n    C -->|Yes| E[Code Review]\n    E --> F{Approved?}\n    F -->|No| G[Update Code]\n    G --> E\n    F -->|Yes| H[Deploy 🚀]',lr:'flowchart LR\n    A[Client] --> B[Load Balancer]\n    B --> C[Server 1]\n    B --> D[Server 2]\n    C --> E[(Database)]\n    D --> E'};
+async function run(){render()}
+function setEx(name){document.getElementById('input').value=EX[name]||'';render()}
+async function render(){const code=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!code){o.innerHTML='';return}try{if(!window.mermaid){const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';document.head.appendChild(s);await new Promise(r=>s.onload=r);mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'loose'})}const{svg}=await mermaid.render('fc'+Date.now(),code);o.innerHTML=svg;document.getElementById('status').textContent='\u2713 Rendered'}catch(e){o.textContent='\u2717 '+e.message.split('\n')[0]}}
+document.addEventListener('DOMContentLoaded',()=>{render()})</script>
+</body></html>

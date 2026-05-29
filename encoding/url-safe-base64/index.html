@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>URL Safe Base64 — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="URL-safe Base64 encoding that replaces +/= with -_~ for URLs. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/encoding/url-safe-base64/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "URL Safe Base64", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "URL-safe Base64 encoding that replaces +/= with -_~ for URLs", "url": "https://devnovatools.com/encoding/url-safe-base64/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/encoding/">Encoding & Crypto</a> › <span>URL Safe Base64</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#A78BFA22;border:1px solid #A78BFA44">🔒</div>
+      <h1 class="tool-name">URL Safe Base64</h1>
+    </div>
+    <p class="tool-desc">URL-safe Base64 encoding that replaces +/= with -_~ for URLs</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row"><button class="btn btn-primary btn-sm" onclick="encode()">Encode</button><button class="btn btn-secondary btn-sm" onclick="decode()">Decode</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter text to encode or URL-safe Base64 to decode..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Result</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){encode()}
+function encode(){try{const b=btoa(unescape(encodeURIComponent(document.getElementById('input').value))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=/g,'');document.getElementById('output').textContent=b;document.getElementById('status').textContent='URL-safe encoded (no +/=/characters)'}catch(e){document.getElementById('status').textContent='\u2717 Error'}}
+function decode(){try{let i=document.getElementById('input').value.trim().replace(/-/g,'+').replace(/_/g,'/');const pad=i.length%4?i+'='.repeat(4-i.length%4):i;document.getElementById('output').textContent=decodeURIComponent(escape(atob(pad)));document.getElementById('status').textContent='Decoded'}catch(e){document.getElementById('output').textContent='\u2717 Invalid URL-safe Base64 input'}}</script>
+</body></html>

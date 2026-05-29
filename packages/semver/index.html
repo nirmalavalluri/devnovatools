@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Semver Calculator — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Validate, compare and analyze semantic version numbers and ranges. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/packages/semver/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Semver Calculator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Validate, compare and analyze semantic version numbers and ranges", "url": "https://devnovatools.com/packages/semver/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/packages/">Package & Version</a> › <span>Semver Calculator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#60A5FA22;border:1px solid #60A5FA44">🔢</div>
+      <h1 class="tool-name">Semver Calculator</h1>
+    </div>
+    <p class="tool-desc">Validate, compare and analyze semantic version numbers and ranges</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter version(s) to analyze...&#10;e.g.&#10;1.2.3&#10;2.0.0-beta.1&#10;1.2.3 vs 1.3.0&#10;2.1.0 vs 1.9.9" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Semver Analysis</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){const lines=document.getElementById('input').value.trim().split('\n').map(l=>l.trim()).filter(Boolean);const o=document.getElementById('output');const results=[];lines.forEach(line=>{if(line.includes(' vs ')){const[a,b]=line.split(' vs ').map(s=>s.trim());const av=parse(a),bv=parse(b);if(!av||!bv){results.push(line+': \u2717 Invalid version(s)');return}const c=compare(av,bv);results.push(line+'\n  Result: '+a+' is \u2033'+(c<0?'LESS THAN':c>0?'GREATER THAN':'EQUAL TO')+'\u2033 '+b)}else{const v=parse(line);if(!v){results.push(line+': \u2717 Invalid semver (expected X.Y.Z)');return}const[major,minor,patch]=v;results.push(line+': \u2713 Valid Semantic Version\n  Major:      '+major+' (breaking changes)\n  Minor:      '+minor+' (new features)\n  Patch:      '+patch+' (bug fixes)\n  Next patch: '+major+'.'+minor+'.'+(patch+1)+'\n  Next minor: '+major+'.'+(minor+1)+'.0\n  Next major: '+(major+1)+'.0.0\n  Is stable:  '+(major>0?'Yes \u2713':'No (0.x.x is considered unstable)'))}});o.textContent=results.join('\n\n')}
+function parse(v){const m=v.replace(/^[v^~]*/,'').match(/^(\d+)\.(\d+)\.(\d+)/);return m?[+m[1],+m[2],+m[3]]:null}
+function compare(a,b){for(let i=0;i<3;i++){if(a[i]!==b[i])return a[i]-b[i]}return 0}</script>
+</body></html>

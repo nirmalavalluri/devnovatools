@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Gantt Chart Builder — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Build Gantt project timeline charts using Mermaid syntax. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/diagramming/gantt/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Gantt Chart Builder", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Build Gantt project timeline charts using Mermaid syntax", "url": "https://devnovatools.com/diagramming/gantt/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/diagramming/">Diagramming</a> › <span>Gantt Chart Builder</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FB718522;border:1px solid #FB718544">📅</div>
+      <h1 class="tool-name">Gantt Chart Builder</h1>
+    </div>
+    <p class="tool-desc">Build Gantt project timeline charts using Mermaid syntax</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row" style="flex-wrap:wrap;gap:8px">
+<button class="btn btn-ghost btn-sm" onclick="setEx('dev')">Dev Project</button>
+<button class="btn btn-ghost btn-sm" onclick="setEx('sprint')">Sprint Plan</button>
+<button class="btn btn-ghost btn-sm" onclick="setEx('launch')">Product Launch</button>
+</div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="gantt&#10;    title My Project&#10;    dateFormat YYYY-MM-DD&#10;    section Phase 1&#10;    Design    :a1, 2026-01-01, 7d&#10;    section Phase 2&#10;    Develop   :a2, after a1, 14d&#10;    Test      :a3, after a2, 5d" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Gantt Chart</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>const EX={dev:'gantt\n    title Software Development\n    dateFormat YYYY-MM-DD\n    section Planning\n    Requirements    :a1, 2026-01-01, 5d\n    Architecture    :a2, after a1, 5d\n    section Development\n    Backend API     :a3, after a2, 14d\n    Frontend UI     :a4, after a2, 14d\n    Integration     :a5, after a3, 7d\n    section Release\n    Testing         :a6, after a5, 7d\n    Deployment      :a7, after a6, 2d',sprint:'gantt\n    title Sprint 14\n    dateFormat YYYY-MM-DD\n    section Backend\n    Auth module     :a1, 2026-01-06, 3d\n    API endpoints   :a2, after a1, 4d\n    section Frontend\n    Login page      :b1, 2026-01-06, 2d\n    Dashboard       :b2, after b1, 5d\n    section QA\n    Testing         :c1, after a2, 3d',launch:'gantt\n    title Product Launch\n    dateFormat YYYY-MM-DD\n    section Research\n    Market Research :a1, 2026-01-01, 14d\n    User Testing    :a2, after a1, 7d\n    section Build\n    MVP Development :a3, after a2, 30d\n    Beta Testing    :a4, after a3, 14d\n    section Launch\n    Marketing Prep  :a5, after a4, 7d\n    Public Launch   :milestone, after a5, 0d'};
+async function run(){render()}
+function setEx(n){document.getElementById('input').value=EX[n]||'';render()}
+async function render(){const code=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!code){o.innerHTML='';return}try{if(!window.mermaid){const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';document.head.appendChild(s);await new Promise(r=>s.onload=r);mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'loose'})}const{svg}=await mermaid.render('g'+Date.now(),code);o.innerHTML=svg;document.getElementById('status').textContent='\u2713 Rendered'}catch(e){o.textContent='\u2717 '+e.message.split('\n')[0]}}
+document.addEventListener('DOMContentLoaded',render)</script>
+</body></html>

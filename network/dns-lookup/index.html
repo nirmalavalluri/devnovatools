@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DNS Lookup — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Query DNS records for any domain using DNS over HTTPS. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/network/dns-lookup/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "DNS Lookup", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Query DNS records for any domain using DNS over HTTPS", "url": "https://devnovatools.com/network/dns-lookup/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/network/">Network & DNS</a> › <span>DNS Lookup</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#4DA6FF22;border:1px solid #4DA6FF44">🌐</div>
+      <h1 class="tool-name">DNS Lookup</h1>
+    </div>
+    <p class="tool-desc">Query DNS records for any domain using DNS over HTTPS</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row"><div class="form-group"><label>Record Type</label><select id="rtype"><option>A</option><option>AAAA</option><option>CNAME</option><option>MX</option><option>NS</option><option>TXT</option><option>SOA</option></select></div><button class="btn btn-primary btn-sm" onclick="run()" style="margin-top:20px">Lookup</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter domain name...&#10;e.g. google.com" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">DNS Records</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>async function run(){const d=document.getElementById('input').value.trim();const t=document.getElementById('rtype').value;const o=document.getElementById('output');if(!d){o.textContent='Enter a domain name';return}o.textContent='Looking up...';try{const r=await fetch('https://cloudflare-dns.com/dns-query?name='+encodeURIComponent(d)+'&type='+t,{headers:{'Accept':'application/dns-json'}});const data=await r.json();if(!data.Answer?.length){o.textContent='No '+t+' records found for '+d;document.getElementById('status').textContent='No records';return}o.textContent=data.Answer.map(rec=>'Name:  '+rec.name+'\nType:  '+rec.type+'\nValue: '+rec.data+'\nTTL:   '+rec.TTL+'s').join('\n\n');document.getElementById('status').textContent=data.Answer.length+' record(s)'}catch(e){o.textContent='\u2717 '+e.message}}</script>
+</body></html>

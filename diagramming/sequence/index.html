@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sequence Diagram — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Create sequence diagrams to visualize system and API interactions. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/diagramming/sequence/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Sequence Diagram", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Create sequence diagrams to visualize system and API interactions", "url": "https://devnovatools.com/diagramming/sequence/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/diagramming/">Diagramming</a> › <span>Sequence Diagram</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FB718522;border:1px solid #FB718544">📋</div>
+      <h1 class="tool-name">Sequence Diagram</h1>
+    </div>
+    <p class="tool-desc">Create sequence diagrams to visualize system and API interactions</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row" style="flex-wrap:wrap;gap:8px">
+<button class="btn btn-ghost btn-sm" onclick="setEx('auth')">Auth Flow</button>
+<button class="btn btn-ghost btn-sm" onclick="setEx('api')">API Request</button>
+<button class="btn btn-ghost btn-sm" onclick="setEx('pay')">Payment</button>
+</div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="sequenceDiagram&#10;    Client->>API: POST /login&#10;    API->>DB: Verify credentials&#10;    DB-->>API: User record&#10;    API-->>Client: JWT Token" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Sequence Diagram</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>const EX={auth:'sequenceDiagram\n    participant User\n    participant Client\n    participant API\n    participant DB\n    User->>Client: Enter credentials\n    Client->>API: POST /auth/login\n    API->>DB: SELECT * FROM users WHERE email=?\n    DB-->>API: User record\n    API->>API: Verify password hash\n    API-->>Client: 200 OK { token: "JWT..." }\n    Client->>Client: Store JWT in localStorage',api:'sequenceDiagram\n    Client->>API Gateway: GET /api/users\n    API Gateway->>Auth Service: Validate JWT\n    Auth Service-->>API Gateway: Valid ✓\n    API Gateway->>User Service: Forward request\n    User Service->>Database: SELECT * FROM users\n    Database-->>User Service: Results\n    User Service-->>API Gateway: 200 OK [users]\n    API Gateway-->>Client: 200 OK [users]',pay:'sequenceDiagram\n    User->>App: Click "Pay Now"\n    App->>Stripe: Create PaymentIntent\n    Stripe-->>App: client_secret\n    App->>User: Show payment form\n    User->>Stripe: Enter card details\n    Stripe-->>App: Webhook: payment_intent.succeeded\n    App->>DB: Update order status\n    App-->>User: Show success page'};
+async function run(){render()}
+function setEx(n){document.getElementById('input').value=EX[n]||'';render()}
+async function render(){const code=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!code){o.innerHTML='';return}try{if(!window.mermaid){const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';document.head.appendChild(s);await new Promise(r=>s.onload=r);mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'loose'})}const{svg}=await mermaid.render('sq'+Date.now(),code);o.innerHTML=svg;document.getElementById('status').textContent='\u2713 Rendered'}catch(e){o.textContent='\u2717 '+e.message.split('\n')[0]}}
+document.addEventListener('DOMContentLoaded',render)</script>
+</body></html>

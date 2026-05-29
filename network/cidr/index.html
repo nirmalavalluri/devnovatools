@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CIDR Calculator — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Calculate IP ranges, subnet masks and host counts from CIDR. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/network/cidr/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CIDR Calculator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Calculate IP ranges, subnet masks and host counts from CIDR", "url": "https://devnovatools.com/network/cidr/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/network/">Network & DNS</a> › <span>CIDR Calculator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#4DA6FF22;border:1px solid #4DA6FF44">📡</div>
+      <h1 class="tool-name">CIDR Calculator</h1>
+    </div>
+    <p class="tool-desc">Calculate IP ranges, subnet masks and host counts from CIDR</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter CIDR notation...&#10;e.g. 192.168.1.0/24&#10;e.g. 10.0.0.0/8" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Network Info</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}const m=i.match(/^(\d+\.\d+\.\d+\.\d+)\/(\d+)$/);if(!m){o.textContent='\u2717 Invalid CIDR notation\nExpected format: 192.168.1.0/24';return}const[,ip,prefix]=m;const bits=parseInt(prefix);if(bits<0||bits>32){o.textContent='\u2717 Prefix length must be 0-32';return}const toNum=ip=>ip.split('.').reduce((acc,oct)=>(acc<<8)|parseInt(oct),0)>>>0;const toIP=n=>[(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255].join('.');const ipNum=toNum(ip);const mask=bits===0?0:(0xFFFFFFFF<<(32-bits))>>>0;const network=ipNum&mask;const broadcast=network|(~mask>>>0);const usable=Math.max(0,Math.pow(2,32-bits)-2);o.textContent=['Network Address: '+toIP(network),'Broadcast:       '+toIP(broadcast),'Subnet Mask:     '+toIP(mask),'Wildcard Mask:   '+toIP(~mask>>>0),'First Usable:    '+toIP(network+1),'Last Usable:     '+toIP(broadcast-1),'','Total Addresses: '+Math.pow(2,32-bits).toLocaleString(),'Usable Hosts:    '+usable.toLocaleString(),'Prefix Length:   /'+bits].join('\n')}</script>
+</body></html>

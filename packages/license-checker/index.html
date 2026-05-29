@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>License Checker — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Look up open source software licenses and understand their terms. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/packages/license-checker/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "License Checker", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Look up open source software licenses and understand their terms", "url": "https://devnovatools.com/packages/license-checker/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/packages/">Package & Version</a> › <span>License Checker</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#60A5FA22;border:1px solid #60A5FA44">📜</div>
+      <h1 class="tool-name">License Checker</h1>
+    </div>
+    <p class="tool-desc">Look up open source software licenses and understand their terms</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter license name...&#10;e.g. MIT, Apache-2.0, GPL-3.0, BSD-3-Clause, ISC, LGPL, CC0" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">License Details</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>const L={'MIT':{name:'MIT License',p:['Commercial use','Modification','Distribution','Private use','Sublicensing'],c:['Include license and copyright notice'],f:[],d:'A short and simple permissive license. Do anything with the code as long as you include the original copyright and license. Very popular for libraries.'},'Apache-2.0':{name:'Apache License 2.0',p:['Commercial use','Modification','Distribution','Patent use','Private use'],c:['Include license and copyright notice','State changes to the code'],f:['Trademark use'],d:'Similar to MIT but also provides an express grant of patent rights from contributors to users. Used by many major open source projects.'},'GPL-3.0':{name:'GNU GPL v3.0',p:['Commercial use','Modification','Distribution','Patent use'],c:['Disclose source code','Include license','Same license for modifications','State changes'],f:['Sublicensing'],d:'Copyleft license. Modified versions MUST also be released under GPL-3.0. Ensures all derivatives remain open source. Used by Linux, WordPress.'},'LGPL':{name:'GNU Lesser GPL',p:['Commercial use','Modification','Distribution','Patent use'],c:['Disclose source (library portion only)','Include license','Same license for modifications'],f:[],d:'Like GPL but allows linking to closed-source applications. Use when you want your library to be freely used without forcing apps to be open source.'},'BSD-3-Clause':{name:'BSD 3-Clause License',p:['Commercial use','Modification','Distribution','Private use'],c:['Include license and copyright','Preserve all notices'],f:['Use contributor names for endorsement without permission'],d:'Very permissive like MIT. The third clause prohibits using contributor names for marketing without permission. Used by BSD Unix, some Google projects.'},'ISC':{name:'ISC License',p:['Commercial use','Modification','Distribution','Private use'],c:['Include license and copyright'],f:[],d:'Functionally equivalent to MIT but shorter. Considered legally equivalent to the Simplified BSD License. Very clean and simple.'},'CC0':{name:'Creative Commons Zero (Public Domain)',p:['Commercial use','Modification','Distribution','Private use'],c:[],f:[],d:'The author waives all copyright to the fullest extent possible. Essentially public domain. Good for datasets, docs and content — not recommended for code.'},'MPL-2.0':{name:'Mozilla Public License 2.0',p:['Commercial use','Modification','Distribution','Patent use'],c:['Disclose source (file level)','Include license'],f:[],d:'A weak copyleft license. Modified files must be open-sourced but you can combine with proprietary code. Used by Firefox, LibreOffice.'}};
+function run(){const q=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!q){o.textContent='Available licenses:\n\n'+Object.entries(L).map(([k,v])=>k.padEnd(15)+v.name).join('\n');return}const key=Object.keys(L).find(k=>k.toLowerCase()===q.toLowerCase()||L[k].name.toLowerCase().includes(q.toLowerCase()));if(!key){o.textContent='\u2717 License "'+q+'" not found.\n\nAvailable: '+Object.keys(L).join(', ')+'\n\nFull SPDX list: https://spdx.org/licenses/';return}const l=L[key];o.textContent=[l.name,'','Description:\n  '+l.d,'','\u2705 Permissions:\n  '+l.p.join('\n  '),'\u26a0\ufe0f Conditions:\n  '+(l.c.join('\n  ')||'None'),'\u274c Forbidden:\n  '+(l.f.join('\n  ')||'None'),'','SPDX identifier: '+key,'Full license: https://opensource.org/licenses/'+key].join('\n')}</script>
+</body></html>

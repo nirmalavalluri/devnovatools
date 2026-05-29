@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AES Encrypt/Decrypt — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="AES-GCM encryption and decryption using the Web Crypto API. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/encoding/aes/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "AES Encrypt/Decrypt", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "AES-GCM encryption and decryption using the Web Crypto API", "url": "https://devnovatools.com/encoding/aes/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/encoding/">Encoding & Crypto</a> › <span>AES Encrypt/Decrypt</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#A78BFA22;border:1px solid #A78BFA44">🔐</div>
+      <h1 class="tool-name">AES Encrypt/Decrypt</h1>
+    </div>
+    <p class="tool-desc">AES-GCM encryption and decryption using the Web Crypto API</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row"><div class="form-group" style="flex:1"><label>Password / Secret Key</label><input id="key" type="password" placeholder="Enter a strong password..." style="width:100%"/></div></div>
+<div class="form-row"><button class="btn btn-primary btn-sm" onclick="encrypt()">🔒 Encrypt</button><button class="btn btn-secondary btn-sm" onclick="decrypt()">🔓 Decrypt</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter text to encrypt, or paste encrypted ciphertext to decrypt..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Result</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>async function run(){}
+async function encrypt(){const text=document.getElementById('input').value;const pass=document.getElementById('key').value;const o=document.getElementById('output');if(!text||!pass){o.textContent='Enter both text and password';return}try{const enc=new TextEncoder();const keyMat=await crypto.subtle.importKey('raw',enc.encode(pass),{name:'PBKDF2'},false,['deriveKey']);const salt=crypto.getRandomValues(new Uint8Array(16));const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:100000,hash:'SHA-256'},keyMat,{name:'AES-GCM',length:256},false,['encrypt']);const iv=crypto.getRandomValues(new Uint8Array(12));const data=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(text));const result=new Uint8Array([...salt,...iv,...new Uint8Array(data)]);o.textContent=btoa(String.fromCharCode(...result));document.getElementById('status').className='badge badge-success';document.getElementById('status').textContent='\u2713 Encrypted with AES-256-GCM'}catch(e){o.textContent='\u2717 '+e.message}}
+async function decrypt(){const cipher=document.getElementById('input').value.trim();const pass=document.getElementById('key').value;const o=document.getElementById('output');if(!cipher||!pass){o.textContent='Enter ciphertext and password';return}try{const bytes=new Uint8Array(atob(cipher).split('').map(c=>c.charCodeAt(0)));const salt=bytes.slice(0,16);const iv=bytes.slice(16,28);const data=bytes.slice(28);const enc=new TextEncoder();const keyMat=await crypto.subtle.importKey('raw',enc.encode(pass),{name:'PBKDF2'},false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:100000,hash:'SHA-256'},keyMat,{name:'AES-GCM',length:256},false,['decrypt']);const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,data);o.textContent=new TextDecoder().decode(plain);document.getElementById('status').className='badge badge-success';document.getElementById('status').textContent='\u2713 Decrypted'}catch(e){o.textContent='\u2717 Decryption failed \u2014 wrong password or corrupted data'}}</script>
+</body></html>

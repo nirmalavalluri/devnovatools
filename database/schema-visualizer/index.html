@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DB Schema Visualizer — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Visualize CREATE TABLE statements as a clean ASCII schema diagram. Free, no login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/database/schema-visualizer/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "DB Schema Visualizer", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Visualize CREATE TABLE statements as a clean ASCII schema diagram", "url": "https://devnovatools.com/database/schema-visualizer/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/database/">Database Tools</a> › <span>DB Schema Visualizer</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#34D39922;border:1px solid #34D39944">📐</div>
+      <h1 class="tool-name">DB Schema Visualizer</h1>
+    </div>
+    <p class="tool-desc">Visualize CREATE TABLE statements as a clean ASCII schema diagram</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input')&&(document.getElementById('input').value='');document.getElementById('output')&&(document.getElementById('output').textContent='',document.getElementById('output').innerHTML='')">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste one or more CREATE TABLE statements...&#10;CREATE TABLE users (&#10;  id INT PRIMARY KEY,&#10;  name VARCHAR(255),&#10;  email VARCHAR(255)&#10;);&#10;CREATE TABLE orders (&#10;  id INT PRIMARY KEY,&#10;  user_id INT,&#10;  total DECIMAL&#10;);" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Schema Diagram</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>function run(){const sql=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!sql){o.textContent='';return}const tables=[];const tr=/CREATE\s+TABLE\s+[`"']?(\w+)[`"']?\s*\(([^;]+)\)/gi;let m;while((m=tr.exec(sql))!==null){const name=m[1];const cols=[];const cr=/^\s*[`"']?(\w+)[`"']?\s+([\w]+(?:\(\d+\))?)/gm;let cm;while((cm=cr.exec(m[2]))!==null){if(!['PRIMARY','UNIQUE','INDEX','KEY','CONSTRAINT','FOREIGN','CHECK'].includes(cm[1].toUpperCase()))cols.push({name:cm[1],type:cm[2]})}tables.push({name,cols})}if(!tables.length){o.textContent='\u2717 No CREATE TABLE statements found';return}o.textContent=tables.map(t=>{const maxW=Math.max(t.name.length,...t.cols.map(c=>c.name.length+c.type.length+3));const w=Math.max(maxW,20);const line='\u2500'.repeat(w+2);return '\u250c'+line+'\u2510\n\u2502 '+t.name.toUpperCase().padEnd(w)+' \u2502\n\u251c'+line+'\u2524\n'+t.cols.map(c=>'\u2502 '+( c.name+' ('+c.type+')').padEnd(w)+' \u2502').join('\n')+'\n\u2514'+line+'\u2518'}).join('\n\n');document.getElementById('status').textContent=tables.length+' table(s) visualized'}</script>
+</body></html>
