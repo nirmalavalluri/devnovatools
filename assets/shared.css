@@ -7,7 +7,7 @@
   --blue:#0066FF;--blue-dark:#0052CC;--blue-light:#3385FF;
   --purple:#7B61FF;--orange:#FF6B35;--pink:#FF3D71;--cyan:#00D4FF;
   --gradient:linear-gradient(135deg,#00C896,#0066FF);
-  --bg:#141C2E;--bg-surface:#1A2540;--bg-card:#222E4A;--bg-input:#1A2540;
+  --bg:var(--bg);--bg-surface:var(--bg-surface);--bg-card:#222E4A;--bg-input:var(--bg-surface);
   --bg-hover:#2A3A5C;--bg-active:#2F4068;
   --text:#F5F7FA;--text-secondary:#C8D8EA;--text-muted:#9AAFC4;
   --border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.18);
@@ -273,7 +273,7 @@ label{font-size:.84rem;font-weight:600;color:var(--text-secondary);display:block
   body.has-sidebar{padding-left:0!important}
   body.has-sidebar::before{display:none!important}
   /* Sidebar slides in from left */
-  .dnt-sidebar{position:fixed!important;top:0!important;left:0!important;width:280px!important;height:100vh!important;transform:translateX(-100%)!important;transition:transform .25s ease!important;z-index:9999!important;background:#1A2540!important;overflow-y:auto!important}
+  .dnt-sidebar{position:fixed!important;top:0!important;left:0!important;width:280px!important;height:100vh!important;transform:translateX(-100%)!important;transition:transform .25s ease!important;z-index:9999!important;background:var(--bg-surface)!important;overflow-y:auto!important}
   .dnt-sidebar.open{transform:translateX(0)!important;box-shadow:4px 0 20px rgba(0,0,0,.5)!important}
   /* Overlay behind sidebar */
   .sidebar-overlay{
@@ -311,7 +311,7 @@ label{font-size:.84rem;font-weight:600;color:var(--text-secondary);display:block
 
 /* ── APP LAYOUT WITH SIDEBAR ── */
 .app-layout{display:flex;min-height:calc(100vh - 62px)}
-.dnt-sidebar{width:260px;background:#141C2E;border-right:1px solid var(--border);height:calc(100vh - 62px);position:fixed;top:62px;left:0;overflow-y:auto;overflow-x:hidden;transition:transform .3s ease;z-index:100}
+.dnt-sidebar{width:260px;background:var(--bg)!important;border-right:1px solid var(--border);height:calc(100vh - 62px);position:fixed;top:62px;left:0;overflow-y:auto;overflow-x:hidden;transition:transform .3s ease;z-index:100}
 .sidebar-inner{padding:16px 12px 40px}
 .sidebar-section{margin-bottom:6px}
 .sidebar-cat-btn{display:flex;align-items:center;gap:8px;width:100%;padding:9px 12px;border-radius:var(--r-md);background:none;border:none;cursor:pointer;font-family:var(--font);font-size:.85rem;font-weight:600;color:var(--text-secondary);transition:all var(--transition);text-align:left}
@@ -355,7 +355,7 @@ body.has-sidebar::before{content:'';position:fixed;top:0;left:0;width:260px;heig
   body.has-sidebar{padding-left:0!important}
   body.has-sidebar::before{display:none!important}
   /* Sidebar slides in from left */
-  .dnt-sidebar{position:fixed!important;top:0!important;left:0!important;width:280px!important;height:100vh!important;transform:translateX(-100%)!important;transition:transform .25s ease!important;z-index:9999!important;background:#1A2540!important;overflow-y:auto!important}
+  .dnt-sidebar{position:fixed!important;top:0!important;left:0!important;width:280px!important;height:100vh!important;transform:translateX(-100%)!important;transition:transform .25s ease!important;z-index:9999!important;background:var(--bg-surface)!important;overflow-y:auto!important}
   .dnt-sidebar.open{transform:translateX(0)!important;box-shadow:4px 0 20px rgba(0,0,0,.5)!important}
   /* Overlay behind sidebar */
   .sidebar-overlay{
