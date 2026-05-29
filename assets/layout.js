@@ -245,11 +245,7 @@ function injectSidebar(){
     });
   }
 
-  // Hamburger toggle
-  document.getElementById('hamburger')?.addEventListener('click',()=>{
-    sidebar.classList.toggle('open');
-    overlay.classList.toggle('show');
-  });
+  // Hamburger handled in injectNav()
 }
 
 
