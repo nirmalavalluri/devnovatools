@@ -18,25 +18,25 @@
 .about-avatar{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#00C896,#0066FF);display:flex;align-items:center;justify-content:center;font-size:2.4rem;font-weight:900;color:#fff;flex-shrink:0;box-shadow:0 8px 32px rgba(0,200,150,.3)}
 .about-name{font-size:1.8rem;font-weight:700;margin-bottom:4px;letter-spacing:-.02em}
 .about-title{color:var(--green);font-size:.95rem;font-weight:600;margin-bottom:10px}
-.about-tagline{color:#C8D6E8;font-size:.9rem;line-height:1.6}
+.about-tagline{color:var(--text-secondary);font-size:.9rem;line-height:1.6}
 .about-section{margin-bottom:40px}
 .about-section h2{font-size:1.15rem;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-.about-section p{color:#C8D6E8;line-height:1.8;font-size:.95rem;margin-bottom:12px}
+.about-section p{color:var(--text-secondary);line-height:1.8;font-size:.95rem;margin-bottom:12px}
 .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .project-card{background:var(--bg-card);border:1.5px solid var(--border);border-radius:14px;padding:18px;text-decoration:none;transition:all .2s;display:block}
 .project-card:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.3)}
-.project-name{font-size:.95rem;font-weight:700;color:#F0F4FF;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.project-name{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:4px;display:flex;align-items:center;gap:6px}
 .project-badge{font-size:.68rem;font-weight:700;background:rgba(0,200,150,.15);color:var(--green);padding:2px 8px;border-radius:99px;border:1px solid rgba(0,200,150,.3)}
-.project-desc{font-size:.82rem;color:#A8BCCF;line-height:1.5}
+.project-desc{font-size:.82rem;color:var(--text-muted);line-height:1.5}
 .connect-grid{display:flex;flex-direction:column;gap:10px}
 .connect-link{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:12px;text-decoration:none;transition:all .2s}
 .connect-link:hover{border-color:var(--green);transform:translateX(4px)}
 .connect-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.connect-label{font-size:.88rem;font-weight:600;color:#F0F4FF}
-.connect-url{font-size:.8rem;color:#A8BCCF;margin-top:1px}
+.connect-label{font-size:.88rem;font-weight:600;color:var(--text)}
+.connect-url{font-size:.8rem;color:var(--text-muted);margin-top:1px}
 .mission-box{background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:28px;margin-top:16px;position:relative;overflow:hidden}
 .mission-box::before{content:'"';position:absolute;top:-10px;left:16px;font-size:8rem;color:rgba(0,200,150,.08);font-family:Georgia,serif;line-height:1}
-.mission-text{font-size:1rem;color:#D0DFF0;line-height:1.8;font-style:italic;position:relative;z-index:1}
+.mission-text{font-size:1rem;color:var(--text-secondary);line-height:1.8;font-style:italic;position:relative;z-index:1}
 .mission-author{margin-top:16px;font-size:.85rem;color:var(--green);font-weight:600}
 @media(max-width:640px){.about-hero{flex-direction:column;text-align:center}.projects-grid{grid-template-columns:1fr}}
 </style>
@@ -60,7 +60,7 @@
   <div class="about-section">
     <h2>👋 My Story</h2>
     <p>I'm an indie developer focused on building practical tools that solve real problems for developers, designers and everyday users. I believe the best tools are fast, distraction-free, and accessible to everyone — regardless of budget or location.</p>
-    <p>Over the years I've noticed that developers constantly switch between dozens of small utilities — a JSON formatter here, a JWT decoder there, a regex tester somewhere else. My goal with <strong style="color:#F0F4FF">DevNova Tools</strong> is to bring everything together in one place, so you can stay focused on what matters: building great software.</p>
+    <p>Over the years I've noticed that developers constantly switch between dozens of small utilities — a JSON formatter here, a JWT decoder there, a regex tester somewhere else. My goal with <strong style="color:var(--text)">DevNova Tools</strong> is to bring everything together in one place, so you can stay focused on what matters: building great software.</p>
     <p>DevNova Tools is my largest and most ambitious project — a unified platform offering <strong style="color:var(--green)">107+ free developer tools</strong> across JSON, APIs, DevOps, frontend, security, text processing, encoding, database tools and more.</p>
 
     <div class="mission-box">
@@ -121,18 +121,18 @@
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
       <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:14px;padding:18px;text-align:center">
         <div style="font-size:1.8rem;margin-bottom:8px">⚡</div>
-        <div style="font-size:.9rem;font-weight:700;color:#F0F4FF;margin-bottom:6px">Speed First</div>
-        <div style="font-size:.8rem;color:#A8BCCF;line-height:1.5">Every tool loads fast and runs instantly. No bloat, no unnecessary dependencies.</div>
+        <div style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:6px">Speed First</div>
+        <div style="font-size:.8rem;color:var(--text-muted);line-height:1.5">Every tool loads fast and runs instantly. No bloat, no unnecessary dependencies.</div>
       </div>
       <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:14px;padding:18px;text-align:center">
         <div style="font-size:1.8rem;margin-bottom:8px">🔒</div>
-        <div style="font-size:.9rem;font-weight:700;color:#F0F4FF;margin-bottom:6px">Privacy Always</div>
-        <div style="font-size:.8rem;color:#A8BCCF;line-height:1.5">All tools run in your browser. Your data never leaves your computer.</div>
+        <div style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:6px">Privacy Always</div>
+        <div style="font-size:.8rem;color:var(--text-muted);line-height:1.5">All tools run in your browser. Your data never leaves your computer.</div>
       </div>
       <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:14px;padding:18px;text-align:center">
         <div style="font-size:1.8rem;margin-bottom:8px">🎯</div>
-        <div style="font-size:.9rem;font-weight:700;color:#F0F4FF;margin-bottom:6px">Zero Friction</div>
-        <div style="font-size:.8rem;color:#A8BCCF;line-height:1.5">No signup, no login, no paywalls. Open the tool and it works.</div>
+        <div style="font-size:.9rem;font-weight:700;color:var(--text);margin-bottom:6px">Zero Friction</div>
+        <div style="font-size:.8rem;color:var(--text-muted);line-height:1.5">No signup, no login, no paywalls. Open the tool and it works.</div>
       </div>
     </div>
   </div>
