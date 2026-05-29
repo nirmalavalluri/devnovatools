@@ -174,9 +174,7 @@ function injectNav(){
   document.getElementById('theme-btn').addEventListener('click',()=>{setTheme(getTheme()==='dark'?'light':'dark')});
   document.getElementById('hamburger').addEventListener('click',()=>{
     const sidebar=document.getElementById('dnt-sidebar');
-    const overlay=document.getElementById('sidebar-overlay');
     if(sidebar){sidebar.classList.toggle('open')}
-    if(overlay){overlay.classList.toggle('show')}
   });
   setTheme(getTheme());
   initSearch('nav-search','nav-search-results');
