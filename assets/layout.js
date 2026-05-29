@@ -165,7 +165,7 @@ function injectNav(){
       <div id="nav-search-results" class="nav-search-results"></div>
     </div>
     <div class="nav-right">
-      <button id="theme-btn" class="theme-btn">☀️ Light</button>
+      <a href="/about/" style="font-size:.83rem;color:var(--text-secondary);text-decoration:none;padding:6px 12px;border-radius:var(--r-full);border:1.5px solid var(--border);transition:all .2s;font-weight:500" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">About</a><button id="theme-btn" class="theme-btn">☀️ Light</button>
     </div>`;
   document.body.insertBefore(nav,document.body.firstChild);
   document.getElementById('theme-btn').addEventListener('click',()=>{setTheme(getTheme()==='dark'?'light':'dark')});
@@ -275,7 +275,7 @@ function injectFooter(){
     <div><div class="footer-col-title">More Tools</div><ul class="footer-links">
       <li><a href="/text/regex-tester/">Regex Tester</a></li><li><a href="/devops/cron-builder/">Cron Builder</a></li>
       <li><a href="/devops/timestamp/">Timestamp</a></li><li><a href="/frontend/color-converter/">Color Converter</a></li>
-      <li><a href="/blog/">Developer Blog</a></li></ul></div>
+      <li><a href="/blog/">Developer Blog</a></li><li><a href="/about/">About the Creator</a></li></ul></div>
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 DevNova Tools — devnovatools.com. All rights reserved.</div>
@@ -290,3 +290,25 @@ return{init,ALL_TOOLS,CATS,copyToClipboard,initSearch,getTheme,setTheme,toggleCa
 // Expose toggleCat globally for onclick handlers
 function toggleCat(catId){DevNova.toggleCat(catId)}
 document.addEventListener('DOMContentLoaded',()=>DevNova.init());
+
+
+// © 2026 DevNova Tools — devnovatools.com. All Rights Reserved.
+// Unauthorized copying, reproduction or redistribution is prohibited.
+document.addEventListener('contextmenu',e=>{
+  if(e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA'){
+    e.preventDefault();
+    return false;
+  }
+});
+// Detect DevTools open
+(function(){
+  const threshold=160;
+  const check=()=>{
+    if(window.outerWidth-window.innerWidth>threshold||window.outerHeight-window.innerHeight>threshold){
+      console.log('%c© DevNova Tools','color:#00C896;font-size:14px;font-weight:bold');
+      console.log('%cdevnovatools.com — All Rights Reserved','color:#A3B3C6;font-size:12px');
+      console.log('%cUnauthorized reproduction of this code is prohibited.','color:#FF4D6D;font-size:11px');
+    }
+  };
+  setInterval(check,1000);
+})();
