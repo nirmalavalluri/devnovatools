@@ -77,6 +77,41 @@ const ALL_TOOLS=[
 {name:'CSS Specificity Calculator',desc:'Calculate CSS specificity',path:'/frontend/css-specificity/',cat:'Frontend Tools',catId:'frontend',icon:'🎯'},
 {name:'Favicon Generator',desc:'Generate favicons',path:'/frontend/favicon-generator/',cat:'Frontend Tools',catId:'frontend',icon:'⭐'},
 {name:'Responsive Breakpoints',desc:'CSS breakpoints reference',path:'/frontend/breakpoints/',cat:'Frontend Tools',catId:'frontend',icon:'📱'},
+
+// ── NETWORK & DNS ──
+{name:'DNS Lookup',desc:'Query DNS records for any domain',path:'/network/dns-lookup/',cat:'Network & DNS',catId:'network',icon:'🌐'},
+{name:'IP Geolocation',desc:'Geolocate any IP address',path:'/network/ip-geolocation/',cat:'Network & DNS',catId:'network',icon:'📍'},
+{name:'WHOIS Lookup',desc:'Domain registration info',path:'/network/whois/',cat:'Network & DNS',catId:'network',icon:'🔍'},
+{name:'Port Reference',desc:'TCP/UDP ports reference',path:'/network/port-reference/',cat:'Network & DNS',catId:'network',icon:'🔌'},
+{name:'CIDR Calculator',desc:'IP ranges and subnet masks',path:'/network/cidr/',cat:'Network & DNS',catId:'network',icon:'📡'},
+{name:'HTTP Response Inspector',desc:'Inspect HTTP response headers',path:'/network/http-inspector/',cat:'Network & DNS',catId:'network',icon:'🔭'},
+{name:'SSL Certificate Checker',desc:'Check SSL expiry for any domain',path:'/network/ssl-expiry/',cat:'Network & DNS',catId:'network',icon:'🔒'},
+// ── ENCODING & CRYPTO ──
+{name:'AES Encrypt/Decrypt',desc:'AES-GCM browser encryption',path:'/encoding/aes/',cat:'Encoding & Crypto',catId:'encoding',icon:'🔐'},
+{name:'ROT13 Encoder',desc:'ROT13 text encoding',path:'/encoding/rot13/',cat:'Encoding & Crypto',catId:'encoding',icon:'🔄'},
+{name:'Morse Code Translator',desc:'Text to Morse code',path:'/encoding/morse/',cat:'Encoding & Crypto',catId:'encoding',icon:'📡'},
+{name:'Binary Text Converter',desc:'Text to binary encoding',path:'/encoding/binary-text/',cat:'Encoding & Crypto',catId:'encoding',icon:'01'},
+{name:'Bitwise Calculator',desc:'AND, OR, XOR, NOT operations',path:'/encoding/bitwise/',cat:'Encoding & Crypto',catId:'encoding',icon:'⚙️'},
+{name:'URL Safe Base64',desc:'URL-safe Base64 encoding',path:'/encoding/url-safe-base64/',cat:'Encoding & Crypto',catId:'encoding',icon:'🔒'},
+{name:'Hex Encoder/Decoder',desc:'Text to hexadecimal',path:'/encoding/hex/',cat:'Encoding & Crypto',catId:'encoding',icon:'0x'},
+// ── DATABASE ──
+{name:'SQL to ORM Generator',desc:'Generate Prisma/Sequelize/TypeORM',path:'/database/sql-to-orm/',cat:'Database Tools',catId:'database',icon:'🗄️'},
+{name:'DB Schema Visualizer',desc:'Visualize CREATE TABLE as diagram',path:'/database/schema-visualizer/',cat:'Database Tools',catId:'database',icon:'📐'},
+{name:'SQL Query Explainer',desc:'Explain SQL in plain English',path:'/database/query-explainer/',cat:'Database Tools',catId:'database',icon:'🔍'},
+{name:'JSON to SQL Insert',desc:'Generate INSERT statements',path:'/database/json-to-sql/',cat:'Database Tools',catId:'database',icon:'🔄'},
+{name:'SQL Results to JSON',desc:'Convert SQL results to JSON',path:'/database/sql-to-json/',cat:'Database Tools',catId:'database',icon:'🔄'},
+// ── DIAGRAMMING ──
+{name:'Mermaid Live Editor',desc:'Live diagram editor',path:'/diagramming/mermaid/',cat:'Diagramming',catId:'diagramming',icon:'📊'},
+{name:'Flowchart Builder',desc:'Build flowcharts visually',path:'/diagramming/flowchart/',cat:'Diagramming',catId:'diagramming',icon:'🔀'},
+{name:'Sequence Diagram',desc:'System interaction diagrams',path:'/diagramming/sequence/',cat:'Diagramming',catId:'diagramming',icon:'📋'},
+{name:'ERD Generator',desc:'Entity-relationship diagrams',path:'/diagramming/erd/',cat:'Diagramming',catId:'diagramming',icon:'🔗'},
+{name:'Gantt Chart Builder',desc:'Project timeline charts',path:'/diagramming/gantt/',cat:'Diagramming',catId:'diagramming',icon:'📅'},
+// ── PACKAGES ──
+{name:'npm Package Search',desc:'Search npm registry',path:'/packages/npm-search/',cat:'Package & Version',catId:'packages',icon:'📦'},
+{name:'PyPI Package Search',desc:'Search Python packages',path:'/packages/pypi-search/',cat:'Package & Version',catId:'packages',icon:'🐍'},
+{name:'Semver Calculator',desc:'Compare version numbers',path:'/packages/semver/',cat:'Package & Version',catId:'packages',icon:'🔢'},
+{name:'License Checker',desc:'Understand open source licenses',path:'/packages/license-checker/',cat:'Package & Version',catId:'packages',icon:'📜'},
+{name:'Changelog Generator',desc:'Generate CHANGELOG.md',path:'/packages/changelog/',cat:'Package & Version',catId:'packages',icon:'📝'},
 ];
 
 const CATS=[
@@ -85,6 +120,11 @@ const CATS=[
 {id:'text',name:'Text & Parsing',icon:'✍️',color:'#7B61FF',desc:'Regex, diff, markdown and text tools'},
 {id:'devops',name:'DevOps & Infra',icon:'⚙️',color:'#FF6B35',desc:'Cron, timestamps, YAML and Docker'},
 {id:'frontend',name:'Frontend Tools',icon:'🟢',color:'#00D4FF',desc:'CSS, colors, gradients and UI tools'},
+{id:'network',name:'Network & DNS',icon:'🌐',color:'#4DA6FF',desc:'DNS lookup, IP geolocation and network tools'},
+{id:'encoding',name:'Encoding & Crypto',icon:'🔢',color:'#A78BFA',desc:'AES, ROT13, Morse, binary and encoding utilities'},
+{id:'database',name:'Database Tools',icon:'🗄️',color:'#34D399',desc:'SQL formatting, ORM generation and schema tools'},
+{id:'diagramming',name:'Diagramming',icon:'📊',color:'#FB7185',desc:'Mermaid diagrams, flowcharts, ERDs and more'},
+{id:'packages',name:'Package & Version',icon:'📦',color:'#60A5FA',desc:'npm, PyPI search, semver and dependency tools'},
 ];
 
 const LOGO_SVG=`<svg width="168" height="36" viewBox="0 0 168 36" xmlns="http://www.w3.org/2000/svg">
