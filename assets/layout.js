@@ -272,10 +272,10 @@ function injectFooter(){
     <div><div class="footer-col-title">More Tools</div><ul class="footer-links">
       <li><a href="/text/regex-tester/">Regex Tester</a></li><li><a href="/devops/cron-builder/">Cron Builder</a></li>
       <li><a href="/devops/timestamp/">Timestamp</a></li><li><a href="/frontend/color-converter/">Color Converter</a></li>
-      <li><a href="/blog/">Developer Blog</a></li><li><a href="/about/">About the Creator</a></li></ul></div>
+      <li><a href="/blog/">Developer Blog</a></li><li><a href="/about/">About</a></li><li><a href="/terms/">Terms of Service</a></li></ul></div>
   </div>
   <div class="footer-bottom">
-    <div class="footer-copy">© 2026 DevNova Tools — devnovatools.com. All rights reserved.</div>
+    <div class="footer-copy">© 2026 DevNova Tools — devnovatools.com. All rights reserved. &nbsp;·&nbsp; <a href="/terms/" style="color:var(--text-muted);text-decoration:none">Terms of Service</a></div>
     <div class="footer-copy">No signup · No ads · Privacy-friendly</div>
   </div>`;
   document.body.appendChild(f);
