@@ -157,7 +157,7 @@ function initSearch(inputId,resultsId){
 function injectNav(){
   const nav=document.createElement('nav');nav.id='dnt-nav';
   nav.innerHTML=`
-    <button class="hamburger" id="hamburger" aria-label="Menu" style="display:none">☰</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
     <a href="/" class="nav-logo-svg">${LOGO_SVG}</a>
     <div class="nav-search-wrap">
       <span class="nav-search-icon">🔍</span>
@@ -165,7 +165,10 @@ function injectNav(){
       <div id="nav-search-results" class="nav-search-results"></div>
     </div>
     <div class="nav-right">
-      <a href="/about/" style="font-size:.83rem;color:var(--text-secondary);text-decoration:none;padding:6px 12px;border-radius:var(--r-full);border:1.5px solid var(--border);transition:all .2s;font-weight:500" onmouseover="this.style.borderColor='var(--green)';this.style.color='var(--green)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--text-secondary)'">About</a><button id="theme-btn" class="theme-btn">☀️ Light</button>
+      <a href="/" class="nav-link">Home</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+      <a href="/about/" class="nav-link">About</a>
+      <button id="theme-btn" class="theme-btn">☀️ Light</button>
     </div>`;
   document.body.insertBefore(nav,document.body.firstChild);
   document.getElementById('theme-btn').addEventListener('click',()=>{setTheme(getTheme()==='dark'?'light':'dark')});
