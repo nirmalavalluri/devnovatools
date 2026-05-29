@@ -7,7 +7,7 @@
   --blue:#0066FF;--blue-dark:#0052CC;--blue-light:#3385FF;
   --purple:#7B61FF;--orange:#FF6B35;--pink:#FF3D71;--cyan:#00D4FF;
   --gradient:linear-gradient(135deg,#00C896,#0066FF);
-  --bg:var(--bg);--bg-surface:var(--bg-surface);--bg-card:#222E4A;--bg-input:var(--bg-surface);
+  --bg:#141C2E;--bg-surface:#1A2540;--bg-card:#222E4A;--bg-input:#1A2540;
   --bg-hover:#2A3A5C;--bg-active:#2F4068;
   --text:#F5F7FA;--text-secondary:#C8D8EA;--text-muted:#9AAFC4;
   --border:rgba(255,255,255,0.08);--border-strong:rgba(255,255,255,0.18);
@@ -401,3 +401,46 @@ body.has-sidebar::before{content:'';position:fixed;top:0;left:0;width:260px;heig
 /* © 2026 DevNova Tools — devnovatools.com. All Rights Reserved. */
 .panel-output{-webkit-user-select:text;user-select:text}
 nav,.tool-header,.cat-page-header,.about-hero{-webkit-user-select:none;user-select:none}
+
+.dnt-sidebar,.dnt-sidebar *{box-sizing:border-box}
+[data-theme="dark"] .dnt-sidebar{background:#1E2A42!important;border-right:1px solid rgba(255,255,255,.08)!important}
+[data-theme="light"] .dnt-sidebar{background:#FFFFFF!important;border-right:1px solid rgba(0,0,0,.1)!important}
+[data-theme="dark"] .sidebar-cat-name,[data-theme="dark"] .sidebar-home-link{color:#F0F4FF!important}
+[data-theme="dark"] .sidebar-tool-link{color:#C8D8EA!important}
+[data-theme="dark"] .sidebar-cat-count{color:#C8D8EA!important;background:rgba(255,255,255,.08)!important}
+[data-theme="dark"] .sidebar-search-input{background:#141C2E!important;color:#F0F4FF!important;border-color:rgba(255,255,255,.12)!important}
+[data-theme="light"] .sidebar-cat-name,[data-theme="light"] .sidebar-home-link{color:#0A0A1A!important}
+[data-theme="light"] .sidebar-tool-link{color:#2A3A5A!important}
+[data-theme="light"] .sidebar-cat-count{color:#2A3A5A!important;background:rgba(0,0,0,.06)!important}
+[data-theme="light"] .sidebar-search-input{background:#F0F4FF!important;color:#0A0A1A!important;border-color:rgba(0,0,0,.12)!important}
+
+/* ── EXPLICIT DARK/LIGHT MODE OVERRIDES ── */
+/* Dark mode - force correct backgrounds */
+html[data-theme="dark"],
+html:not([data-theme="light"]){
+  --bg:#141C2E;
+  --bg-surface:#1A2540;
+  --bg-card:#222E4A;
+  --bg-input:#1A2540;
+  --bg-hover:#2A3A5C;
+  --text:#F5F7FA;
+  --text-secondary:#C8D8EA;
+  --text-muted:#9AAFC4;
+}
+html[data-theme="dark"] body,
+html:not([data-theme="light"]) body{background:#141C2E!important;color:#F5F7FA!important}
+html[data-theme="dark"] .dnt-sidebar{background:#1A2540!important;color:#F5F7FA!important}
+html[data-theme="dark"] .sidebar-cat-name,
+html[data-theme="dark"] .sidebar-home-link span,
+html[data-theme="dark"] .sidebar-tool-link{color:#C8D8EA!important}
+html[data-theme="dark"] .sidebar-cat-btn{color:#C8D8EA!important}
+html[data-theme="dark"] .sidebar-search-input{background:#141C2E!important;color:#F5F7FA!important}
+
+/* Light mode - force correct backgrounds */
+html[data-theme="light"] body{background:#F0F4FF!important;color:#0A0A1A!important}
+html[data-theme="light"] .dnt-sidebar{background:#FFFFFF!important;color:#0A0A1A!important}
+html[data-theme="light"] .sidebar-cat-name,
+html[data-theme="light"] .sidebar-home-link span,
+html[data-theme="light"] .sidebar-tool-link{color:#1E2D4A!important}
+html[data-theme="light"] .sidebar-cat-btn{color:#0A0A1A!important}
+html[data-theme="light"] .sidebar-search-input{background:#F0F4FF!important;color:#0A0A1A!important}
