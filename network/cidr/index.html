@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/network/cidr/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CIDR Calculator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Calculate IP ranges, subnet masks and host counts from CIDR", "url": "https://devnovatools.com/network/cidr/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does /24 mean in CIDR notation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "/24 means 24 bits are used for the network portion, leaving 8 bits for hosts. This gives 2^8 = 256 addresses, with 254 usable hosts (excluding network and broadcast addresses)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between /16 and /24?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A /16 network has 65,536 addresses (65,534 usable), while /24 has 256 (254 usable). The smaller the prefix number, the larger the network."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a wildcard mask?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A wildcard mask is the inverse of a subnet mask. It's used in access control lists (ACLs) and routing protocols like OSPF to specify which bits to match."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use CIDR Calculator",
+  "description": "Calculate IP ranges, subnet masks and host counts from CIDR",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to CIDR Calculator on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "CIDR Calculator"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

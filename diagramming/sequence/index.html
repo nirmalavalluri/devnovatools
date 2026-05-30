@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/diagramming/sequence/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Sequence Diagram", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Create sequence diagrams to visualize system and API interactions", "url": "https://devnovatools.com/diagramming/sequence/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between -> and -->?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "->> is a solid arrow (synchronous request), -->> is a dashed arrow (response or async). Use ->> for requests and -->> for responses to make diagrams more readable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I show loops in sequence diagrams?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the loop keyword: loop Every 10 seconds\n    Service->>DB: Poll for updates\nend. The loop block visually groups repeated interactions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add notes to sequence diagrams?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes: Note right of ServiceName: Your note text. Use \"right of\", \"left of\" or \"over\" to position notes relative to participants."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Sequence Diagram",
+  "description": "Create sequence diagrams to visualize system and API interactions",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Sequence Diagram on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Sequence Diagram"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

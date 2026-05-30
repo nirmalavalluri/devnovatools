@@ -22,6 +22,82 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Password Generator","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free secure password generator. Generate strong, random passwords with custom length and character sets. Cryptographically secure, runs in your browser.","url":"https://devnovatools.com/api/password-generator/"}
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How secure is this generator?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It uses crypto.getRandomValues(), the same API used by password managers and security tools. This is cryptographically secure randomness, not pseudo-random."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What makes a strong password?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Length matters most. A 16+ character password with mixed case, numbers and symbols is extremely strong. Length beats complexity \u2014 'correct horse battery staple' is stronger than 'Tr0ub4dor&3'."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my generated password saved anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 passwords are generated and displayed only in your browser. Nothing is ever sent to a server. Close the tab and the password is gone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many characters should my password be?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At minimum 12, ideally 16+. For high-security accounts (banking, email), use 20+ characters."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Password Generator",
+  "description": "Generate strong, cryptographically secure random passwords.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Password Generator on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Password Generator"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

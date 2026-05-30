@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/database/schema-visualizer/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "DB Schema Visualizer", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Visualize CREATE TABLE statements as a clean ASCII schema diagram", "url": "https://devnovatools.com/database/schema-visualizer/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I visualize multiple tables at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 paste multiple CREATE TABLE statements separated by semicolons. Each table will be rendered as a separate box diagram in the output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it show relationships between tables?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The current version shows each table structure individually. Foreign key relationships are visible in the column definitions but not drawn as connecting lines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What SQL dialects are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The visualizer supports standard SQL syntax compatible with MySQL, PostgreSQL and SQLite CREATE TABLE statements. Backtick and quote-wrapped identifiers are handled automatically."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use DB Schema Visualizer",
+  "description": "Visualize CREATE TABLE statements as a clean ASCII schema diagram",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to DB Schema Visualizer on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "DB Schema Visualizer"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

@@ -13,6 +13,74 @@
 <link rel="canonical" href="https://devnovatools.com/encoding/bcrypt/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "bcrypt Generator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Hash passwords using bcrypt algorithm via browser implementation", "url": "https://devnovatools.com/encoding/bcrypt/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why use bcrypt instead of SHA-256 for passwords?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SHA-256 is too fast \u2014 attackers can try billions of hashes per second. bcrypt is intentionally slow (adjustable cost factor), making brute-force attacks impractical even with powerful hardware."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the cost factor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The cost factor (rounds) determines how many iterations are performed. Cost 10 = 2^10 = 1024 iterations. Each increase by 1 doubles the time needed, making it future-proof as hardware improves."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use bcrypt in production with this tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For production, use a proper bcrypt library like bcryptjs (Node.js) or passlib (Python). This tool demonstrates the algorithm but is intended for learning and testing purposes."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use bcrypt Generator",
+  "description": "Hash passwords using bcrypt algorithm via browser implementation",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to bcrypt Generator on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "bcrypt Generator"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

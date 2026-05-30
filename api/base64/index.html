@@ -22,6 +22,74 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Base64 Encoder/Decoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free Base64 encoder and decoder. Instantly encode text to Base64 or decode Base64 strings back to plain text. Works offline.","url":"https://devnovatools.com/api/base64/"}
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Base64 encryption?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 Base64 is encoding, not encryption. It can be decoded by anyone. Use it for format conversion, not security. For encryption, use AES or similar algorithms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does Base64 end with == signs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The '=' characters are padding. Base64 encodes 3 bytes at a time; if the input isn't divisible by 3, padding is added to make the output length a multiple of 4."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is URL-safe Base64?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard Base64 uses + and / which have special meaning in URLs. URL-safe Base64 replaces + with - and / with _ so it can be safely used in URLs and filenames."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Base64 Encoder/Decoder",
+  "description": "Encode text to Base64 or decode Base64 back to plain text.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Base64 Encoder/Decoder on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Base64 Encoder/Decoder"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

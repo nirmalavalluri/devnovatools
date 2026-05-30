@@ -22,6 +22,74 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON Minifier","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free JSON minifier. Remove whitespace and compress JSON to reduce file size. Perfect for production APIs and config files.","url":"https://devnovatools.com/json/minifier/"}
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much can JSON minification save?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Typically 20-60% depending on how much whitespace your JSON has. Heavily indented JSON with long keys can see even greater savings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is minified JSON still valid?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 minified JSON is completely valid JSON. All parsers (JSON.parse, Python's json.loads, etc.) work the same with minified JSON."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I minify JSON in development?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 use formatted JSON during development for readability. Minify only for production deployments where bandwidth matters."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use JSON Minifier",
+  "description": "Remove whitespace and compress JSON to its smallest possible size.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to JSON Minifier on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "JSON Minifier"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

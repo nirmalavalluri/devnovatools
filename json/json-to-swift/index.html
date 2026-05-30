@@ -13,6 +13,74 @@
 <link rel="canonical" href="https://devnovatools.com/json/json-to-swift/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "JSON to Swift", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate Swift structs with Codable from any JSON object", "url": "https://devnovatools.com/json/json-to-swift/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Swift Codable protocol?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Codable (Encodable + Decodable) is a Swift protocol that enables automatic JSON encoding/decoding. Structs that conform to Codable can be decoded with: let obj = try JSONDecoder().decode(Root.self, from: jsonData)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I decode JSON in Swift?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "let decoder = JSONDecoder(); let obj = try decoder.decode(Root.self, from: data). Use JSONDecoder.KeyDecodingStrategy.convertFromSnakeCase if your JSON uses snake_case keys."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use struct or class for Swift data models?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use struct for data models \u2014 they're value types (copied when assigned), which prevents many bugs caused by shared mutable state. Use class only when you need reference semantics or inheritance."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use JSON to Swift",
+  "description": "Generate Swift structs with Codable from any JSON object",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to JSON to Swift on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "JSON to Swift"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

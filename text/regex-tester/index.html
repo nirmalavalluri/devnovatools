@@ -22,6 +22,82 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Regex Tester","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online regex tester. Test and debug regular expressions with live match highlighting, group capture and detailed match info. Supports all JS regex flags.","url":"https://devnovatools.com/text/regex-tester/"}
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What regex flags are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All JavaScript flags: g (global \u2014 find all matches), i (case insensitive), m (multiline), s (dotAll \u2014 dot matches newlines), u (unicode)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a capture group?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Parentheses in a regex create capture groups. For example, (\\d+)-(\\w+) captures the number and word separately. Capture groups let you extract specific parts of a match."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between .* and .+?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "'.*' matches zero or more characters (including empty string). '.+' matches one or more characters (requires at least one). '.*?' and '.+?' are their non-greedy versions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my regex match too much?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your regex is probably greedy. Add '?' after quantifiers (* + {n,m}) to make them non-greedy, or use more specific character classes instead of the dot '.'."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Regex Tester",
+  "description": "Test and debug regular expressions with live highlighting and match details.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Regex Tester on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Regex Tester"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

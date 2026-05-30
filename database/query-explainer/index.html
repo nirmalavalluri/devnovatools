@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/database/query-explainer/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SQL Query Explainer", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Explain SQL query clauses and keywords in plain English", "url": "https://devnovatools.com/database/query-explainer/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between WHERE and HAVING?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WHERE filters individual rows before grouping. HAVING filters groups after GROUP BY. You can use aggregate functions (COUNT, SUM) in HAVING but not in WHERE."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between LEFT JOIN and INNER JOIN?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "INNER JOIN returns only rows with matches in both tables. LEFT JOIN returns ALL rows from the left table, with NULL for unmatched right table columns."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "In what order does SQL execute clauses?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SQL executes in this order: FROM \u2192 JOIN \u2192 WHERE \u2192 GROUP BY \u2192 HAVING \u2192 SELECT \u2192 ORDER BY \u2192 LIMIT. Understanding this explains why you can't use aliases in WHERE but can in ORDER BY."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use SQL Query Explainer",
+  "description": "Explain SQL query clauses and keywords in plain English",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to SQL Query Explainer on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "SQL Query Explainer"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

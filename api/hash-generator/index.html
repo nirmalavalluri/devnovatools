@@ -22,6 +22,74 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Hash Generator","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free cryptographic hash generator. Generate MD5, SHA-1, SHA-256 and SHA-512 hashes instantly. Perfect for checksums and security verification.","url":"https://devnovatools.com/api/hash-generator/"}
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which hash algorithm should I use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For security: use SHA-256 or SHA-512. For checksums: MD5 or SHA-1 are fine. Never use MD5 or SHA-1 for passwords \u2014 use bcrypt, scrypt or Argon2 instead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I reverse a hash?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 cryptographic hashes are one-way functions. You cannot mathematically reverse them. However, common passwords can be found via rainbow tables, which is why salting is important."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between MD5 and SHA-256?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MD5 produces 128-bit hashes and is fast but cryptographically broken for security. SHA-256 produces 256-bit hashes and is currently secure. SHA-512 is even stronger but slower."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Hash Generator",
+  "description": "Generate MD5, SHA-1, SHA-256 and SHA-512 cryptographic hashes.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Hash Generator on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Hash Generator"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

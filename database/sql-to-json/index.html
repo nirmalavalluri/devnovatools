@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/database/sql-to-json/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "SQL Results to JSON", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert SQL SELECT result sets (tab or comma separated) to JSON", "url": "https://devnovatools.com/database/sql-to-json/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What separators are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool auto-detects tab-separated (TSV) or comma-separated (CSV) formats. Tab-separated is the default output from most database clients like psql, MySQL workbench and pgAdmin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are data types handled?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The converter automatically detects numbers and converts them to JSON numbers. Boolean values (true/false) are converted. NULL values become JSON null. Everything else becomes a string."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert large result sets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 the tool runs entirely in your browser with no size limits imposed by servers. Very large datasets may be slow in older browsers but there's no file size restriction."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use SQL Results to JSON",
+  "description": "Convert SQL SELECT result sets (tab or comma separated) to JSON",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to SQL Results to JSON on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "SQL Results to JSON"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

@@ -22,6 +22,74 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON Validator","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online JSON validator. Instantly check if your JSON is valid, find syntax errors, and get detailed error messages with line numbers.","url":"https://devnovatools.com/json/validator/"}
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What makes JSON invalid?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Common errors include: trailing commas after the last item, single quotes instead of double quotes, unquoted keys, missing colons, extra closing brackets, and undefined values."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between JSON and JavaScript objects?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JavaScript objects allow unquoted keys, single quotes, trailing commas and comments. JSON is a strict subset that requires double-quoted keys, no trailing commas, and no comments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the validator fix errors automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 it identifies and reports errors but doesn't auto-fix them, as the correct fix depends on your intent. Use the JSON Formatter to beautify valid JSON."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use JSON Validator",
+  "description": "Validate JSON syntax and get detailed error messages with line numbers.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to JSON Validator on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "JSON Validator"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

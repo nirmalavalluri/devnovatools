@@ -22,6 +22,82 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"JWT Decoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free JWT decoder. Instantly decode JWT tokens, inspect the header and payload, check expiry and understand the structure. No login required.","url":"https://devnovatools.com/api/jwt-decoder/"}
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is it safe to decode a JWT here?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Decoding is safe \u2014 the decoder only reads the Base64-encoded payload which is publicly readable. The signature is not verified here. Never share JWTs with sensitive payloads in untrusted tools."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this tool verify JWT signatures?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 signature verification requires the secret key. This tool only decodes the readable parts (header and payload). Use the JWT Generator to create signed tokens."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a JWT used for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JWTs are used for authentication (login tokens), authorization (permission claims), and secure data exchange between services. They are commonly used in REST APIs with Bearer token authentication."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is my token showing as expired?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JWTs contain an 'exp' claim (Unix timestamp). If the current time is past that timestamp, the token is expired. Generate a new token or extend the expiry time."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use JWT Decoder",
+  "description": "Decode and inspect JWT tokens \u2014 header, payload and signature.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to JWT Decoder on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "JWT Decoder"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

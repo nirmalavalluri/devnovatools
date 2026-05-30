@@ -22,6 +22,74 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Color Converter","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free color converter. Convert colors between HEX, RGB, HSL and HSB formats instantly. Essential tool for web designers and CSS developers.","url":"https://devnovatools.com/frontend/color-converter/"}
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between HEX, RGB and HSL?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HEX uses hexadecimal (0-9, A-F) for compact representation. RGB uses 0-255 values for each channel. HSL uses intuitive hue (0-360\u00b0), saturation (0-100%) and lightness (0-100%) values."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which format should I use in CSS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All are valid CSS. HSL is often easiest for creating color variations (adjust lightness). HEX is most compact. CSS Custom Properties (variables) can store any format."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the alpha channel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alpha controls transparency (0 = transparent, 1 = opaque). In CSS: rgba(0, 200, 150, 0.5) for 50% transparent, or #00C89680 in 8-digit HEX."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Color Converter",
+  "description": "Convert colors between HEX, RGB, HSL and HSB formats.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Color Converter on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Color Converter"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

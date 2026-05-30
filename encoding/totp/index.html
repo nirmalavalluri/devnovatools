@@ -13,6 +13,74 @@
 <link rel="canonical" href="https://devnovatools.com/encoding/totp/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "TOTP Generator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate Time-based One-Time Passwords (TOTP) for 2FA authentication", "url": "https://devnovatools.com/encoding/totp/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does TOTP work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TOTP combines a shared secret key with the current time (in 30-second intervals) and runs HMAC-SHA1 to generate a 6-digit code. Both your device and the server compute the same code independently."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my TOTP code not work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TOTP is time-sensitive. If your device clock is out of sync by more than 30 seconds, codes will fail. Check your device's time sync settings. Most servers allow a 1-interval tolerance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is TOTP the same as SMS 2FA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 TOTP is more secure. SMS 2FA can be intercepted via SIM swapping attacks. TOTP codes are generated offline on your device and never transmitted, making them much harder to intercept."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use TOTP Generator",
+  "description": "Generate Time-based One-Time Passwords (TOTP) for 2FA authentication",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to TOTP Generator on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "TOTP Generator"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

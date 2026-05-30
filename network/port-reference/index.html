@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/network/port-reference/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Port Reference", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Common TCP/UDP ports and their associated services reference", "url": "https://devnovatools.com/network/port-reference/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a port number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A port is a virtual endpoint for network communication. Each service (HTTP, FTP, SSH) listens on a specific port number so that multiple services can run on the same IP address."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between TCP and UDP?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TCP provides reliable, ordered delivery (web, email). UDP is faster but unreliable \u2014 used for streaming, gaming and DNS where speed matters more than guaranteed delivery."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What ports should I keep closed on my server?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Close any port you don't actively use. High-risk open ports include 21 (FTP), 23 (Telnet), 3389 (RDP) and 445 (SMB). Always use firewalls to restrict access."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Port Reference",
+  "description": "Common TCP/UDP ports and their associated services reference",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Port Reference on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Port Reference"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

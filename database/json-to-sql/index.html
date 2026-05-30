@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/database/json-to-sql/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "JSON to SQL Insert", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate SQL INSERT statements from a JSON array of objects", "url": "https://devnovatools.com/database/json-to-sql/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What JSON structure is supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool expects a JSON array of objects where all objects share the same keys. Keys become column names and values become the insert values with appropriate SQL quoting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are different data types handled?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Strings are wrapped in single quotes with escaping. Numbers are inserted as-is. Booleans become TRUE/FALSE (or 1/0 for MySQL). NULL values become SQL NULL."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I specify a custom table name?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 enter your table name in the \"Table Name\" field above. The default is \"my_table\". The table name is applied to all generated INSERT statements."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use JSON to SQL Insert",
+  "description": "Generate SQL INSERT statements from a JSON array of objects",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to JSON to SQL Insert on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "JSON to SQL Insert"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

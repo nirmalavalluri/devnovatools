@@ -13,6 +13,74 @@
 <link rel="canonical" href="https://devnovatools.com/json/json-to-kotlin/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "JSON to Kotlin", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate Kotlin data classes from any JSON object", "url": "https://devnovatools.com/json/json-to-kotlin/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why use Kotlin data classes for JSON?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kotlin data classes automatically provide equals(), hashCode(), toString() and copy() methods. Combined with Gson or Moshi annotations, they're ideal for Android JSON parsing with minimal boilerplate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I parse JSON into a Kotlin data class?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With Gson: val obj = Gson().fromJson(jsonString, Root::class.java). With Moshi: val adapter = Moshi.Builder().build().adapter(Root::class.java); val obj = adapter.fromJson(jsonString)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use val or var in data classes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Prefer val (immutable) for data classes \u2014 it's safer and more idiomatic Kotlin. Use var only if you need to mutate properties after creation, which is rarely needed with proper architecture."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use JSON to Kotlin",
+  "description": "Generate Kotlin data classes from any JSON object",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to JSON to Kotlin on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "JSON to Kotlin"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

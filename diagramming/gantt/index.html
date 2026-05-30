@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/diagramming/gantt/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Gantt Chart Builder", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Build Gantt project timeline charts using Mermaid syntax", "url": "https://devnovatools.com/diagramming/gantt/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I create task dependencies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use \"after taskId\" to start a task after another: Build :a2, after a1, 14d. This automatically positions the task to start when the dependency finishes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add milestones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add milestone, 0d as the duration: Launch :milestone, after testing, 0d. Milestones appear as diamond markers on the timeline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What date formats are supported?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Gantt charts support YYYY-MM-DD, DD/MM/YYYY and other formats specified with dateFormat. YYYY-MM-DD (ISO format) is recommended for clarity."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Gantt Chart Builder",
+  "description": "Build Gantt project timeline charts using Mermaid syntax",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Gantt Chart Builder on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Gantt Chart Builder"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

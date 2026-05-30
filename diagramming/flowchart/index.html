@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/diagramming/flowchart/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Flowchart Builder", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Build flowcharts using Mermaid syntax with live preview", "url": "https://devnovatools.com/diagramming/flowchart/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between TD and LR flowcharts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "TD (Top-Down) flows vertically from top to bottom. LR (Left-Right) flows horizontally. Use TD for process flows and LR for system architecture or pipeline diagrams."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add shapes to flowchart nodes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use [] for rectangles, () for rounded, {} for diamonds (decisions), [/text/] for parallelograms. Example: A[Rectangle], B(Rounded), C{Diamond}"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I style individual nodes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 use classDef to define styles and the ::: operator to apply them. Example: classDef green fill:#0f0; A:::green[Styled Node]"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Flowchart Builder",
+  "description": "Build flowcharts using Mermaid syntax with live preview",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Flowchart Builder on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Flowchart Builder"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

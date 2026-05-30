@@ -22,6 +22,82 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Unix Timestamp Converter","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free Unix timestamp converter. Convert Unix timestamps to readable dates and dates to Unix timestamps. Supports seconds, milliseconds and ISO 8601.","url":"https://devnovatools.com/devops/timestamp/"}
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a Unix timestamp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Unix timestamp counts the number of seconds since January 1, 1970 00:00:00 UTC (the Unix epoch). It is timezone-independent and used universally in programming."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between seconds and milliseconds timestamps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Unix timestamps in seconds are 10 digits (e.g. 1716825600). JavaScript uses milliseconds which are 13 digits (e.g. 1716825600000). Always check which your system uses."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the 2038 problem?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "32-bit systems store timestamps as signed integers. In January 2038, they will overflow and reset to 1901. Modern 64-bit systems are not affected."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get the current timestamp in code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "JavaScript: Date.now() (ms) or Math.floor(Date.now()/1000) (s). Python: import time; time.time(). Linux: date +%s"
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Timestamp Converter",
+  "description": "Convert Unix timestamps to readable dates and vice versa.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Timestamp Converter on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Timestamp Converter"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

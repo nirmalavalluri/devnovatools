@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/encoding/aes/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "AES Encrypt/Decrypt", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "AES-GCM encryption and decryption using the Web Crypto API", "url": "https://devnovatools.com/encoding/aes/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is AES-256-GCM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AES-256-GCM is an authenticated encryption algorithm using a 256-bit key. GCM (Galois/Counter Mode) provides both confidentiality and integrity verification \u2014 it detects if the ciphertext was tampered with."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How secure is this tool?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool uses the browser's native Web Crypto API with PBKDF2 key derivation (100,000 iterations) and a random salt. The security depends on the strength of your password."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I decrypt on another device?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 as long as you have the same ciphertext and password. The encryption is standard AES-256-GCM compatible with any implementation using the same PBKDF2 parameters."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use AES Encrypt/Decrypt",
+  "description": "AES-GCM encryption and decryption using the Web Crypto API",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to AES Encrypt/Decrypt on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "AES Encrypt/Decrypt"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/diagramming/erd/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ERD Generator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate Entity-Relationship Diagrams from Mermaid ERD syntax", "url": "https://devnovatools.com/diagramming/erd/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What do the relationship symbols mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "||--|| is one-to-one, ||--o{ is one-to-many, }o--o{ is many-to-many. The | means exactly one, o means zero or one, { means one or many, } means zero or many."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add attributes to entities?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Inside the entity block: USER { int id PK\\n string name\\n string email UK }. PK = Primary Key, UK = Unique Key, FK = Foreign Key."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can ERDs be used for NoSQL databases?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ERDs are primarily for relational databases. For NoSQL, use them to show document relationships conceptually, though the strict relational semantics don't apply."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use ERD Generator",
+  "description": "Generate Entity-Relationship Diagrams from Mermaid ERD syntax",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to ERD Generator on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "ERD Generator"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

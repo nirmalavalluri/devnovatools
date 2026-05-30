@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/network/http-inspector/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "HTTP Response Inspector", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Inspect HTTP response headers from any public URL", "url": "https://devnovatools.com/network/http-inspector/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why does some URL inspection fail?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some servers block cross-origin requests (CORS policy). If a URL doesn't allow browser requests from other domains, inspection will fail. Try public APIs like api.github.com."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a CORS header?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Access-Control-Allow-Origin is a CORS header that tells browsers which domains are allowed to make requests. Missing or misconfigured CORS headers are a common cause of API failures in web apps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are important security headers to check?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Look for: Strict-Transport-Security (HSTS), X-Content-Type-Options, X-Frame-Options, Content-Security-Policy and X-XSS-Protection. Missing these headers are security vulnerabilities."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use HTTP Response Inspector",
+  "description": "Inspect HTTP response headers from any public URL",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to HTTP Response Inspector on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "HTTP Response Inspector"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">

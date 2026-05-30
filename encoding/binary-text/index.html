@@ -10,6 +10,74 @@
 <link rel="canonical" href="https://devnovatools.com/encoding/binary-text/"/>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Binary Text Converter", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert text to binary representation or decode binary back to text", "url": "https://devnovatools.com/encoding/binary-text/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does text to binary work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Each character has a numeric ASCII/Unicode code. For example, \"H\" = 72 in decimal = 01001000 in binary. The converter takes each character, finds its code point, and represents it in 8-bit binary."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between binary and hex?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both represent numbers in different bases. Binary uses base-2 (0,1), hex uses base-16 (0-9, A-F). Hex is more compact \u2014 two hex digits represent what takes 8 binary digits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can binary represent all Unicode characters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes \u2014 for Unicode characters beyond ASCII (emojis, non-Latin scripts), the binary representation uses more than 8 bits. This tool handles basic ASCII characters (8-bit representation)."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Binary Text Converter",
+  "description": "Convert text to binary representation or decode binary back to text",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to Binary Text Converter on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Enter your input",
+      "text": "Paste or type your data into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get results",
+      "text": "Click Run or wait for automatic processing \u2014 results appear instantly"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click the Copy button to copy the results to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Binary Text Converter"
+  }
+}
+</script>
 </head>
 <body>
 <main class="tool-page">
