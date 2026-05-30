@@ -112,6 +112,27 @@ const ALL_TOOLS=[
 {name:'Semver Calculator',desc:'Compare version numbers',path:'/packages/semver/',cat:'Package & Version',catId:'packages',icon:'🔢'},
 {name:'License Checker',desc:'Understand open source licenses',path:'/packages/license-checker/',cat:'Package & Version',catId:'packages',icon:'📜'},
 {name:'Changelog Generator',desc:'Generate CHANGELOG.md',path:'/packages/changelog/',cat:'Package & Version',catId:'packages',icon:'📝'},
+
+// ── BATCH 3 NEW TOOLS ──
+// JSON converters
+{name:'JSON to Java',desc:'Generate Java POJO classes',path:'/json/json-to-java/',cat:'JSON & Data',catId:'json',icon:'☕'},
+{name:'JSON to Kotlin',desc:'Generate Kotlin data classes',path:'/json/json-to-kotlin/',cat:'JSON & Data',catId:'json',icon:'🤖'},
+{name:'JSON to Swift',desc:'Generate Swift structs',path:'/json/json-to-swift/',cat:'JSON & Data',catId:'json',icon:'🍎'},
+// Network
+{name:'URL Parser',desc:'Parse URL into components',path:'/network/url-parser/',cat:'Network & DNS',catId:'network',icon:'🔗'},
+{name:'MIME Types Reference',desc:'Look up file MIME types',path:'/network/mime-types/',cat:'Network & DNS',catId:'network',icon:'📄'},
+{name:'User-Agent Parser',desc:'Parse browser user-agent strings',path:'/network/user-agent-parser/',cat:'Network & DNS',catId:'network',icon:'🌐'},
+// Security/Encoding
+{name:'Password Strength Checker',desc:'Check password strength',path:'/encoding/password-strength/',cat:'Encoding & Crypto',catId:'encoding',icon:'🔐'},
+{name:'TOTP Generator',desc:'Generate 2FA TOTP codes',path:'/encoding/totp/',cat:'Encoding & Crypto',catId:'encoding',icon:'⏱️'},
+{name:'bcrypt Generator',desc:'Hash passwords with bcrypt',path:'/encoding/bcrypt/',cat:'Encoding & Crypto',catId:'encoding',icon:'🔑'},
+// Image
+{name:'Image Compressor',desc:'Compress images in browser',path:'/image/image-compressor/',cat:'Image & Media',catId:'image',icon:'🗜️'},
+{name:'EXIF Viewer',desc:'View image metadata',path:'/image/exif-viewer/',cat:'Image & Media',catId:'image',icon:'📷'},
+{name:'Placeholder Generator',desc:'Generate placeholder images',path:'/image/placeholder-generator/',cat:'Image & Media',catId:'image',icon:'🖼️'},
+// Text
+{name:'cURL to Fetch',desc:'Convert cURL to JS fetch/axios',path:'/text/curl-to-fetch/',cat:'Text & Parsing',catId:'text',icon:'🔄'},
+{name:'Git Commit Builder',desc:'Build conventional git commits',path:'/text/git-commit/',cat:'Text & Parsing',catId:'text',icon:'🐙'},
 ];
 
 const CATS=[

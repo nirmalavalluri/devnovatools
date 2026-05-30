@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Git Commit Builder — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Build well-formatted conventional commits with type, scope and description. Free, fast, no login required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="Git Commit Builder — DevNova Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/text/git-commit/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Git Commit Builder", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Build well-formatted conventional commits with type, scope and description", "url": "https://devnovatools.com/text/git-commit/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/text/">Text & Parsing</a> › <span>Git Commit Builder</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">🐙</div>
+      <h1 class="tool-name">Git Commit Builder</h1>
+    </div>
+    <p class="tool-desc">Build well-formatted conventional commits with type, scope and description</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row">
+  <div class="form-group"><label>Type</label><select id="type" onchange="generate()"><option value="feat">feat — new feature</option><option value="fix">fix — bug fix</option><option value="docs">docs — documentation</option><option value="style">style — formatting</option><option value="refactor">refactor — code restructure</option><option value="test">test — adding tests</option><option value="chore">chore — maintenance</option><option value="perf">perf — performance</option><option value="ci">ci — CI/CD changes</option><option value="build">build — build system</option></select></div>
+  <div class="form-group" style="flex:1"><label>Scope (optional)</label><input id="scope" type="text" placeholder="e.g. auth, api, ui" oninput="generate()" style="width:100%"/></div>
+  <div class="form-group"><label>Breaking Change</label><select id="breaking" onchange="generate()"><option value="">No</option><option value="!">Yes (!)</option></select></div>
+</div>
+<div class="form-row"><div class="form-group" style="flex:1"><label>Short description (imperative mood)</label><input id="desc" type="text" placeholder="e.g. add user authentication endpoint" oninput="generate()" style="width:100%"/></div></div>
+<div class="form-row"><div class="form-group" style="flex:1"><label>Body (optional)</label><textarea id="body" style="height:60px;width:100%;background:var(--bg-input);border:1.5px solid var(--border);border-radius:var(--r-md);padding:8px;color:var(--text);font-family:var(--mono);font-size:.85rem;outline:none" placeholder="Longer explanation of what and why..." oninput="generate()"></textarea></div></div>
+<div class="form-row"><div class="form-group" style="flex:1"><label>Footer (optional — issue refs, breaking changes)</label><input id="footer" type="text" placeholder="e.g. Closes #123, BREAKING CHANGE: ..." oninput="generate()" style="width:100%"/></div></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Git Commit Message</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function clearAll(){
+  const i=document.getElementById('input');
+  const o=document.getElementById('output');
+  if(i)i.value='';
+  if(o){o.textContent='';o.innerHTML='';}
+}
+function run(){}
+function generate(){
+  const type=document.getElementById('type').value;
+  const scope=document.getElementById('scope').value.trim();
+  const breaking=document.getElementById('breaking').value;
+  const desc=document.getElementById('desc').value.trim();
+  const body=document.getElementById('body').value.trim();
+  const footer=document.getElementById('footer').value.trim();
+  if(!desc){document.getElementById('output').textContent='Fill in the description above';return}
+  let commit=type+(scope?'('+scope+')':'')+breaking+': '+desc;
+  if(body)commit+='\n\n'+body;
+  if(footer)commit+='\n\n'+footer;
+  document.getElementById('output').textContent=commit+'\n\n── git command ──\ngit commit -m "'+commit.split('\n')[0]+'"'+(body||footer?'\n\n# For multi-line: use\ngit commit (opens editor)\n# or\ngit commit -m "'+commit.split('\n')[0]+'" -m "'+( body||footer)+'"':'');
+  document.getElementById('status').textContent=commit.length+' chars';
+}
+document.addEventListener('DOMContentLoaded',generate)
+</script>
+</body>
+</html>

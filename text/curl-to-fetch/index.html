@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>cURL to Fetch — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Convert cURL commands to JavaScript fetch, axios or Node.js code. Free, fast, no login required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="cURL to Fetch — DevNova Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/text/curl-to-fetch/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "cURL to Fetch", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Convert cURL commands to JavaScript fetch, axios or Node.js code", "url": "https://devnovatools.com/text/curl-to-fetch/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/text/">Text & Parsing</a> › <span>cURL to Fetch</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">🔄</div>
+      <h1 class="tool-name">cURL to Fetch</h1>
+    </div>
+    <p class="tool-desc">Convert cURL commands to JavaScript fetch, axios or Node.js code</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row"><div class="form-group"><label>Output Format</label><select id="fmt" onchange="run()"><option value="fetch">fetch (browser)</option><option value="axios">axios</option><option value="node">node-fetch</option></select></div></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste cURL command...&#10;curl -X POST https://api.example.com/users -H &quot;Content-Type: application/json&quot; -H &quot;Authorization: Bearer token123&quot; -d '{&quot;name&quot;:&quot;Alice&quot;}'" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">JavaScript Code</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function clearAll(){
+  const i=document.getElementById('input');
+  const o=document.getElementById('output');
+  if(i)i.value='';
+  if(o){o.textContent='';o.innerHTML='';}
+}
+function run(){const i=document.getElementById('input').value.trim();const fmt=document.getElementById('fmt').value;const o=document.getElementById('output');if(!i){o.textContent='';return}
+try{
+  const method=(i.match(/-X\s+(\w+)/)||[])[1]||'GET';
+  const url=(i.match(/curl\s+(?:-[^\s]+\s+)*'?([^'\s]+)'?/)||i.match(/curl\s+"([^"]+)"/)||i.match(/curl\s+(\S+)/))[1];
+  const headers={};const hMatches=i.matchAll(/-H\s+"([^"]+)"/g);
+  for(const m of hMatches){const[k,v]=m[1].split(':',2);if(k&&v)headers[k.trim()]=v.trim()}
+  const body=(i.match(/-d\s+'([^']+)'/)||i.match(/-d\s+"([^"]+)"/)||i.match(/--data\s+'([^']+)'/))?.[1];
+  const hasHeaders=Object.keys(headers).length>0;
+  if(fmt==='fetch'){
+    const opts={method,headers,body};
+    const optsStr=JSON.stringify(Object.fromEntries(Object.entries(opts).filter(([,v])=>v&&(typeof v!=='object'||Object.keys(v).length))),null,2);
+    o.textContent='const response = await fetch("'+url+'", '+optsStr+');\nconst data = await response.json();\nconsole.log(data);';
+  }else if(fmt==='axios'){
+    const conf={...(method!=='GET'?{method:method.toLowerCase()+','}:{}),url:url,headers,data:body?JSON.parse(body):undefined};
+    o.textContent='const { data } = await axios({\n  url: "'+url+'",\n'+(method!=='GET'?'  method: "'+method.toLowerCase()+'",\n':'')+(hasHeaders?'  headers: '+JSON.stringify(headers,null,2).replace(/\n/g,'\n  ')+',\n':'')+(body?'  data: '+body+',\n':'')+'\n});\nconsole.log(data);';
+  }else{
+    o.textContent='const fetch = require("node-fetch");\n\nconst response = await fetch("'+url+'", {\n  method: "'+method+'",\n'+(hasHeaders?'  headers: '+JSON.stringify(headers,null,2).replace(/\n/g,'\n  ')+',\n':'')+(body?'  body: JSON.stringify('+body+'),\n':'')+'\n});\nconst data = await response.json();\nconsole.log(data);';
+  }
+  document.getElementById('status').textContent=method+' request converted';
+}catch(e){o.textContent='\u2717 Could not parse cURL: '+e.message+'\n\nMake sure your cURL command starts with "curl"'}}
+</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>EXIF Viewer — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="View and analyze EXIF metadata from any image file. Free, fast, no login required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="EXIF Viewer — DevNova Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/image/exif-viewer/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "EXIF Viewer", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "View and analyze EXIF metadata from any image file", "url": "https://devnovatools.com/image/exif-viewer/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/image/">Image & Media</a> › <span>EXIF Viewer</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FFD75E22;border:1px solid #FFD75E44">📷</div>
+      <h1 class="tool-name">EXIF Viewer</h1>
+    </div>
+    <p class="tool-desc">View and analyze EXIF metadata from any image file</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">EXIF Data</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function clearAll(){
+  const i=document.getElementById('input');
+  const o=document.getElementById('output');
+  if(i)i.value='';
+  if(o){o.textContent='';o.innerHTML='';}
+}
+function run(){}
+document.addEventListener('DOMContentLoaded',()=>{
+  const output=document.getElementById('output');
+  output.innerHTML='<div style="text-align:center;padding:20px"><label style="display:inline-block;padding:14px 28px;background:var(--gradient);color:#fff;border-radius:10px;cursor:pointer;font-weight:600">📁 Choose Image<input type="file" accept="image/*" style="display:none" id="fileInput"/></label><p style="color:var(--text-muted);margin-top:12px;font-size:.85rem">Upload any JPG/PNG to view its EXIF metadata</p></div>';
+  document.getElementById('fileInput')?.addEventListener('change',e=>{
+    const file=e.target.files[0];if(!file)return;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      const view=new DataView(ev.target.result);
+      const info=['File Name: '+file.name,'File Size: '+Math.round(file.size/1024)+'KB','File Type: '+file.type,'Last Modified: '+new Date(file.lastModified).toLocaleString(),''];
+      // Try to read EXIF
+      if(view.getUint16(0)===0xFFD8){
+        info.push('Format: JPEG ✓');
+        let offset=2;
+        try{
+          while(offset<view.byteLength-2){
+            const marker=view.getUint16(offset);
+            if(marker===0xFFE1){
+              const exifStr=String.fromCharCode(...new Uint8Array(ev.target.result,offset+4,4));
+              if(exifStr.startsWith('Exif')){info.push('EXIF Data: Present');break}
+            }
+            offset+=2+(marker>=0xFF00&&marker<=0xFFFF?view.getUint16(offset+2)+2:0);
+            if(offset>10000)break;
+          }
+        }catch(err){}
+      }else if(view.getUint32(0)===0x89504E47)info.push('Format: PNG ✓');
+      const img=new Image();
+      img.onload=()=>{
+        info.push('Dimensions: '+img.width+'×'+img.height+' pixels');
+        info.push('Aspect Ratio: '+(img.width/img.height).toFixed(2)+':1');
+        output.innerHTML='<div style="margin-bottom:16px"><img src="'+ev.target.result+'" style="max-width:200px;max-height:200px;border-radius:8px;border:1px solid var(--border)"/></div><pre style="font-family:var(--mono);font-size:.85rem;color:var(--text-secondary);line-height:1.8">'+info.join('\n')+'</pre><div style="margin-top:12px;padding:12px;background:var(--success-bg);border-radius:8px;font-size:.82rem;color:var(--success)">🔒 Privacy note: This analysis runs entirely in your browser. Your image is never uploaded.</div>';
+        document.getElementById('status').textContent=img.width+'×'+img.height;
+      };
+      img.src=ev.target.result;
+    };
+    reader.readAsArrayBuffer(file);
+  });
+});
+</script>
+</body>
+</html>

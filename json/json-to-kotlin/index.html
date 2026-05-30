@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JSON to Kotlin — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Generate Kotlin data classes from any JSON object. Free, fast, no login required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="JSON to Kotlin — DevNova Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/json/json-to-kotlin/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "JSON to Kotlin", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate Kotlin data classes from any JSON object", "url": "https://devnovatools.com/json/json-to-kotlin/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/json/">JSON & Data</a> › <span>JSON to Kotlin</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00C89622;border:1px solid #00C89644">🤖</div>
+      <h1 class="tool-name">JSON to Kotlin</h1>
+    </div>
+    <p class="tool-desc">Generate Kotlin data classes from any JSON object</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste JSON to generate Kotlin data class...&#10;{&quot;id&quot;:1,&quot;name&quot;:&quot;Alice&quot;,&quot;active&quot;:true}" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Kotlin Data Class</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function clearAll(){
+  const i=document.getElementById('input');
+  const o=document.getElementById('output');
+  if(i)i.value='';
+  if(o){o.textContent='';o.innerHTML='';}
+}
+function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}try{const p=JSON.parse(i);o.textContent=genKotlin(p,'Root');document.getElementById('status').textContent='Data class generated'}catch(e){o.textContent='\u2717 '+e.message}}
+function ktType(v,k){if(v===null)return'Any?';if(typeof v==='string')return'String';if(Number.isInteger(v))return'Int';if(typeof v==='number')return'Double';if(typeof v==='boolean')return'Boolean';if(Array.isArray(v))return'List<Any>';if(typeof v==='object')return k.charAt(0).toUpperCase()+k.slice(1);return'Any'}
+function genKotlin(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))return'';const fields=Object.entries(obj).map(([k,v])=>'    val '+k+': '+ktType(v,k));return'data class '+name+'(\n'+fields.join(',\n')+'\n)'}
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>MIME Types Reference — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Look up MIME types for any file extension or search by type. Free, fast, no login required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="MIME Types Reference — DevNova Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/network/mime-types/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "MIME Types Reference", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Look up MIME types for any file extension or search by type", "url": "https://devnovatools.com/network/mime-types/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/network/">Network & DNS</a> › <span>MIME Types Reference</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#4DA6FF22;border:1px solid #4DA6FF44">📄</div>
+      <h1 class="tool-name">MIME Types Reference</h1>
+    </div>
+    <p class="tool-desc">Look up MIME types for any file extension or search by type</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Search file extension or MIME type...&#10;e.g. json, pdf, mp4, image/png" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">MIME Type</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function clearAll(){
+  const i=document.getElementById('input');
+  const o=document.getElementById('output');
+  if(i)i.value='';
+  if(o){o.textContent='';o.innerHTML='';}
+}
+const MIME={'.html':'text/html','.htm':'text/html','.css':'text/css','.js':'text/javascript','.mjs':'text/javascript','.ts':'text/typescript','.json':'application/json','.xml':'application/xml','.yaml':'application/x-yaml','.yml':'application/x-yaml','.csv':'text/csv','.txt':'text/plain','.md':'text/markdown','.pdf':'application/pdf','.zip':'application/zip','.tar':'application/x-tar','.gz':'application/gzip','.7z':'application/x-7z-compressed','.rar':'application/x-rar-compressed','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.gif':'image/gif','.webp':'image/webp','.svg':'image/svg+xml','.ico':'image/x-icon','.bmp':'image/bmp','.tiff':'image/tiff','.mp4':'video/mp4','.webm':'video/webm','.ogg':'video/ogg','.avi':'video/x-msvideo','.mov':'video/quicktime','.mp3':'audio/mpeg','.wav':'audio/wav','.ogg':'audio/ogg','.flac':'audio/flac','.aac':'audio/aac','.woff':'font/woff','.woff2':'font/woff2','.ttf':'font/ttf','.otf':'font/otf','.eot':'application/vnd.ms-fontobject','.xlsx':'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet','.xls':'application/vnd.ms-excel','.docx':'application/vnd.openxmlformats-officedocument.wordprocessingml.document','.doc':'application/msword','.pptx':'application/vnd.openxmlformats-officedocument.presentationml.presentation','.ppt':'application/vnd.ms-powerpoint','.wasm':'application/wasm','.sh':'application/x-sh','.py':'text/x-python','.rb':'text/x-ruby','.go':'text/x-go','.rs':'text/x-rust','.c':'text/x-c','.cpp':'text/x-c++','.h':'text/x-c','.java':'text/x-java-source','.php':'text/x-php','.sql':'application/sql','.graphql':'application/graphql'};
+function run(){const q=document.getElementById('input').value.trim().toLowerCase();const o=document.getElementById('output');if(!q){o.textContent=Object.entries(MIME).slice(0,20).map(([e,m])=>e.padEnd(12)+m).join('\n')+'\n\n...type to search more';return}const matches=Object.entries(MIME).filter(([e,m])=>e.includes(q)||m.includes(q)||e.replace('.','')===q);if(!matches.length){o.textContent='No results for "'+q+'"';return}o.textContent=matches.map(([e,m])=>e.padEnd(12)+m).join('\n');document.getElementById('status').textContent=matches.length+' result(s)'}
+</script>
+</body>
+</html>

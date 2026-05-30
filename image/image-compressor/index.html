@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Image Compressor — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Compress and resize images in your browser — no upload to servers. Free, fast, no login required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="Image Compressor — DevNova Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/image/image-compressor/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Image Compressor", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Compress and resize images in your browser \u2014 no upload to servers", "url": "https://devnovatools.com/image/image-compressor/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/image/">Image & Media</a> › <span>Image Compressor</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FFD75E22;border:1px solid #FFD75E44">🗜️</div>
+      <h1 class="tool-name">Image Compressor</h1>
+    </div>
+    <p class="tool-desc">Compress and resize images in your browser — no upload to servers</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Compressed Image</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function clearAll(){
+  const i=document.getElementById('input');
+  const o=document.getElementById('output');
+  if(i)i.value='';
+  if(o){o.textContent='';o.innerHTML='';}
+}
+function run(){}
+document.addEventListener('DOMContentLoaded',()=>{
+  const output=document.getElementById('output');
+  output.innerHTML='<div style="text-align:center;padding:20px"><label style="display:inline-block;padding:14px 28px;background:var(--gradient);color:#fff;border-radius:10px;cursor:pointer;font-weight:600">📁 Choose Image<input type="file" accept="image/*" style="display:none" id="fileInput"/></label><p style="color:var(--text-muted);margin-top:12px;font-size:.85rem">Supports JPG, PNG, WebP — processed entirely in your browser</p></div>';
+  document.getElementById('fileInput')?.addEventListener('change',async e=>{
+    const file=e.target.files[0];if(!file)return;
+    const quality=0.7;
+    const reader=new FileReader();
+    reader.onload=ev=>{
+      const img=new Image();
+      img.onload=()=>{
+        const canvas=document.createElement('canvas');
+        let w=img.width,h=img.height;
+        const maxDim=2048;
+        if(w>maxDim||h>maxDim){const ratio=Math.min(maxDim/w,maxDim/h);w=Math.round(w*ratio);h=Math.round(h*ratio)}
+        canvas.width=w;canvas.height=h;
+        const ctx=canvas.getContext('2d');
+        ctx.drawImage(img,0,0,w,h);
+        const compressed=canvas.toDataURL('image/jpeg',quality);
+        const origKB=Math.round(file.size/1024);
+        const compKB=Math.round(compressed.length*0.75/1024);
+        const saved=Math.round((1-compKB/origKB)*100);
+        output.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px"><div><div style="font-size:.75rem;color:var(--text-muted);margin-bottom:6px">ORIGINAL</div><img src="'+ev.target.result+'" style="width:100%;border-radius:8px;border:1px solid var(--border)"/><div style="font-size:.82rem;color:var(--text-secondary);margin-top:6px">'+origKB+'KB · '+img.naturalWidth+'×'+img.naturalHeight+'</div></div><div><div style="font-size:.75rem;color:var(--text-muted);margin-bottom:6px">COMPRESSED ('+saved+'% smaller)</div><img src="'+compressed+'" style="width:100%;border-radius:8px;border:1px solid var(--green)"/><div style="font-size:.82rem;color:var(--success);margin-top:6px">~'+compKB+'KB · '+w+'×'+h+'</div></div></div><a href="'+compressed+'" download="compressed.jpg" class="btn btn-primary" style="width:100%;text-align:center;display:block">⬇ Download Compressed Image</a>';
+        document.getElementById('status').textContent='Saved ~'+saved+'%';
+      };
+      img.src=ev.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>User-Agent Parser — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Parse browser user-agent strings to identify browser, OS and device. Free, fast, no login required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="User-Agent Parser — DevNova Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/network/user-agent-parser/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "User-Agent Parser", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Parse browser user-agent strings to identify browser, OS and device", "url": "https://devnovatools.com/network/user-agent-parser/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/network/">Network & DNS</a> › <span>User-Agent Parser</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#4DA6FF22;border:1px solid #4DA6FF44">🌐</div>
+      <h1 class="tool-name">User-Agent Parser</h1>
+    </div>
+    <p class="tool-desc">Parse browser user-agent strings to identify browser, OS and device</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Paste a user-agent string...&#10;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Parsed Details</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function clearAll(){
+  const i=document.getElementById('input');
+  const o=document.getElementById('output');
+  if(i)i.value='';
+  if(o){o.textContent='';o.innerHTML='';}
+}
+function run(){const ua=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!ua){o.textContent='';return}
+const browser=ua.includes('Edg/')?'Microsoft Edge':ua.includes('OPR/')||ua.includes('Opera')?'Opera':ua.includes('Chrome/')?'Google Chrome':ua.includes('Firefox/')?'Mozilla Firefox':ua.includes('Safari/')&&!ua.includes('Chrome')?'Apple Safari':ua.includes('MSIE')||ua.includes('Trident/')?'Internet Explorer':'Unknown';
+const bVersion=(ua.match(/(?:Chrome|Firefox|Safari|Edg|OPR)\/(\d+\.\d+)/)||[])[1]||'N/A';
+const os=ua.includes('Windows NT 10.0')?'Windows 10/11':ua.includes('Windows NT 6.3')?'Windows 8.1':ua.includes('Windows NT 6.1')?'Windows 7':ua.includes('Windows')?'Windows':ua.includes('iPhone')?'iOS (iPhone)':ua.includes('iPad')?'iOS (iPad)':ua.includes('Mac OS X')?'macOS':ua.includes('Android')?'Android':ua.includes('Linux')?'Linux':'Unknown';
+const osVersion=(ua.match(/(?:Windows NT|Android|OS X) ([\d._]+)/)||[])[1]?.replace(/_/g,'.')||'N/A';
+const device=ua.includes('iPhone')?'iPhone':ua.includes('iPad')?'iPad':ua.includes('Android')&&ua.includes('Mobile')?'Android Phone':ua.includes('Android')?'Android Tablet':ua.includes('Mobile')?'Mobile Device':'Desktop';
+const engine=ua.includes('Gecko/')&&!ua.includes('WebKit')?'Gecko':ua.includes('WebKit')?'WebKit/Blink':ua.includes('Trident')?'Trident':'Unknown';
+const bot=/(bot|crawl|spider|slurp|ia_archiver|google|bing|yahoo|duckduck)/i.test(ua);
+o.textContent=['Browser:     '+browser,'Version:     '+bVersion,'OS:          '+os,'OS Version:  '+osVersion,'Device:      '+device,'Engine:      '+engine,'Bot/Crawler: '+(bot?'YES \u26a0':'No'),'','Raw UA:',''+ua].join('\n');document.getElementById('status').textContent=browser+' on '+os}
+</script>
+</body>
+</html>

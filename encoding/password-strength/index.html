@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Password Strength Checker — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Check password strength with detailed analysis and improvement tips. Free, fast, no login required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="Password Strength Checker — DevNova Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/encoding/password-strength/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Password Strength Checker", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Check password strength with detailed analysis and improvement tips", "url": "https://devnovatools.com/encoding/password-strength/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/encoding/">Encoding & Crypto</a> › <span>Password Strength Checker</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#A78BFA22;border:1px solid #A78BFA44">🔐</div>
+      <h1 class="tool-name">Password Strength Checker</h1>
+    </div>
+    <p class="tool-desc">Check password strength with detailed analysis and improvement tips</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter password to check..." oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Strength Analysis</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function clearAll(){
+  const i=document.getElementById('input');
+  const o=document.getElementById('output');
+  if(i)i.value='';
+  if(o){o.textContent='';o.innerHTML='';}
+}
+function run(){const p=document.getElementById('input').value;const o=document.getElementById('output');if(!p){o.textContent='';return}
+let score=0;const checks={length:p.length>=8,longLength:p.length>=12,veryLong:p.length>=16,uppercase:/[A-Z]/.test(p),lowercase:/[a-z]/.test(p),numbers:/[0-9]/.test(p),symbols:/[^A-Za-z0-9]/.test(p),multipleSymbols:(p.match(/[^A-Za-z0-9]/g)||[]).length>1,noCommon:!['password','123456','qwerty','abc123','letmein','welcome','admin','login'].some(c=>p.toLowerCase().includes(c))};
+score=Object.values(checks).filter(Boolean).length;
+const level=score<=3?'Very Weak':score<=5?'Weak':score<=6?'Fair':score<=8?'Strong':'Very Strong';
+const color=score<=3?'\u2717':score<=5?'\u26a0':score<=6?'\u25cb':'\u2713';
+const bar='█'.repeat(Math.min(score,9))+' '.repeat(Math.max(0,9-score));
+const tips=[];
+if(!checks.length)tips.push('Use at least 8 characters');
+if(!checks.longLength)tips.push('Use 12+ characters for better security');
+if(!checks.uppercase)tips.push('Add uppercase letters (A-Z)');
+if(!checks.lowercase)tips.push('Add lowercase letters (a-z)');
+if(!checks.numbers)tips.push('Add numbers (0-9)');
+if(!checks.symbols)tips.push('Add special characters (!@#$%^&*)');
+if(!checks.noCommon)tips.push('Avoid common words like "password" or "admin"');
+o.textContent=[color+' Strength: '+level,'Score: '+score+'/9','['+bar+']','','Length: '+p.length+' characters','Uppercase: '+(checks.uppercase?'\u2713 Yes':'\u2717 No'),'Lowercase: '+(checks.lowercase?'\u2713 Yes':'\u2717 No'),'Numbers: '+(checks.numbers?'\u2713 Yes':'\u2717 No'),'Symbols: '+(checks.symbols?'\u2713 Yes':'\u2717 No'),'Common word: '+(checks.noCommon?'\u2713 No':'\u26a0 Yes — risky!'),...(tips.length?['','Improvements:','─'.repeat(30),...tips.map(t=>'\u2192 '+t)]:['','\u2713 Strong password!'])].join('\n');document.getElementById('status').className='badge badge-'+(score<=3?'error':score<=5?'warning':score<=6?'info':'success');document.getElementById('status').textContent=level}
+</script>
+</body>
+</html>

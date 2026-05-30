@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>TOTP Generator — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Generate Time-based One-Time Passwords (TOTP) for 2FA authentication. Free, fast, no login required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="TOTP Generator — DevNova Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/encoding/totp/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "TOTP Generator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate Time-based One-Time Passwords (TOTP) for 2FA authentication", "url": "https://devnovatools.com/encoding/totp/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/encoding/">Encoding & Crypto</a> › <span>TOTP Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#A78BFA22;border:1px solid #A78BFA44">⏱️</div>
+      <h1 class="tool-name">TOTP Generator</h1>
+    </div>
+    <p class="tool-desc">Generate Time-based One-Time Passwords (TOTP) for 2FA authentication</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row"><button class="btn btn-primary btn-sm" onclick="run()">Generate TOTP</button><button class="btn btn-secondary btn-sm" onclick="startLive()">▶ Live Mode</button><button class="btn btn-ghost btn-sm" onclick="stopLive()">■ Stop</button></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="Enter your TOTP secret key...&#10;e.g. JBSWY3DPEHPK3PXP" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">TOTP Code</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function clearAll(){
+  const i=document.getElementById('input');
+  const o=document.getElementById('output');
+  if(i)i.value='';
+  if(o){o.textContent='';o.innerHTML='';}
+}
+let timer=null;
+async function run(){
+  const secret=document.getElementById('input').value.trim().replace(/\s/g,'').toUpperCase();
+  if(!secret){document.getElementById('output').textContent='Enter your TOTP secret key';return}
+  try{
+    const code=await generateTOTP(secret);
+    const remaining=30-Math.floor(Date.now()/1000)%30;
+    document.getElementById('output').textContent='Code: '+code+'\n\nExpires in: '+remaining+' seconds\n\n'+'['+('█'.repeat(Math.round(remaining/2.5)))+'░'.repeat(Math.max(0,12-Math.round(remaining/2.5)))+'] '+remaining+'s\n\nNext refresh at: '+new Date(Math.ceil(Date.now()/30000)*30000).toLocaleTimeString();
+    document.getElementById('status').textContent=remaining+'s remaining';
+  }catch(e){document.getElementById('output').textContent='\u2717 '+e.message+'\n\nMake sure your key is valid Base32 (A-Z, 2-7)'}
+}
+function startLive(){timer=setInterval(run,1000);run()}
+function stopLive(){clearInterval(timer);timer=null}
+async function generateTOTP(secret){
+  const b32='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+  let bits='';
+  for(const c of secret){const i=b32.indexOf(c);if(i<0)throw new Error('Invalid Base32 character: '+c);bits+=i.toString(2).padStart(5,'0')}
+  const bytes=new Uint8Array(bits.length/8|0);
+  for(let i=0;i<bytes.length;i++)bytes[i]=parseInt(bits.slice(i*8,i*8+8),2);
+  const counter=Math.floor(Date.now()/30000);
+  const msg=new Uint8Array(8);
+  for(let i=7;i>=0;i--){msg[i]=counter&0xff;counter>>=8}
+  const key=await crypto.subtle.importKey('raw',bytes,{name:'HMAC',hash:'SHA-1'},false,['sign']);
+  const sig=await crypto.subtle.sign('HMAC',key,msg);
+  const hash=new Uint8Array(sig);
+  const offset=hash[hash.length-1]&0xf;
+  const code=((hash[offset]&0x7f)<<24|(hash[offset+1]&0xff)<<16|(hash[offset+2]&0xff)<<8|(hash[offset+3]&0xff))%1000000;
+  return code.toString().padStart(6,'0');
+}
+</script>
+</body>
+</html>

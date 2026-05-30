@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Placeholder Image Generator — Free Online Tool | DevNova Tools</title>
+<meta name="description" content="Generate placeholder images for mockups and wireframes. Free, fast, no login required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="Placeholder Image Generator — DevNova Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/image/placeholder-generator/"/>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Placeholder Image Generator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate placeholder images for mockups and wireframes", "url": "https://devnovatools.com/image/placeholder-generator/"}</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/image/">Image & Media</a> › <span>Placeholder Image Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#FFD75E22;border:1px solid #FFD75E44">🖼️</div>
+      <h1 class="tool-name">Placeholder Image Generator</h1>
+    </div>
+    <p class="tool-desc">Generate placeholder images for mockups and wireframes</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="clearAll()">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+    <div class="form-row">
+  <div class="form-group"><label>Width</label><input type="number" id="w" value="800" min="1" max="2000" oninput="generate()" style="width:80px"/></div>
+  <div class="form-group"><label>Height</label><input type="number" id="h" value="400" min="1" max="2000" oninput="generate()" style="width:80px"/></div>
+  <div class="form-group"><label>Background</label><input type="color" id="bg" value="#1A2540" oninput="generate()"/></div>
+  <div class="form-group"><label>Text Color</label><input type="color" id="tc" value="#00C896" oninput="generate()"/></div>
+  <div class="form-group" style="flex:1"><label>Custom Text</label><input type="text" id="txt" placeholder="Leave empty for dimensions" oninput="generate()" style="width:100%"/></div>
+</div>
+<div id="preview" style="margin-top:8px;text-align:center"></div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Input</span><div class="panel-actions"><button class="btn-icon" onclick="document.getElementById('input').value='';run()">✕</button></div></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">URLs & Embed Code</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+  <div style="margin-top:16px;background:var(--success-bg);border:1px solid rgba(0,214,143,.2);border-radius:10px;padding:10px 16px;font-size:.82rem;color:var(--success)">
+    🔒 All processing runs in your browser. Your data is never sent to any server.
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function clearAll(){
+  const i=document.getElementById('input');
+  const o=document.getElementById('output');
+  if(i)i.value='';
+  if(o){o.textContent='';o.innerHTML='';}
+}
+function run(){}
+function generate(){
+  const w=parseInt(document.getElementById('w').value)||800;
+  const h=parseInt(document.getElementById('h').value)||400;
+  const bg=document.getElementById('bg').value.replace('#','');
+  const tc=document.getElementById('tc').value.replace('#','');
+  const txt=encodeURIComponent(document.getElementById('txt').value||w+'×'+h);
+  const url='https://via.placeholder.com/'+w+'x'+h+'/'+bg+'/'+tc+'?text='+txt;
+  document.getElementById('preview').innerHTML='<img src="'+url+'" style="max-width:100%;border-radius:8px;border:1px solid var(--border);margin-bottom:12px"/>';
+  const canvas=document.createElement('canvas');
+  canvas.width=w;canvas.height=h;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#'+bg;ctx.fillRect(0,0,w,h);
+  ctx.fillStyle='#'+tc;ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.font='bold '+Math.min(h/5,60)+'px system-ui,sans-serif';
+  ctx.fillText(decodeURIComponent(txt),w/2,h/2);
+  const local=canvas.toDataURL('image/png');
+  document.getElementById('output').textContent='── External URL ──\n'+url+'\n\n── HTML ──\n<img src="'+url+'" alt="placeholder" width="'+w+'" height="'+h+'"/>\n\n── Markdown ──\n![placeholder '+w+'×'+h+']('+url+')\n\n── CSS Background ──\nbackground-image: url("'+url+'");';
+  document.getElementById('status').textContent=w+'×'+h+'px';
+}
+document.addEventListener('DOMContentLoaded',generate)
+</script>
+</body>
+</html>
