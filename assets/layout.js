@@ -148,7 +148,15 @@ const CATS=[
 {id:'packages',name:'Package & Version',icon:'📦',color:'#60A5FA',desc:'npm, PyPI search, semver and dependency tools'},
 ];
 
-const LOGO_SVG=`<span class="logo-desktop"><svg width="168" height="36" viewBox="0 0 168 36" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lg" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00C896"/><stop offset="100%" stop-color="#0066FF"/></linearGradient></defs><rect x="0" y="0" width="40" height="36" rx="8" fill="url(#lg)"/><text x="5" y="22" font-family="monospace" font-weight="700" font-size="11" fill="white">$ DN</text><rect x="29" y="14" width="5" height="10" rx="1" fill="rgba(255,255,255,0.75)"/><text x="50" y="18" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="16" fill="#00C896">Dev</text><text x="80" y="18" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="16" fill="#F5F7FA">Nova</text><text x="50" y="32" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="11" fill="#6B7E99" letter-spacing="2">TOOLS</text></svg></span><span class="logo-mobile"><svg width="44" height="36" viewBox="0 0 44 36" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="lgm" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00C896"/><stop offset="100%" stop-color="#0066FF"/></linearGradient></defs><rect x="0" y="0" width="44" height="36" rx="8" fill="url(#lgm)"/><text x="5" y="22" font-family="monospace" font-weight="700" font-size="11" fill="white">$ DN</text><rect x="33" y="14" width="5" height="10" rx="1" fill="rgba(255,255,255,0.75)"/></svg></span>`;
+const LOGO_SVG=`<svg width="168" height="36" viewBox="0 0 168 36" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="lg" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00C896"/><stop offset="100%" stop-color="#0066FF"/></linearGradient></defs>
+<rect x="0" y="0" width="40" height="36" rx="8" fill="url(#lg)"/>
+<text x="5" y="22" font-family="monospace" font-weight="700" font-size="11" fill="white">$ DN</text>
+<rect x="29" y="14" width="5" height="10" rx="1" fill="rgba(255,255,255,0.75)"/>
+<text x="50" y="18" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="16" fill="#00C896">Dev</text>
+<text x="80" y="18" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="16" fill="#F5F7FA">Nova</text>
+<text x="50" y="32" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="11" fill="#6B7E99" letter-spacing="2">TOOLS</text>
+</svg>`;
 
 function getTheme(){return localStorage.getItem('dnt-theme')||'dark'}
 function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('dnt-theme',t);const btn=document.getElementById('theme-btn');if(btn)btn.textContent=t==='dark'?'☀️ Light':'🌙 Dark'}
@@ -172,9 +180,8 @@ function initSearch(inputId,resultsId){
 function injectNav(){
   const logoStyle=document.createElement('style');
   logoStyle.textContent=`
-  .logo-mobile{display:none}
-  .logo-desktop{display:inline-flex}
-  @media(max-width:600px){.logo-desktop{display:none!important}.logo-mobile{display:inline-flex!important}}
+  @media(max-width:600px){.nav-logo-svg{max-width:44px;overflow:hidden;display:inline-block}}
+  @media(min-width:601px){.nav-logo-svg svg{width:168px}}
   .nav-search-wrap{position:relative}
   .nav-search{padding-right:36px!important}
   #nav-search-clear{position:absolute!important;right:10px!important;top:50%!important;transform:translateY(-50%)!important;background:none!important;border:none!important;cursor:pointer!important;color:var(--text-muted)!important;font-size:.9rem!important;padding:4px 6px!important;line-height:1!important;border-radius:50%!important;z-index:10!important}
