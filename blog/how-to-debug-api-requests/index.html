@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>How to Debug API Requests Like a Pro | DevNova Tools Blog</title>
+<meta name="description" content="Learn how to debug API requests using browser DevTools, cURL, JWT inspection and response header analysis. Free tools included. No signup required."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="How to Debug API Requests Like a Pro"/>
+<meta property="og:description" content="Learn how to debug API requests using browser DevTools, cURL, JWT inspection and response header analysis. Free tools included. No signup required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/blog/how-to-debug-api-requests/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+<link rel="stylesheet" href="/assets/community.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"How to Debug API Requests Like a Pro","description":"Learn how to debug API requests using browser DevTools, cURL, JWT inspection and response header analysis. Free tools included. No signup required.","datePublished":"May 30, 2026","dateModified":"May 30, 2026","author":{"@type":"Person","name":"Nirmala Valluri"},"publisher":{"@type":"Organization","name":"DevNova Tools","url":"https://devnovatools.com"},"url":"https://devnovatools.com/blog/how-to-debug-api-requests/"}
+</script>
+</head>
+<body>
+<main class="blog-post">
+  <div class="blog-post-inner">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> <span>API Development</span></div>
+    <h1 class="blog-post-title">How to Debug API Requests Like a Pro</h1>
+    <div style="display:flex;align-items:center;gap:16px;color:var(--text-muted);font-size:.85rem;flex-wrap:wrap;margin-bottom:32px">
+      <span>📅 May 30, 2026</span><span>⏱ 7 min read</span><span>✍️ Nirmala Valluri</span>
+    </div>
+
+    <article class="blog-post-content">
+      
+      <p class="lead">Debugging API requests is one of the most common tasks in modern development — and one of the most frustrating when things go wrong. This guide covers the tools and techniques that will help you diagnose any API issue quickly.</p>
+
+      <h2>1. Start with the Status Code</h2>
+      <p>Every API response includes an HTTP status code that tells you what happened. Understanding these codes is the first step in debugging:</p>
+      <ul>
+        <li><strong>2xx</strong> — Success. 200 OK, 201 Created, 204 No Content.</li>
+        <li><strong>4xx</strong> — Client error. You sent something wrong. 400 Bad Request, 401 Unauthorized, 403 Forbidden, 404 Not Found, 422 Unprocessable Entity.</li>
+        <li><strong>5xx</strong> — Server error. The server broke. 500 Internal Server Error, 502 Bad Gateway, 503 Service Unavailable.</li>
+      </ul>
+      <p>Use our free <a href="/apitesting/rest-client/" style="color:var(--green)">REST Client</a> to send requests and see the exact status code returned.</p>
+
+      <h2>2. Inspect Response Headers</h2>
+      <p>Response headers contain critical debugging information that developers often overlook:</p>
+      <ul>
+        <li><strong>Content-Type</strong> — Is the server returning JSON when you expect it? Mismatched content types cause silent parsing failures.</li>
+        <li><strong>Access-Control-Allow-Origin</strong> — Missing CORS headers cause browser fetch() calls to fail silently.</li>
+        <li><strong>X-RateLimit-Remaining</strong> — Have you hit a rate limit?</li>
+        <li><strong>WWW-Authenticate</strong> — Tells you what authentication scheme is required.</li>
+      </ul>
+      <p>Use our <a href="/network/http-inspector/" style="color:var(--green)">HTTP Response Inspector</a> to fetch and display all headers from any public URL instantly.</p>
+
+      <h2>3. Decode Your JWT Token</h2>
+      <p>If your API uses JWT authentication, a malformed or expired token is the most common cause of 401 errors. Before debugging anything else, decode your JWT to verify:</p>
+      <ul>
+        <li>The <code>exp</code> field — has the token expired?</li>
+        <li>The <code>aud</code> field — is the audience correct for this API?</li>
+        <li>The <code>iss</code> field — was the token issued by the expected authority?</li>
+        <li>Custom claims — are all required fields present?</li>
+      </ul>
+      <p>Paste your JWT into our <a href="/api/jwt-decoder/" style="color:var(--green)">JWT Decoder</a> — it shows the header, payload and expiry information in seconds without any login required.</p>
+
+      <h2>4. Reproduce with cURL</h2>
+      <p>When debugging API issues, always try to reproduce the problem with a raw cURL command. This eliminates variables like browser state, cookies and CORS policies:</p>
+      <pre style="background:var(--bg-card);padding:16px;border-radius:8px;overflow-x:auto;font-size:.85rem">curl -X POST https://api.example.com/users \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Alice"}' \
+  -v</pre>
+      <p>The <code>-v</code> flag shows verbose output including request and response headers. Use our <a href="/apitesting/curl/" style="color:var(--green)">cURL Builder</a> to construct commands visually, or <a href="/text/curl-to-fetch/" style="color:var(--green)">convert cURL to JavaScript fetch</a> for use in your frontend code.</p>
+
+      <h2>5. Check Your Request Body</h2>
+      <p>400 and 422 errors are almost always caused by an invalid request body. Common mistakes include:</p>
+      <ul>
+        <li>Sending invalid JSON (use our <a href="/json/validator/" style="color:var(--green)">JSON Validator</a> to check)</li>
+        <li>Wrong Content-Type header — must be <code>application/json</code> for JSON payloads</li>
+        <li>Missing required fields</li>
+        <li>Wrong data types — sending a string where a number is expected</li>
+        <li>Extra fields that the API rejects with strict validation</li>
+      </ul>
+
+      <h2>6. Test Webhooks Locally</h2>
+      <p>Debugging webhooks is tricky because they're triggered by external events. Use our <a href="/apitesting/webhook/" style="color:var(--green)">Webhook Sender</a> to fire test POST requests to your endpoint from the browser, or tools like ngrok to expose your local server to the internet for live webhook testing.</p>
+
+      <h2>7. Use the Network Tab</h2>
+      <p>Browser DevTools Network tab is your best friend for debugging API calls made by web applications. Look for:</p>
+      <ul>
+        <li><strong>Timing</strong> — Is the request slow? DNS lookup, connection, TTFB separately</li>
+        <li><strong>Preview tab</strong> — Formatted response body</li>
+        <li><strong>Headers tab</strong> — Both request and response headers</li>
+        <li><strong>Copy as cURL</strong> — Right-click any request to copy as cURL for reproduction</li>
+      </ul>
+
+      <h2>Quick Debugging Checklist</h2>
+      <ul>
+        <li>✅ Check the status code first</li>
+        <li>✅ Decode your JWT for expiry and claims</li>
+        <li>✅ Validate your request body JSON</li>
+        <li>✅ Inspect response headers for CORS and content-type</li>
+        <li>✅ Reproduce with cURL using -v flag</li>
+        <li>✅ Check rate limit headers</li>
+        <li>✅ Verify authentication scheme matches what the API expects</li>
+      </ul>
+
+
+      <!-- Related Tools -->
+      <div class="blog-related-tools" style="margin:40px 0;padding:28px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px">
+        <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px">🛠️ Free Tools for This Topic</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+          <a href="/apitesting/rest-client/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔵</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">REST Client</div><div style="font-size:.78rem;color:var(--text-secondary)">Send API requests in browser</div></div></a><a href="/api/jwt-decoder/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔓</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">JWT Decoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Inspect JWT tokens</div></div></a><a href="/network/http-inspector/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔭</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">HTTP Inspector</div><div style="font-size:.78rem;color:var(--text-secondary)">Inspect response headers</div></div></a><a href="/apitesting/curl/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">💻</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">cURL Builder</div><div style="font-size:.78rem;color:var(--text-secondary)">Build cURL commands visually</div></div></a><a href="/text/curl-to-fetch/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔄</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">cURL to Fetch</div><div style="font-size:.78rem;color:var(--text-secondary)">Convert cURL to JavaScript</div></div></a><a href="/apitesting/webhook/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">📤</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Webhook Sender</div><div style="font-size:.78rem;color:var(--text-secondary)">Test webhook endpoints</div></div></a>
+        </div>
+      </div>
+    </article>
+
+    <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border)">
+      <a href="/blog/" class="btn btn-secondary">← Back to Blog</a>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+</body>
+</html>

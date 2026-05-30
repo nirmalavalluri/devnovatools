@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>DNS Explained for Developers — Records, Propagation and Debugging | DevNova Tools Blog</title>
+<meta name="description" content="DNS explained for developers — A records, CNAMEs, MX, TTL and how to debug DNS issues. Learn how domain resolution works with free DNS lookup tools."/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="DNS Explained for Developers — Records, Propagation and Debugging"/>
+<meta property="og:description" content="DNS explained for developers — A records, CNAMEs, MX, TTL and how to debug DNS issues. Learn how domain resolution works with free DNS lookup tools."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta property="og:type" content="article"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/blog/dns-explained-for-developers/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+<link rel="stylesheet" href="/assets/community.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"DNS Explained for Developers — Records, Propagation and Debugging","description":"DNS explained for developers — A records, CNAMEs, MX, TTL and how to debug DNS issues. Learn how domain resolution works with free DNS lookup tools.","datePublished":"May 30, 2026","dateModified":"May 30, 2026","author":{"@type":"Person","name":"Nirmala Valluri"},"publisher":{"@type":"Organization","name":"DevNova Tools","url":"https://devnovatools.com"},"url":"https://devnovatools.com/blog/dns-explained-for-developers/"}
+</script>
+</head>
+<body>
+<main class="blog-post">
+  <div class="blog-post-inner">
+    <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> <span>Networking</span></div>
+    <h1 class="blog-post-title">DNS Explained for Developers — Records, Propagation and Debugging</h1>
+    <div style="display:flex;align-items:center;gap:16px;color:var(--text-muted);font-size:.85rem;flex-wrap:wrap;margin-bottom:32px">
+      <span>📅 May 30, 2026</span><span>⏱ 7 min read</span><span>✍️ Nirmala Valluri</span>
+    </div>
+
+    <article class="blog-post-content">
+      
+      <p class="lead">DNS (Domain Name System) is the internet's phone book — it translates human-readable domain names like devnovatools.com into IP addresses that computers use to communicate. Understanding DNS is essential for debugging deployment issues, configuring email and managing infrastructure.</p>
+
+      <h2>How DNS Resolution Works</h2>
+      <p>When you type a URL in your browser, a complex lookup happens in milliseconds:</p>
+      <ol>
+        <li><strong>Browser cache</strong> — Has this domain been looked up recently?</li>
+        <li><strong>OS resolver cache</strong> — Check the local system DNS cache</li>
+        <li><strong>Recursive resolver</strong> — Your ISP or configured DNS server (8.8.8.8, 1.1.1.1)</li>
+        <li><strong>Root nameservers</strong> — 13 root servers know which TLD servers (.com, .org) to ask</li>
+        <li><strong>TLD nameservers</strong> — The .com nameserver knows which authoritative server has the answer</li>
+        <li><strong>Authoritative nameserver</strong> — Returns the actual DNS record</li>
+      </ol>
+      <p>Use our <a href="/network/dns-lookup/" style="color:var(--green)">DNS Lookup tool</a> to query any record type for any domain in real time using Cloudflare's DNS over HTTPS.</p>
+
+      <h2>Essential DNS Record Types</h2>
+
+      <h3>A Record — IPv4 Address</h3>
+      <p>The most common record. Maps a hostname to an IPv4 address. Example: <code>devnovatools.com → 104.21.1.1</code>. This is what browsers use to connect to your web server.</p>
+
+      <h3>AAAA Record — IPv6 Address</h3>
+      <p>Same as A record but for IPv6 addresses. Modern servers should have both A and AAAA records for dual-stack compatibility.</p>
+
+      <h3>CNAME — Canonical Name</h3>
+      <p>An alias that points to another hostname instead of an IP. Example: <code>www.example.com → example.com</code>. CDN providers use CNAMEs to point your domain to their servers. <strong>Important:</strong> You cannot use a CNAME on the root domain (example.com) — use an ALIAS or ANAME record there.</p>
+
+      <h3>MX Record — Mail Exchange</h3>
+      <p>Specifies which servers handle email for a domain. MX records have a priority value — lower numbers get tried first. If you're having email delivery issues, check MX records with our <a href="/network/dns-lookup/" style="color:var(--green)">DNS Lookup tool</a> by selecting the MX type.</p>
+
+      <h3>TXT Record — Text</h3>
+      <p>Stores arbitrary text — used for domain verification (Google Search Console, AWS), SPF records (email authentication) and DKIM keys. Format: <code>v=spf1 include:sendgrid.net ~all</code>.</p>
+
+      <h3>NS Record — Nameservers</h3>
+      <p>Specifies which nameservers are authoritative for a domain. When you move a domain between registrars or change DNS providers, you update NS records. NS changes take the longest to propagate.</p>
+
+      <h2>Understanding TTL (Time to Live)</h2>
+      <p>TTL is how long DNS resolvers cache a record (in seconds). A TTL of 3600 means resolvers cache the record for 1 hour before checking again.</p>
+      <p><strong>Before changing DNS:</strong> Lower your TTL to 300 (5 minutes) 24 hours before making changes. This minimizes downtime during propagation. After changes are stable, raise it back to 3600 or higher for performance.</p>
+
+      <h2>Debugging DNS Issues</h2>
+      <p>When DNS isn't working as expected, follow this debugging process:</p>
+      <ol>
+        <li><strong>Check the record directly</strong> — Use our <a href="/network/dns-lookup/" style="color:var(--green)">DNS Lookup tool</a> to query the record type you're troubleshooting</li>
+        <li><strong>Check from multiple locations</strong> — DNS propagation varies by region. Use tools like dnschecker.org to check from multiple countries</li>
+        <li><strong>Verify nameservers</strong> — Are NS records pointing to the right DNS provider?</li>
+        <li><strong>Check TTL</strong> — Are you seeing a cached old record? Wait for TTL to expire</li>
+        <li><strong>Flush local cache</strong> — Run <code>ipconfig /flushdns</code> (Windows) or <code>sudo dscacheutil -flushcache</code> (Mac)</li>
+      </ol>
+
+      <h2>DNS and SSL Certificates</h2>
+      <p>SSL certificate issuance requires DNS validation — adding a TXT record to prove you own the domain. Let's Encrypt uses this for automatic certificate renewal. Use our <a href="/network/ssl-expiry/" style="color:var(--green)">SSL Certificate Checker</a> to verify your certificate is properly installed after DNS changes.</p>
+
+      <h2>Common DNS Mistakes</h2>
+      <ul>
+        <li>Using CNAME on root domain (breaks MX and other records)</li>
+        <li>Forgetting to add AAAA records when adding A records</li>
+        <li>Not lowering TTL before DNS migration</li>
+        <li>Pointing MX records to an IP instead of a hostname</li>
+        <li>Incorrect SPF/DKIM TXT records causing email to go to spam</li>
+      </ul>
+
+
+      <!-- Related Tools -->
+      <div class="blog-related-tools" style="margin:40px 0;padding:28px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px">
+        <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px">🛠️ Free Tools for This Topic</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+          <a href="/network/dns-lookup/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🌐</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">DNS Lookup</div><div style="font-size:.78rem;color:var(--text-secondary)">Query DNS records for any domain</div></div></a><a href="/network/whois/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔍</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">WHOIS Lookup</div><div style="font-size:.78rem;color:var(--text-secondary)">Check domain registration info</div></div></a><a href="/network/ssl-expiry/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔒</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">SSL Certificate Checker</div><div style="font-size:.78rem;color:var(--text-secondary)">Verify SSL certificate status</div></div></a><a href="/network/http-inspector/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔭</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">HTTP Inspector</div><div style="font-size:.78rem;color:var(--text-secondary)">Inspect HTTP response headers</div></div></a><a href="/network/ip-geolocation/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">📍</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">IP Geolocation</div><div style="font-size:.78rem;color:var(--text-secondary)">Locate any IP address</div></div></a><a href="/network/cidr/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">📡</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">CIDR Calculator</div><div style="font-size:.78rem;color:var(--text-secondary)">Calculate subnet ranges</div></div></a>
+        </div>
+      </div>
+    </article>
+
+    <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border)">
+      <a href="/blog/" class="btn btn-secondary">← Back to Blog</a>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+</body>
+</html>
