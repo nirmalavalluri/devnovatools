@@ -46,4 +46,88 @@
 <script>function run(){encode()}
 function encode(){document.getElementById('output').textContent=[...document.getElementById('input').value].map(c=>c.charCodeAt(0).toString(16).padStart(2,'0')).join(' ');document.getElementById('status').textContent='Encoded to hex'}
 function decode(){try{const hex=document.getElementById('input').value.replace(/\s/g,'');if(hex.length%2){document.getElementById('output').textContent='\u2717 Odd-length hex string';return}document.getElementById('output').textContent=hex.match(/.{2}/g).map(h=>String.fromCharCode(parseInt(h,16))).join('');document.getElementById('status').textContent='Decoded from hex'}catch(e){document.getElementById('output').textContent='\u2717 Invalid hex input'}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Hex Encoder/Decoder converts text to hexadecimal representation where each character becomes its two-digit hex code, and decodes hex strings back to readable text. Essential for debugging binary data, network packets and cryptographic outputs.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Hello</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">48 65 6c 6c 6f</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Debug binary data and network packets</li><li>Encode binary content for text transmission</li><li>Decode hex dumps from debugging tools</li><li>Analyze cryptographic hashes and signatures</li><li>Understand color codes in CSS and design</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is hexadecimal? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Hexadecimal (base-16) uses digits 0-9 and letters A-F. Each hex digit represents 4 bits, so two hex digits represent one byte (8 bits). It's more compact than binary and easier to read.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Why do developers use hex for colors? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">CSS hex colors like #FF5733 represent RGB values — FF=255 red, 57=87 green, 33=51 blue. Hex is compact and maps directly to the 0-255 byte range for each color channel.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is a hex dump? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">A hex dump displays binary file contents in hex format, showing each byte as two hex digits. Debuggers and network analyzers use hex dumps to inspect raw binary data.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/encoding/binary-text/" class="related-card"><span>01</span><span class="related-card-name">Binary Text Converter</span></a><a href="/encoding/bitwise/" class="related-card"><span>⚙️</span><span class="related-card-name">Bitwise Calculator</span></a><a href="/encoding/url-safe-base64/" class="related-card"><span>🔒</span><span class="related-card-name">URL Safe Base64</span></a><a href="/encoding/aes/" class="related-card"><span>🔐</span><span class="related-card-name">AES Encrypt/Decrypt</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

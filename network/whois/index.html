@@ -44,4 +44,91 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>async function run(){const d=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!d){o.textContent='Enter a domain name';return}o.textContent='Looking up...';const parts=d.split('.');const name=parts[0];const zone=parts.slice(1).join('.');try{const r=await fetch('https://api.domainsdb.info/v1/domains/search?domain='+encodeURIComponent(name)+'&zone='+encodeURIComponent(zone));const data=await r.json();if(data.domains?.length){const dom=data.domains[0];o.textContent='Domain:      '+dom.domain+'\nCreate Date: '+(dom.create_date||'N/A')+'\nUpdate Date: '+(dom.update_date||'N/A')+'\nCountry:     '+(dom.country||'N/A');document.getElementById('status').textContent='Found'}else{o.textContent='Domain info not found in database.\n\nUse these tools for full WHOIS:\n\u2022 https://who.is/whois/'+d+'\n\u2022 https://lookup.icann.org/en/lookup?name='+d}}catch(e){o.textContent='Use these free WHOIS tools:\n\u2022 https://who.is/whois/'+d+'\n\u2022 https://lookup.icann.org'}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>WHOIS Lookup retrieves domain registration information including creation date, update date, country and registrar details. Use it to check if a domain is available, find the owner, or verify registration details.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">github.com</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Domain: github.com
+Create Date: 2007-01-26
+Update Date: 2024-01-01
+Country: US</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Check domain registration and expiry</li><li>Identify who owns a domain</li><li>Verify domain age for SEO research</li><li>Check if a domain was recently registered</li><li>Research competitor domain history</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is WHOIS? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">WHOIS is a protocol for querying databases that store information about registered internet resources including domain names. It tells you who registered a domain, when, and through which registrar.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Why is some WHOIS data hidden? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">GDPR and privacy protection services allow domain owners to hide personal contact information. Many registrars offer privacy protection that replaces personal data with proxy information.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I find the owner of a domain? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Enter the domain name and click Lookup. If privacy protection is not enabled, the registrant's name and contact details will appear. Otherwise, you'll see the registrar's proxy information.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/network/dns-lookup/" class="related-card"><span>🌐</span><span class="related-card-name">DNS Lookup</span></a><a href="/network/ssl-expiry/" class="related-card"><span>🔒</span><span class="related-card-name">SSL Certificate Checker</span></a><a href="/network/url-parser/" class="related-card"><span>🔗</span><span class="related-card-name">URL Parser</span></a><a href="/network/http-inspector/" class="related-card"><span>🔭</span><span class="related-card-name">HTTP Response Inspector</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

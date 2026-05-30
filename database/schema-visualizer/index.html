@@ -44,4 +44,93 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>function run(){const sql=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!sql){o.textContent='';return}const tables=[];const tr=/CREATE\s+TABLE\s+[`"']?(\w+)[`"']?\s*\(([^;]+)\)/gi;let m;while((m=tr.exec(sql))!==null){const name=m[1];const cols=[];const cr=/^\s*[`"']?(\w+)[`"']?\s+([\w]+(?:\(\d+\))?)/gm;let cm;while((cm=cr.exec(m[2]))!==null){if(!['PRIMARY','UNIQUE','INDEX','KEY','CONSTRAINT','FOREIGN','CHECK'].includes(cm[1].toUpperCase()))cols.push({name:cm[1],type:cm[2]})}tables.push({name,cols})}if(!tables.length){o.textContent='\u2717 No CREATE TABLE statements found';return}o.textContent=tables.map(t=>{const maxW=Math.max(t.name.length,...t.cols.map(c=>c.name.length+c.type.length+3));const w=Math.max(maxW,20);const line='\u2500'.repeat(w+2);return '\u250c'+line+'\u2510\n\u2502 '+t.name.toUpperCase().padEnd(w)+' \u2502\n\u251c'+line+'\u2524\n'+t.cols.map(c=>'\u2502 '+( c.name+' ('+c.type+')').padEnd(w)+' \u2502').join('\n')+'\n\u2514'+line+'\u2518'}).join('\n\n');document.getElementById('status').textContent=tables.length+' table(s) visualized'}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>DB Schema Visualizer renders CREATE TABLE SQL statements as clean ASCII box diagrams showing table names, column names and data types. Quickly understand database structure at a glance without needing a GUI database client.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(255), email VARCHAR(255));</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">┌──────────────┐
+│ USERS        │
+├──────────────┤
+│ id (INT)     │
+│ name (VARCHAR)│
+└──────────────┘</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Visualize database schemas from SQL files</li><li>Generate schema documentation</li><li>Share database structure in text form</li><li>Review schemas during code reviews</li><li>Understand legacy database structures</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">Can I visualize multiple tables at once? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — paste multiple CREATE TABLE statements separated by semicolons. Each table will be rendered as a separate box diagram in the output.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Does it show relationships between tables? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The current version shows each table structure individually. Foreign key relationships are visible in the column definitions but not drawn as connecting lines.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What SQL dialects are supported? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The visualizer supports standard SQL syntax compatible with MySQL, PostgreSQL and SQLite CREATE TABLE statements. Backtick and quote-wrapped identifiers are handled automatically.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/database/sql-to-orm/" class="related-card"><span>🗄️</span><span class="related-card-name">SQL to ORM Generator</span></a><a href="/database/query-explainer/" class="related-card"><span>🔍</span><span class="related-card-name">Query Explainer</span></a><a href="/database/json-to-sql/" class="related-card"><span>🔄</span><span class="related-card-name">JSON to SQL Insert</span></a><a href="/database/sql-to-json/" class="related-card"><span>🔄</span><span class="related-card-name">SQL Results to JSON</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

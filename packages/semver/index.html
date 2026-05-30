@@ -46,4 +46,91 @@
 <script>function run(){const lines=document.getElementById('input').value.trim().split('\n').map(l=>l.trim()).filter(Boolean);const o=document.getElementById('output');const results=[];lines.forEach(line=>{if(line.includes(' vs ')){const[a,b]=line.split(' vs ').map(s=>s.trim());const av=parse(a),bv=parse(b);if(!av||!bv){results.push(line+': \u2717 Invalid version(s)');return}const c=compare(av,bv);results.push(line+'\n  Result: '+a+' is \u2033'+(c<0?'LESS THAN':c>0?'GREATER THAN':'EQUAL TO')+'\u2033 '+b)}else{const v=parse(line);if(!v){results.push(line+': \u2717 Invalid semver (expected X.Y.Z)');return}const[major,minor,patch]=v;results.push(line+': \u2713 Valid Semantic Version\n  Major:      '+major+' (breaking changes)\n  Minor:      '+minor+' (new features)\n  Patch:      '+patch+' (bug fixes)\n  Next patch: '+major+'.'+minor+'.'+(patch+1)+'\n  Next minor: '+major+'.'+(minor+1)+'.0\n  Next major: '+(major+1)+'.0.0\n  Is stable:  '+(major>0?'Yes \u2713':'No (0.x.x is considered unstable)'))}});o.textContent=results.join('\n\n')}
 function parse(v){const m=v.replace(/^[v^~]*/,'').match(/^(\d+)\.(\d+)\.(\d+)/);return m?[+m[1],+m[2],+m[3]]:null}
 function compare(a,b){for(let i=0;i<3;i++){if(a[i]!==b[i])return a[i]-b[i]}return 0}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Semver Calculator validates, analyzes and compares Semantic Version numbers. Enter any version number to see its breakdown (major, minor, patch) and next version increments. Compare two versions to see which is greater.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">1.2.3 vs 1.3.0</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">1.2.3 is LESS THAN 1.3.0
+Next patch: 1.2.4
+Next minor: 1.3.0
+Next major: 2.0.0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Validate version numbers follow semver spec</li><li>Compare two versions to determine precedence</li><li>Calculate next patch, minor or major version</li><li>Check if a version indicates stability</li><li>Understand pre-release version ordering</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is semantic versioning? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Semantic versioning (semver) uses MAJOR.MINOR.PATCH format. MAJOR changes break backward compatibility, MINOR adds features without breaking changes, PATCH fixes bugs without new features.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">When should I increment the major version? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Increment MAJOR when you make incompatible API changes — removing functions, changing function signatures or changing behavior in ways that break existing code.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What does a 0.x.x version mean? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Versions below 1.0.0 are considered unstable. Anything may change at any time. Once you reach 1.0.0, you commit to the semver backward compatibility guarantees.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/packages/npm-search/" class="related-card"><span>📦</span><span class="related-card-name">npm Package Search</span></a><a href="/packages/pypi-search/" class="related-card"><span>🐍</span><span class="related-card-name">PyPI Package Search</span></a><a href="/packages/license-checker/" class="related-card"><span>📜</span><span class="related-card-name">License Checker</span></a><a href="/packages/changelog/" class="related-card"><span>📝</span><span class="related-card-name">Changelog Generator</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

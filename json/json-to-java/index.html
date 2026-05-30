@@ -57,5 +57,94 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
 function javaType(v,k){if(v===null)return'Object';if(typeof v==='string')return'String';if(Number.isInteger(v))return'int';if(typeof v==='number')return'double';if(typeof v==='boolean')return'boolean';if(Array.isArray(v))return'List<Object>';if(typeof v==='object')return k.charAt(0).toUpperCase()+k.slice(1);return'Object'}
 function genJava(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))return'';const fields=Object.entries(obj).map(([k,v])=>'    private '+javaType(v,k)+' '+k+';');const getters=Object.entries(obj).map(([k,v])=>{const t=javaType(v,k);const cap=k.charAt(0).toUpperCase()+k.slice(1);return'    public '+t+' get'+cap+'() { return '+k+'; }\n    public void set'+cap+'('+t+' '+k+') { this.'+k+' = '+k+'; }'});return'public class '+name+' {\n\n'+fields.join('\n')+'\n\n'+getters.join('\n\n')+'\n}'}
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>JSON to Java Generator converts JSON objects into Java POJO (Plain Old Java Object) classes with private fields, getters and setters. Instantly scaffold Java data models from any JSON structure without writing boilerplate manually.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">{"id":1,"name":"Alice","active":true}</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">public class Root {
+  private int id;
+  private String name;
+  private boolean active;
+  // getters and setters...
+}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Generate Java model classes from API responses</li><li>Scaffold data objects from JSON samples</li><li>Create POJOs for JSON deserialization</li><li>Bootstrap Java projects with data classes</li><li>Convert API documentation JSON to Java</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is a POJO in Java? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">A POJO (Plain Old Java Object) is a simple Java class with private fields and public getters/setters. It's the standard way to represent data in Java, especially for JSON serialization with libraries like Jackson or Gson.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I deserialize JSON into a Java POJO? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use Jackson: ObjectMapper mapper = new ObjectMapper(); MyClass obj = mapper.readValue(jsonString, MyClass.class); Or Gson: Gson gson = new Gson(); MyClass obj = gson.fromJson(jsonString, MyClass.class);</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Does it handle nested objects? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The generator handles flat objects. For nested objects, it identifies nested object types by key name and generates a type reference. Create separate classes for nested types manually.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/json/json-to-kotlin/" class="related-card"><span>🤖</span><span class="related-card-name">JSON to Kotlin</span></a><a href="/json/json-to-swift/" class="related-card"><span>🍎</span><span class="related-card-name">JSON to Swift</span></a><a href="/json/formatter/" class="related-card"><span>🟦</span><span class="related-card-name">JSON Formatter</span></a><a href="/json/validator/" class="related-card"><span>✅</span><span class="related-card-name">JSON Validator</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body>
 </html>

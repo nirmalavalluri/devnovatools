@@ -44,4 +44,92 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>async function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');o.textContent='Looking up...';try{const r=await fetch('https://ipapi.co/'+(i||'json')+'/json/');const d=await r.json();if(d.error){o.textContent='\u2717 '+d.reason;return}o.textContent='IP Address:  '+d.ip+'\nCity:        '+(d.city||'N/A')+'\nRegion:      '+(d.region||'N/A')+'\nCountry:     '+(d.country_name||'N/A')+' ('+d.country+')'+'\nTimezone:    '+(d.timezone||'N/A')+'\nISP/Org:     '+(d.org||'N/A')+'\nCoordinates: '+(d.latitude||'?')+', '+(d.longitude||'?')+'\nCurrency:    '+(d.currency||'N/A')+'\nLanguages:   '+(d.languages||'N/A');document.getElementById('status').textContent='\u2713 Found'}catch(e){o.textContent='\u2717 '+e.message}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>IP Geolocation identifies the physical location of any IP address — including city, region, country, timezone, ISP and coordinates. Simply enter an IP address or leave blank to geolocate your own IP instantly.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">8.8.8.8</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">IP: 8.8.8.8
+City: Mountain View
+Country: United States
+ISP: Google LLC
+Timezone: America/Los_Angeles</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Find the approximate location of a server</li><li>Identify the ISP behind an IP address</li><li>Debug geo-targeted content delivery issues</li><li>Verify VPN or proxy server locations</li><li>Analyze traffic sources by geography</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">How accurate is IP geolocation? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">City-level accuracy is typically 50-75%. Country-level accuracy is 95%+. Mobile IPs and VPNs may show inaccurate locations. Exact street-level location is never possible from IP alone.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I look up my own IP? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — leave the input blank and click Lookup to automatically detect and geolocate your current IP address.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is geolocation data real-time? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The IP-to-location mapping database is updated regularly, but IP ownership changes can take weeks to reflect. ISP and organization data is generally accurate.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/network/dns-lookup/" class="related-card"><span>🌐</span><span class="related-card-name">DNS Lookup</span></a><a href="/network/whois/" class="related-card"><span>🔍</span><span class="related-card-name">WHOIS Lookup</span></a><a href="/network/cidr/" class="related-card"><span>📡</span><span class="related-card-name">CIDR Calculator</span></a><a href="/network/port-reference/" class="related-card"><span>🔌</span><span class="related-card-name">Port Reference</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

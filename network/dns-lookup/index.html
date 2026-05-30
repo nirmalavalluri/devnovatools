@@ -44,4 +44,91 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>async function run(){const d=document.getElementById('input').value.trim();const t=document.getElementById('rtype').value;const o=document.getElementById('output');if(!d){o.textContent='Enter a domain name';return}o.textContent='Looking up...';try{const r=await fetch('https://cloudflare-dns.com/dns-query?name='+encodeURIComponent(d)+'&type='+t,{headers:{'Accept':'application/dns-json'}});const data=await r.json();if(!data.Answer?.length){o.textContent='No '+t+' records found for '+d;document.getElementById('status').textContent='No records';return}o.textContent=data.Answer.map(rec=>'Name:  '+rec.name+'\nType:  '+rec.type+'\nValue: '+rec.data+'\nTTL:   '+rec.TTL+'s').join('\n\n');document.getElementById('status').textContent=data.Answer.length+' record(s)'}catch(e){o.textContent='\u2717 '+e.message}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>DNS Lookup queries the Domain Name System to retrieve DNS records for any domain. It uses Cloudflare's DNS over HTTPS API to fetch A, AAAA, CNAME, MX, NS, TXT and SOA records instantly — no software installation needed.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Domain: google.com | Type: A</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Name: google.com
+Type: A
+Value: 142.250.80.46
+TTL: 300s</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Verify DNS propagation after domain changes</li><li>Debug email delivery issues with MX records</li><li>Check if a CNAME is pointing correctly</li><li>Find nameservers for any domain</li><li>Inspect TXT records for SPF and DKIM settings</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What DNS record types can I look up? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">You can look up A, AAAA, CNAME, MX, NS, TXT, and SOA records. A records map domains to IPv4 addresses, AAAA to IPv6, MX for mail servers, NS for nameservers, and TXT for verification strings.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Why do DNS changes take time to propagate? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">DNS records have a TTL (Time To Live) value. Until that time expires, old records are cached by resolvers worldwide. Changes typically propagate within 1-48 hours depending on TTL settings.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is this tool querying live DNS? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — this tool queries Cloudflare's public DNS resolver (1.1.1.1) in real time, so results reflect the current live DNS state for the domain.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/network/whois/" class="related-card"><span>🔍</span><span class="related-card-name">WHOIS Lookup</span></a><a href="/network/ssl-expiry/" class="related-card"><span>🔒</span><span class="related-card-name">SSL Certificate Checker</span></a><a href="/network/cidr/" class="related-card"><span>📡</span><span class="related-card-name">CIDR Calculator</span></a><a href="/network/http-inspector/" class="related-card"><span>🔭</span><span class="related-card-name">HTTP Response Inspector</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

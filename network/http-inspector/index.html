@@ -44,4 +44,91 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>async function run(){const url=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!url){o.textContent='Enter a URL';return}o.textContent='Fetching headers from '+url+'...';try{const r=await fetch(url,{mode:'cors'});const headers=[...r.headers.entries()];o.textContent='Status: '+r.status+' '+r.statusText+'\nURL: '+r.url+'\n\n\u2500\u2500 RESPONSE HEADERS \u2500\u2500\n'+headers.map(([k,v])=>k.padEnd(28)+v).join('\n');document.getElementById('status').textContent=r.status+' \u2014 '+headers.length+' headers'}catch(e){o.textContent='\u2717 Could not fetch headers\nError: '+e.message+'\n\nSome URLs block browser requests due to CORS.\nTry: https://api.github.com or https://httpbin.org/get'}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>HTTP Response Inspector fetches and displays all HTTP response headers from any public URL. Quickly check status codes, content types, CORS policies, caching headers, security headers and server information.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">https://api.github.com</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Status: 200 OK
+content-type: application/json
+x-ratelimit-limit: 60
+cache-control: public, max-age=60</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Debug CORS issues in web applications</li><li>Check if security headers are properly set</li><li>Verify caching headers (Cache-Control, ETag)</li><li>Inspect redirect chains</li><li>Check content-type for API responses</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">Why does some URL inspection fail? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Some servers block cross-origin requests (CORS policy). If a URL doesn't allow browser requests from other domains, inspection will fail. Try public APIs like api.github.com.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is a CORS header? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Access-Control-Allow-Origin is a CORS header that tells browsers which domains are allowed to make requests. Missing or misconfigured CORS headers are a common cause of API failures in web apps.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What are important security headers to check? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Look for: Strict-Transport-Security (HSTS), X-Content-Type-Options, X-Frame-Options, Content-Security-Policy and X-XSS-Protection. Missing these headers are security vulnerabilities.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/network/dns-lookup/" class="related-card"><span>🌐</span><span class="related-card-name">DNS Lookup</span></a><a href="/network/ssl-expiry/" class="related-card"><span>🔒</span><span class="related-card-name">SSL Certificate Checker</span></a><a href="/network/url-parser/" class="related-card"><span>🔗</span><span class="related-card-name">URL Parser</span></a><a href="/apitesting/rest-client/" class="related-card"><span>🔵</span><span class="related-card-name">REST Client</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

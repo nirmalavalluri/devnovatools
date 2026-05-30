@@ -45,4 +45,88 @@
 <script src="/assets/layout.js"></script>
 <script>const PORTS={'20':'FTP Data','21':'FTP Control','22':'SSH / SFTP','23':'Telnet','25':'SMTP (mail)','53':'DNS','67':'DHCP Server','68':'DHCP Client','80':'HTTP','110':'POP3','143':'IMAP','443':'HTTPS','445':'SMB (Windows)','465':'SMTPS','587':'SMTP Submission','636':'LDAPS','993':'IMAPS','995':'POP3S','1433':'Microsoft SQL Server','1521':'Oracle Database','2181':'Apache ZooKeeper','3000':'Dev Server (Node/React)','3306':'MySQL / MariaDB','3389':'RDP (Remote Desktop)','4200':'Angular Dev Server','5000':'Flask Dev Server','5432':'PostgreSQL','5672':'RabbitMQ','5900':'VNC Remote Desktop','6379':'Redis','6443':'Kubernetes API Server','8080':'HTTP Alternate','8443':'HTTPS Alternate','8888':'Jupyter Notebook','9000':'SonarQube / PHP-FPM','9090':'Prometheus','9200':'Elasticsearch HTTP','9300':'Elasticsearch Cluster','27017':'MongoDB','27018':'MongoDB Shard','50070':'Hadoop NameNode'};
 function run(){const q=document.getElementById('input').value.trim();const o=document.getElementById('output');const m=Object.entries(PORTS).filter(([p,s])=>!q||p.includes(q)||s.toLowerCase().includes(q.toLowerCase()));if(!m.length){o.textContent='No results for "'+q+'"';return}o.textContent='Port      Service\n'+'\u2500'.repeat(40)+'\n'+m.map(([p,s])=>p.padEnd(10)+s).join('\n');document.getElementById('status').textContent=m.length+' port(s)'}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Port Reference is a searchable directory of all common TCP and UDP port numbers and their associated services. Quickly look up what runs on any port — from well-known ports like 80 (HTTP) and 443 (HTTPS) to database and development ports.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Search: 5432</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">5432    PostgreSQL</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Identify what service runs on a specific port</li><li>Configure firewall rules correctly</li><li>Debug connection refused errors</li><li>Set up port forwarding rules</li><li>Learn about common network services</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is a port number? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">A port is a virtual endpoint for network communication. Each service (HTTP, FTP, SSH) listens on a specific port number so that multiple services can run on the same IP address.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the difference between TCP and UDP? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">TCP provides reliable, ordered delivery (web, email). UDP is faster but unreliable — used for streaming, gaming and DNS where speed matters more than guaranteed delivery.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What ports should I keep closed on my server? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Close any port you don't actively use. High-risk open ports include 21 (FTP), 23 (Telnet), 3389 (RDP) and 445 (SMB). Always use firewalls to restrict access.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/network/dns-lookup/" class="related-card"><span>🌐</span><span class="related-card-name">DNS Lookup</span></a><a href="/network/cidr/" class="related-card"><span>📡</span><span class="related-card-name">CIDR Calculator</span></a><a href="/network/http-inspector/" class="related-card"><span>🔭</span><span class="related-card-name">HTTP Response Inspector</span></a><a href="/network/ssl-expiry/" class="related-card"><span>🔒</span><span class="related-card-name">SSL Certificate Checker</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

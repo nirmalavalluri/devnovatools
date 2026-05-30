@@ -48,4 +48,90 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>function run(){const a=parseInt(document.getElementById('va').value);const b=parseInt(document.getElementById('vb').value);const op=document.getElementById('op').value;const o=document.getElementById('output');if(isNaN(a)){o.textContent='\u2717 Invalid Value A';return}const ops={and:a&b,or:a|b,xor:a^b,not:~a,ls:a<<(isNaN(b)?0:b),rs:a>>(isNaN(b)?0:b)};const result=ops[op];const labels={and:'&',or:'|',xor:'^',not:'~',ls:'<<',rs:'>>'};o.textContent='A = '+a+'   (binary: '+a.toString(2).padStart(8,'0')+')\nB = '+(isNaN(b)?'N/A':b+'   (binary: '+b.toString(2).padStart(8,'0')+')')+'\n\nOperation: A '+labels[op]+' '+(op!=='not'?'B':'')+'\n\nResult: '+(result>>>0)+'\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nDecimal: '+result+'\nBinary:  '+(result>>>0).toString(2).padStart(8,'0')+'\nHex:     0x'+(result>>>0).toString(16).toUpperCase()+'\nOctal:   '+(result>>>0).toString(8)}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Bitwise Calculator performs bit-level operations on integers — AND, OR, XOR, NOT, left shift and right shift. Results are displayed in decimal, binary, hexadecimal and octal, making it essential for low-level programming, embedded systems and flag manipulation.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">A=255, Op=AND, B=170</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Result: 170
+Binary: 10101010
+Hex: 0xAA</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Debug bitwise flag operations in code</li><li>Calculate permission bitmasks</li><li>Understand bitwise operators in programming</li><li>Perform binary arithmetic operations</li><li>Design efficient data encoding schemes</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is a bitwise AND operation? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">AND compares each bit position of two numbers and returns 1 only if both bits are 1. It's used for masking — checking if specific flags are set in a bitmask.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">When would I use XOR in programming? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">XOR is used for toggling bits (flip a flag), simple encryption, detecting differences, and classic tricks like swapping two variables without a temp variable.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is a bitmask? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">A bitmask uses individual bits of an integer to store multiple boolean flags compactly. File permissions (rwxrwxrwx), keyboard modifiers and feature flags are classic bitmask uses.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/encoding/binary-text/" class="related-card"><span>01</span><span class="related-card-name">Binary Text Converter</span></a><a href="/encoding/hex/" class="related-card"><span>0x</span><span class="related-card-name">Hex Encoder/Decoder</span></a><a href="/encoding/rot13/" class="related-card"><span>🔄</span><span class="related-card-name">ROT13 Encoder</span></a><a href="/encoding/aes/" class="related-card"><span>⚙️</span><span class="related-card-name">AES Encrypt/Decrypt</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

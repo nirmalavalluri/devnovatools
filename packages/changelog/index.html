@@ -53,4 +53,91 @@
 <script>function run(){}
 function generate(){const proj=document.getElementById('proj').value||'my-project';const ver=document.getElementById('ver').value||'1.0.0';const repo=document.getElementById('repo').value||'https://github.com/username/'+proj;const date=new Date().toISOString().split('T')[0];const changelog='# Changelog\n\nAll notable changes to **'+proj+'** are documented in this file.\n\nThe format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),\nand this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).\n\n---\n\n## [Unreleased]\n\n### Added\n- Upcoming feature or improvement\n\n### Changed\n- Planned change\n\n### Fixed\n- Upcoming bug fix\n\n---\n\n## ['+ver+'] - '+date+'\n\n### Added\n- Initial public release\n- Feature A: description of what it does and why\n- Feature B: description of what it does and why\n\n### Changed\n- Updated dependency X from 1.0 to 2.0\n- Improved performance of Y operation\n\n### Fixed\n- Fixed bug where Z happened under specific conditions\n- Resolved issue #123: description\n\n### Removed\n- Deprecated function `oldFunction()` removed\n- Removed support for Node.js < 18\n\n---\n\n## [0.1.0] - '+date+'\n\n### Added\n- Initial development version\n\n---\n\n[Unreleased]: '+repo+'/compare/v'+ver+'...HEAD\n['+ver+']: '+repo+'/releases/tag/v'+ver+'\n[0.1.0]: '+repo+'/releases/tag/v0.1.0';document.getElementById('output').textContent=changelog;document.getElementById('status').textContent='CHANGELOG.md generated'}
 document.addEventListener('DOMContentLoaded',generate)</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Changelog Generator creates professional CHANGELOG.md files following the Keep a Changelog standard and Semantic Versioning. Enter your project name, version and GitHub/GitLab URL to generate a complete, properly formatted changelog template.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Project: my-app | Version: 1.0.0 | Repo: github.com/user/my-app</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code"># Changelog
+## [1.0.0] - 2026-01-01
+### Added
+- Initial release</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Start a new project changelog from scratch</li><li>Generate changelog template for first release</li><li>Create consistent changelog format across projects</li><li>Document version history for open source projects</li><li>Set up comparison links between versions</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is Keep a Changelog? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Keep a Changelog (keepachangelog.com) is a standard format for CHANGELOG.md files. It organizes changes by version with sections: Added, Changed, Deprecated, Removed, Fixed, Security.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Where should I put my CHANGELOG.md? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">In the root of your repository alongside README.md and package.json. Most documentation sites and GitHub automatically link to it from the releases page.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Do I need a changelog for every project? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">For public packages and libraries, yes — users need to know what changed between versions. For internal tools, it's still helpful. For personal projects, it's optional but good practice.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/packages/npm-search/" class="related-card"><span>📦</span><span class="related-card-name">npm Package Search</span></a><a href="/packages/pypi-search/" class="related-card"><span>🐍</span><span class="related-card-name">PyPI Package Search</span></a><a href="/packages/semver/" class="related-card"><span>🔢</span><span class="related-card-name">Semver Calculator</span></a><a href="/text/git-commit/" class="related-card"><span>🐙</span><span class="related-card-name">Git Commit Builder</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

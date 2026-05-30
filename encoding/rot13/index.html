@@ -44,4 +44,88 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>function run(){const i=document.getElementById('input').value;document.getElementById('output').textContent=i.replace(/[a-zA-Z]/g,c=>{const b=c<='Z'?65:97;return String.fromCharCode(((c.charCodeAt(0)-b+13)%26)+b)});document.getElementById('status').textContent='ROT13 applied (it is symmetric \u2014 apply again to reverse)'}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>ROT13 Encoder applies the ROT13 Caesar cipher to any text — rotating each letter 13 positions in the alphabet. It's a symmetric cipher, meaning applying it twice returns the original text. Commonly used to obscure spoilers and puzzle answers.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Hello World</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Uryyb Jbeyq</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Obscure spoilers in forum posts</li><li>Encode puzzle answers for later reveal</li><li>Understand basic substitution ciphers</li><li>Test character rotation logic</li><li>Encode text for fun challenges</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">Is ROT13 a secure cipher? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">No — ROT13 provides zero security. It's trivially reversible and should never be used for sensitive data. It's useful only for casual text obfuscation like hiding spoilers.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I decode ROT13? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Apply ROT13 again! Since rotating 13 positions twice = 26 (full alphabet), encoding and decoding are the same operation. Just paste the ROT13 text and run it again.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is a Caesar cipher? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">A Caesar cipher shifts each letter by a fixed number. ROT13 is a Caesar cipher with a shift of 13. Julius Caesar historically used a shift of 3 for military communications.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/encoding/morse/" class="related-card"><span>📡</span><span class="related-card-name">Morse Code Translator</span></a><a href="/encoding/binary-text/" class="related-card"><span>01</span><span class="related-card-name">Binary Text Converter</span></a><a href="/encoding/hex/" class="related-card"><span>0x</span><span class="related-card-name">Hex Encoder/Decoder</span></a><a href="/encoding/aes/" class="related-card"><span>🔐</span><span class="related-card-name">AES Encrypt/Decrypt</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

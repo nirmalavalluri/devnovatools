@@ -47,4 +47,88 @@
 <script>async function run(){}
 async function encrypt(){const text=document.getElementById('input').value;const pass=document.getElementById('key').value;const o=document.getElementById('output');if(!text||!pass){o.textContent='Enter both text and password';return}try{const enc=new TextEncoder();const keyMat=await crypto.subtle.importKey('raw',enc.encode(pass),{name:'PBKDF2'},false,['deriveKey']);const salt=crypto.getRandomValues(new Uint8Array(16));const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:100000,hash:'SHA-256'},keyMat,{name:'AES-GCM',length:256},false,['encrypt']);const iv=crypto.getRandomValues(new Uint8Array(12));const data=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,enc.encode(text));const result=new Uint8Array([...salt,...iv,...new Uint8Array(data)]);o.textContent=btoa(String.fromCharCode(...result));document.getElementById('status').className='badge badge-success';document.getElementById('status').textContent='\u2713 Encrypted with AES-256-GCM'}catch(e){o.textContent='\u2717 '+e.message}}
 async function decrypt(){const cipher=document.getElementById('input').value.trim();const pass=document.getElementById('key').value;const o=document.getElementById('output');if(!cipher||!pass){o.textContent='Enter ciphertext and password';return}try{const bytes=new Uint8Array(atob(cipher).split('').map(c=>c.charCodeAt(0)));const salt=bytes.slice(0,16);const iv=bytes.slice(16,28);const data=bytes.slice(28);const enc=new TextEncoder();const keyMat=await crypto.subtle.importKey('raw',enc.encode(pass),{name:'PBKDF2'},false,['deriveKey']);const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:100000,hash:'SHA-256'},keyMat,{name:'AES-GCM',length:256},false,['decrypt']);const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv},key,data);o.textContent=new TextDecoder().decode(plain);document.getElementById('status').className='badge badge-success';document.getElementById('status').textContent='\u2713 Decrypted'}catch(e){o.textContent='\u2717 Decryption failed \u2014 wrong password or corrupted data'}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>AES Encrypt/Decrypt uses the AES-256-GCM algorithm via the browser's Web Crypto API to encrypt and decrypt text with a password. All encryption happens entirely in your browser — no data is ever sent to any server.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Text: Hello World | Password: MySecret123</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Encrypted: U2FsdGVkX1... (base64 ciphertext)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Encrypt sensitive text before sharing</li><li>Decrypt messages encrypted with AES-GCM</li><li>Test AES encryption in web applications</li><li>Generate encrypted config values</li><li>Learn about modern symmetric encryption</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is AES-256-GCM? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">AES-256-GCM is an authenticated encryption algorithm using a 256-bit key. GCM (Galois/Counter Mode) provides both confidentiality and integrity verification — it detects if the ciphertext was tampered with.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How secure is this tool? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">This tool uses the browser's native Web Crypto API with PBKDF2 key derivation (100,000 iterations) and a random salt. The security depends on the strength of your password.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I decrypt on another device? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — as long as you have the same ciphertext and password. The encryption is standard AES-256-GCM compatible with any implementation using the same PBKDF2 parameters.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/encoding/bcrypt/" class="related-card"><span>🔑</span><span class="related-card-name">bcrypt Generator</span></a><a href="/encoding/password-strength/" class="related-card"><span>🔐</span><span class="related-card-name">Password Strength Checker</span></a><a href="/encoding/totp/" class="related-card"><span>⏱️</span><span class="related-card-name">TOTP Generator</span></a><a href="/encoding/url-safe-base64/" class="related-card"><span>🔒</span><span class="related-card-name">URL Safe Base64</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

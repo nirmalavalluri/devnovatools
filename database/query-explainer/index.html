@@ -44,4 +44,90 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>function run(){const sql=document.getElementById('input').value.trim().toUpperCase();const o=document.getElementById('output');if(!sql){o.textContent='';return}const e=[];if(sql.includes('SELECT')){e.push('1\ufe0f\u20e3 SELECT\n   Retrieves specified columns from the database.\n   Use * for all columns, or name specific ones.');if(sql.includes('DISTINCT'))e.push('   + DISTINCT: Removes duplicate rows from results')}if(sql.includes('FROM'))e.push('2\ufe0f\u20e3 FROM\n   Specifies the primary table(s) to query from');if(sql.includes('LEFT JOIN'))e.push('3\ufe0f\u20e3 LEFT JOIN\n   Returns ALL rows from left table + matched rows from right.\n   Unmatched right rows return NULL');else if(sql.includes('RIGHT JOIN'))e.push('3\ufe0f\u20e3 RIGHT JOIN\n   Returns ALL rows from right table + matched from left');else if(sql.includes('INNER JOIN'))e.push('3\ufe0f\u20e3 INNER JOIN\n   Returns only rows that match in BOTH tables');else if(sql.includes('CROSS JOIN'))e.push('3\ufe0f\u20e3 CROSS JOIN\n   Returns every combination of rows from both tables');else if(sql.includes('JOIN'))e.push('3\ufe0f\u20e3 JOIN\n   Combines rows from multiple tables');if(sql.includes('WHERE'))e.push('4\ufe0f\u20e3 WHERE\n   Filters rows BEFORE grouping.\n   Cannot use aggregate functions here (use HAVING instead)');if(sql.includes('GROUP BY'))e.push('5\ufe0f\u20e3 GROUP BY\n   Groups rows sharing the same values.\n   Required when using aggregate functions (COUNT, SUM, AVG)');if(sql.includes('HAVING'))e.push('6\ufe0f\u20e3 HAVING\n   Filters groups AFTER GROUP BY.\n   Can use aggregate functions (unlike WHERE)');if(sql.includes('ORDER BY')){if(sql.includes('DESC'))e.push('7\ufe0f\u20e3 ORDER BY ... DESC\n   Sorts results in descending order (highest first)');else e.push('7\ufe0f\u20e3 ORDER BY ... ASC\n   Sorts results in ascending order (lowest first)')}if(sql.includes('LIMIT'))e.push('8\ufe0f\u20e3 LIMIT\n   Restricts the number of rows returned');if(sql.includes('OFFSET'))e.push('   + OFFSET: Skips N rows before returning results (pagination)');const agg=[];if(sql.includes('COUNT('))agg.push('COUNT() \u2014 counts number of rows');if(sql.includes('SUM('))agg.push('SUM() \u2014 adds up numeric values');if(sql.includes('AVG('))agg.push('AVG() \u2014 calculates average value');if(sql.includes('MAX('))agg.push('MAX() \u2014 finds the largest value');if(sql.includes('MIN('))agg.push('MIN() \u2014 finds the smallest value');if(agg.length)e.push('\u2699\ufe0f Aggregate Functions:\n   '+agg.join('\n   '));o.textContent=e.length?e.join('\n\n'):'No recognized SQL clauses found.\nPaste a valid SELECT statement to analyze.'}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>SQL Query Explainer translates SQL query clauses into plain English explanations. Understand what each part of a complex query does — SELECT, FROM, JOIN types, WHERE, GROUP BY, HAVING, ORDER BY — without needing deep SQL knowledge.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">SELECT name FROM users LEFT JOIN orders ON users.id=orders.user_id WHERE active=1 GROUP BY users.id ORDER BY name DESC LIMIT 10</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">1️⃣ SELECT — Retrieve specific columns
+3️⃣ LEFT JOIN — All left rows + matched right rows
+4️⃣ WHERE — Filter rows before grouping</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Learn SQL by understanding real queries</li><li>Debug complex queries by reading explanations</li><li>Onboard junior developers to SQL concepts</li><li>Document query logic in human-readable form</li><li>Understand legacy queries in unfamiliar codebases</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is the difference between WHERE and HAVING? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">WHERE filters individual rows before grouping. HAVING filters groups after GROUP BY. You can use aggregate functions (COUNT, SUM) in HAVING but not in WHERE.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the difference between LEFT JOIN and INNER JOIN? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">INNER JOIN returns only rows with matches in both tables. LEFT JOIN returns ALL rows from the left table, with NULL for unmatched right table columns.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">In what order does SQL execute clauses? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">SQL executes in this order: FROM → JOIN → WHERE → GROUP BY → HAVING → SELECT → ORDER BY → LIMIT. Understanding this explains why you can't use aliases in WHERE but can in ORDER BY.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/database/sql-to-orm/" class="related-card"><span>🗄️</span><span class="related-card-name">SQL to ORM Generator</span></a><a href="/database/schema-visualizer/" class="related-card"><span>📐</span><span class="related-card-name">DB Schema Visualizer</span></a><a href="/database/json-to-sql/" class="related-card"><span>🔄</span><span class="related-card-name">JSON to SQL Insert</span></a><a href="/database/sql-to-json/" class="related-card"><span>🔄</span><span class="related-card-name">SQL Results to JSON</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

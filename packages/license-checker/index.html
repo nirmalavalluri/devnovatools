@@ -45,4 +45,91 @@
 <script src="/assets/layout.js"></script>
 <script>const L={'MIT':{name:'MIT License',p:['Commercial use','Modification','Distribution','Private use','Sublicensing'],c:['Include license and copyright notice'],f:[],d:'A short and simple permissive license. Do anything with the code as long as you include the original copyright and license. Very popular for libraries.'},'Apache-2.0':{name:'Apache License 2.0',p:['Commercial use','Modification','Distribution','Patent use','Private use'],c:['Include license and copyright notice','State changes to the code'],f:['Trademark use'],d:'Similar to MIT but also provides an express grant of patent rights from contributors to users. Used by many major open source projects.'},'GPL-3.0':{name:'GNU GPL v3.0',p:['Commercial use','Modification','Distribution','Patent use'],c:['Disclose source code','Include license','Same license for modifications','State changes'],f:['Sublicensing'],d:'Copyleft license. Modified versions MUST also be released under GPL-3.0. Ensures all derivatives remain open source. Used by Linux, WordPress.'},'LGPL':{name:'GNU Lesser GPL',p:['Commercial use','Modification','Distribution','Patent use'],c:['Disclose source (library portion only)','Include license','Same license for modifications'],f:[],d:'Like GPL but allows linking to closed-source applications. Use when you want your library to be freely used without forcing apps to be open source.'},'BSD-3-Clause':{name:'BSD 3-Clause License',p:['Commercial use','Modification','Distribution','Private use'],c:['Include license and copyright','Preserve all notices'],f:['Use contributor names for endorsement without permission'],d:'Very permissive like MIT. The third clause prohibits using contributor names for marketing without permission. Used by BSD Unix, some Google projects.'},'ISC':{name:'ISC License',p:['Commercial use','Modification','Distribution','Private use'],c:['Include license and copyright'],f:[],d:'Functionally equivalent to MIT but shorter. Considered legally equivalent to the Simplified BSD License. Very clean and simple.'},'CC0':{name:'Creative Commons Zero (Public Domain)',p:['Commercial use','Modification','Distribution','Private use'],c:[],f:[],d:'The author waives all copyright to the fullest extent possible. Essentially public domain. Good for datasets, docs and content — not recommended for code.'},'MPL-2.0':{name:'Mozilla Public License 2.0',p:['Commercial use','Modification','Distribution','Patent use'],c:['Disclose source (file level)','Include license'],f:[],d:'A weak copyleft license. Modified files must be open-sourced but you can combine with proprietary code. Used by Firefox, LibreOffice.'}};
 function run(){const q=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!q){o.textContent='Available licenses:\n\n'+Object.entries(L).map(([k,v])=>k.padEnd(15)+v.name).join('\n');return}const key=Object.keys(L).find(k=>k.toLowerCase()===q.toLowerCase()||L[k].name.toLowerCase().includes(q.toLowerCase()));if(!key){o.textContent='\u2717 License "'+q+'" not found.\n\nAvailable: '+Object.keys(L).join(', ')+'\n\nFull SPDX list: https://spdx.org/licenses/';return}const l=L[key];o.textContent=[l.name,'','Description:\n  '+l.d,'','\u2705 Permissions:\n  '+l.p.join('\n  '),'\u26a0\ufe0f Conditions:\n  '+(l.c.join('\n  ')||'None'),'\u274c Forbidden:\n  '+(l.f.join('\n  ')||'None'),'','SPDX identifier: '+key,'Full license: https://opensource.org/licenses/'+key].join('\n')}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>License Checker provides detailed information about open source software licenses — permissions, conditions, limitations and plain-English explanations. Look up MIT, Apache-2.0, GPL-3.0, BSD and more to understand what you can and cannot do.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">MIT</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">MIT License
+✅ Commercial use, Modification, Distribution
+⚠️ Include license and copyright
+❌ No restrictions</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Check if a license allows commercial use</li><li>Understand copyleft requirements before using a library</li><li>Verify license compatibility in your project</li><li>Learn what attribution is required</li><li>Decide which license to use for your project</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">Can I use MIT-licensed code in commercial projects? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — the MIT license is very permissive. You can use, modify and distribute MIT code in commercial projects as long as you include the original copyright notice and license text.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the difference between MIT and Apache-2.0? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Both are permissive licenses. Apache-2.0 additionally includes an explicit grant of patent rights from contributors, which provides better legal protection for users of the software.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I combine GPL and MIT code? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">MIT code can be combined with GPL code, but the combined work must be released under GPL. This is why many companies avoid GPL dependencies — it may require open-sourcing their entire application.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/packages/npm-search/" class="related-card"><span>📦</span><span class="related-card-name">npm Package Search</span></a><a href="/packages/pypi-search/" class="related-card"><span>🐍</span><span class="related-card-name">PyPI Package Search</span></a><a href="/packages/semver/" class="related-card"><span>🔢</span><span class="related-card-name">Semver Calculator</span></a><a href="/packages/changelog/" class="related-card"><span>📝</span><span class="related-card-name">Changelog Generator</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

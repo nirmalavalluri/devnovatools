@@ -55,5 +55,93 @@ function clearAll(){
 }
 function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}try{const u=new URL(i);const params=[...u.searchParams.entries()];o.textContent=['Full URL:   '+u.href,'Protocol:  '+u.protocol,'Host:      '+u.host,'Hostname:  '+u.hostname,'Port:      '+(u.port||'(default)'),`Path:      ${u.pathname}`,'Search:    '+(u.search||'(none)'),'Hash:      '+(u.hash||'(none)'),'',...(params.length?['Query Parameters:','─'.repeat(30),...params.map(([k,v])=>k.padEnd(20)+v)]:['No query parameters'])].join('\n');document.getElementById('status').textContent=params.length+' param(s)'}catch(e){o.textContent='\u2717 Invalid URL: '+e.message}}
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>URL Parser breaks any URL into its individual components — protocol, hostname, port, path, query parameters and fragment. Instantly understand the structure of complex URLs and extract specific parts for debugging or development.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">https://api.example.com:8080/users?page=1&limit=10#results</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Protocol: https
+Host: api.example.com:8080
+Path: /users
+Query: page=1, limit=10
+Hash: #results</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Debug complex query string parameters</li><li>Extract hostname from a full URL</li><li>Parse redirect URLs for analysis</li><li>Understand API endpoint structure</li><li>Validate URL format and components</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What are query parameters? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Query parameters are key-value pairs appended to a URL after a ? symbol. For example: ?page=1&sort=asc passes "page" and "sort" values to the server or application.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the difference between hostname and host? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Hostname is just the domain name (example.com). Host includes the port if non-standard (example.com:8080). Most URLs use default ports (80 for HTTP, 443 for HTTPS) which are omitted.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is a URL fragment (#)? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The fragment (hash) identifies a specific section within a page. It's processed by the browser only — it's never sent to the server. Common in single-page applications for routing.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/network/dns-lookup/" class="related-card"><span>🌐</span><span class="related-card-name">DNS Lookup</span></a><a href="/network/mime-types/" class="related-card"><span>📄</span><span class="related-card-name">MIME Types Reference</span></a><a href="/network/http-inspector/" class="related-card"><span>🔭</span><span class="related-card-name">HTTP Response Inspector</span></a><a href="/text/curl-to-fetch/" class="related-card"><span>🔗</span><span class="related-card-name">cURL to Fetch</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body>
 </html>

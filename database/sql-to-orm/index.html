@@ -48,4 +48,92 @@ if(orm==='prisma'){o.textContent='model '+model+' {\n'+cols.map(c=>'  '+c.name.p
 else if(orm==='sequelize'){o.textContent="const "+model+" = sequelize.define('"+tableName+"', {\n"+cols.map(c=>'  '+c.name+': { type: DataTypes.'+(tmap.sequelize[c.sqlType]||'STRING')+' }').join(',\n')+'\n});'}
 else{o.textContent='import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";\n\n@Entity("'+tableName+'")\nexport class '+model+' {\n\n'+cols.map(c=>'  @Column()\n  '+c.name+': '+(tmap.typeorm[c.sqlType]||'string')+';').join('\n\n')+'\n}'}
 document.getElementById('status').textContent=cols.length+' column(s) \u2192 '+orm}catch(e){o.textContent='\u2717 '+e.message}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>SQL to ORM Generator converts SQL CREATE TABLE statements into ORM model definitions for Prisma, Sequelize or TypeORM. Save time by automatically generating boilerplate model code from your existing database schema.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(255), email VARCHAR(255));</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">model User {
+  id    Int
+  name  String
+  email String
+}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Migrate existing SQL schemas to Prisma</li><li>Generate Sequelize models from database exports</li><li>Create TypeORM entities from SQL DDL</li><li>Bootstrap new projects with existing schemas</li><li>Convert legacy SQL schemas to modern ORMs</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is an ORM? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">An Object-Relational Mapper (ORM) lets you interact with databases using your programming language instead of raw SQL. Prisma, Sequelize and TypeORM are popular JavaScript/TypeScript ORMs.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Does this support all SQL data types? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The generator supports common types: INT, VARCHAR, TEXT, BOOLEAN, FLOAT, DATETIME, DECIMAL, JSON and more. Complex constraints and foreign keys need manual adjustment after generation.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Which ORM should I choose? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Prisma is recommended for new TypeScript projects — it has great developer experience. Sequelize is battle-tested and framework-agnostic. TypeORM is ideal if you prefer decorator-based models.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/database/schema-visualizer/" class="related-card"><span>📐</span><span class="related-card-name">DB Schema Visualizer</span></a><a href="/database/query-explainer/" class="related-card"><span>🔍</span><span class="related-card-name">Query Explainer</span></a><a href="/database/json-to-sql/" class="related-card"><span>🔄</span><span class="related-card-name">JSON to SQL Insert</span></a><a href="/database/sql-to-json/" class="related-card"><span>🔄</span><span class="related-card-name">SQL Results to JSON</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

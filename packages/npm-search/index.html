@@ -44,4 +44,91 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>async function run(){const q=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!q){o.textContent='Enter a package name to search';return}o.textContent='Searching npm registry...';try{const r=await fetch('https://registry.npmjs.org/'+encodeURIComponent(q));if(!r.ok){o.textContent='\u2717 Package "'+q+'" not found on npm';return}const d=await r.json();const latest=d['dist-tags']?.latest||'?';const v=d.versions?.[latest]||{};const deps=Object.keys(v.dependencies||{});o.textContent=['Package:     '+d.name,'Version:     '+latest,'Description: '+(d.description||'N/A'),'Author:      '+(d.author?.name||v.author?.name||'N/A'),'License:     '+(v.license||d.license||'N/A'),'Homepage:    '+(d.homepage||v.homepage||'N/A'),'Repository:  '+(d.repository?.url?.replace('git+','').replace('.git','')||'N/A'),'Keywords:    '+(d.keywords?.slice(0,6).join(', ')||'N/A'),'Dependencies:'+(deps.length?'\n  '+deps.slice(0,8).join('\n  '):'none'),'','Install Commands:','  npm install '+d.name,'  npm install --save-dev '+d.name,'  yarn add '+d.name,'  pnpm add '+d.name,'','npm page:','  https://www.npmjs.com/package/'+d.name].join('\n');document.getElementById('status').textContent='v'+latest}catch(e){o.textContent='\u2717 '+e.message}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>npm Package Search queries the npm registry to instantly retrieve package details — version, description, license, author, homepage and install commands — for any Node.js/JavaScript package. No need to leave your browser to check npm.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">lodash</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Package: lodash
+Version: 4.17.21
+License: MIT
+Install: npm install lodash</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Quickly look up package details before installing</li><li>Check the latest version of a dependency</li><li>Find the license type of an npm package</li><li>Get the homepage URL of any package</li><li>Verify package author and repository</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">How do I install an npm package? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Run npm install package-name in your project directory. Add --save-dev for development-only dependencies. Use yarn add or pnpm add for those package managers.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the difference between dependencies and devDependencies? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">dependencies are required at runtime (express, react). devDependencies are only needed during development (jest, eslint, typescript). Use --save-dev for dev packages.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I check for outdated packages? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Run npm outdated in your project directory to see all outdated packages with current, wanted and latest versions. Then run npm update to update within semver constraints.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/packages/pypi-search/" class="related-card"><span>🐍</span><span class="related-card-name">PyPI Package Search</span></a><a href="/packages/semver/" class="related-card"><span>🔢</span><span class="related-card-name">Semver Calculator</span></a><a href="/packages/license-checker/" class="related-card"><span>📜</span><span class="related-card-name">License Checker</span></a><a href="/packages/changelog/" class="related-card"><span>📝</span><span class="related-card-name">Changelog Generator</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

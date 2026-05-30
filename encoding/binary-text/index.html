@@ -46,4 +46,88 @@
 <script>function run(){toBin()}
 function toBin(){document.getElementById('output').textContent=document.getElementById('input').value.split('').map(c=>c.charCodeAt(0).toString(2).padStart(8,'0')).join(' ');document.getElementById('status').textContent='Text \u2192 Binary'}
 function toText(){try{document.getElementById('output').textContent=document.getElementById('input').value.trim().replace(/\s+/g,' ').split(' ').map(b=>String.fromCharCode(parseInt(b,2))).join('');document.getElementById('status').textContent='Binary \u2192 Text'}catch(e){document.getElementById('output').textContent='\u2717 Invalid binary input'}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Binary Text Converter translates any text to its binary (base-2) representation and back. Each character is converted to its ASCII/Unicode value and then represented as 8-bit binary groups, making it a great learning tool for understanding how computers store text.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Hi</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">01001000 01101001</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Convert text to binary for learning</li><li>Understand how computers encode characters</li><li>Decode binary strings back to text</li><li>Create binary-encoded messages</li><li>Learn about ASCII and Unicode encoding</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">How does text to binary work? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Each character has a numeric ASCII/Unicode code. For example, "H" = 72 in decimal = 01001000 in binary. The converter takes each character, finds its code point, and represents it in 8-bit binary.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the difference between binary and hex? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Both represent numbers in different bases. Binary uses base-2 (0,1), hex uses base-16 (0-9, A-F). Hex is more compact — two hex digits represent what takes 8 binary digits.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can binary represent all Unicode characters? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — for Unicode characters beyond ASCII (emojis, non-Latin scripts), the binary representation uses more than 8 bits. This tool handles basic ASCII characters (8-bit representation).</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/encoding/hex/" class="related-card"><span>0x</span><span class="related-card-name">Hex Encoder/Decoder</span></a><a href="/encoding/bitwise/" class="related-card"><span>⚙️</span><span class="related-card-name">Bitwise Calculator</span></a><a href="/encoding/rot13/" class="related-card"><span>🔄</span><span class="related-card-name">ROT13 Encoder</span></a><a href="/encoding/url-safe-base64/" class="related-card"><span>🔒</span><span class="related-card-name">URL Safe Base64</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

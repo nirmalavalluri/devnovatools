@@ -57,5 +57,93 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
 function swiftType(v,k){if(v===null)return'Any?';if(typeof v==='string')return'String';if(Number.isInteger(v))return'Int';if(typeof v==='number')return'Double';if(typeof v==='boolean')return'Bool';if(Array.isArray(v))return'[Any]';if(typeof v==='object')return k.charAt(0).toUpperCase()+k.slice(1);return'Any'}
 function genSwift(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))return'';const fields=Object.entries(obj).map(([k,v])=>'    let '+k+': '+swiftType(v,k));return'import Foundation\n\nstruct '+name+': Codable {\n'+fields.join('\n')+'\n}'}
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>JSON to Swift Generator converts JSON objects into Swift structs conforming to the Codable protocol. Swift Codable structs can be decoded from JSON with just two lines of code — ideal for iOS and macOS development.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">{"id":1,"name":"Alice","active":true}</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">struct Root: Codable {
+  let id: Int
+  let name: String
+  let active: Bool
+}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Generate Swift structs from API responses</li><li>Scaffold iOS data models from JSON</li><li>Create Codable types for URLSession</li><li>Convert API documentation to Swift models</li><li>Bootstrap Swift projects with data types</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is the Swift Codable protocol? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Codable (Encodable + Decodable) is a Swift protocol that enables automatic JSON encoding/decoding. Structs that conform to Codable can be decoded with: let obj = try JSONDecoder().decode(Root.self, from: jsonData)</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I decode JSON in Swift? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">let decoder = JSONDecoder(); let obj = try decoder.decode(Root.self, from: data). Use JSONDecoder.KeyDecodingStrategy.convertFromSnakeCase if your JSON uses snake_case keys.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Should I use struct or class for Swift data models? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use struct for data models — they're value types (copied when assigned), which prevents many bugs caused by shared mutable state. Use class only when you need reference semantics or inheritance.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/json/json-to-java/" class="related-card"><span>☕</span><span class="related-card-name">JSON to Java</span></a><a href="/json/json-to-kotlin/" class="related-card"><span>🤖</span><span class="related-card-name">JSON to Kotlin</span></a><a href="/json/formatter/" class="related-card"><span>🟦</span><span class="related-card-name">JSON Formatter</span></a><a href="/json/validator/" class="related-card"><span>✅</span><span class="related-card-name">JSON Validator</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body>
 </html>

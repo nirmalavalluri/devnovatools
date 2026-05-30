@@ -48,4 +48,88 @@ const R=Object.fromEntries(Object.entries(M).filter(([k])=>k!==' ').map(([k,v])=
 function run(){encode()}
 function encode(){const i=document.getElementById('input').value.toUpperCase();document.getElementById('output').textContent=i.split('').map(c=>M[c]!==undefined?M[c]:'?').join(' ');document.getElementById('status').textContent='Encoded to Morse'}
 function decode(){document.getElementById('output').textContent=document.getElementById('input').value.trim().split(' / ').map(w=>w.split(' ').map(c=>R[c]||'?').join('')).join(' ');document.getElementById('status').textContent='Decoded from Morse'}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Morse Code Translator converts text to Morse code (dots and dashes) or decodes Morse code back to readable text. Supports the full international Morse code alphabet including letters, numbers and common punctuation.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">SOS</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">... --- ...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Learn Morse code interactively</li><li>Encode messages in Morse for fun</li><li>Decode received Morse code transmissions</li><li>Educational tool for radio operators</li><li>Generate Morse code patterns for projects</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is Morse code? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Morse code is a method of encoding text using sequences of dots (·) and dashes (–). Developed in the 1830s for telegraph communication, it's still used today in aviation and amateur radio.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What does SOS mean in Morse code? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">SOS (... --- ...) is the international distress signal. It was chosen because it's easy to transmit and recognize — three dots, three dashes, three dots — not because of any specific words.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I separate words in Morse code? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Words are separated by a forward slash (/) with spaces on each side. Letters within a word are separated by a single space. This tool handles the formatting automatically.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/encoding/rot13/" class="related-card"><span>🔄</span><span class="related-card-name">ROT13 Encoder</span></a><a href="/encoding/binary-text/" class="related-card"><span>01</span><span class="related-card-name">Binary Text Converter</span></a><a href="/encoding/hex/" class="related-card"><span>0x</span><span class="related-card-name">Hex Encoder/Decoder</span></a><a href="/encoding/bitwise/" class="related-card"><span>⚙️</span><span class="related-card-name">Bitwise Calculator</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

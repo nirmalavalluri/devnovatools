@@ -52,4 +52,91 @@ async function run(){render()}
 function setEx(name){document.getElementById('input').value=EX[name]||'';render()}
 async function render(){const code=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!code){o.innerHTML='';return}try{if(!window.mermaid){const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';document.head.appendChild(s);await new Promise(r=>s.onload=r);mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'loose'})}const{svg}=await mermaid.render('fc'+Date.now(),code);o.innerHTML=svg;document.getElementById('status').textContent='\u2713 Rendered'}catch(e){o.textContent='\u2717 '+e.message.split('\n')[0]}}
 document.addEventListener('DOMContentLoaded',()=>{render()})</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Flowchart Builder creates professional flowcharts using Mermaid syntax with a live preview. Choose from starter templates for basic flows, development workflows and left-to-right system architecture diagrams.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">flowchart TD
+    A[Start] --> B{Working?}
+    B -->|Yes| C[Ship it!]
+    B -->|No| D[Debug]</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Live flowchart with decision diamond and paths</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Document business processes and workflows</li><li>Map application logic and decision trees</li><li>Create onboarding and troubleshooting guides</li><li>Visualize CI/CD pipelines</li><li>Document system architecture</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What is the difference between TD and LR flowcharts? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">TD (Top-Down) flows vertically from top to bottom. LR (Left-Right) flows horizontally. Use TD for process flows and LR for system architecture or pipeline diagrams.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I add shapes to flowchart nodes? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use [] for rectangles, () for rounded, {} for diamonds (decisions), [/text/] for parallelograms. Example: A[Rectangle], B(Rounded), C{Diamond}</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I style individual nodes? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — use classDef to define styles and the ::: operator to apply them. Example: classDef green fill:#0f0; A:::green[Styled Node]</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/diagramming/mermaid/" class="related-card"><span>📊</span><span class="related-card-name">Mermaid Live Editor</span></a><a href="/diagramming/sequence/" class="related-card"><span>📋</span><span class="related-card-name">Sequence Diagram</span></a><a href="/diagramming/erd/" class="related-card"><span>🔗</span><span class="related-card-name">ERD Generator</span></a><a href="/diagramming/gantt/" class="related-card"><span>📅</span><span class="related-card-name">Gantt Chart Builder</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

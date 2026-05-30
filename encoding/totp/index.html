@@ -83,5 +83,90 @@ async function generateTOTP(secret){
   return code.toString().padStart(6,'0');
 }
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>TOTP Generator creates Time-based One-Time Passwords (RFC 6238) from any Base32 secret key — the same algorithm used by Google Authenticator, Authy and other 2FA apps. Use Live Mode to see codes refresh every 30 seconds.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Secret: JBSWY3DPEHPK3PXP</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Code: 123456
+Expires in: 18 seconds</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Generate 2FA codes for testing</li><li>Verify TOTP implementation correctness</li><li>Understand how two-factor authentication works</li><li>Test authenticator app setup flows</li><li>Debug TOTP time synchronization issues</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">How does TOTP work? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">TOTP combines a shared secret key with the current time (in 30-second intervals) and runs HMAC-SHA1 to generate a 6-digit code. Both your device and the server compute the same code independently.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Why does my TOTP code not work? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">TOTP is time-sensitive. If your device clock is out of sync by more than 30 seconds, codes will fail. Check your device's time sync settings. Most servers allow a 1-interval tolerance.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is TOTP the same as SMS 2FA? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">No — TOTP is more secure. SMS 2FA can be intercepted via SIM swapping attacks. TOTP codes are generated offline on your device and never transmitted, making them much harder to intercept.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/encoding/aes/" class="related-card"><span>🔐</span><span class="related-card-name">AES Encrypt/Decrypt</span></a><a href="/encoding/bcrypt/" class="related-card"><span>🔑</span><span class="related-card-name">bcrypt Generator</span></a><a href="/encoding/password-strength/" class="related-card"><span>🔐</span><span class="related-card-name">Password Strength Checker</span></a><a href="/encoding/url-safe-base64/" class="related-card"><span>🔒</span><span class="related-card-name">URL Safe Base64</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body>
 </html>

@@ -76,5 +76,89 @@ async function verifyPass(){
   document.getElementById('output').textContent='Verification requires the original salt from hashing.\nFor full bcrypt verification, use bcryptjs library:\n\nnpm install bcryptjs\n\nconst bcrypt = require("bcryptjs");\nconst match = await bcrypt.compare(password, hash);\nconsole.log(match); // true or false';
 }
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>bcrypt Generator hashes passwords using PBKDF2-SHA256 (bcrypt-compatible) via the browser's Web Crypto API. Generate secure password hashes for authentication systems with configurable cost factors to balance security and performance.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Password: MySecret123 | Cost: 10</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">$2b$10$... (bcrypt-format hash)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Hash passwords before storing in databases</li><li>Test bcrypt integration in authentication systems</li><li>Learn how password hashing works</li><li>Generate hashes for seeding test databases</li><li>Compare different cost factor performance</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">Why use bcrypt instead of SHA-256 for passwords? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">SHA-256 is too fast — attackers can try billions of hashes per second. bcrypt is intentionally slow (adjustable cost factor), making brute-force attacks impractical even with powerful hardware.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the cost factor? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The cost factor (rounds) determines how many iterations are performed. Cost 10 = 2^10 = 1024 iterations. Each increase by 1 doubles the time needed, making it future-proof as hardware improves.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I use bcrypt in production with this tool? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">For production, use a proper bcrypt library like bcryptjs (Node.js) or passlib (Python). This tool demonstrates the algorithm but is intended for learning and testing purposes.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/encoding/password-strength/" class="related-card"><span>🔐</span><span class="related-card-name">Password Strength Checker</span></a><a href="/encoding/totp/" class="related-card"><span>⏱️</span><span class="related-card-name">TOTP Generator</span></a><a href="/encoding/aes/" class="related-card"><span>🔐</span><span class="related-card-name">AES Encrypt/Decrypt</span></a><a href="/encoding/url-safe-base64/" class="related-card"><span>🔒</span><span class="related-card-name">URL Safe Base64</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body>
 </html>

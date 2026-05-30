@@ -77,5 +77,91 @@ function generate(){
 }
 document.addEventListener('DOMContentLoaded',generate)
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Git Commit Builder generates well-formatted conventional commit messages following the Conventional Commits specification. Select type (feat, fix, docs), add scope and description to generate commits compatible with automated changelogs and semantic release.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">Type: feat | Scope: auth | Description: add OAuth2 login</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">feat(auth): add OAuth2 login
+
+git commit -m "feat(auth): add OAuth2 login"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Write consistent conventional commit messages</li><li>Generate commits compatible with semantic-release</li><li>Follow team commit message standards</li><li>Learn the conventional commits format</li><li>Create commits that trigger changelog generation</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What are conventional commits? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Conventional Commits is a specification for commit message format: type(scope): description. Common types: feat (new feature), fix (bug fix), docs, style, refactor, test, chore. It enables automated changelog generation.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is a breaking change commit? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Add ! after the type to mark breaking changes: feat!: remove deprecated API. Or add "BREAKING CHANGE:" in the commit footer. Tools like semantic-release detect this and bump the major version.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What tools work with conventional commits? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">semantic-release (automated versioning), standard-version, conventional-changelog, and commitizen all work with conventional commits. GitHub Actions can auto-generate changelogs on each release.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/packages/changelog/" class="related-card"><span>📝</span><span class="related-card-name">Changelog Generator</span></a><a href="/text/curl-to-fetch/" class="related-card"><span>🔄</span><span class="related-card-name">cURL to Fetch</span></a><a href="/packages/npm-search/" class="related-card"><span>📦</span><span class="related-card-name">npm Package Search</span></a><a href="/packages/semver/" class="related-card"><span>🔢</span><span class="related-card-name">Semver Calculator</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body>
 </html>

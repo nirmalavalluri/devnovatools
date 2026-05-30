@@ -59,4 +59,91 @@ async function run(){render()}
 function setEx(name){document.getElementById('input').value=EX[name]||'';render()}
 async function render(){const code=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!code){o.innerHTML='';return}try{if(!window.mermaid){const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';document.head.appendChild(s);await new Promise(r=>s.onload=r);mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'loose'})}const id='m'+Date.now();const{svg}=await mermaid.render(id,code);o.innerHTML=svg;document.getElementById('status').textContent='\u2713 Diagram rendered'}catch(e){o.textContent='\u2717 Syntax error: '+e.message.split('\n')[0]}}
 document.addEventListener('DOMContentLoaded',()=>{document.getElementById('input').value=EX.flow;render()})</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Mermaid Live Editor is a full-featured diagram editor that renders flowcharts, sequence diagrams, ERDs, Gantt charts and pie charts directly in your browser using Mermaid.js. Write diagram syntax and see a live preview instantly.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">flowchart TD
+    A[Start] --> B{Decision}
+    B -->|Yes| C[Action]
+    B -->|No| D[End]</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Live flowchart diagram rendered in browser</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Create architecture diagrams for documentation</li><li>Build sequence diagrams for API flows</li><li>Design ER diagrams for database planning</li><li>Generate Gantt charts for project timelines</li><li>Create flowcharts for process documentation</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What diagram types does Mermaid support? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Mermaid supports flowcharts, sequence diagrams, class diagrams, state diagrams, ER diagrams, Gantt charts, pie charts, git graphs and more. This editor provides quick-start examples for the most common types.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I export Mermaid diagrams as images? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Right-click the rendered SVG and save as SVG or use your browser's screenshot tool. For production use, the Mermaid CLI can export to PNG, SVG and PDF.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Where can I use Mermaid diagrams? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Mermaid is supported in GitHub README files, GitLab, Notion, Obsidian, VS Code extensions, Confluence and many documentation platforms. It's the most widely-supported text-based diagram format.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/diagramming/flowchart/" class="related-card"><span>🔀</span><span class="related-card-name">Flowchart Builder</span></a><a href="/diagramming/sequence/" class="related-card"><span>📋</span><span class="related-card-name">Sequence Diagram</span></a><a href="/diagramming/erd/" class="related-card"><span>🔗</span><span class="related-card-name">ERD Generator</span></a><a href="/diagramming/gantt/" class="related-card"><span>📅</span><span class="related-card-name">Gantt Chart Builder</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

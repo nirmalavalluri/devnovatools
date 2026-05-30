@@ -44,4 +44,91 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}const m=i.match(/^(\d+\.\d+\.\d+\.\d+)\/(\d+)$/);if(!m){o.textContent='\u2717 Invalid CIDR notation\nExpected format: 192.168.1.0/24';return}const[,ip,prefix]=m;const bits=parseInt(prefix);if(bits<0||bits>32){o.textContent='\u2717 Prefix length must be 0-32';return}const toNum=ip=>ip.split('.').reduce((acc,oct)=>(acc<<8)|parseInt(oct),0)>>>0;const toIP=n=>[(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255].join('.');const ipNum=toNum(ip);const mask=bits===0?0:(0xFFFFFFFF<<(32-bits))>>>0;const network=ipNum&mask;const broadcast=network|(~mask>>>0);const usable=Math.max(0,Math.pow(2,32-bits)-2);o.textContent=['Network Address: '+toIP(network),'Broadcast:       '+toIP(broadcast),'Subnet Mask:     '+toIP(mask),'Wildcard Mask:   '+toIP(~mask>>>0),'First Usable:    '+toIP(network+1),'Last Usable:     '+toIP(broadcast-1),'','Total Addresses: '+Math.pow(2,32-bits).toLocaleString(),'Usable Hosts:    '+usable.toLocaleString(),'Prefix Length:   /'+bits].join('\n')}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>CIDR Calculator computes network addresses, broadcast addresses, subnet masks, wildcard masks and usable host counts from any CIDR notation input like 192.168.1.0/24. Essential for network engineers, DevOps and cloud infrastructure planning.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">192.168.1.0/24</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Network: 192.168.1.0
+Broadcast: 192.168.1.255
+Subnet Mask: 255.255.255.0
+Usable Hosts: 254</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Calculate subnet ranges for network planning</li><li>Configure VPC CIDR blocks in AWS or GCP</li><li>Determine how many hosts fit in a subnet</li><li>Verify firewall rule IP ranges</li><li>Plan IP address allocation for data centers</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What does /24 mean in CIDR notation? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">/24 means 24 bits are used for the network portion, leaving 8 bits for hosts. This gives 2^8 = 256 addresses, with 254 usable hosts (excluding network and broadcast addresses).</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the difference between /16 and /24? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">A /16 network has 65,536 addresses (65,534 usable), while /24 has 256 (254 usable). The smaller the prefix number, the larger the network.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is a wildcard mask? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">A wildcard mask is the inverse of a subnet mask. It's used in access control lists (ACLs) and routing protocols like OSPF to specify which bits to match.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/network/dns-lookup/" class="related-card"><span>🌐</span><span class="related-card-name">DNS Lookup</span></a><a href="/network/port-reference/" class="related-card"><span>🔌</span><span class="related-card-name">Port Reference</span></a><a href="/network/http-inspector/" class="related-card"><span>🔭</span><span class="related-card-name">HTTP Response Inspector</span></a><a href="/network/ip-geolocation/" class="related-card"><span>📍</span><span class="related-card-name">IP Geolocation</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

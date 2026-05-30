@@ -52,4 +52,90 @@ async function run(){render()}
 function setEx(n){document.getElementById('input').value=EX[n]||'';render()}
 async function render(){const code=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!code){o.innerHTML='';return}try{if(!window.mermaid){const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js';document.head.appendChild(s);await new Promise(r=>s.onload=r);mermaid.initialize({startOnLoad:false,theme:'dark',securityLevel:'loose'})}const{svg}=await mermaid.render('er'+Date.now(),code);o.innerHTML=svg;document.getElementById('status').textContent='\u2713 Rendered'}catch(e){o.textContent='\u2717 '+e.message.split('\n')[0]}}
 document.addEventListener('DOMContentLoaded',render)</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>ERD Generator creates Entity-Relationship Diagrams from Mermaid ERD syntax showing tables, columns and relationships. Choose from Blog DB, E-Commerce and SaaS templates to get started quickly with your database design.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">erDiagram
+    USER ||--o{ ORDER : places
+    ORDER ||--|{ ITEM : contains</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Live ERD with entities and relationship connectors</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Design database schemas visually</li><li>Document table relationships for teams</li><li>Plan data models before coding</li><li>Review existing database structure</li><li>Create database documentation</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What do the relationship symbols mean? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">||--|| is one-to-one, ||--o{ is one-to-many, }o--o{ is many-to-many. The | means exactly one, o means zero or one, { means one or many, } means zero or many.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I add attributes to entities? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Inside the entity block: USER { int id PK\n string name\n string email UK }. PK = Primary Key, UK = Unique Key, FK = Foreign Key.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can ERDs be used for NoSQL databases? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">ERDs are primarily for relational databases. For NoSQL, use them to show document relationships conceptually, though the strict relational semantics don't apply.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/diagramming/mermaid/" class="related-card"><span>📊</span><span class="related-card-name">Mermaid Live Editor</span></a><a href="/diagramming/flowchart/" class="related-card"><span>🔀</span><span class="related-card-name">Flowchart Builder</span></a><a href="/diagramming/sequence/" class="related-card"><span>📋</span><span class="related-card-name">Sequence Diagram</span></a><a href="/diagramming/gantt/" class="related-card"><span>📅</span><span class="related-card-name">Gantt Chart Builder</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

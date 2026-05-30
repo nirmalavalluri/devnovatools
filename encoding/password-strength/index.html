@@ -69,5 +69,91 @@ if(!checks.symbols)tips.push('Add special characters (!@#$%^&*)');
 if(!checks.noCommon)tips.push('Avoid common words like "password" or "admin"');
 o.textContent=[color+' Strength: '+level,'Score: '+score+'/9','['+bar+']','','Length: '+p.length+' characters','Uppercase: '+(checks.uppercase?'\u2713 Yes':'\u2717 No'),'Lowercase: '+(checks.lowercase?'\u2713 Yes':'\u2717 No'),'Numbers: '+(checks.numbers?'\u2713 Yes':'\u2717 No'),'Symbols: '+(checks.symbols?'\u2713 Yes':'\u2717 No'),'Common word: '+(checks.noCommon?'\u2713 No':'\u26a0 Yes — risky!'),...(tips.length?['','Improvements:','─'.repeat(30),...tips.map(t=>'\u2192 '+t)]:['','\u2713 Strong password!'])].join('\n');document.getElementById('status').className='badge badge-'+(score<=3?'error':score<=5?'warning':score<=6?'info':'success');document.getElementById('status').textContent=level}
 </script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Password Strength Checker analyzes your password against multiple security criteria including length, character diversity, and common password patterns. Get an instant strength score from "Very Weak" to "Very Strong" with specific improvement tips.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">MyP@ssw0rd!</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">✓ Strong (Score: 8/9)
+Length: 11 chars
+Uppercase: ✓, Lowercase: ✓, Numbers: ✓, Symbols: ✓</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Evaluate password strength before using it</li><li>Teach password security best practices</li><li>Test password policy compliance</li><li>Learn what makes passwords strong</li><li>Audit existing passwords for weaknesses</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What makes a password strong? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">A strong password is at least 12 characters long and uses a mix of uppercase letters, lowercase letters, numbers and special characters. Avoid dictionary words, names and predictable patterns.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How long should my password be? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">At least 12 characters for regular accounts, 16+ for critical accounts like email and banking. Length is the single most important factor — a random 20-character password beats a complex 8-character one.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Should I use a password manager? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — password managers generate and store strong unique passwords for every site. You only need to remember one master password. Popular options include Bitwarden (free), 1Password and Dashlane.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/encoding/aes/" class="related-card"><span>🔐</span><span class="related-card-name">AES Encrypt/Decrypt</span></a><a href="/encoding/bcrypt/" class="related-card"><span>🔑</span><span class="related-card-name">bcrypt Generator</span></a><a href="/encoding/totp/" class="related-card"><span>⏱️</span><span class="related-card-name">TOTP Generator</span></a><a href="/encoding/url-safe-base64/" class="related-card"><span>🔒</span><span class="related-card-name">URL Safe Base64</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body>
 </html>

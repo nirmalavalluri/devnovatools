@@ -44,4 +44,91 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>async function run(){const q=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!q){o.textContent='Enter a package name to search';return}o.textContent='Searching PyPI...';try{const r=await fetch('https://pypi.org/pypi/'+encodeURIComponent(q)+'/json');if(!r.ok){o.textContent='\u2717 Package "'+q+'" not found on PyPI\n\nBrowse: https://pypi.org/search/?q='+encodeURIComponent(q);return}const d=await r.json();const info=d.info;const releases=Object.keys(d.releases||{}).slice(-5).reverse();o.textContent=['Package:         '+info.name,'Version:         '+info.version,'Description:     '+(info.summary||'N/A'),'Author:          '+(info.author||'N/A'),'License:         '+(info.license||'N/A'),'Homepage:        '+(info.home_page||info.project_url||'N/A'),'Requires Python: '+(info.requires_python||'N/A'),'Keywords:        '+(info.keywords||'N/A'),'','Install Commands:','  pip install '+info.name,'  pip install '+info.name+'=='+info.version,'  poetry add '+info.name,'  pipenv install '+info.name,'','Recent Versions:','  '+releases.join('\n  '),'','PyPI Page:','  https://pypi.org/project/'+info.name].join('\n');document.getElementById('status').textContent='v'+info.version}catch(e){o.textContent='\u2717 '+e.message+'\n\nTip: Try visiting https://pypi.org/project/'+document.getElementById('input').value.trim()}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>PyPI Package Search queries the Python Package Index (PyPI) to retrieve package information — version, description, author, license, Python requirements and install commands — for any Python package directly in your browser.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">requests</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">Package: requests
+Version: 2.31.0
+License: Apache 2.0
+Install: pip install requests</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Check the latest version of a Python library</li><li>Verify license compatibility before using a package</li><li>Find the homepage of a Python package</li><li>Get pip install commands quickly</li><li>Check Python version requirements</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">How do I install a Python package? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Run pip install package-name in your terminal. For virtual environments, activate the venv first. Use pip install package-name==1.0.0 to install a specific version.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is a virtual environment? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">A virtual environment (venv) isolates Python packages per project, preventing version conflicts. Create one with python -m venv venv, activate with source venv/bin/activate (Linux/Mac) or venv\Scripts\activate (Windows).</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I check installed packages? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Run pip list to see all installed packages, pip show package-name for details of a specific package, or pip freeze > requirements.txt to export all dependencies.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/packages/npm-search/" class="related-card"><span>📦</span><span class="related-card-name">npm Package Search</span></a><a href="/packages/semver/" class="related-card"><span>🔢</span><span class="related-card-name">Semver Calculator</span></a><a href="/packages/license-checker/" class="related-card"><span>📜</span><span class="related-card-name">License Checker</span></a><a href="/packages/changelog/" class="related-card"><span>📝</span><span class="related-card-name">Changelog Generator</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>

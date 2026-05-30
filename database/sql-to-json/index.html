@@ -44,4 +44,90 @@
 </main>
 <script src="/assets/layout.js"></script>
 <script>function run(){const i=document.getElementById('input').value.trim();const o=document.getElementById('output');if(!i){o.textContent='';return}try{const lines=i.split('\n').filter(l=>l.trim());if(lines.length<2){o.textContent='\u2717 Need at least a header row and one data row';return}const sep=lines[0].includes('\t')?'\t':',';const headers=lines[0].split(sep).map(h=>h.trim().replace(/^["'`]|["'`]$/g,''));const rows=lines.slice(1).map(line=>{const vals=line.split(sep).map(v=>v.trim().replace(/^["'`]|["'`]$/g,''));const obj={};headers.forEach((h,i)=>{const val=vals[i]||'';if(val==='NULL'||val==='null')obj[h]=null;else if(!isNaN(val)&&val!=='')obj[h]=Number(val);else if(val==='true'||val==='TRUE')obj[h]=true;else if(val==='false'||val==='FALSE')obj[h]=false;else obj[h]=val});return obj});o.textContent=JSON.stringify(rows,null,2);document.getElementById('status').textContent=rows.length+' row(s) converted'}catch(e){o.textContent='\u2717 '+e.message}}</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>SQL Results to JSON converts tabular SQL query results — tab-separated or comma-separated with headers — into clean JSON arrays. Paste the output from your database client and get properly typed JSON instantly.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">id	name	age
+1	Alice	30
+2	Bob	25</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">[{"id":1,"name":"Alice","age":30},{"id":2,"name":"Bob","age":25}]</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul><li>Convert database query results to JSON for APIs</li><li>Transform SQL exports for JavaScript consumption</li><li>Create JSON fixtures from database data</li><li>Share database data in JSON format</li><li>Convert CSV database exports to JSON</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What separators are supported? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The tool auto-detects tab-separated (TSV) or comma-separated (CSV) formats. Tab-separated is the default output from most database clients like psql, MySQL workbench and pgAdmin.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How are data types handled? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">The converter automatically detects numbers and converts them to JSON numbers. Boolean values (true/false) are converted. NULL values become JSON null. Everything else becomes a string.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I convert large result sets? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — the tool runs entirely in your browser with no size limits imposed by servers. Very large datasets may be slow in older browsers but there's no file size restriction.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/database/json-to-sql/" class="related-card"><span>🔄</span><span class="related-card-name">JSON to SQL Insert</span></a><a href="/database/sql-to-orm/" class="related-card"><span>🗄️</span><span class="related-card-name">SQL to ORM Generator</span></a><a href="/database/schema-visualizer/" class="related-card"><span>📐</span><span class="related-card-name">DB Schema Visualizer</span></a><a href="/database/query-explainer/" class="related-card"><span>🔍</span><span class="related-card-name">Query Explainer</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Press <code>▶ Run</code> to process</li>
+        <li>Use <code>Copy</code> to copy results</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+        <li><a href="/network/">🌐 Network & DNS Tools</a></li>
+        <li><a href="/encoding/">🔢 Encoding & Crypto</a></li>
+        <li><a href="/database/">🗄️ Database Tools</a></li>
+        <li><a href="/diagramming/">📊 Diagramming Tools</a></li>
+        <li><a href="/packages/">📦 Package & Version</a></li>
+        <li><a href="/image/">🖼️ Image & Media Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
 </body></html>
