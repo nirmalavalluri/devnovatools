@@ -159,7 +159,16 @@ const LOGO_SVG=`<svg width="168" height="36" viewBox="0 0 168 36" xmlns="http://
 </svg>`;
 
 function getTheme(){return localStorage.getItem('dnt-theme')||'dark'}
-function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('dnt-theme',t);const btn=document.getElementById('theme-btn');if(btn)btn.textContent=t==='dark'?'☀️ Light':'🌙 Dark'}
+function setTheme(t){
+  document.documentElement.setAttribute('data-theme',t);
+  localStorage.setItem('dnt-theme',t);
+  const btn=document.getElementById('theme-btn');
+  if(btn)btn.textContent=t==='dark'?'☀️ Light':'🌙 Dark';
+  const logoDark=document.querySelector('.logo-dark');
+  const logoLight=document.querySelector('.logo-light');
+  if(logoDark)logoDark.style.display=t==='dark'?'block':'none';
+  if(logoLight)logoLight.style.display=t==='light'?'block':'none';
+}
 function copyToClipboard(text,btn){navigator.clipboard.writeText(text).then(()=>{if(btn){const orig=btn.textContent;btn.textContent='✓ Copied';btn.classList.add('copied');setTimeout(()=>{btn.textContent=orig;btn.classList.remove('copied')},2000)}})}
 function initSearch(inputId,resultsId){
   const input=document.getElementById(inputId);const results=document.getElementById(resultsId);if(!input||!results)return;
@@ -191,21 +200,8 @@ function injectNav(){
   nav.innerHTML=`
     <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
     <a href="/" class="nav-logo-svg" id="nav-logo">
-      <svg id="logo-full" width="168" height="36" viewBox="0 0 168 36" xmlns="http://www.w3.org/2000/svg">
-        <defs><linearGradient id="lg" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00C896"/><stop offset="100%" stop-color="#0066FF"/></linearGradient></defs>
-        <rect x="0" y="0" width="40" height="36" rx="8" fill="url(#lg)"/>
-        <text x="5" y="22" font-family="monospace" font-weight="700" font-size="11" fill="white">$ DN</text>
-        <rect x="29" y="14" width="5" height="10" rx="1" fill="rgba(255,255,255,0.75)"/>
-        <text x="50" y="18" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="16" fill="#00C896">Dev</text>
-        <text x="80" y="18" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="16" fill="#F5F7FA">Nova</text>
-        <text x="50" y="32" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="11" fill="#6B7E99" letter-spacing="2">TOOLS</text>
-      </svg>
-      <svg id="logo-icon" width="44" height="36" viewBox="0 0 44 36" xmlns="http://www.w3.org/2000/svg" style="display:none">
-        <defs><linearGradient id="lgm" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00C896"/><stop offset="100%" stop-color="#0066FF"/></linearGradient></defs>
-        <rect x="0" y="0" width="44" height="36" rx="8" fill="url(#lgm)"/>
-        <text x="5" y="22" font-family="monospace" font-weight="700" font-size="11" fill="white">$ DN</text>
-        <rect x="33" y="14" width="5" height="10" rx="1" fill="rgba(255,255,255,0.75)"/>
-      </svg>
+      <img src="/assets/logo-dark.png" alt="DevNova Tools" class="logo-dark" style="height:36px;width:auto"/>
+      <img src="/assets/logo-light.png" alt="DevNova Tools" class="logo-light" style="height:36px;width:auto;display:none"/>
     </a>
     <div class="nav-search-wrap">
       <span class="nav-search-icon">🔍</span>
@@ -229,8 +225,7 @@ function injectNav(){
     if(window.innerWidth<=600){full.style.display='none';icon.style.display='block';}
     else{full.style.display='block';icon.style.display='none';}
   }
-  switchLogo();
-  window.addEventListener('resize',switchLogo);
+
   document.getElementById('hamburger').addEventListener('click',()=>{
     const sidebar=document.getElementById('dnt-sidebar');
     if(sidebar){sidebar.classList.toggle('open')}
