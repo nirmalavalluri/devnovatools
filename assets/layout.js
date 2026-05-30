@@ -153,9 +153,9 @@ const LOGO_SVG=`<svg width="168" height="36" viewBox="0 0 168 36" xmlns="http://
 <rect x="0" y="0" width="40" height="36" rx="8" fill="url(#lg)"/>
 <text x="5" y="22" font-family="monospace" font-weight="700" font-size="11" fill="white">$ DN</text>
 <rect x="29" y="14" width="5" height="10" rx="1" fill="rgba(255,255,255,0.75)"/>
-<text x="50" y="18" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="16" fill="#00C896">Dev</text>
-<text x="80" y="18" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="16" fill="#F5F7FA">Nova</text>
-<text x="50" y="32" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="11" fill="#6B7E99" letter-spacing="2">TOOLS</text>
+<text x="50" y="18" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="16" fill="#00C896" class="logo-text">Dev</text>
+<text x="80" y="18" font-family="system-ui,-apple-system,sans-serif" font-weight="700" font-size="16" fill="#F5F7FA" class="logo-text">Nova</text>
+<text x="50" y="32" font-family="system-ui,-apple-system,sans-serif" font-weight="400" font-size="11" fill="#6B7E99" letter-spacing="2" class="logo-text">TOOLS</text>
 </svg>`;
 
 function getTheme(){return localStorage.getItem('dnt-theme')||'dark'}
@@ -164,6 +164,8 @@ function copyToClipboard(text,btn){navigator.clipboard.writeText(text).then(()=>
 function initSearch(inputId,resultsId){
   const input=document.getElementById(inputId);const results=document.getElementById(resultsId);if(!input||!results)return;
   input.addEventListener('input',()=>{
+    const clearBtn=document.getElementById('nav-search-clear');
+    if(clearBtn)clearBtn.style.display=input.value?'block':'none';
     const q=input.value.trim().toLowerCase();
     if(!q){results.classList.remove('show');results.innerHTML='';return}
     const BUILT=['json','api','text','devops','frontend'];
@@ -176,6 +178,9 @@ function initSearch(inputId,resultsId){
 }
 
 function injectNav(){
+  const logoStyle=document.createElement('style');
+  logoStyle.textContent='@media(max-width:600px){.nav-logo-svg .logo-text{display:none}.nav-logo-svg svg{width:44px}}';
+  document.head.appendChild(logoStyle);
   const nav=document.createElement('nav');nav.id='dnt-nav';
   nav.innerHTML=`
     <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
@@ -183,6 +188,7 @@ function injectNav(){
     <div class="nav-search-wrap">
       <span class="nav-search-icon">🔍</span>
       <input id="nav-search" class="nav-search" type="text" placeholder="Search JSON formatter, JWT decoder, regex tester..." autocomplete="off"/>
+      <button id="nav-search-clear" onclick="document.getElementById('nav-search').value='';document.getElementById('nav-search-results').classList.remove('show');document.getElementById('nav-search-results').innerHTML='';document.getElementById('nav-search-clear').style.display='none'" style="display:none;position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:1rem;padding:4px;line-height:1">✕</button>
       <div id="nav-search-results" class="nav-search-results"></div>
     </div>
     <div class="nav-right">
