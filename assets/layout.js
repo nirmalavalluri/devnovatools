@@ -180,8 +180,7 @@ function initSearch(inputId,resultsId){
 function injectNav(){
   const logoStyle=document.createElement('style');
   logoStyle.textContent=`
-  @media(max-width:600px){.nav-logo-svg{max-width:44px;overflow:hidden;display:inline-block}}
-  @media(min-width:601px){.nav-logo-svg svg{width:168px}}
+  .nav-logo-svg{display:inline-flex;align-items:center}
   .nav-search-wrap{position:relative}
   .nav-search{padding-right:36px!important}
   #nav-search-clear{position:absolute!important;right:10px!important;top:50%!important;transform:translateY(-50%)!important;background:none!important;border:none!important;cursor:pointer!important;color:var(--text-muted)!important;font-size:.9rem!important;padding:4px 6px!important;line-height:1!important;border-radius:50%!important;z-index:10!important}
