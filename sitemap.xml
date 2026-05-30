@@ -1,109 +1,984 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- Homepage -->
-  <url><loc>https://devnovatools.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url>
+    <loc>https://devnovatools.com/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
 
-  <!-- Category Pages -->
-  <url><loc>https://devnovatools.com/json/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://devnovatools.com/api/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://devnovatools.com/text/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://devnovatools.com/devops/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://devnovatools.com/frontend/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url>
+    <loc>https://devnovatools.com/about/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-  <!-- JSON & Data Tools -->
-  <url><loc>https://devnovatools.com/json/formatter/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/validator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/minifier/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/tree-viewer/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/diff/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/path-tester/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/schema-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/schema-validator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/csv-to-json/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/json-to-csv/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/json-to-typescript/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/json-to-python/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/json-to-go/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/json-to-csharp/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/yaml-to-json/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/json-to-yaml/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/xml-to-json/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/json/json-to-xml/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://devnovatools.com/blog/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-  <!-- API & Security Tools -->
-  <url><loc>https://devnovatools.com/api/jwt-decoder/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/jwt-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/base64/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/url-encoder/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/hash-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/hmac-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/uuid-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/uuid-parser/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/password-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/ip-lookup/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/http-headers/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/cors-checker/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/api/ssl-decoder/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://devnovatools.com/terms/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-  <!-- Text & Parsing Tools -->
-  <url><loc>https://devnovatools.com/text/regex-tester/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/regex-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/xpath-tester/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/diff-checker/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/case-converter/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/word-counter/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/markdown-preview/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/html-to-markdown/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/markdown-to-html/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/html-entities/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/text-escape/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/slug-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/base-converter/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/unicode-lookup/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/text/lorem-ipsum/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://devnovatools.com/blog/what-is-jwt-token/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-  <!-- DevOps & Infra Tools -->
-  <url><loc>https://devnovatools.com/devops/cron-builder/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/cron-tester/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/timestamp/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/yaml-formatter/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/xml-formatter/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/sql-formatter/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/dockerfile/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/gitignore/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/k8s-validator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/env-editor/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/nginx-config/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/log-parser/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/http-status/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/curl-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/htaccess/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/devops/ssh-key/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://devnovatools.com/blog/cron-job-expressions-guide/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-  <!-- Frontend Tools -->
-  <url><loc>https://devnovatools.com/frontend/css-minifier/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/js-minifier/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/html-beautifier/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/color-converter/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/gradient-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/box-shadow/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/css-grid/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/flexbox/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/border-radius/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/image-to-base64/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/svg-minifier/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/css-specificity/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/favicon-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/frontend/breakpoints/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url>
+    <loc>https://devnovatools.com/blog/10-regex-patterns-developers/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
+  <url>
+    <loc>https://devnovatools.com/blog/json-vs-yaml-vs-toml/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
-  <!-- Blog -->
-  <url><loc>https://devnovatools.com/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://devnovatools.com/blog/what-is-jwt-token/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://devnovatools.com/blog/cron-job-expressions-guide/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://devnovatools.com/blog/10-regex-patterns-developers/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://devnovatools.com/blog/json-vs-yaml-vs-toml/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://devnovatools.com/blog/http-status-codes-guide/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://devnovatools.com/blog/css-grid-vs-flexbox/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url>
+    <loc>https://devnovatools.com/blog/http-status-codes-guide/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/blog/css-grid-vs-flexbox/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/csv-to-json/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/diff/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/formatter/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/json-to-csharp/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/json-to-csv/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/json-to-go/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/json-to-java/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/json-to-kotlin/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/json-to-python/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/json-to-swift/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/json-to-typescript/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/json-to-xml/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/json-to-yaml/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/minifier/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/path-tester/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/schema-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/schema-validator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/tree-viewer/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/validator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/xml-to-json/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/yaml-to-json/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/base64/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/cors-checker/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/hash-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/hmac-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/http-headers/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/ip-lookup/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/jwt-decoder/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/jwt-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/password-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/ssl-decoder/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/url-encoder/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/uuid-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/api/uuid-parser/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/base-converter/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/case-converter/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/curl-to-fetch/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/diff-checker/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/git-commit/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/html-entities/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/html-to-markdown/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/lorem-ipsum/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/markdown-preview/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/markdown-to-html/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/regex-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/regex-tester/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/slug-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/text-escape/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/unicode-lookup/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/word-counter/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/text/xpath-tester/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/cron-builder/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/cron-tester/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/curl-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/dockerfile/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/env-editor/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/gitignore/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/htaccess/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/http-status/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/k8s-validator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/log-parser/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/nginx-config/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/sql-formatter/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/ssh-key/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/timestamp/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/xml-formatter/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/devops/yaml-formatter/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/border-radius/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/box-shadow/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/breakpoints/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/color-converter/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/css-grid/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/css-minifier/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/css-specificity/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/favicon-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/flexbox/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/gradient-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/html-beautifier/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/image-to-base64/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/js-minifier/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/frontend/svg-minifier/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/cidr/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/dns-lookup/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/http-inspector/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/ip-geolocation/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/mime-types/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/port-reference/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/ssl-expiry/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/url-parser/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/user-agent-parser/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/network/whois/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/aes/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/bcrypt/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/binary-text/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/bitwise/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/hex/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/morse/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/password-strength/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/rot13/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/totp/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/encoding/url-safe-base64/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/database/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/database/json-to-sql/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/database/query-explainer/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/database/schema-visualizer/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/database/sql-to-json/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/database/sql-to-orm/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/diagramming/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/diagramming/erd/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/diagramming/flowchart/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/diagramming/gantt/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/diagramming/mermaid/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/diagramming/sequence/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/packages/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/packages/changelog/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/packages/license-checker/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/packages/npm-search/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/packages/pypi-search/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/packages/semver/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/image/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/image/exif-viewer/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/image/image-compressor/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/image/placeholder-generator/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
