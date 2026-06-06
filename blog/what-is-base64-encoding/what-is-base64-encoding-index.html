@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>What Is Base64 Encoding? (And When to Use It) | DevNova Tools Blog</title>
+<meta name="description" content="Learn what Base64 encoding is, how it works, when to use it and how to encode/decode in JavaScript, Python and C#. Free online Base64 encoder included."/>
+<meta property="og:title" content="What Is Base64 Encoding? (And When to Use It)"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/blog/what-is-base64-encoding/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+<link rel="stylesheet" href="/assets/community.css"/>
+</head>
+<body>
+<article style="max-width:820px;margin:0 auto;padding:40px 24px 80px">
+  <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> <span>Security</span></div>
+  <div style="margin:24px 0 32px">
+    <span style="display:inline-flex;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:999px;color:#0066FF;background:#0066FF22;border:1px solid #0066FF44;margin-bottom:16px">Security</span>
+    <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px">What Is Base64 Encoding? (And When to Use It)</h1>
+    <div style="display:flex;align-items:center;gap:16px;color:var(--text-muted);font-size:.85rem;flex-wrap:wrap">
+      <span>📅 June 6, 2026</span><span>⏱ 5 min read</span>
+      <a href="/api/base64/" style="color:var(--green);font-weight:600">🛠️ Try the Base64 Encoder →</a>
+    </div>
+  </div>
+  <div style="font-size:.95rem;line-height:1.85;color:var(--text-secondary)">
+    <style>
+    article h2{font-size:1.2rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-top:8px;border-top:1px solid var(--border)}
+    article pre{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;overflow-x:auto;margin:12px 0}
+    article code{font-family:var(--mono);font-size:.88rem;color:var(--green)}
+    article pre code{color:var(--text)}
+    article ul,article ol{padding-left:20px;margin:12px 0;display:flex;flex-direction:column;gap:6px}
+    article li{color:var(--text-secondary);line-height:1.6}
+    article p{margin-bottom:14px}
+    article strong{color:var(--text);font-weight:600}
+    article table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88rem}
+    article th{background:var(--bg-card);color:var(--text);padding:10px 12px;border:1px solid var(--border);text-align:left}
+    article td{padding:10px 12px;border:1px solid var(--border);color:var(--text-secondary)}
+    </style>
+
+    <p style="font-size:1.05rem;color:var(--text);border-left:3px solid var(--green);padding-left:16px;margin-bottom:24px">Base64 is everywhere — in JWTs, image embeds, email attachments and API authentication. This guide explains exactly what it is, how it works and when to use it — with code examples in JavaScript, Python and C#.</p>
+
+    <h2>What Is Base64 Encoding?</h2>
+    <p>Base64 is a binary-to-text encoding scheme that converts binary data into a string of 64 printable ASCII characters. It's called "Base64" because it uses a 64-character alphabet:</p>
+    <pre><code>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/</code></pre>
+    <p>Plus the <code>=</code> character for padding.</p>
+
+    <p><strong>Simple example:</strong></p>
+    <pre><code>Text:   Hello
+Base64: SGVsbG8=</code></pre>
+
+    <h2>Why Does Base64 Exist?</h2>
+    <p>Many systems were designed to handle <strong>text only</strong> — not raw binary data. For example:</p>
+    <ul>
+      <li>Email (SMTP) was originally designed for 7-bit ASCII text</li>
+      <li>HTTP headers can only contain ASCII characters</li>
+      <li>JSON only supports text strings — not binary blobs</li>
+      <li>HTML attributes are text-based</li>
+    </ul>
+    <p>Base64 solves this by converting any binary data (images, files, keys) into a safe text format that can travel through text-only systems without corruption.</p>
+
+    <h2>How Base64 Encoding Works</h2>
+    <p>Base64 works by taking 3 bytes (24 bits) of binary data and splitting them into 4 groups of 6 bits, then mapping each 6-bit group to a character in the Base64 alphabet.</p>
+    <pre><code>Text:     H        e        l
+ASCII:    72       101      108
+Binary:   01001000 01100101 01101100
+          ↓ Split into 4 × 6-bit groups
+          010010 000110 010101 101100
+          ↓ Map to Base64 alphabet
+          S      G      V      s
+Result:   SGVs</code></pre>
+    <p>Since 3 bytes become 4 characters, Base64 increases data size by approximately <strong>33%</strong>.</p>
+
+    <h2>Base64 Padding (=)</h2>
+    <p>If the input isn't divisible by 3 bytes, padding characters (<code>=</code>) are added:</p>
+    <pre><code>1 byte  remaining → 2 Base64 chars + ==
+2 bytes remaining → 3 Base64 chars + =
+3 bytes remaining → 4 Base64 chars (no padding)</code></pre>
+    <pre><code>"A"   → QQ==   (1 byte, 2 padding chars)
+"AB"  → QUI=   (2 bytes, 1 padding char)
+"ABC" → QUJD   (3 bytes, no padding)</code></pre>
+
+    <h2>Common Uses of Base64</h2>
+    <table>
+      <tr><th>Use case</th><th>Example</th></tr>
+      <tr><td>JWT tokens</td><td>Header and payload are Base64URL encoded</td></tr>
+      <tr><td>Email attachments</td><td>MIME encoding for binary attachments</td></tr>
+      <tr><td>Inline images in HTML/CSS</td><td><code>data:image/png;base64,iVBOR...</code></td></tr>
+      <tr><td>API authentication</td><td>HTTP Basic Auth: <code>Base64(username:password)</code></td></tr>
+      <tr><td>Storing binary in JSON</td><td>Embed images or files in JSON payloads</td></tr>
+      <tr><td>Cryptographic keys</td><td>PEM files use Base64 to encode keys</td></tr>
+      <tr><td>Data URLs</td><td>Embed fonts and images directly in CSS</td></tr>
+    </table>
+
+    <h2>Base64 in JavaScript</h2>
+    <pre><code>// Encode
+const encoded = btoa('Hello, World!');
+console.log(encoded); // SGVsbG8sIFdvcmxkIQ==
+
+// Decode
+const decoded = atob('SGVsbG8sIFdvcmxkIQ==');
+console.log(decoded); // Hello, World!
+
+// Encode Unicode (handles special characters)
+function encodeUnicode(str) {
+  return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+    (match, p1) => String.fromCharCode('0x' + p1)
+  ));
+}
+
+// Decode Unicode
+function decodeUnicode(str) {
+  return decodeURIComponent(atob(str).split('').map(
+    c => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+  ).join(''));
+}
+
+// Node.js
+const encoded = Buffer.from('Hello').toString('base64');
+const decoded = Buffer.from(encoded, 'base64').toString('utf8');</code></pre>
+
+    <h2>Base64 in Python</h2>
+    <pre><code>import base64
+
+# Encode
+text = "Hello, World!"
+encoded = base64.b64encode(text.encode('utf-8'))
+print(encoded)           # b'SGVsbG8sIFdvcmxkIQ=='
+print(encoded.decode())  # SGVsbG8sIFdvcmxkIQ==
+
+# Decode
+decoded = base64.b64decode('SGVsbG8sIFdvcmxkIQ==')
+print(decoded.decode('utf-8'))  # Hello, World!
+
+# Encode a file
+with open('image.png', 'rb') as f:
+    encoded = base64.b64encode(f.read()).decode('utf-8')
+
+# URL-safe Base64 (for JWT, URLs)
+encoded = base64.urlsafe_b64encode(b'Hello').decode()
+decoded = base64.urlsafe_b64decode(encoded + '==')</code></pre>
+
+    <h2>Base64 in C# / .NET</h2>
+    <pre><code>using System;
+using System.Text;
+
+// Encode
+string text = "Hello, World!";
+byte[] bytes = Encoding.UTF8.GetBytes(text);
+string encoded = Convert.ToBase64String(bytes);
+Console.WriteLine(encoded); // SGVsbG8sIFdvcmxkIQ==
+
+// Decode
+byte[] decodedBytes = Convert.FromBase64String(encoded);
+string decoded = Encoding.UTF8.GetString(decodedBytes);
+Console.WriteLine(decoded); // Hello, World!
+
+// Encode a file
+byte[] fileBytes = File.ReadAllBytes("image.png");
+string base64File = Convert.ToBase64String(fileBytes);
+
+// URL-safe Base64 (for JWT)
+string urlSafe = encoded.Replace('+', '-').Replace('/', '_').TrimEnd('=');</code></pre>
+
+    <h2>Base64 vs Base64URL</h2>
+    <p>Standard Base64 uses <code>+</code> and <code>/</code> which have special meanings in URLs. <strong>Base64URL</strong> replaces them:</p>
+    <table>
+      <tr><th>Format</th><th>Characters</th><th>Used in</th></tr>
+      <tr><td>Base64</td><td><code>+</code> and <code>/</code></td><td>Email, files, general encoding</td></tr>
+      <tr><td>Base64URL</td><td><code>-</code> and <code>_</code></td><td>JWT tokens, URLs, filenames</td></tr>
+    </table>
+    <pre><code># Convert Base64 to Base64URL
+base64url = base64.replace('+', '-').replace('/', '_').rstrip('=')</code></pre>
+
+    <h2>Is Base64 Encryption?</h2>
+    <p>⚠️ <strong>No — Base64 is NOT encryption!</strong> This is a very common misconception.</p>
+    <ul>
+      <li>Base64 is <strong>encoding</strong> — it's reversible by anyone with zero key or password</li>
+      <li>Base64 provides <strong>zero security</strong> — it just changes the representation</li>
+      <li>Anyone can decode Base64 instantly using our <a href="/api/base64/" style="color:var(--green)">free Base64 Decoder</a></li>
+      <li>For actual security, use <strong>AES encryption</strong> or <strong>HMAC signing</strong></li>
+    </ul>
+    <pre><code># This is NOT secure — anyone can decode it
+password_encoded = base64.b64encode(b'mysecretpassword')
+
+# This IS secure
+import hashlib, hmac
+password_hash = hmac.new(key, password.encode(), hashlib.sha256).hexdigest()</code></pre>
+
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>What is the difference between Base64 and Base64URL?</strong><br/>
+    Base64URL replaces <code>+</code> with <code>-</code> and <code>/</code> with <code>_</code>, and removes padding (<code>=</code>). It's safe to use in URLs and filenames. JWT tokens use Base64URL encoding.</p>
+
+    <p><strong>Does Base64 increase file size?</strong><br/>
+    Yes — by approximately 33%. Every 3 bytes of input becomes 4 Base64 characters. A 1MB file becomes ~1.33MB when Base64 encoded.</p>
+
+    <p><strong>Why does Base64 end with == sometimes?</strong><br/>
+    The <code>=</code> signs are padding characters added when the input length isn't a multiple of 3 bytes. One <code>=</code> means 2 bytes remain; <code>==</code> means 1 byte remains.</p>
+
+    <p><strong>Is Base64 the same as encryption?</strong><br/>
+    No — Base64 is encoding, not encryption. Anyone can decode it instantly without a key. Never use Base64 to "hide" sensitive data.</p>
+
+    <p><strong>How do I encode an image to Base64 for HTML?</strong></p>
+    <pre><code># Python
+import base64
+with open('image.png', 'rb') as f:
+    b64 = base64.b64encode(f.read()).decode()
+    print(f'data:image/png;base64,{b64}')</code></pre>
+    <p>Then use it in HTML: <code>&lt;img src="data:image/png;base64,SGVs..."&gt;</code></p>
+  </div>
+
+  <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:28px;margin:48px 0;text-align:center">
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Encode or decode Base64 instantly — free</div>
+    <p style="color:var(--text-secondary);margin-bottom:16px;font-size:.9rem">Paste any text and encode to Base64 or decode back instantly. Runs 100% in your browser — your data never leaves your computer.</p>
+    <a href="/api/base64/" class="btn btn-primary">Base64 Encoder/Decoder →</a>
+  </div>
+
+  <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border)">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="blog-related-tools" style="margin:40px 0;padding:28px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px">
+    <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px">🛠️ Free Encoding Tools</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+      <a href="/api/base64/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔒</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Base64 Encoder/Decoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Encode and decode Base64</div></div></a>
+      <a href="/api/jwt-decoder/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔓</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">JWT Decoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Decode Base64URL JWT tokens</div></div></a>
+      <a href="/api/url-encoder/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🌐</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">URL Encoder/Decoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Encode URLs safely</div></div></a>
+      <a href="/api/hash-generator/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔐</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Hash Generator</div><div style="font-size:.78rem;color:var(--text-secondary)">SHA-256, MD5 and more</div></div></a>
+      <a href="/encoding/aes/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🛡️</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">AES Encrypt/Decrypt</div><div style="font-size:.78rem;color:var(--text-secondary)">Real encryption (not Base64)</div></div></a>
+      <a href="/api/password-generator/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔑</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Password Generator</div><div style="font-size:.78rem;color:var(--text-secondary)">Generate secure passwords</div></div></a>
+    </div>
+  </div>
+</article>
+<script src="/assets/layout.js"></script>
+<script src="/assets/community.js"></script>
+</body>
+</html>
