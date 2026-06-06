@@ -1,0 +1,289 @@
+# How to Decode a JWT Token (And What's Actually Inside It)
+
+**Target keyword:** how to decode a JWT token | jwt decoder online | decode jwt token  
+**Meta description:** Learn how to decode a JWT token in seconds — see the header, payload and expiry. Free online JWT decoder that runs 100% in your browser. No login needed.
+
+---
+
+Ever received a JWT token from an API and wondered what's actually inside it? You're not alone. In this guide we'll decode a JWT token step by step, explain exactly what each part means, and show you the safest way to inspect tokens without risking your security.
+
+👉 **Want to decode a JWT right now?** Use our [free JWT Decoder](https://devnovatools.com/api/jwt-decoder/) — runs 100% in your browser, your token never leaves your computer.
+
+---
+
+## What Is a JWT Token?
+
+A JWT (JSON Web Token) is a compact, URL-safe way to represent claims between two parties. It's widely used for:
+
+- **Authentication** — proving who you are after login
+- **Authorization** — proving what you're allowed to do
+- **Information exchange** — securely passing data between services
+
+A JWT looks like this:
+
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+```
+
+It looks like random text — but it's actually three distinct parts separated by dots (`.`).
+
+---
+
+## The 3 Parts of a JWT Token
+
+Every JWT has exactly three parts:
+
+```
+HEADER.PAYLOAD.SIGNATURE
+```
+
+### 1. Header
+The first part contains metadata about the token — specifically the algorithm used to sign it.
+
+Decoded it looks like:
+```json
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+
+- **alg** — the signing algorithm (HS256, RS256, ES256 etc.)
+- **typ** — always "JWT"
+
+### 2. Payload
+This is the most important part — it contains the actual **claims** (data) inside the token.
+
+Decoded it looks like:
+```json
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "email": "john@example.com",
+  "role": "admin",
+  "iat": 1516239022,
+  "exp": 1716239022
+}
+```
+
+Common claims you'll see:
+| Claim | Meaning |
+|---|---|
+| `sub` | Subject — the user ID |
+| `iss` | Issuer — who created the token |
+| `aud` | Audience — who the token is for |
+| `exp` | Expiry — when the token expires (Unix timestamp) |
+| `iat` | Issued at — when the token was created |
+| `nbf` | Not before — token is invalid before this time |
+| `role` | Custom claim — user's role (admin, user etc.) |
+
+### 3. Signature
+The third part is the cryptographic signature. It's used to **verify** the token hasn't been tampered with. You need the secret key to verify the signature — but you don't need it to decode and read the header and payload.
+
+---
+
+## How to Decode a JWT Token
+
+There are several ways to decode a JWT token:
+
+### Method 1: Online JWT Decoder (Easiest & Safest)
+
+Use [DevNova Tools JWT Decoder](https://devnovatools.com/api/jwt-decoder/) — it runs entirely in your browser so your token is never sent to any server.
+
+1. Go to [devnovatools.com/api/jwt-decoder](https://devnovatools.com/api/jwt-decoder/)
+2. Paste your JWT token in the input field
+3. See the decoded header, payload and expiry instantly
+
+⚠️ **Security tip:** Many online JWT decoders send your token to their server. Never paste a production JWT into an untrusted tool — use one that runs client-side like DevNova Tools.
+
+---
+
+### Method 2: Decode JWT in JavaScript
+
+```javascript
+function decodeJWT(token) {
+  const parts = token.split('.');
+  
+  if (parts.length !== 3) {
+    throw new Error('Invalid JWT token');
+  }
+  
+  const header = JSON.parse(atob(parts[0]));
+  const payload = JSON.parse(atob(parts[1]));
+  
+  return { header, payload };
+}
+
+// Usage
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
+const decoded = decodeJWT(token);
+console.log(decoded.payload);
+// { sub: '1234567890', name: 'John Doe', exp: 1716239022 }
+```
+
+Note: `atob()` decodes Base64. JWT uses Base64URL encoding which slightly differs — for production use a library like `jsonwebtoken` or `jwt-decode`.
+
+---
+
+### Method 3: Decode JWT in Python
+
+```python
+import base64
+import json
+
+def decode_jwt(token):
+    parts = token.split('.')
+    
+    if len(parts) != 3:
+        raise ValueError('Invalid JWT token')
+    
+    # Add padding if needed
+    def decode_part(part):
+        padding = 4 - len(part) % 4
+        part += '=' * padding
+        return json.loads(base64.urlsafe_b64decode(part))
+    
+    header = decode_part(parts[0])
+    payload = decode_part(parts[1])
+    
+    return {'header': header, 'payload': payload}
+
+# Usage
+token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
+decoded = decode_jwt(token)
+print(decoded['payload'])
+```
+
+---
+
+### Method 4: Decode JWT in C# / .NET
+
+```csharp
+using System;
+using System.Text;
+using System.Text.Json;
+
+public static class JwtDecoder
+{
+    public static JsonElement DecodePayload(string token)
+    {
+        var parts = token.Split('.');
+        
+        if (parts.Length != 3)
+            throw new ArgumentException("Invalid JWT token");
+        
+        // Fix Base64URL padding
+        var payload = parts[1];
+        payload = payload.Replace('-', '+').Replace('_', '/');
+        
+        switch (payload.Length % 4)
+        {
+            case 2: payload += "=="; break;
+            case 3: payload += "="; break;
+        }
+        
+        var bytes = Convert.FromBase64String(payload);
+        var json = Encoding.UTF8.GetString(bytes);
+        
+        return JsonSerializer.Deserialize<JsonElement>(json);
+    }
+}
+
+// Usage
+var decoded = JwtDecoder.DecodePayload(token);
+Console.WriteLine(decoded.GetProperty("sub").GetString());
+```
+
+---
+
+## How to Check If a JWT Is Expired
+
+The `exp` claim is a Unix timestamp. Here's how to check expiry:
+
+```javascript
+function isJWTExpired(token) {
+  const { payload } = decodeJWT(token);
+  
+  if (!payload.exp) return false; // No expiry set
+  
+  const now = Math.floor(Date.now() / 1000); // Current time in seconds
+  return payload.exp < now;
+}
+
+// Usage
+if (isJWTExpired(token)) {
+  console.log('Token is expired — request a new one');
+} else {
+  const expiresIn = payload.exp - Math.floor(Date.now() / 1000);
+  console.log(`Token expires in ${expiresIn} seconds`);
+}
+```
+
+Or just use [DevNova Tools JWT Decoder](https://devnovatools.com/api/jwt-decoder/) — it automatically shows you if the token is expired and exactly when it expires.
+
+---
+
+## Common JWT Mistakes to Avoid
+
+**1. Pasting tokens into untrusted decoders**
+Many online JWT tools send your token to their server. Always use a client-side tool or decode locally.
+
+**2. Storing sensitive data in the payload**
+Remember — the payload is only Base64 encoded, not encrypted. Anyone with the token can read it. Never store passwords or sensitive PII in JWT payloads.
+
+**3. Not checking expiry**
+Always validate the `exp` claim before trusting a token. Expired tokens should be rejected.
+
+**4. Confusing decoding with verification**
+Decoding just reads the data. Verification checks the signature with the secret key. For authentication, you must verify — not just decode.
+
+---
+
+## JWT Security Best Practices
+
+- ✅ Use short expiry times (15 min for access tokens)
+- ✅ Use refresh tokens for long-lived sessions
+- ✅ Always verify the signature server-side
+- ✅ Use HTTPS for all JWT transmission
+- ✅ Never store JWTs in localStorage (use httpOnly cookies)
+- ✅ Use strong secret keys (256-bit minimum for HS256)
+- ❌ Never put sensitive data (passwords, SSN) in the payload
+- ❌ Never use `alg: none` in production
+
+---
+
+## Frequently Asked Questions
+
+**Can I decode a JWT without the secret key?**
+Yes — you can decode the header and payload without the secret key. The secret key is only needed to *verify* the signature. Decoding just reads the Base64-encoded data.
+
+**Is it safe to decode JWTs online?**
+Only if the tool runs client-side in your browser. Many online decoders send your token to their server. Use [DevNova Tools JWT Decoder](https://devnovatools.com/api/jwt-decoder/) — it runs 100% in your browser with zero server transmission.
+
+**What's the difference between JWT and a session token?**
+A session token is just a random ID stored in a database. A JWT is self-contained — all the user data is inside the token itself, so the server doesn't need to look it up.
+
+**Can I modify a JWT payload?**
+You can modify the Base64-encoded payload, but the signature will then be invalid. Any server that verifies the signature will reject the tampered token.
+
+**What does `iat` mean in JWT?**
+`iat` stands for "issued at" — it's the Unix timestamp of when the token was created.
+
+**How do I decode a JWT in the browser console?**
+```javascript
+const [header, payload] = token.split('.').slice(0, 2).map(p => JSON.parse(atob(p)));
+```
+
+---
+
+## Related Tools on DevNova Tools
+
+- 🔐 [JWT Decoder](https://devnovatools.com/api/jwt-decoder/) — decode any JWT instantly
+- 🟦 [JSON Formatter](https://devnovatools.com/json/formatter/) — format JWT payload responses
+- 🔑 [Base64 Decoder](https://devnovatools.com/api/base64/) — decode Base64 manually
+- 🔒 [HMAC Generator](https://devnovatools.com/api/hmac/) — generate JWT signatures
+- 🆔 [UUID Generator](https://devnovatools.com/api/uuid-generator/) — generate IDs for JWT subjects
+
+---
+
+*Written by the DevNova Tools team. All tools run 100% in your browser — your data never leaves your computer.*
