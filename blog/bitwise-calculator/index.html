@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Bitwise Calculator Online — AND, OR, XOR, NOT with Examples | DevNova Tools Blog</title>
+<meta name="description" content="Learn how to use bitwise operators AND, OR, XOR, NOT, left shift and right shift with real examples in JavaScript, Python and C#. Free online bitwise calculator."/>
+<meta property="og:title" content="Bitwise Calculator Online — AND, OR, XOR, NOT with Examples"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/blog/bitwise-calculator/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+<link rel="stylesheet" href="/assets/community.css"/>
+</head>
+<body>
+<article style="max-width:820px;margin:0 auto;padding:40px 24px 80px">
+  <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> <span>Encoding</span></div>
+  <div style="margin:24px 0 32px">
+    <span style="display:inline-flex;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:999px;color:#A78BFA;background:#A78BFA22;border:1px solid #A78BFA44;margin-bottom:16px">Encoding</span>
+    <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px">Bitwise Calculator Online — AND, OR, XOR, NOT with Examples</h1>
+    <div style="display:flex;align-items:center;gap:16px;color:var(--text-muted);font-size:.85rem;flex-wrap:wrap">
+      <span>📅 June 8, 2026</span><span>⏱ 7 min read</span>
+      <a href="/encoding/bitwise/" style="color:var(--green);font-weight:600">🛠️ Try the Bitwise Calculator →</a>
+    </div>
+  </div>
+  <div style="font-size:.95rem;line-height:1.85;color:var(--text-secondary)">
+    <style>
+    article h2{font-size:1.2rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-top:8px;border-top:1px solid var(--border)}
+    article pre{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;overflow-x:auto;margin:12px 0}
+    article code{font-family:var(--mono);font-size:.88rem;color:var(--green)}
+    article pre code{color:var(--text)}
+    article ul,article ol{padding-left:20px;margin:12px 0;display:flex;flex-direction:column;gap:6px}
+    article li{color:var(--text-secondary);line-height:1.6}
+    article p{margin-bottom:14px}
+    article strong{color:var(--text);font-weight:600}
+    article table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88rem}
+    article th{background:var(--bg-card);color:var(--text);padding:10px 12px;border:1px solid var(--border);text-align:left}
+    article td{padding:10px 12px;border:1px solid var(--border);color:var(--text-secondary);font-family:var(--mono);font-size:.85rem}
+    article td:first-child{font-family:inherit;font-size:.88rem}
+    </style>
+
+    <p style="font-size:1.05rem;color:var(--text);border-left:3px solid var(--green);padding-left:16px;margin-bottom:24px">Bitwise operations are fundamental in programming — used in permission systems, cryptography, flags, masks and low-level optimization. This guide explains every bitwise operator with clear examples in JavaScript, Python and C#.</p>
+
+    <h2>What Are Bitwise Operations?</h2>
+    <p>Bitwise operations work directly on the <strong>binary representation</strong> of numbers — operating on individual bits (0s and 1s) rather than the number as a whole. They are extremely fast because processors execute them in a single CPU cycle.</p>
+
+    <p>Common uses of bitwise operations:</p>
+    <ul>
+      <li><strong>Permission systems</strong> — Linux file permissions (chmod 755)</li>
+      <li><strong>Feature flags</strong> — enabling/disabling features with a single integer</li>
+      <li><strong>Cryptography</strong> — XOR is the foundation of many encryption algorithms</li>
+      <li><strong>Network masks</strong> — IP subnet calculations use bitwise AND</li>
+      <li><strong>Color manipulation</strong> — extracting RGB values from hex colors</li>
+      <li><strong>Performance optimization</strong> — bit shifts replace multiplication/division</li>
+    </ul>
+
+    <p>👉 <strong>Don't want to calculate manually?</strong> Use our <a href="/encoding/bitwise/" style="color:var(--green)">free Bitwise Calculator</a> — performs AND, OR, XOR, NOT, left shift and right shift instantly in your browser.</p>
+
+    <h2>Understanding Binary Numbers</h2>
+    <p>Before bitwise operations make sense, you need to understand binary. Every number has a binary representation using only 0s and 1s:</p>
+
+    <table>
+      <tr><th>Decimal</th><th>Binary (8-bit)</th><th>Hex</th></tr>
+      <tr><td>0</td><td>00000000</td><td>0x00</td></tr>
+      <tr><td>1</td><td>00000001</td><td>0x01</td></tr>
+      <tr><td>5</td><td>00000101</td><td>0x05</td></tr>
+      <tr><td>10</td><td>00001010</td><td>0x0A</td></tr>
+      <tr><td>15</td><td>00001111</td><td>0x0F</td></tr>
+      <tr><td>255</td><td>11111111</td><td>0xFF</td></tr>
+    </table>
+
+    <h2>Bitwise AND (&)</h2>
+    <p>AND returns <code>1</code> only when <strong>both</strong> corresponding bits are <code>1</code>. Otherwise returns <code>0</code>.</p>
+
+    <pre><code>  5 = 00000101
+  3 = 00000011
+AND = 00000001  →  1
+
+Truth table:
+0 AND 0 = 0
+0 AND 1 = 0
+1 AND 0 = 0
+1 AND 1 = 1  ← only this returns 1</code></pre>
+
+    <p><strong>Real use case — check if a number is even or odd:</strong></p>
+    <pre><code>// JavaScript
+console.log(5 & 1);  // 1 → odd
+console.log(4 & 1);  // 0 → even
+
+// Check permission bit
+const READ    = 0b100;  // 4
+const WRITE   = 0b010;  // 2
+const EXECUTE = 0b001;  // 1
+
+const userPermission = 0b110;  // READ + WRITE = 6
+console.log(userPermission & READ);    // 4 → has read permission
+console.log(userPermission & EXECUTE); // 0 → no execute permission</code></pre>
+
+    <h2>Bitwise OR (|)</h2>
+    <p>OR returns <code>1</code> when <strong>at least one</strong> corresponding bit is <code>1</code>.</p>
+
+    <pre><code>  5 = 00000101
+  3 = 00000011
+ OR = 00000111  →  7
+
+Truth table:
+0 OR 0 = 0
+0 OR 1 = 1
+1 OR 0 = 1
+1 OR 1 = 1</code></pre>
+
+    <p><strong>Real use case — combining permission flags:</strong></p>
+    <pre><code>// JavaScript
+const READ    = 0b100;  // 4
+const WRITE   = 0b010;  // 2
+const EXECUTE = 0b001;  // 1
+
+// Grant read and write permissions
+const permissions = READ | WRITE;
+console.log(permissions); // 6 (binary: 110)
+console.log(permissions.toString(2)); // "110"
+
+// Python
+permissions = 0b100 | 0b010  # READ | WRITE
+print(bin(permissions))  # 0b110</code></pre>
+
+    <h2>Bitwise XOR (^)</h2>
+    <p>XOR (exclusive OR) returns <code>1</code> when bits are <strong>different</strong>. Returns <code>0</code> when bits are the same.</p>
+
+    <pre><code>  5 = 00000101
+  3 = 00000011
+XOR = 00000110  →  6
+
+Truth table:
+0 XOR 0 = 0  ← same → 0
+0 XOR 1 = 1  ← different → 1
+1 XOR 0 = 1  ← different → 1
+1 XOR 1 = 0  ← same → 0</code></pre>
+
+    <p><strong>Real use cases — XOR is incredibly powerful:</strong></p>
+    <pre><code>// 1. Swap two variables without a temp variable
+let a = 5, b = 3;
+a = a ^ b;  // a = 6
+b = a ^ b;  // b = 5
+a = a ^ b;  // a = 3
+console.log(a, b); // 3, 5 ✓
+
+// 2. Toggle a bit
+let flags = 0b1010;
+flags ^= 0b0010;  // toggle bit 1
+console.log(flags.toString(2)); // "1000"
+
+// 3. Simple encryption (XOR cipher)
+const key = 42;
+const message = 72;  // ASCII 'H'
+const encrypted = message ^ key;  // 98
+const decrypted = encrypted ^ key; // 72 → back to 'H'
+
+// 4. Find the only non-duplicate in array
+const nums = [1, 2, 3, 2, 1];
+const unique = nums.reduce((acc, n) => acc ^ n, 0);
+console.log(unique); // 3</code></pre>
+
+    <h2>Bitwise NOT (~)</h2>
+    <p>NOT inverts every bit — 0 becomes 1, 1 becomes 0. In most languages this also depends on the integer size (two's complement).</p>
+
+    <pre><code>  5 = 00000101
+NOT = 11111010  →  -6 (in two's complement 32-bit)
+
+// JavaScript
+console.log(~5);   // -6
+console.log(~0);   // -1
+console.log(~-1);  // 0
+
+// Formula: ~n = -(n + 1)
+// ~5 = -(5 + 1) = -6
+
+// Useful trick — fast floor for positive numbers
+console.log(~~3.7);  // 3 (double NOT = floor)
+console.log(~~-3.7); // -3</code></pre>
+
+    <h2>Left Shift (<<)</h2>
+    <p>Shifts all bits to the left by N positions. Equivalent to multiplying by 2^N.</p>
+
+    <pre><code>  5 = 00000101
+5 << 1 = 00001010  →  10  (5 × 2)
+5 << 2 = 00010100  →  20  (5 × 4)
+5 << 3 = 00101000  →  40  (5 × 8)
+
+// JavaScript
+console.log(1 << 0);  // 1
+console.log(1 << 1);  // 2
+console.log(1 << 2);  // 4
+console.log(1 << 3);  // 8
+console.log(1 << 4);  // 16
+
+// Fast multiplication by powers of 2
+const x = 100;
+console.log(x << 1);  // 200 (x * 2)
+console.log(x << 3);  // 800 (x * 8)</code></pre>
+
+    <h2>Right Shift (>>)</h2>
+    <p>Shifts all bits to the right by N positions. Equivalent to dividing by 2^N (integer division).</p>
+
+    <pre><code>  20 = 00010100
+20 >> 1 = 00001010  →  10  (20 / 2)
+20 >> 2 = 00000101  →   5  (20 / 4)
+
+// JavaScript
+console.log(20 >> 1);  // 10
+console.log(20 >> 2);  // 5
+console.log(7  >> 1);  // 3 (integer division: 7/2 = 3.5 → 3)
+
+// Extract RGB components from hex color
+const color = 0xFF8833;
+const red   = (color >> 16) & 0xFF;  // 255
+const green = (color >> 8)  & 0xFF;  // 136
+const blue  =  color        & 0xFF;  // 51</code></pre>
+
+    <h2>Bitwise Operations in JavaScript</h2>
+    <pre><code>// All bitwise operators in JavaScript
+const a = 5;   // 0101
+const b = 3;   // 0011
+
+console.log(a & b);   // AND  → 1  (0001)
+console.log(a | b);   // OR   → 7  (0111)
+console.log(a ^ b);   // XOR  → 6  (0110)
+console.log(~a);      // NOT  → -6
+console.log(a << 1);  // LEFT SHIFT  → 10
+console.log(a >> 1);  // RIGHT SHIFT → 2
+
+// Convert to binary string
+console.log((a & b).toString(2));  // "1"
+console.log((a | b).toString(2));  // "111"
+console.log((a ^ b).toString(2));  // "110"
+
+// Parse binary string to number
+const binary = parseInt('1010', 2);  // 10</code></pre>
+
+    <h2>Bitwise Operations in Python</h2>
+    <pre><code>a = 5   # 0b0101
+b = 3   # 0b0011
+
+print(a & b)    # AND  → 1
+print(a | b)    # OR   → 7
+print(a ^ b)    # XOR  → 6
+print(~a)       # NOT  → -6
+print(a << 1)   # LEFT SHIFT  → 10
+print(a >> 1)   # RIGHT SHIFT → 2
+
+# Display in binary
+print(bin(a & b))  # 0b1
+print(bin(a | b))  # 0b111
+print(bin(a ^ b))  # 0b110
+
+# Python supports arbitrarily large integers!
+big = 1 << 100  # 2^100 — no overflow!</code></pre>
+
+    <h2>Bitwise Operations in C# / .NET</h2>
+    <pre><code>int a = 5;   // 0101
+int b = 3;   // 0011
+
+Console.WriteLine(a & b);    // AND  → 1
+Console.WriteLine(a | b);    // OR   → 7
+Console.WriteLine(a ^ b);    // XOR  → 6
+Console.WriteLine(~a);       // NOT  → -6
+Console.WriteLine(a << 1);   // LEFT SHIFT  → 10
+Console.WriteLine(a >> 1);   // RIGHT SHIFT → 2
+
+// Display as binary
+Console.WriteLine(Convert.ToString(a & b, 2));  // "1"
+Console.WriteLine(Convert.ToString(a | b, 2));  // "111"
+
+// Flags enum — uses bitwise operations under the hood
+[Flags]
+public enum Permission
+{
+    None    = 0,      // 000
+    Read    = 1 << 0, // 001
+    Write   = 1 << 1, // 010
+    Execute = 1 << 2  // 100
+}
+
+var perm = Permission.Read | Permission.Write;
+Console.WriteLine(perm.HasFlag(Permission.Read));    // True
+Console.WriteLine(perm.HasFlag(Permission.Execute)); // False</code></pre>
+
+    <h2>Real-World Use Cases</h2>
+    <table>
+      <tr><th>Use case</th><th>Operation</th><th>Example</th></tr>
+      <tr><td>Check if even/odd</td><td>AND</td><td><code>n & 1 == 0</code> → even</td></tr>
+      <tr><td>Multiply by power of 2</td><td>Left shift</td><td><code>n << 3</code> = n × 8</td></tr>
+      <tr><td>Divide by power of 2</td><td>Right shift</td><td><code>n >> 2</code> = n ÷ 4</td></tr>
+      <tr><td>Toggle a bit</td><td>XOR</td><td><code>flags ^= mask</code></td></tr>
+      <tr><td>Set a bit</td><td>OR</td><td><code>flags |= mask</code></td></tr>
+      <tr><td>Clear a bit</td><td>AND NOT</td><td><code>flags &= ~mask</code></td></tr>
+      <tr><td>Check a bit</td><td>AND</td><td><code>(flags & mask) != 0</code></td></tr>
+      <tr><td>Swap without temp</td><td>XOR</td><td><code>a^=b; b^=a; a^=b</code></td></tr>
+      <tr><td>Extract RGB from hex</td><td>Shift + AND</td><td><code>(color >> 16) & 0xFF</code></td></tr>
+      <tr><td>IP subnet mask</td><td>AND</td><td><code>ip & subnet</code></td></tr>
+    </table>
+
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>What is the difference between & and &&?</strong><br/>
+    <code>&</code> is the bitwise AND operator — operates on individual bits. <code>&&</code> is the logical AND operator — operates on boolean values and short-circuits (stops evaluating if the first operand is false).</p>
+
+    <p><strong>What does ~5 equal?</strong><br/>
+    In most languages using 32-bit two's complement integers, <code>~5</code> equals <code>-6</code>. The formula is <code>~n = -(n + 1)</code>.</p>
+
+    <p><strong>Why does left shift multiply by 2?</strong><br/>
+    In binary, shifting all bits one position to the left doubles the value — the same way shifting digits in decimal (multiplying by 10) increases the value tenfold.</p>
+
+    <p><strong>What is XOR used for in cryptography?</strong><br/>
+    XOR is the basis of many encryption algorithms because it's perfectly reversible — XORing a value twice with the same key returns the original value. This property makes it useful for stream ciphers and one-time pads.</p>
+
+    <p><strong>How do I calculate bitwise operations online?</strong><br/>
+    Use our <a href="/encoding/bitwise/" style="color:var(--green)">free Bitwise Calculator</a> — enter any two numbers, choose your operation (AND, OR, XOR, NOT, shift) and see the result in binary, decimal and hex instantly. Runs 100% in your browser.</p>
+  </div>
+
+  <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:28px;margin:48px 0;text-align:center">
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Try the free Bitwise Calculator</div>
+    <p style="color:var(--text-secondary);margin-bottom:16px;font-size:.9rem">Perform AND, OR, XOR, NOT, left shift and right shift instantly. See results in binary, decimal and hex. Runs 100% in your browser.</p>
+    <a href="/encoding/bitwise/" class="btn btn-primary">Bitwise Calculator →</a>
+  </div>
+
+  <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border)">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="blog-related-tools" style="margin:40px 0;padding:28px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px">
+    <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px">🛠️ Free Encoding & Crypto Tools</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+      <a href="/encoding/bitwise/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">⚙️</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Bitwise Calculator</div><div style="font-size:.78rem;color:var(--text-secondary)">AND, OR, XOR, NOT operations</div></div></a>
+      <a href="/text/base-converter/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔢</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Number Base Converter</div><div style="font-size:.78rem;color:var(--text-secondary)">Binary, hex, decimal, octal</div></div></a>
+      <a href="/api/hash-generator/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔐</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Hash Generator</div><div style="font-size:.78rem;color:var(--text-secondary)">MD5, SHA-256 and more</div></div></a>
+      <a href="/encoding/aes/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🛡️</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">AES Encrypt/Decrypt</div><div style="font-size:.78rem;color:var(--text-secondary)">Browser-based AES encryption</div></div></a>
+      <a href="/encoding/hex/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">0x</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Hex Encoder/Decoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Text to hexadecimal</div></div></a>
+      <a href="/api/base64/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔒</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Base64 Encoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Encode and decode Base64</div></div></a>
+    </div>
+  </div>
+</article>
+<script src="/assets/layout.js"></script>
+<script src="/assets/community.js"></script>
+</body>
+</html>
