@@ -88,6 +88,11 @@ function initNewsletter() {
     btn.textContent = 'Subscribing...';
     btn.disabled = true;
 
+    // GA4 conversion event (mark as Key Event in GA4 Admin)
+    if (typeof window.gtag === 'function') {
+      gtag('event', 'newsletter_signup', { page_path: location.pathname });
+    }
+
     // Store locally (replace with your email service: ConvertKit, Mailchimp, etc.)
     const subscribers = JSON.parse(localStorage.getItem('dnt-subscribers') || '[]');
     if (!subscribers.includes(email)) {

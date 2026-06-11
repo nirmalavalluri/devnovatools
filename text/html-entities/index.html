@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>HTML Entity Encoder — DevNova Tools</title>
-<meta name="description" content="Free HTML entities encoder and decoder. Convert special characters to HTML entities or decode HTML entities back to text. No login required."/>
+<title>HTML Entity Encoder &amp; Decoder — Convert &lt;, &gt;, &amp; and Quotes Online</title>
+<meta name="description" content="Encode special characters like <, >, & and quotes into HTML entities, or decode them back to text. Free, private, browser-based — perfect for escaping code snippets safely."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -19,7 +19,7 @@
 <meta name="robots" content="index, follow"/>
 <meta name="revisit-after" content="7 days"/>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML Entity Encoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Encode text to HTML entities or decode back to plain text. Free, fast, no login required.","url":"https://devnovatools.com/text/html-entities/"}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML Entity Encoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Encode special characters like <, >, & and quotes into HTML entities, or decode them back to text. Free, private, browser-based.","url":"https://devnovatools.com/text/html-entities/"}
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
@@ -138,7 +138,8 @@ function run(){encode()}function encode(){const i=document.getElementById('input
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is HTML Entity Encoder?</h2>
-      <p>HTML Entity Encoder is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>An HTML entity encoder converts special characters like <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code> and quotes into their safe HTML entity equivalents (<code>&amp;lt;</code>, <code>&amp;gt;</code>, <code>&amp;amp;</code>), so browsers display them as text instead of interpreting them as markup. The decoder does the reverse — turning entities back into readable characters.</p>
+      <p>Developers use entity encoding whenever user input or code snippets need to be shown inside an HTML page. Without it, a string like <code>&lt;script&gt;</code> would be executed by the browser instead of displayed. All encoding happens in your browser — your text never leaves your computer.</p>
     </div>
 
     <!-- Example -->
@@ -147,36 +148,68 @@ function run(){encode()}function encode(){const i=document.getElementById('input
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">&lt;div class="msg"&gt;Tom &amp; Jerry say "hi"&lt;/div&gt;</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">&amp;lt;div class=&amp;quot;msg&amp;quot;&amp;gt;Tom &amp;amp; Jerry say &amp;quot;hi&amp;quot;&amp;lt;/div&amp;gt;</div>
         </div>
       </div>
+      <h3 style="margin-top:16px">The 5 essential HTML entities</h3>
+      <ul>
+        <li><code>&amp;lt;</code> → <code>&lt;</code> (less-than, opens tags)</li>
+        <li><code>&amp;gt;</code> → <code>&gt;</code> (greater-than, closes tags)</li>
+        <li><code>&amp;amp;</code> → <code>&amp;</code> (ampersand, starts entities)</li>
+        <li><code>&amp;quot;</code> → <code>"</code> (double quote, breaks attributes)</li>
+        <li><code>&amp;#39;</code> → <code>'</code> (single quote / apostrophe)</li>
+      </ul>
     </div>
 
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Displaying HTML, JSX or XML code snippets inside a web page, blog post or documentation site</li>
+<li>Safely rendering user-generated content (comments, usernames, form input) to prevent broken layouts and XSS injection</li>
+<li>Escaping <code>&amp;</code> characters in URLs placed inside <code>href</code> attributes</li>
+<li>Fixing double-encoded text such as <code>&amp;amp;amp;</code> appearing on a page</li>
+<li>Preparing code examples for CMS editors, email templates and Markdown that allow raw HTML</li></ul>
+    </div>
+
+    <!-- Encoding vs sanitization -->
+    <div class="seo-section">
+      <h2>🛡️ Entity Encoding vs Sanitization</h2>
+      <p><strong>Encoding</strong> makes every special character display as plain text — nothing is removed, nothing executes. <strong>Sanitization</strong> filters HTML, keeping safe tags (like <code>&lt;b&gt;</code>) while stripping dangerous ones (like <code>&lt;script&gt;</code>).</p>
+      <p>Rule of thumb: if the text should never render as HTML, encode it. If users are allowed limited formatting (e.g. a rich-text comment box), sanitize it with a vetted library. Encoding alone is the safer default for untrusted input.</p>
+      <h3>Common mistakes</h3>
+      <ul>
+        <li>Double-encoding — running already-encoded text through the encoder again, producing <code>&amp;amp;lt;</code></li>
+        <li>Forgetting to encode <code>&amp;</code> first when encoding manually, which corrupts the other entities</li>
+        <li>Encoding entire HTML documents you actually want rendered — only encode the parts meant to display as text</li>
+        <li>Relying on entity encoding inside <code>&lt;script&gt;</code> blocks or URLs — those contexts need JavaScript or URL escaping instead</li>
+      </ul>
     </div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
-        <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
+        <div class="faq-q">What characters must always be encoded in HTML? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Five characters are essential: &lt; (&amp;lt;), &gt; (&amp;gt;), &amp; (&amp;amp;), double quote (&amp;quot;) and single quote (&amp;#39;). The first three break page structure; the quotes break HTML attributes.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Does HTML entity encoding prevent XSS attacks? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">It prevents XSS when untrusted text is placed in HTML body or attribute contexts, because tags can no longer execute. It is not sufficient inside script blocks, inline event handlers or URLs — those need context-specific escaping.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What is the difference between named and numeric entities? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Named entities use a readable name like &amp;copy; for ©, while numeric entities use the character code, like &amp;#169; (decimal) or &amp;#xA9; (hex). Browsers treat them identically; numeric entities work for every Unicode character.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Why does my page show &amp;amp; instead of &amp;? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">That is double encoding — text that was already encoded was encoded again. Run it through the decoder once to fix it, and check your pipeline so encoding happens exactly one time, at output.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
-        <div class="faq-a">Yes — all processing runs in your browser. Your data is never sent to any server.</div>
+        <div class="faq-a">Yes — encoding and decoding run entirely in your browser with JavaScript. Nothing you paste is uploaded or stored on any server.</div>
       </div><div class="faq-item">
-        <div class="faq-q">Does it work offline? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
-        <div class="faq-a">Yes — once the page is loaded, the tool works without an internet connection.</div>
+        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Completely free — no login, no usage limits, and it keeps working offline once the page is loaded.</div>
       </div>
     </div>
 

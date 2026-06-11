@@ -1,3 +1,17 @@
+// Clean junk query params (e.g. /?random...) before analytics fires.
+// Keeps legit attribution params so campaign tracking still works.
+(function(){
+  try{
+    var keep=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid'];
+    var u=new URL(window.location.href);
+    var dirty=false;
+    Array.from(u.searchParams.keys()).forEach(function(k){
+      if(keep.indexOf(k)===-1){u.searchParams.delete(k);dirty=true;}
+    });
+    if(dirty){history.replaceState(null,'',u.pathname+(u.search||'')+u.hash);}
+  }catch(e){}
+})();
+
 // Google Analytics 4
 (function(){
   var s=document.createElement('script');
@@ -9,6 +23,25 @@
   window.gtag=gtag;
   gtag('js',new Date());
   gtag('config','G-HEN1MK0MNN');
+})();
+
+// GA4 conversion events: run_tool + copy_result (mark these as Key Events in GA4 Admin)
+(function(){
+  function toolName(){
+    var t=document.title.split('—')[0].split('|')[0].trim();
+    return t||location.pathname;
+  }
+  document.addEventListener('click',function(e){
+    var el=e.target.closest('button,a');
+    if(!el||typeof window.gtag!=='function')return;
+    var txt=(el.textContent||'').trim().toLowerCase();
+    var cls=el.className||'';
+    if(cls.indexOf('copy-btn')>-1||txt.indexOf('copy')===0){
+      gtag('event','copy_result',{tool_name:toolName(),page_path:location.pathname});
+    }else if(cls.indexOf('btn-primary')>-1&&location.pathname.split('/').filter(Boolean).length>=2){
+      gtag('event','run_tool',{tool_name:toolName(),button_label:(el.textContent||'').trim().slice(0,40),page_path:location.pathname});
+    }
+  },true);
 })();
 
 /* © 2026 DevNova Tools — devnovatools.com. All Rights Reserved. */
