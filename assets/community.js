@@ -192,6 +192,18 @@ function renderTestimonials() {
 // ── BLOG ARTICLES ──────────────────────────────────────────────
 const BLOG_POSTS = [
   {
+    emoji: '🔣',
+    bgColor: 'rgba(16,185,129,0.12)',
+    tag: 'Frontend',
+    tagColor: '#10B981',
+    tagBg: 'rgba(16,185,129,0.12)',
+    title: 'HTML Entities Explained: When to Use <, >, & and Quotes',
+    excerpt: 'The 5 characters you must always escape, encoding vs sanitization, common double-encoding bugs, and code examples in JavaScript, Python and C#.',
+    date: 'Jun 2026',
+    readTime: '6 min read',
+    slug: 'html-entities-explained',
+  },
+  {
     emoji: '🔐',
     bgColor: 'rgba(0,102,255,0.12)',
     tag: 'Security',

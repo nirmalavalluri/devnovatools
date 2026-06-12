@@ -179,7 +179,7 @@ function run(){encode()}function encode(){const i=document.getElementById('input
     <div class="seo-section">
       <h2>🛡️ Entity Encoding vs Sanitization</h2>
       <p><strong>Encoding</strong> makes every special character display as plain text — nothing is removed, nothing executes. <strong>Sanitization</strong> filters HTML, keeping safe tags (like <code>&lt;b&gt;</code>) while stripping dangerous ones (like <code>&lt;script&gt;</code>).</p>
-      <p>Rule of thumb: if the text should never render as HTML, encode it. If users are allowed limited formatting (e.g. a rich-text comment box), sanitize it with a vetted library. Encoding alone is the safer default for untrusted input.</p>
+      <p>Rule of thumb: if the text should never render as HTML, encode it. If users are allowed limited formatting (e.g. a rich-text comment box), sanitize it with a vetted library. Encoding alone is the safer default for untrusted input. For a full walkthrough with code examples, read our guide: <a href="/blog/html-entities-explained/" style="color:var(--green);font-weight:600">HTML Entities Explained: When to Use &lt;, &gt;, &amp; and Quotes →</a></p>
       <h3>Common mistakes</h3>
       <ul>
         <li>Double-encoding — running already-encoded text through the encoder again, producing <code>&amp;amp;lt;</code></li>

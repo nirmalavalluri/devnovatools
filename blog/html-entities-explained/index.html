@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>HTML Entities Explained: When to Use &lt;, &gt;, &amp; and Quotes | DevNova Tools Blog</title>
+<meta name="description" content="Learn what HTML entities are, the 5 characters you must always escape, encoding vs sanitization, and how to encode entities in JavaScript, Python and C#."/>
+<meta property="og:title" content="HTML Entities Explained: When to Use &lt;, &gt;, &amp; and Quotes"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/blog/html-entities-explained/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+<link rel="stylesheet" href="/assets/community.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"HTML Entities Explained: When to Use <, >, & and Quotes","description":"What HTML entities are, the 5 characters you must always escape, encoding vs sanitization, and code examples in JavaScript, Python and C#.","datePublished":"2026-06-10","dateModified":"2026-06-10","author":{"@type":"Organization","name":"DevNova Tools","url":"https://devnovatools.com"},"publisher":{"@type":"Organization","name":"DevNova Tools","logo":{"@type":"ImageObject","url":"https://devnovatools.com/assets/og-image.png"}},"mainEntityOfPage":"https://devnovatools.com/blog/html-entities-explained/"}
+</script>
+</head>
+<body>
+<article style="max-width:820px;margin:0 auto;padding:40px 24px 80px">
+  <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> <span>Frontend</span></div>
+  <div style="margin:24px 0 32px">
+    <span style="display:inline-flex;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:999px;color:#10B981;background:#10B98122;border:1px solid #10B98144;margin-bottom:16px">Frontend</span>
+    <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px">HTML Entities Explained: When to Use &lt;, &gt;, &amp; and Quotes</h1>
+    <div style="display:flex;align-items:center;gap:16px;color:var(--text-muted);font-size:.85rem;flex-wrap:wrap">
+      <span>📅 June 10, 2026</span><span>⏱ 6 min read</span>
+      <a href="/text/html-entities/" style="color:var(--green);font-weight:600">🛠️ Try the HTML Entity Encoder →</a>
+    </div>
+  </div>
+  <div style="font-size:.95rem;line-height:1.85;color:var(--text-secondary)">
+    <style>
+    article h2{font-size:1.2rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-top:8px;border-top:1px solid var(--border)}
+    article pre{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;overflow-x:auto;margin:12px 0}
+    article code{font-family:var(--mono);font-size:.88rem;color:var(--green)}
+    article pre code{color:var(--text)}
+    article ul,article ol{padding-left:20px;margin:12px 0;display:flex;flex-direction:column;gap:6px}
+    article li{color:var(--text-secondary);line-height:1.6}
+    article p{margin-bottom:14px}
+    article strong{color:var(--text);font-weight:600}
+    article table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88rem}
+    article th{background:var(--bg-card);color:var(--text);padding:10px 12px;border:1px solid var(--border);text-align:left}
+    article td{padding:10px 12px;border:1px solid var(--border);color:var(--text-secondary)}
+    </style>
+
+    <p style="font-size:1.05rem;color:var(--text);border-left:3px solid var(--green);padding-left:16px;margin-bottom:24px">Ever tried to display <code>&lt;div&gt;</code> on a web page and watched it vanish — or worse, break your layout? That's HTML entities at work. This guide covers what they are, the 5 characters you must always escape, when encoding prevents XSS, and how to encode in JavaScript, Python and C#.</p>
+
+    <h2>What Are HTML Entities?</h2>
+    <p>An HTML entity is a piece of text that starts with an ampersand (<code>&amp;</code>) and ends with a semicolon (<code>;</code>). Browsers replace the entity with the character it represents. Entities exist because some characters have <strong>special meaning in HTML</strong> — if you type them literally, the browser interprets them as markup instead of displaying them.</p>
+    <pre><code>You write:      &amp;lt;div&amp;gt;
+Browser shows:  &lt;div&gt;</code></pre>
+    <p>There are two forms:</p>
+    <ul>
+      <li><strong>Named entities</strong> — readable names like <code>&amp;copy;</code> (©), <code>&amp;nbsp;</code> (non-breaking space), <code>&amp;hearts;</code> (♥)</li>
+      <li><strong>Numeric entities</strong> — the Unicode code point, like <code>&amp;#169;</code> or hex <code>&amp;#xA9;</code> for ©. These work for every Unicode character, even ones without a name.</li>
+    </ul>
+
+    <h2>The 5 Characters You Must Always Escape</h2>
+    <table>
+      <tr><th>Character</th><th>Entity</th><th>Why it's dangerous</th></tr>
+      <tr><td>&lt;</td><td><code>&amp;lt;</code></td><td>Starts an HTML tag</td></tr>
+      <tr><td>&gt;</td><td><code>&amp;gt;</code></td><td>Ends an HTML tag</td></tr>
+      <tr><td>&amp;</td><td><code>&amp;amp;</code></td><td>Starts an entity — unescaped, it corrupts text</td></tr>
+      <tr><td>"</td><td><code>&amp;quot;</code></td><td>Breaks out of double-quoted attributes</td></tr>
+      <tr><td>'</td><td><code>&amp;#39;</code></td><td>Breaks out of single-quoted attributes</td></tr>
+    </table>
+    <p><strong>Order matters when encoding manually:</strong> always escape <code>&amp;</code> first. If you escape <code>&lt;</code> to <code>&amp;lt;</code> and then escape ampersands, you'll corrupt it into <code>&amp;amp;lt;</code> — the classic double-encoding bug.</p>
+
+    <h2>When Do Developers Actually Need This?</h2>
+    <ul>
+      <li><strong>Showing code on a page</strong> — blog posts, docs and tutorials that display HTML, JSX or XML snippets</li>
+      <li><strong>Rendering user input</strong> — comments, usernames, search terms. Unescaped input is the classic XSS vector: <code>&lt;script&gt;steal()&lt;/script&gt;</code> executes; <code>&amp;lt;script&amp;gt;</code> just displays.</li>
+      <li><strong>URLs in attributes</strong> — query strings like <code>?a=1&amp;b=2</code> must be written <code>?a=1&amp;amp;b=2</code> inside <code>href</code></li>
+      <li><strong>Email templates and CMS editors</strong> — anywhere raw HTML is allowed and your snippet should display, not render</li>
+    </ul>
+
+    <h2>Entity Encoding vs Sanitization</h2>
+    <p>These solve different problems and developers often confuse them:</p>
+    <ul>
+      <li><strong>Encoding</strong> converts every special character so the whole string displays as plain text. Nothing renders, nothing executes. Use it when the text should <em>never</em> be HTML.</li>
+      <li><strong>Sanitization</strong> parses HTML and removes dangerous parts while keeping safe formatting like <code>&lt;b&gt;</code> or <code>&lt;a&gt;</code>. Use it when users are allowed limited rich text — and always use a maintained library (DOMPurify in JS, bleach in Python), never regex.</li>
+    </ul>
+    <p><strong>Rule of thumb:</strong> encode by default; sanitize only when you deliberately want some HTML to render.</p>
+
+    <h2>How to Encode HTML Entities in Code</h2>
+    <p><strong>JavaScript</strong> — the safest trick uses the DOM itself:</p>
+    <pre><code>function encodeEntities(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+encodeEntities('&lt;div&gt;Tom &amp; Jerry&lt;/div&gt;');
+// "&amp;lt;div&amp;gt;Tom &amp;amp; Jerry&amp;lt;/div&amp;gt;"</code></pre>
+    <p>In React, JSX escapes text content automatically — entities only matter when you use <code>dangerouslySetInnerHTML</code> (which is the hint to avoid it).</p>
+
+    <p><strong>Python</strong> — built into the standard library:</p>
+    <pre><code>import html
+html.escape('&lt;div&gt;Tom &amp; Jerry&lt;/div&gt;')
+# '&amp;lt;div&amp;gt;Tom &amp;amp; Jerry&amp;lt;/div&amp;gt;'
+html.unescape('&amp;lt;div&amp;gt;')   # '&lt;div&gt;'</code></pre>
+
+    <p><strong>C#</strong> — use <code>System.Net.WebUtility</code>:</p>
+    <pre><code>using System.Net;
+WebUtility.HtmlEncode("&lt;div&gt;Tom &amp; Jerry&lt;/div&gt;");
+// "&amp;lt;div&amp;gt;Tom &amp;amp; Jerry&amp;lt;/div&amp;gt;"
+WebUtility.HtmlDecode("&amp;lt;div&amp;gt;");  // "&lt;div&gt;"</code></pre>
+
+    <p>For quick one-off jobs — escaping a snippet for a blog post or fixing double-encoded text — skip the code entirely and use our <a href="/text/html-entities/" style="color:var(--green)">free HTML Entity Encoder</a>. It runs in your browser, so nothing you paste is uploaded anywhere.</p>
+
+    <h2>Common Mistakes</h2>
+    <ul>
+      <li><strong>Double encoding</strong> — encoding already-encoded text, producing <code>&amp;amp;lt;</code>. If you see <code>&amp;amp;</code> on a live page, decode once and fix the pipeline so encoding happens exactly one time, at output.</li>
+      <li><strong>Encoding in the wrong context</strong> — entity encoding protects HTML body and attributes. Inside <code>&lt;script&gt;</code> blocks use JavaScript escaping; inside URLs use percent-encoding (<code>encodeURIComponent</code>).</li>
+      <li><strong>Encoding too early</strong> — store raw text in your database and encode at render time. Encoding before storage leads to double encoding and broken search.</li>
+      <li><strong>Overusing <code>&amp;nbsp;</code> for layout</strong> — non-breaking spaces are for typography (keeping "10 km" together), not spacing. Use CSS for layout.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>Do I need to escape characters like é or 中 as entities?</strong><br/>
+    No — if your page is UTF-8 (it should be), you can write Unicode characters directly. Entities are only required for the 5 special characters, and optionally for characters you can't type.</p>
+
+    <p><strong>Is <code>&amp;apos;</code> safe to use for apostrophes?</strong><br/>
+    It works in HTML5 and XML but not in old HTML4 parsers. <code>&amp;#39;</code> works everywhere, which is why encoders prefer it.</p>
+
+    <p><strong>Does entity encoding fully prevent XSS?</strong><br/>
+    It prevents XSS in HTML body and quoted attribute contexts. Script blocks, event handlers, URLs and CSS need their own context-specific escaping — that's why frameworks handle it for you.</p>
+
+    <p><strong>Why does my RSS feed or API show <code>&amp;amp;</code> in titles?</strong><br/>
+    The text was HTML-encoded before being placed in a context that doesn't render HTML. Decode it with the <a href="/text/html-entities/" style="color:var(--green)">HTML Entity Decoder</a> or your language's unescape function.</p>
+  </div>
+
+  <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:28px;margin:48px 0;text-align:center">
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Encode or decode HTML entities instantly — free</div>
+    <p style="color:var(--text-secondary);margin-bottom:16px;font-size:.9rem">Paste any text or code snippet and convert &lt;, &gt;, &amp; and quotes to safe HTML entities — or decode them back. Runs 100% in your browser.</p>
+    <a href="/text/html-entities/" class="btn btn-primary">HTML Entity Encoder/Decoder →</a>
+  </div>
+
+  <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border)">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="blog-related-tools" style="margin:40px 0;padding:28px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px">
+    <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px">🛠️ Free Text &amp; Frontend Tools</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+      <a href="/text/html-entities/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔣</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">HTML Entity Encoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Encode &amp; decode entities</div></div></a>
+      <a href="/api/url-encoder/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🌐</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">URL Encoder/Decoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Percent-encoding for URLs</div></div></a>
+      <a href="/api/base64/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔒</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Base64 Encoder/Decoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Encode and decode Base64</div></div></a>
+      <a href="/frontend/html-beautifier/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">✨</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">HTML Beautifier</div><div style="font-size:.78rem;color:var(--text-secondary)">Format messy HTML</div></div></a>
+    </div>
+  </div>
+</article>
+<script src="/assets/layout.js"></script>
+<script src="/assets/community.js"></script>
+</body>
+</html>
