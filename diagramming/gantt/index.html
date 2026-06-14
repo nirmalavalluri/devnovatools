@@ -2,8 +2,8 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Gantt Chart Builder — Free Online Tool | DevNova Tools</title>
-<meta name="description" content="Free Gantt chart builder. Create project timeline charts with Mermaid syntax. Includes sprint, dev project and product launch templates. No signup required."/>
+<title>Gantt Chart Builder Online — Free Project Timeline with Mermaid</title>
+<meta name="description" content="Create Gantt charts online with Mermaid syntax. Visualize project timelines, sprint plans and product launches with tasks, dependencies and milestones. Free and browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
@@ -11,38 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Gantt Chart Builder", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Build Gantt project timeline charts using Mermaid syntax", "url": "https://devnovatools.com/diagramming/gantt/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I create task dependencies?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Use \"after taskId\" to start a task after another: Build :a2, after a1, 14d. This automatically positions the task to start when the dependency finishes."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I add milestones?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Add milestone, 0d as the duration: Launch :milestone, after testing, 0d. Milestones appear as diamond markers on the timeline."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What date formats are supported?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Gantt charts support YYYY-MM-DD, DD/MM/YYYY and other formats specified with dateFormat. YYYY-MM-DD (ISO format) is recommended for clarity."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I create task dependencies?", "acceptedAnswer": {"@type": "Answer", "text": "Use \"after taskId\" to start a task after another: Build :a2, after a1, 14d. This automatically positions the task to start when the dependency finishes."}}, {"@type": "Question", "name": "How do I add milestones?", "acceptedAnswer": {"@type": "Answer", "text": "Add milestone, 0d as the duration: Launch :milestone, after testing, 0d. Milestones appear as diamond markers on the timeline."}}, {"@type": "Question", "name": "What date formats are supported?", "acceptedAnswer": {"@type": "Answer", "text": "Gantt charts support YYYY-MM-DD, DD/MM/YYYY and other formats specified with dateFormat. YYYY-MM-DD (ISO format) is recommended for clarity."}}, {"@type": "Question", "name": "Can I use relative durations instead of dates?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — use duration notation like 3d (3 days), 1w (1 week). Combine with &quot;after&quot; to chain tasks: Task B :after taskA, 5d starts 5 days after Task A finishes."}}, {"@type": "Question", "name": "How do I highlight the critical path?", "acceptedAnswer": {"@type": "Answer", "text": "Add the :crit modifier to critical tasks. They render in red by default, making the critical path visually distinct from other tasks."}}, {"@type": "Question", "name": "Can I show weekends or holidays?", "acceptedAnswer": {"@type": "Answer", "text": "Use excludes weekends to skip Saturdays and Sundays from the timeline. You can also exclude specific dates: excludes 2026-07-04."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -127,7 +96,7 @@ document.addEventListener('DOMContentLoaded',render)</script>
 
     <div class="seo-section">
       <h2>📖 What is this tool?</h2>
-      <p>Gantt Chart Builder creates project timeline charts using Mermaid syntax. Choose from Development Project, Sprint Plan and Product Launch templates to visualize tasks, phases, dependencies and milestones.</p>
+      <p>A Gantt chart maps project tasks against a timeline, showing start dates, durations, dependencies and milestones at a glance. This builder uses Mermaid Gantt syntax: you define sections, tasks and date ranges, and the chart renders live. Choose from Development Project, Sprint Plan and Product Launch templates, or write your own. Perfect for sprint planning, roadmap presentations and release tracking. Everything runs in your browser — your project data is never uploaded.</p>
     </div>
 
     <div class="seo-section">
@@ -154,6 +123,33 @@ document.addEventListener('DOMContentLoaded',render)</script>
     </div>
 
     <div class="seo-section">
+      <h2>📝 Mermaid Gantt Syntax Reference</h2>
+      <ul>
+        <li><code>dateFormat YYYY-MM-DD</code> — set the date format (required)</li>
+        <li><code>title Project Name</code> — chart title shown at the top</li>
+        <li><code>section Phase Name</code> — group tasks under a labeled section</li>
+        <li><code>Task name :id, start, duration</code> — define a task with optional ID</li>
+        <li><code>Task :after id1, 3d</code> — start this task after another finishes (dependency)</li>
+        <li><code>Milestone :milestone, m1, 2026-07-01, 0d</code> — zero-duration marker</li>
+        <li><code>Task :active, t1, 2026-06-10, 5d</code> — mark a task as currently active</li>
+        <li><code>Task :done, t2, 2026-06-01, 3d</code> — mark a task as completed</li>
+        <li><code>Task :crit, t3, 2026-06-15, 2d</code> — mark a task as critical path</li>
+      </ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li>Wrong date format — if your <code>dateFormat</code> says <code>YYYY-MM-DD</code> but you write <code>06/15/2026</code>, the chart breaks silently</li>
+        <li>Missing commas between task fields — each field (status, id, start, duration) must be comma-separated</li>
+        <li>Circular dependencies — task A after B and B after A creates an infinite loop; Mermaid will not render it</li>
+        <li>Forgetting <code>section</code> — tasks without a section header still render but are harder to read in larger charts</li>
+      </ul>
+    </div>
+
+
+
+    <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
         <div class="faq-q">How do I create task dependencies? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -164,7 +160,17 @@ document.addEventListener('DOMContentLoaded',render)</script>
       </div><div class="faq-item">
         <div class="faq-q">What date formats are supported? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
         <div class="faq-a">Gantt charts support YYYY-MM-DD, DD/MM/YYYY and other formats specified with dateFormat. YYYY-MM-DD (ISO format) is recommended for clarity.</div>
+      <div class="faq-item">
+        <div class="faq-q">Can I use relative durations instead of dates? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — use duration notation like 3d (3 days), 1w (1 week). Combine with &quot;after&quot; to chain tasks: Task B :after taskA, 5d starts 5 days after Task A finishes.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I highlight the critical path? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Add the :crit modifier to critical tasks. They render in red by default, making the critical path visually distinct from other tasks.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I show weekends or holidays? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use excludes weekends to skip Saturdays and Sundays from the timeline. You can also exclude specific dates: excludes 2026-07-04.</div>
       </div>
+    </div>
     </div>
 
     <div class="privacy-box">
@@ -183,10 +189,10 @@ document.addEventListener('DOMContentLoaded',render)</script>
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>▶ Run</code> to process</li>
-        <li>Use <code>Copy</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use <code>:done</code>, <code>:active</code> and <code>:crit</code> to color-code task status</li>
+        <li>Chain tasks with <code>:after taskId</code> to show dependencies</li>
+        <li>Add <code>excludes weekends</code> for realistic timelines</li>
+        <li>Use the Sprint Plan template for 2-week iteration planning</li>
       </ul>
     </div>
     <div class="seo-section">

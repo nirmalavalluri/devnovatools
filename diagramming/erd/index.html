@@ -2,8 +2,8 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>ERD Generator — Free Online Tool | DevNova Tools</title>
-<meta name="description" content="Free ERD generator. Create entity-relationship diagrams with Mermaid ERD syntax. Includes Blog, E-Commerce and SaaS database templates. No login required."/>
+<title>ERD Generator Online — Create Entity-Relationship Diagrams Free</title>
+<meta name="description" content="Generate entity-relationship diagrams online with Mermaid ERD syntax. Define tables, columns, types and relationships. Includes Blog, E-Commerce and SaaS templates. Free and browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
@@ -11,38 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ERD Generator", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Generate Entity-Relationship Diagrams from Mermaid ERD syntax", "url": "https://devnovatools.com/diagramming/erd/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What do the relationship symbols mean?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "||--|| is one-to-one, ||--o{ is one-to-many, }o--o{ is many-to-many. The | means exactly one, o means zero or one, { means one or many, } means zero or many."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I add attributes to entities?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Inside the entity block: USER { int id PK\\n string name\\n string email UK }. PK = Primary Key, UK = Unique Key, FK = Foreign Key."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can ERDs be used for NoSQL databases?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "ERDs are primarily for relational databases. For NoSQL, use them to show document relationships conceptually, though the strict relational semantics don't apply."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What do the relationship symbols mean?", "acceptedAnswer": {"@type": "Answer", "text": "||--|| is one-to-one, ||--o{ is one-to-many, }o--o{ is many-to-many. The | means exactly one, o means zero or one, { means one or many, } means zero or many."}}, {"@type": "Question", "name": "How do I add attributes to entities?", "acceptedAnswer": {"@type": "Answer", "text": "Inside the entity block: USER { int id PK\n string name\n string email UK }. PK = Primary Key, UK = Unique Key, FK = Foreign Key."}}, {"@type": "Question", "name": "Can ERDs be used for NoSQL databases?", "acceptedAnswer": {"@type": "Answer", "text": "ERDs are primarily for relational databases. For NoSQL, use them to show document relationships conceptually, though the strict relational semantics don't apply."}}, {"@type": "Question", "name": "How do I show a many-to-many relationship?", "acceptedAnswer": {"@type": "Answer", "text": "Use }o--o{ between the two entities. In practice, many-to-many relationships usually need a junction table — add a third entity (e.g. ENROLLMENTS) with one-to-many relationships to both sides."}}, {"@type": "Question", "name": "Can I model inheritance or subtypes?", "acceptedAnswer": {"@type": "Answer", "text": "Mermaid ERD does not support inheritance notation directly. The common workaround is to model subtypes as separate entities with a foreign key back to the parent entity."}}, {"@type": "Question", "name": "How do I represent nullable foreign keys?", "acceptedAnswer": {"@type": "Answer", "text": "Use the &quot;zero or one&quot; cardinality: o|--o{ means the relationship is optional on the left side. This visually indicates that the foreign key column allows NULL."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -127,7 +96,7 @@ document.addEventListener('DOMContentLoaded',render)</script>
 
     <div class="seo-section">
       <h2>📖 What is this tool?</h2>
-      <p>ERD Generator creates Entity-Relationship Diagrams from Mermaid ERD syntax showing tables, columns and relationships. Choose from Blog DB, E-Commerce and SaaS templates to get started quickly with your database design.</p>
+      <p>An entity-relationship diagram (ERD) shows database tables, their columns and how tables relate to each other through foreign keys. This generator uses Mermaid ERD syntax: you define entities with typed attributes and connect them with relationship lines (one-to-one, one-to-many, many-to-many). Choose from Blog DB, E-Commerce and SaaS templates, or model your own schema from scratch. Use it to plan a new database, document an existing one, or communicate schema changes with your team. Everything runs in your browser — your schema is never uploaded.</p>
     </div>
 
     <div class="seo-section">
@@ -152,6 +121,30 @@ document.addEventListener('DOMContentLoaded',render)</script>
     </div>
 
     <div class="seo-section">
+      <h2>📝 Mermaid ERD Syntax Reference</h2>
+      <ul>
+        <li><code>erDiagram</code> — starts an ERD block</li>
+        <li><code>USERS { int id PK }</code> — entity with a column (type, name, constraint)</li>
+        <li>Column constraints: <code>PK</code> (primary key), <code>FK</code> (foreign key), <code>UK</code> (unique)</li>
+        <li><code>USERS ||--o{ ORDERS : places</code> — one user places many orders</li>
+        <li>Cardinality symbols: <code>||</code> (exactly one), <code>o|</code> (zero or one), <code>}|</code> (one or more), <code>}o</code> (zero or more)</li>
+        <li>The label after the colon describes the relationship verb (e.g. &quot;places&quot;, &quot;contains&quot;, &quot;belongs to&quot;)</li>
+      </ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li>Confusing cardinality direction — read the symbols at each end of the line: <code>||--o{</code> means &quot;exactly one to zero-or-many&quot;</li>
+        <li>Forgetting the relationship label — the colon and verb after the entity names are required (<code>USERS ||--o{ ORDERS : places</code>)</li>
+        <li>Using spaces in entity names — multi-word names like <code>Order Items</code> break the syntax; use <code>ORDER_ITEMS</code> or <code>OrderItems</code></li>
+        <li>Skipping column types — while types are optional in Mermaid, including them (<code>int</code>, <code>varchar</code>, <code>datetime</code>) makes the ERD useful as real documentation</li>
+      </ul>
+    </div>
+
+
+
+    <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
         <div class="faq-q">What do the relationship symbols mean? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -162,7 +155,17 @@ document.addEventListener('DOMContentLoaded',render)</script>
       </div><div class="faq-item">
         <div class="faq-q">Can ERDs be used for NoSQL databases? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
         <div class="faq-a">ERDs are primarily for relational databases. For NoSQL, use them to show document relationships conceptually, though the strict relational semantics don't apply.</div>
+      <div class="faq-item">
+        <div class="faq-q">How do I show a many-to-many relationship? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use }o--o{ between the two entities. In practice, many-to-many relationships usually need a junction table — add a third entity (e.g. ENROLLMENTS) with one-to-many relationships to both sides.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I model inheritance or subtypes? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Mermaid ERD does not support inheritance notation directly. The common workaround is to model subtypes as separate entities with a foreign key back to the parent entity.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I represent nullable foreign keys? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use the &quot;zero or one&quot; cardinality: o|--o{ means the relationship is optional on the left side. This visually indicates that the foreign key column allows NULL.</div>
       </div>
+    </div>
     </div>
 
     <div class="privacy-box">
@@ -181,10 +184,10 @@ document.addEventListener('DOMContentLoaded',render)</script>
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>▶ Run</code> to process</li>
-        <li>Use <code>Copy</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use <code>PK</code>, <code>FK</code> and <code>UK</code> constraints to mark key columns</li>
+        <li>Read relationships as sentences: <code>USERS ||--o{ ORDERS : places</code> = &quot;one user places many orders&quot;</li>
+        <li>Start with the E-Commerce template for a realistic multi-table example</li>
+        <li>Add column types (<code>int</code>, <code>varchar</code>) to make your ERD useful as documentation</li>
       </ul>
     </div>
     <div class="seo-section">

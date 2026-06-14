@@ -2,8 +2,8 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Sequence Diagram — Free Online Tool | DevNova Tools</title>
-<meta name="description" content="Free sequence diagram builder. Visualize API flows, auth sequences and microservice communication with Mermaid syntax. No signup required."/>
+<title>Sequence Diagram Builder Online — Visualize API &amp; Auth Flows Free</title>
+<meta name="description" content="Build sequence diagrams online with Mermaid syntax. Visualize API request flows, authentication sequences and microservice communication. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
@@ -11,38 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Sequence Diagram", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Create sequence diagrams to visualize system and API interactions", "url": "https://devnovatools.com/diagramming/sequence/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the difference between -> and -->?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "->> is a solid arrow (synchronous request), -->> is a dashed arrow (response or async). Use ->> for requests and -->> for responses to make diagrams more readable."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I show loops in sequence diagrams?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Use the loop keyword: loop Every 10 seconds\n    Service->>DB: Poll for updates\nend. The loop block visually groups repeated interactions."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I add notes to sequence diagrams?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes: Note right of ServiceName: Your note text. Use \"right of\", \"left of\" or \"over\" to position notes relative to participants."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between -> and -->?", "acceptedAnswer": {"@type": "Answer", "text": "->> is a solid arrow (synchronous request), -->> is a dashed arrow (response or async). Use ->> for requests and -->> for responses to make diagrams more readable."}}, {"@type": "Question", "name": "How do I show loops in sequence diagrams?", "acceptedAnswer": {"@type": "Answer", "text": "Use the loop keyword: loop Every 10 seconds Service->>DB: Poll for updates end. The loop block visually groups repeated interactions."}}, {"@type": "Question", "name": "Can I add notes to sequence diagrams?", "acceptedAnswer": {"@type": "Answer", "text": "Yes: Note right of ServiceName: Your note text. Use \"right of\", \"left of\" or \"over\" to position notes relative to participants."}}, {"@type": "Question", "name": "How do I show conditional logic (if/else)?", "acceptedAnswer": {"@type": "Answer", "text": "Use the alt/else block: alt Success ... else Failure ... end. Each branch renders as a labeled region in the diagram."}}, {"@type": "Question", "name": "How do I show parallel (concurrent) messages?", "acceptedAnswer": {"@type": "Answer", "text": "Use par ... and ... end to show messages happening at the same time. Each &quot;and&quot; keyword starts a new concurrent branch."}}, {"@type": "Question", "name": "Can I export the diagram as an image?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — right-click the rendered diagram and choose &quot;Save image as&quot; to download it as PNG. You can also copy the Mermaid syntax into documentation tools like Notion, GitHub or Confluence that render it natively."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -127,7 +96,7 @@ document.addEventListener('DOMContentLoaded',render)</script>
 
     <div class="seo-section">
       <h2>📖 What is this tool?</h2>
-      <p>Sequence Diagram Builder creates interaction diagrams showing how objects or systems communicate over time. Choose from Auth Flow, API Request and Payment sequence templates, then customize for your specific use case.</p>
+      <p>A sequence diagram shows how systems, services or users exchange messages over time — reading top to bottom. They are the standard way to document API flows, authentication handshakes, payment processing and microservice communication. This builder uses Mermaid syntax: you type participants and arrows, and the diagram renders live. Choose from Auth Flow, API Request and Payment templates, or write your own from scratch. Everything runs in your browser — your diagrams are never uploaded.</p>
     </div>
 
     <div class="seo-section">
@@ -143,7 +112,7 @@ document.addEventListener('DOMContentLoaded',render)</script>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Live sequence diagram showing message flows</div>
+          <div class="example-code">A rendered diagram with four participants (Client, API, DB) and arrows showing the login request flow, verification and JWT token response</div>
         </div>
       </div>
     </div>
@@ -152,6 +121,32 @@ document.addEventListener('DOMContentLoaded',render)</script>
       <h2>🛠️ Common Use Cases</h2>
       <ul><li>Document API request/response flows</li><li>Design authentication sequences</li><li>Map microservice communication patterns</li><li>Plan payment processing flows</li><li>Visualize WebSocket message exchanges</li></ul>
     </div>
+
+    <div class="seo-section">
+      <h2>📝 Mermaid Sequence Syntax Reference</h2>
+      <ul>
+        <li><code>participant A</code> — declare a participant (box appears in order declared)</li>
+        <li><code>A-&gt;&gt;B: message</code> — solid arrow, synchronous request</li>
+        <li><code>B--&gt;&gt;A: response</code> — dashed arrow, response or async message</li>
+        <li><code>A-xB: failed</code> — crossed arrow, lost or rejected message</li>
+        <li><code>activate B</code> / <code>deactivate B</code> — show a participant is active (colored bar)</li>
+        <li><code>loop Every 5s</code> ... <code>end</code> — repeated block</li>
+        <li><code>alt Success</code> ... <code>else Failure</code> ... <code>end</code> — conditional branches</li>
+        <li><code>Note right of A: text</code> — annotation (use <code>left of</code>, <code>right of</code>, or <code>over A,B</code>)</li>
+      </ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li>Using <code>-&gt;</code> instead of <code>-&gt;&gt;</code> — single arrow is deprecated in Mermaid sequence diagrams; always use the double-arrow form</li>
+        <li>Forgetting the colon after the arrow — <code>A-&gt;&gt;B</code> alone is invalid; add <code>: message text</code></li>
+        <li>Putting participants in the wrong order — participants appear left-to-right in the order they are first mentioned; use explicit <code>participant</code> declarations to control layout</li>
+        <li>Unclosed blocks — every <code>loop</code>, <code>alt</code>, <code>opt</code>, <code>par</code> and <code>critical</code> block must end with <code>end</code></li>
+      </ul>
+    </div>
+
+
 
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
@@ -166,7 +161,17 @@ end. The loop block visually groups repeated interactions.</div>
       </div><div class="faq-item">
         <div class="faq-q">Can I add notes to sequence diagrams? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
         <div class="faq-a">Yes: Note right of ServiceName: Your note text. Use "right of", "left of" or "over" to position notes relative to participants.</div>
+      <div class="faq-item">
+        <div class="faq-q">How do I show conditional logic (if/else)? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use the alt/else block: alt Success ... else Failure ... end. Each branch renders as a labeled region in the diagram.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I show parallel (concurrent) messages? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use par ... and ... end to show messages happening at the same time. Each &quot;and&quot; keyword starts a new concurrent branch.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I export the diagram as an image? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — right-click the rendered diagram and choose &quot;Save image as&quot; to download it as PNG. You can also copy the Mermaid syntax into documentation tools like Notion, GitHub or Confluence that render it natively.</div>
       </div>
+    </div>
     </div>
 
     <div class="privacy-box">
@@ -185,10 +190,10 @@ end. The loop block visually groups repeated interactions.</div>
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>▶ Run</code> to process</li>
-        <li>Use <code>Copy</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Declare <code>participant</code> lines at the top to control left-to-right order</li>
+        <li>Use <code>activate</code>/<code>deactivate</code> to show when a service is processing</li>
+        <li>Keep message labels short — details go in <code>Note</code> blocks</li>
+        <li>Use the Auth Flow template as a starting point for OAuth/JWT sequences</li>
       </ul>
     </div>
     <div class="seo-section">

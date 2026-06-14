@@ -2,8 +2,8 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Mermaid Live Editor — Free Online Tool | DevNova Tools</title>
-<meta name="description" content="Free Mermaid live editor. Create flowcharts, sequence diagrams, ERDs, Gantt charts and pie charts with live preview. No signup required."/>
+<title>Mermaid Live Editor Online — Flowcharts, Sequence, ERD &amp; Gantt Free</title>
+<meta name="description" content="Write Mermaid syntax and see diagrams render live. Supports flowcharts, sequence diagrams, ERDs, Gantt charts and pie charts. Free, private, browser-based — no signup required."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
@@ -11,38 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Mermaid Live Editor", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Create Mermaid diagrams with live preview \u2014 flowcharts, ERDs, sequences and more", "url": "https://devnovatools.com/diagramming/mermaid/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What diagram types does Mermaid support?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mermaid supports flowcharts, sequence diagrams, class diagrams, state diagrams, ER diagrams, Gantt charts, pie charts, git graphs and more. This editor provides quick-start examples for the most common types."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I export Mermaid diagrams as images?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Right-click the rendered SVG and save as SVG or use your browser's screenshot tool. For production use, the Mermaid CLI can export to PNG, SVG and PDF."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Where can I use Mermaid diagrams?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Mermaid is supported in GitHub README files, GitLab, Notion, Obsidian, VS Code extensions, Confluence and many documentation platforms. It's the most widely-supported text-based diagram format."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What diagram types does Mermaid support?", "acceptedAnswer": {"@type": "Answer", "text": "Mermaid supports flowcharts, sequence diagrams, class diagrams, state diagrams, ER diagrams, Gantt charts, pie charts, git graphs and more. This editor provides quick-start examples for the most common types."}}, {"@type": "Question", "name": "Can I export Mermaid diagrams as images?", "acceptedAnswer": {"@type": "Answer", "text": "Right-click the rendered SVG and save as SVG or use your browser's screenshot tool. For production use, the Mermaid CLI can export to PNG, SVG and PDF."}}, {"@type": "Question", "name": "Where can I use Mermaid diagrams?", "acceptedAnswer": {"@type": "Answer", "text": "Mermaid is supported in GitHub README files, GitLab, Notion, Obsidian, VS Code extensions, Confluence and many documentation platforms. It's the most widely-supported text-based diagram format."}}, {"@type": "Question", "name": "Which platforms support Mermaid natively?", "acceptedAnswer": {"@type": "Answer", "text": "GitHub (in Markdown files and issues), GitLab, Notion, Confluence, Obsidian, Docusaurus and many documentation tools render Mermaid code blocks automatically. Write your diagram here, then paste the code into a ```mermaid block."}}, {"@type": "Question", "name": "Can I theme or style Mermaid diagrams?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — Mermaid supports built-in themes (default, dark, forest, neutral) via the init directive: %%{init: {&apos;theme&apos;: &apos;dark&apos;}}%%. You can also override individual styles with the style directive."}}, {"@type": "Question", "name": "Is there a size limit for diagrams?", "acceptedAnswer": {"@type": "Answer", "text": "There is no hard character limit, but very large diagrams (100+ nodes) may render slowly in the browser. For complex systems, break the diagram into subgraphs or separate diagrams for each subsystem."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -134,7 +103,7 @@ document.addEventListener('DOMContentLoaded',()=>{document.getElementById('input
 
     <div class="seo-section">
       <h2>📖 What is this tool?</h2>
-      <p>Mermaid Live Editor is a full-featured diagram editor that renders flowcharts, sequence diagrams, ERDs, Gantt charts and pie charts directly in your browser using Mermaid.js. Write diagram syntax and see a live preview instantly.</p>
+      <p>Mermaid is a text-based diagramming language that turns simple syntax into professional diagrams. This live editor supports all major Mermaid diagram types: flowcharts, sequence diagrams, entity-relationship diagrams, Gantt charts and pie charts. Write or paste Mermaid code on the left and see the rendered diagram update instantly on the right. Use it to prototype diagrams for GitHub READMEs, Notion docs, Confluence pages or technical documentation. Everything runs in your browser using Mermaid.js — your diagram code is never sent to a server.</p>
     </div>
 
     <div class="seo-section">
@@ -160,6 +129,32 @@ document.addEventListener('DOMContentLoaded',()=>{document.getElementById('input
     </div>
 
     <div class="seo-section">
+      <h2>📝 Supported Diagram Types</h2>
+      <ul>
+        <li><code>graph TD</code> / <code>graph LR</code> — flowcharts (top-down or left-to-right)</li>
+        <li><code>sequenceDiagram</code> — interaction flows between participants</li>
+        <li><code>erDiagram</code> — entity-relationship diagrams for database schemas</li>
+        <li><code>gantt</code> — project timelines with tasks, dependencies and milestones</li>
+        <li><code>pie</code> — simple pie charts with labeled segments</li>
+        <li><code>classDiagram</code> — UML class diagrams with inheritance and associations</li>
+        <li><code>stateDiagram-v2</code> — state machine diagrams with transitions</li>
+      </ul>
+      <p>Each type has its own syntax. For dedicated editors with templates, use the <a href="/diagramming/flowchart/">Flowchart Builder</a>, <a href="/diagramming/sequence/">Sequence Diagram Builder</a>, <a href="/diagramming/erd/">ERD Generator</a> or <a href="/diagramming/gantt/">Gantt Chart Builder</a>.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li>Missing the diagram type keyword on the first line — every Mermaid diagram must start with <code>graph</code>, <code>sequenceDiagram</code>, <code>erDiagram</code>, <code>gantt</code>, etc.</li>
+        <li>Mixing syntax from different diagram types — flowchart arrows (<code>--&gt;</code>) do not work inside a <code>sequenceDiagram</code> block; each type has its own grammar</li>
+        <li>Indentation issues — while Mermaid is not whitespace-sensitive like Python, incorrect indentation inside blocks like <code>loop</code> or <code>subgraph</code> can make code hard to read and debug</li>
+        <li>Using unsupported diagram types — not all Mermaid types are supported in every renderer; this editor supports the types listed above</li>
+      </ul>
+    </div>
+
+
+
+    <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
         <div class="faq-q">What diagram types does Mermaid support? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -170,7 +165,17 @@ document.addEventListener('DOMContentLoaded',()=>{document.getElementById('input
       </div><div class="faq-item">
         <div class="faq-q">Where can I use Mermaid diagrams? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
         <div class="faq-a">Mermaid is supported in GitHub README files, GitLab, Notion, Obsidian, VS Code extensions, Confluence and many documentation platforms. It's the most widely-supported text-based diagram format.</div>
+      <div class="faq-item">
+        <div class="faq-q">Which platforms support Mermaid natively? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">GitHub (in Markdown files and issues), GitLab, Notion, Confluence, Obsidian, Docusaurus and many documentation tools render Mermaid code blocks automatically. Write your diagram here, then paste the code into a ```mermaid block.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I theme or style Mermaid diagrams? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — Mermaid supports built-in themes (default, dark, forest, neutral) via the init directive: %%{init: {&apos;theme&apos;: &apos;dark&apos;}}%%. You can also override individual styles with the style directive.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is there a size limit for diagrams? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">There is no hard character limit, but very large diagrams (100+ nodes) may render slowly in the browser. For complex systems, break the diagram into subgraphs or separate diagrams for each subsystem.</div>
       </div>
+    </div>
     </div>
 
     <div class="privacy-box">
@@ -189,10 +194,10 @@ document.addEventListener('DOMContentLoaded',()=>{document.getElementById('input
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>▶ Run</code> to process</li>
-        <li>Use <code>Copy</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Start with the diagram keyword: <code>graph</code>, <code>sequenceDiagram</code>, <code>erDiagram</code>, <code>gantt</code></li>
+        <li>Paste Mermaid code from GitHub or Notion to preview it here</li>
+        <li>Use <code>%%{init: {&apos;theme&apos;: &apos;dark&apos;}}%%</code> to switch themes</li>
+        <li>Right-click the rendered diagram to save it as a PNG image</li>
       </ul>
     </div>
     <div class="seo-section">

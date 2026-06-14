@@ -2,8 +2,8 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Flowchart Builder — Free Online Tool | DevNova Tools</title>
-<meta name="description" content="Free flowchart builder. Create professional flowcharts with Mermaid syntax and live preview. Includes dev workflow and architecture templates. No signup."/>
+<title>Flowchart Builder Online — Create Flowcharts with Mermaid Syntax Free</title>
+<meta name="description" content="Build flowcharts online with Mermaid syntax and live preview. Design process flows, decision trees and system architecture diagrams. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
@@ -11,38 +11,7 @@
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Flowchart Builder", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web Browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "description": "Build flowcharts using Mermaid syntax with live preview", "url": "https://devnovatools.com/diagramming/flowchart/"}</script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is the difference between TD and LR flowcharts?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "TD (Top-Down) flows vertically from top to bottom. LR (Left-Right) flows horizontally. Use TD for process flows and LR for system architecture or pipeline diagrams."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I add shapes to flowchart nodes?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Use [] for rectangles, () for rounded, {} for diamonds (decisions), [/text/] for parallelograms. Example: A[Rectangle], B(Rounded), C{Diamond}"
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I style individual nodes?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 use classDef to define styles and the ::: operator to apply them. Example: classDef green fill:#0f0; A:::green[Styled Node]"
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between TD and LR flowcharts?", "acceptedAnswer": {"@type": "Answer", "text": "TD (Top-Down) flows vertically from top to bottom. LR (Left-Right) flows horizontally. Use TD for process flows and LR for system architecture or pipeline diagrams."}}, {"@type": "Question", "name": "How do I add shapes to flowchart nodes?", "acceptedAnswer": {"@type": "Answer", "text": "Use [] for rectangles, () for rounded, {} for diamonds (decisions), [/text/] for parallelograms. Example: A[Rectangle], B(Rounded), C{Diamond}"}}, {"@type": "Question", "name": "Can I style individual nodes?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — use classDef to define styles and the ::: operator to apply them. Example: classDef green fill:#0f0; A:::green[Styled Node]"}}, {"@type": "Question", "name": "How do I create a decision tree with Yes/No branches?", "acceptedAnswer": {"@type": "Answer", "text": "Use a diamond node for the decision: B{Is valid?}, then connect with labeled arrows: B -->|Yes| C[Continue] and B -->|No| D[Error]. The diamond shape signals a decision point."}}, {"@type": "Question", "name": "How do I group nodes into sections?", "acceptedAnswer": {"@type": "Answer", "text": "Use subgraph Title ... end to group related nodes inside a labeled box. Subgraphs can be nested and you can draw arrows between nodes in different subgraphs."}}, {"@type": "Question", "name": "Can I change node colors?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — use the style directive: style A fill:#e0f7fa,stroke:#00838f,color:#000. You can also define CSS classes with classDef and apply them to multiple nodes at once."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -127,7 +96,7 @@ document.addEventListener('DOMContentLoaded',()=>{render()})</script>
 
     <div class="seo-section">
       <h2>📖 What is this tool?</h2>
-      <p>Flowchart Builder creates professional flowcharts using Mermaid syntax with a live preview. Choose from starter templates for basic flows, development workflows and left-to-right system architecture diagrams.</p>
+      <p>A flowchart visualizes a process as a series of steps, decisions and connections. This builder uses Mermaid flowchart syntax: you define nodes (rectangles, diamonds, circles) and connect them with arrows, and the diagram renders live. Choose from Basic Flow, Dev Workflow and System Architecture templates. Use top-down (TD) or left-to-right (LR) layouts. Ideal for documenting CI/CD pipelines, onboarding processes, decision trees and API routing logic. Everything runs in your browser.</p>
     </div>
 
     <div class="seo-section">
@@ -153,6 +122,36 @@ document.addEventListener('DOMContentLoaded',()=>{render()})</script>
     </div>
 
     <div class="seo-section">
+      <h2>📝 Mermaid Flowchart Syntax Reference</h2>
+      <ul>
+        <li><code>graph TD</code> — top-down layout; use <code>LR</code> for left-to-right</li>
+        <li><code>A[Rectangle]</code> — standard process node</li>
+        <li><code>B{Diamond}</code> — decision node</li>
+        <li><code>C(Rounded)</code> — rounded rectangle</li>
+        <li><code>D((Circle))</code> — circular node (start/end)</li>
+        <li><code>E[/Parallelogram/]</code> — input/output node</li>
+        <li><code>A --&gt; B</code> — solid arrow</li>
+        <li><code>A -.-&gt; B</code> — dotted arrow</li>
+        <li><code>A ==&gt; B</code> — thick arrow</li>
+        <li><code>A --&gt;|label| B</code> — arrow with text label</li>
+        <li><code>subgraph Title</code> ... <code>end</code> — group nodes into a labeled box</li>
+        <li><code>style A fill:#0f0,stroke:#333</code> — custom node styling</li>
+      </ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li>Using reserved words as node IDs — <code>end</code>, <code>graph</code>, <code>subgraph</code> and <code>style</code> cannot be node IDs; wrap them in quotes or choose different names</li>
+        <li>Forgetting brackets around labels — <code>A</code> alone creates a node labeled &quot;A&quot;; use <code>A[My Label]</code> for readable text</li>
+        <li>Mixing up arrow syntax — <code>--&gt;</code> is a solid arrow, <code>---</code> is a line with no head; adding too many dashes breaks the syntax</li>
+        <li>Unclosed subgraphs — every <code>subgraph</code> needs a matching <code>end</code></li>
+      </ul>
+    </div>
+
+
+
+    <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
         <div class="faq-q">What is the difference between TD and LR flowcharts? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -163,7 +162,17 @@ document.addEventListener('DOMContentLoaded',()=>{render()})</script>
       </div><div class="faq-item">
         <div class="faq-q">Can I style individual nodes? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
         <div class="faq-a">Yes — use classDef to define styles and the ::: operator to apply them. Example: classDef green fill:#0f0; A:::green[Styled Node]</div>
+      <div class="faq-item">
+        <div class="faq-q">How do I create a decision tree with Yes/No branches? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use a diamond node for the decision: B{Is valid?}, then connect with labeled arrows: B -->|Yes| C[Continue] and B -->|No| D[Error]. The diamond shape signals a decision point.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I group nodes into sections? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Use subgraph Title ... end to group related nodes inside a labeled box. Subgraphs can be nested and you can draw arrows between nodes in different subgraphs.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I change node colors? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — use the style directive: style A fill:#e0f7fa,stroke:#00838f,color:#000. You can also define CSS classes with classDef and apply them to multiple nodes at once.</div>
       </div>
+    </div>
     </div>
 
     <div class="privacy-box">
@@ -182,10 +191,10 @@ document.addEventListener('DOMContentLoaded',()=>{render()})</script>
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>▶ Run</code> to process</li>
-        <li>Use <code>Copy</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use <code>graph LR</code> for wide processes, <code>graph TD</code> for tall ones</li>
+        <li>Add <code>|label|</code> on arrows to show Yes/No or condition text</li>
+        <li>Group related steps with <code>subgraph</code> for cleaner layouts</li>
+        <li>Use the Dev Workflow template for CI/CD pipeline diagrams</li>
       </ul>
     </div>
     <div class="seo-section">
