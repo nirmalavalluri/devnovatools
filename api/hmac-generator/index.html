@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>HMAC Generator — DevNova Tools</title>
-<meta name="description" content="Free HMAC generator. Create HMAC signatures using SHA-256, SHA-512 with any secret key. Essential for API authentication. No signup, works in your browser."/>
+<title>HMAC Generator Online — SHA-256, SHA-512, MD5 Hash Free</title>
+<meta name="description" content="Generate HMAC signatures with SHA-256, SHA-512, SHA-1 or MD5. Verify API webhook signatures. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I verify a Stripe webhook signature?", "acceptedAnswer": {"@type": "Answer", "text": "Stripe sends a signature in the Stripe-Signature header. Compute HMAC-SHA256 of the raw request body using your webhook secret, and compare with the signature in the header."}}, {"@type": "Question", "name": "What is the difference between HMAC and a regular hash?", "acceptedAnswer": {"@type": "Answer", "text": "A regular hash (SHA-256 of message) can be computed by anyone. HMAC requires a secret key, so only parties with the key can generate or verify the signature."}}, {"@type": "Question", "name": "Which algorithm should I use?", "acceptedAnswer": {"@type": "Answer", "text": "SHA-256 is the standard choice for new implementations. Use SHA-512 for additional security margin. Avoid MD5 and SHA-1 for new projects."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -138,7 +107,7 @@ async function run(){const msg=document.getElementById('input').value;const key=
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is HMAC Generator?</h2>
-      <p>HMAC Generator is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>HMAC (Hash-based Message Authentication Code) combines a secret key with a message to produce a signature that verifies both authenticity and integrity. This tool generates HMAC signatures using SHA-256, SHA-512, SHA-1 or MD5. Use it to test webhook signature verification (Stripe, GitHub, Slack), debug API authentication, or learn how HMAC works. Everything runs in your browser — your secret key is never transmitted.</p>
     </div>
 
     <!-- Example -->
@@ -147,11 +116,13 @@ async function run(){const msg=document.getElementById('input').value;const key=
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Message: Hello World
+Key: my-secret-key
+Algorithm: SHA-256</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">HMAC-SHA256: a4331fa0b49bbd74c0bf35fa990ed0e...</div>
         </div>
       </div>
     </div>
@@ -159,17 +130,16 @@ async function run(){const msg=document.getElementById('input').value;const key=
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Testing webhook signature verification (Stripe, GitHub, Slack, Twilio)</li><li>Debugging HMAC-based API authentication</li><li>Generating signatures for AWS Signature V4 requests</li><li>Verifying JWT signatures manually</li><li>Learning how HMAC authentication works</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 HMAC Algorithms</h2><ul><li><code>HMAC-SHA256</code> — most common for modern APIs and webhooks (recommended)</li><li><code>HMAC-SHA512</code> — longer hash, higher security margin</li><li><code>HMAC-SHA1</code> — legacy, still used by some APIs (GitHub webhooks)</li><li><code>HMAC-MD5</code> — deprecated for security, but still seen in legacy systems</li></ul><p>Always use SHA-256 or SHA-512 for new implementations.</p></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Wrong encoding</strong> — make sure the message and key use the same encoding (usually UTF-8). A difference produces a different HMAC.</li><li><strong>Hex vs Base64 output</strong> — APIs expect HMAC in either hex or Base64. Check the documentation for the correct format.</li><li><strong>Timing attacks</strong> — in code, always use constant-time comparison for HMAC verification, never string equality.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">How do I verify a Stripe webhook signature? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Stripe sends a signature in the Stripe-Signature header. Compute HMAC-SHA256 of the raw request body using your webhook secret, and compare with the signature in the header.</div></div><div class="faq-item"><div class="faq-q">What is the difference between HMAC and a regular hash? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">A regular hash (SHA-256 of message) can be computed by anyone. HMAC requires a secret key, so only parties with the key can generate or verify the signature.</div></div><div class="faq-item"><div class="faq-q">Which algorithm should I use? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">SHA-256 is the standard choice for new implementations. Use SHA-512 for additional security margin. Avoid MD5 and SHA-1 for new projects.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -219,10 +189,7 @@ async function run(){const msg=document.getElementById('input').value;const key=
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use SHA-256 for new implementations — it is the modern standard</li><li>Verify the encoding (UTF-8) matches between your code and this tool</li><li>Check if your API expects hex or Base64 output format</li><li>Never expose your secret key — this tool processes everything locally</li>
       </ul>
     </div>
 

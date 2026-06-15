@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>XPath Tester — DevNova Tools</title>
-<meta name="description" content="Free XPath tester. Test XPath expressions against XML documents and see matching nodes in real time. Supports XPath 1.0 and 2.0. No login required."/>
+<title>XPath Tester Online — Query XML Documents Free</title>
+<meta name="description" content="Test XPath expressions against XML documents and see matching nodes. Debug XPath queries instantly. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between / and //?", "acceptedAnswer": {"@type": "Answer", "text": "/ selects from the current node (absolute path). // selects anywhere in the document (descendant search). // is convenient but slower on large documents."}}, {"@type": "Question", "name": "Can I use XPath with HTML?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — most web scraping tools and Selenium support XPath on HTML documents. Browser DevTools can generate XPath selectors."}}, {"@type": "Question", "name": "Are XPath positions 0-indexed or 1-indexed?", "acceptedAnswer": {"@type": "Answer", "text": "1-indexed. [1] selects the first element, [2] the second. This differs from most programming languages."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -138,7 +107,7 @@ function run(){const xml=document.getElementById('input').value.trim();const xpa
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is XPath Tester?</h2>
-      <p>XPath Tester is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>XPath Tester lets you write XPath expressions and test them against XML data in real time. See which nodes your expression selects, debug path queries, and learn XPath syntax with instant feedback. Use it for web scraping, XSLT development, XML data extraction, or Selenium test selectors. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -147,11 +116,11 @@ function run(){const xml=document.getElementById('input').value.trim();const xpa
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">XML: catalog with book elements — XPath: //book/title/text()</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Result: matching title text nodes</div>
         </div>
       </div>
     </div>
@@ -159,17 +128,17 @@ function run(){const xml=document.getElementById('input').value.trim();const xpa
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Building XPath queries for web scraping (BeautifulSoup, Scrapy, Puppeteer)</li><li>Writing Selenium element locators</li><li>Developing XSLT transformations</li><li>Extracting data from XML APIs and feeds</li><li>Debugging XPath expressions for XML processing</li></ul>
     </div>
 
-    <!-- FAQ -->
+
+    <div class="seo-section"><h2>📝 XPath Syntax Reference</h2><ul><li><code>/root/child</code> — absolute path from root</li><li><code>//element</code> — find element anywhere in the document</li><li><code>@attribute</code> — select an attribute</li><li><code>[1]</code> — first element (1-indexed, not 0-indexed)</li><li><code>[contains(text(), "search")]</code> — filter by text content</li><li><code>[position()&lt;3]</code> — first two elements</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>0-indexed thinking</strong> — XPath positions start at 1, not 0. [1] is the first element.</li><li><strong>Namespace issues</strong> — XML with namespaces requires namespace-aware XPath.</li><li><strong>Using // everywhere</strong> — // searches the entire document tree. Use absolute paths when you know the structure.</li></ul></div>
+
+        <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">What is the difference between / and //? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">/ selects from the current node (absolute path). // selects anywhere in the document (descendant search). // is convenient but slower on large documents.</div></div><div class="faq-item"><div class="faq-q">Can I use XPath with HTML? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — most web scraping tools and Selenium support XPath on HTML documents. Browser DevTools can generate XPath selectors.</div></div><div class="faq-item"><div class="faq-q">Are XPath positions 0-indexed or 1-indexed? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">1-indexed. [1] selects the first element, [2] the second. This differs from most programming languages.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -219,10 +188,7 @@ function run(){const xml=document.getElementById('input').value.trim();const xpa
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>XPath positions start at <strong>1</strong>, not 0</li><li>Use <code>//element</code> to search anywhere in the document</li><li>Use <code>contains(text(), "...")</code> for partial text matching</li><li>Prefer absolute paths over <code>//</code> for better performance</li>
       </ul>
     </div>
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Cron Expression Tester — DevNova Tools</title>
-<meta name="description" content="Free cron expression tester. Test cron expressions and see the next 10 scheduled run times. Debug cron jobs before deploying. No signup required."/>
+<title>Cron Tester Online — Validate &amp; Preview Cron Schedules Free</title>
+<meta name="description" content="Test cron expressions and see the next run times. Validate cron syntax with human-readable explanations. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many fields does a cron expression have?", "acceptedAnswer": {"@type": "Answer", "text": "Standard cron has 5 fields: minute, hour, day of month, month, day of week. Some systems (like Quartz) add a seconds field at the beginning."}}, {"@type": "Question", "name": "What timezone does cron use?", "acceptedAnswer": {"@type": "Answer", "text": "Cron uses the server's system timezone by default. In cloud services, you can usually configure the timezone explicitly."}}, {"@type": "Question", "name": "How do I run a job every 5 minutes?", "acceptedAnswer": {"@type": "Answer", "text": "Use */5 * * * * — the */5 in the minute field means every 5th minute."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -139,7 +108,7 @@ function describe(min,hour,dom,mon,dow){const pre={'* * * * *':'Every minute','0
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Cron Expression Tester?</h2>
-      <p>Cron Expression Tester is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>Cron Tester validates cron expressions and shows their next scheduled run times. Paste a cron expression and see a human-readable description plus the next 5-10 execution times. Use it to verify cron schedules before deploying to production, debug timing issues, or learn cron syntax. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -148,11 +117,12 @@ function describe(min,hour,dom,mon,dow){const pre={'* * * * *':'Every minute','0
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">*/15 9-17 * * 1-5</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Every 15 minutes, between 9:00 AM and 5:59 PM, Monday through Friday
+Next: Mon 9:00, Mon 9:15, Mon 9:30...</div>
         </div>
       </div>
     </div>
@@ -160,17 +130,16 @@ function describe(min,hour,dom,mon,dow){const pre={'* * * * *':'Every minute','0
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Validating cron expressions before adding them to crontab</li><li>Previewing next run times for scheduled jobs</li><li>Debugging cron schedules that fire at unexpected times</li><li>Testing CI/CD pipeline schedules (GitHub Actions, GitLab CI)</li><li>Verifying cloud scheduler expressions (AWS EventBridge, Google Cloud Scheduler)</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Cron Fields</h2><ul><li>Field 1: Minute (0-59)</li><li>Field 2: Hour (0-23)</li><li>Field 3: Day of month (1-31)</li><li>Field 4: Month (1-12 or JAN-DEC)</li><li>Field 5: Day of week (0-7, where 0 and 7 = Sunday, or SUN-SAT)</li><li><code>*</code> = every, <code>*/n</code> = every nth, <code>a-b</code> = range, <code>a,b</code> = list</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Day of week numbering</strong> — 0 and 7 both mean Sunday, but some systems differ. Test to confirm.</li><li><strong>Forgetting timezone</strong> — cron runs in the server's timezone. A job set for 9 AM runs at 9 AM server time, not your local time.</li><li><strong>Using both day-of-month and day-of-week</strong> — most cron implementations OR these fields, meaning the job runs on matching days of month OR matching days of week.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">How many fields does a cron expression have? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Standard cron has 5 fields: minute, hour, day of month, month, day of week. Some systems (like Quartz) add a seconds field at the beginning.</div></div><div class="faq-item"><div class="faq-q">What timezone does cron use? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Cron uses the server's system timezone by default. In cloud services, you can usually configure the timezone explicitly.</div></div><div class="faq-item"><div class="faq-q">How do I run a job every 5 minutes? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Use */5 * * * * — the */5 in the minute field means every 5th minute.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -220,10 +189,7 @@ function describe(min,hour,dom,mon,dow){const pre={'* * * * *':'Every minute','0
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>5 fields: minute, hour, day-of-month, month, day-of-week</li><li>Use <code>*/n</code> for "every nth" intervals</li><li>Always check the timezone your cron server uses</li><li>Use <a href="/devops/cron-builder/">Cron Builder</a> to create expressions visually</li>
       </ul>
     </div>
 

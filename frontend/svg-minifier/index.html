@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SVG Minifier — DevNova Tools</title>
-<meta name="description" content="Free SVG minifier. Remove whitespace, comments and metadata from SVG files to reduce size. No login required. Works offline in your browser."/>
+<title>SVG Minifier &amp; Optimizer Online — Compress SVG Files Free</title>
+<meta name="description" content="Minify SVG files by removing metadata, comments and unnecessary attributes. Reduce SVG file size. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much can SVG files be compressed?", "acceptedAnswer": {"@type": "Answer", "text": "Design tool exports typically compress 30-70%. Files with lots of editor metadata see the biggest reductions."}}, {"@type": "Question", "name": "Will the SVG look different after optimization?", "acceptedAnswer": {"@type": "Answer", "text": "No — only non-visual data is removed. The rendered appearance is preserved. Always verify the output visually."}}, {"@type": "Question", "name": "Can I still style the SVG with CSS after minifying?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the minifier preserves class names, IDs and style-related attributes. Only unnecessary metadata is removed."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -138,7 +107,7 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is SVG Minifier?</h2>
-      <p>SVG Minifier is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>SVG Minifier compresses SVG files by removing editor metadata, comments, empty attributes, default values and unnecessary whitespace. SVG files from design tools (Illustrator, Figma, Inkscape) often contain bloat that doubles the file size. This tool strips it while preserving the visual output. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -147,11 +116,11 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">SVG with editor metadata, comments and defaults (4.2 KB)</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Optimized SVG (2.1 KB) — 50% reduction, visually identical</div>
         </div>
       </div>
     </div>
@@ -159,17 +128,16 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Optimizing SVG icons before adding to a web project</li><li>Cleaning up SVG exports from Figma, Illustrator or Inkscape</li><li>Reducing SVG file size for faster page loads</li><li>Preparing SVGs for inline embedding in HTML</li><li>Stripping editor-specific metadata before publishing</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 What Gets Removed</h2><ul><li>Editor metadata (Illustrator, Inkscape, Figma data)</li><li>XML comments</li><li>Empty groups and hidden elements</li><li>Default attribute values that browsers assume</li><li>Unnecessary whitespace and line breaks</li><li>Unused namespace declarations</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Over-optimizing</strong> — aggressive optimization can remove attributes needed for CSS styling or JavaScript interaction</li><li><strong>Removing viewBox</strong> — the viewBox attribute is essential for responsive SVG scaling. Never remove it.</li><li><strong>Rounding precision too aggressively</strong> — reducing decimal precision in path coordinates can cause visible distortion in detailed illustrations</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">How much can SVG files be compressed? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Design tool exports typically compress 30-70%. Files with lots of editor metadata see the biggest reductions.</div></div><div class="faq-item"><div class="faq-q">Will the SVG look different after optimization? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">No — only non-visual data is removed. The rendered appearance is preserved. Always verify the output visually.</div></div><div class="faq-item"><div class="faq-q">Can I still style the SVG with CSS after minifying? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — the minifier preserves class names, IDs and style-related attributes. Only unnecessary metadata is removed.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -219,10 +187,7 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Always optimize SVG exports from design tools — they contain significant bloat</li><li>Never remove the <code>viewBox</code> attribute — it controls responsive scaling</li><li>Verify the output visually after optimization</li><li>Use <a href="/frontend/css-minifier/">CSS Minifier</a> for stylesheets</li>
       </ul>
     </div>
 

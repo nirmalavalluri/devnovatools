@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Text Escape/Unescape — DevNova Tools</title>
-<meta name="description" content="Free text escape tool. Escape or unescape strings for JSON, HTML, URL, SQL and regex. Handle special characters correctly in any context. No signup required."/>
+<title>String Escape/Unescape Online — JSON, HTML, URL, SQL Free</title>
+<meta name="description" content="Escape or unescape strings for JSON, HTML, URL, SQL and more. Handle special characters safely. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is double escaping?", "acceptedAnswer": {"@type": "Answer", "text": "When already-escaped text is escaped again. Decode first, then re-encode once."}}, {"@type": "Question", "name": "Which escaping should I use for API requests?", "acceptedAnswer": {"@type": "Answer", "text": "JSON escaping for request bodies. URL encoding for query parameters. They are different contexts requiring different encoding."}}, {"@type": "Question", "name": "Does escaping prevent SQL injection?", "acceptedAnswer": {"@type": "Answer", "text": "Escaping helps, but parameterized queries (prepared statements) are the proper defense."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -138,7 +107,7 @@ function run(){escapeText()}function escapeText(){const i=document.getElementByI
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Text Escape/Unescape?</h2>
-      <p>Text Escape/Unescape is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>String Escape tool encodes special characters for safe use in different contexts — JSON strings, HTML content, URL parameters, SQL queries, CSV fields and more. It also decodes (unescapes) encoded strings back to readable text. Use it to fix encoding issues, prepare strings for insertion into code, or debug garbled text. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -147,11 +116,11 @@ function run(){escapeText()}function escapeText(){const i=document.getElementByI
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Text: He said "hello" &amp; waved — Context: JSON</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">He said \"hello\" &amp; waved</div>
         </div>
       </div>
     </div>
@@ -159,17 +128,17 @@ function run(){escapeText()}function escapeText(){const i=document.getElementByI
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Escaping strings for JSON (quotes, backslashes, newlines)</li><li>Escaping HTML entities for safe display</li><li>Escaping special characters for SQL queries</li><li>Debugging double-escaped or garbled text</li><li>Preparing strings for CSV fields with embedded commas</li></ul>
     </div>
 
-    <!-- FAQ -->
+
+    <div class="seo-section"><h2>📝 Escaping by Context</h2><ul><li><strong>JSON</strong> — escape quotes, backslashes, newlines, tabs</li><li><strong>HTML</strong> — encode &lt; &gt; &amp; " ' as entities</li><li><strong>URL</strong> — percent-encode special characters (%20, %26)</li><li><strong>SQL</strong> — escape single quotes to prevent SQL injection</li><li><strong>CSV</strong> — wrap fields containing commas in double quotes</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Double escaping</strong> — escaping already-escaped text. Decode first, then re-encode once.</li><li><strong>Wrong context</strong> — HTML escaping in a URL context (or vice versa) does not protect against injection</li><li><strong>Escaping as security</strong> — escaping helps prevent injection, but always use parameterized queries for SQL</li></ul></div>
+
+        <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">What is double escaping? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">When already-escaped text is escaped again. Decode first, then re-encode once.</div></div><div class="faq-item"><div class="faq-q">Which escaping should I use for API requests? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">JSON escaping for request bodies. URL encoding for query parameters. They are different contexts requiring different encoding.</div></div><div class="faq-item"><div class="faq-q">Does escaping prevent SQL injection? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Escaping helps, but parameterized queries (prepared statements) are the proper defense.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -219,10 +188,7 @@ function run(){escapeText()}function escapeText(){const i=document.getElementByI
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use the right escape type for each context (JSON, HTML, URL, SQL)</li><li>If text looks garbled, try decoding — it may be double-escaped</li><li>Use <a href="/text/html-entities/">HTML Entity Encoder</a> for HTML-specific escaping</li><li>For SQL, always use parameterized queries over manual escaping</li>
       </ul>
     </div>
 

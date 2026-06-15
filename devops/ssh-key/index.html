@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SSH Key Generator — DevNova Tools</title>
-<meta name="description" content="Free SSH key generator. Generate Ed25519 and RSA SSH key pairs in your browser. Private keys never leave your device. No signup required."/>
+<title>SSH Key Generator Online — Create RSA &amp; Ed25519 Keys Free</title>
+<meta name="description" content="Generate SSH key pairs (RSA, Ed25519) for secure server access. Free, private, browser-based — keys never leave your device."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I use RSA or Ed25519?", "acceptedAnswer": {"@type": "Answer", "text": "Ed25519 is recommended — it is faster, uses shorter keys, and provides equivalent security. Use RSA only if you need compatibility with older systems."}}, {"@type": "Question", "name": "Where do I put the public key?", "acceptedAnswer": {"@type": "Answer", "text": "Copy the public key to ~/.ssh/authorized_keys on the server, or paste it into your GitHub/GitLab SSH settings."}}, {"@type": "Question", "name": "What permissions should SSH keys have?", "acceptedAnswer": {"@type": "Answer", "text": "Private key: 600 (chmod 600 id_ed25519). Public key: 644. The .ssh directory: 700."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -163,7 +132,7 @@ function run(){}
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is SSH Key Generator?</h2>
-      <p>SSH Key Generator is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>SSH Key Generator creates public/private key pairs for secure server authentication. Generate RSA (2048/4096-bit) or Ed25519 keys with optional passphrases. The keys are generated entirely in your browser using the Web Crypto API — your private key is never transmitted over the network. Use it when setting up server access, GitHub SSH authentication, or automated deployments.</p>
     </div>
 
     <!-- Example -->
@@ -172,11 +141,16 @@ function run(){}
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Algorithm: Ed25519
+Comment: user@laptop</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">-----BEGIN OPENSSH PRIVATE KEY-----
+(private key data)
+-----END OPENSSH PRIVATE KEY-----
+
+ssh-ed25519 AAAA... user@laptop</div>
         </div>
       </div>
     </div>
@@ -184,17 +158,16 @@ function run(){}
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Generating SSH keys for GitHub, GitLab or Bitbucket authentication</li><li>Creating keys for secure server access (AWS, DigitalOcean, etc.)</li><li>Setting up passwordless SSH login</li><li>Generating deploy keys for CI/CD pipelines</li><li>Learning SSH key concepts</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 RSA vs Ed25519</h2><ul><li><strong>Ed25519</strong> — recommended. Faster, shorter keys, and equally secure. Supported by all modern SSH clients.</li><li><strong>RSA 4096</strong> — widely compatible including older systems. Use when Ed25519 is not supported.</li><li><strong>RSA 2048</strong> — minimum acceptable key size. Use 4096 for better security margin.</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Sharing the private key</strong> — only the public key (.pub) goes on servers. The private key stays on your machine.</li><li><strong>No passphrase</strong> — unprotected private keys are vulnerable if your device is compromised. Use a passphrase.</li><li><strong>Wrong permissions</strong> — private key files must be chmod 600. SSH rejects keys with loose permissions.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Should I use RSA or Ed25519? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Ed25519 is recommended — it is faster, uses shorter keys, and provides equivalent security. Use RSA only if you need compatibility with older systems.</div></div><div class="faq-item"><div class="faq-q">Where do I put the public key? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Copy the public key to ~/.ssh/authorized_keys on the server, or paste it into your GitHub/GitLab SSH settings.</div></div><div class="faq-item"><div class="faq-q">What permissions should SSH keys have? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Private key: 600 (chmod 600 id_ed25519). Public key: 644. The .ssh directory: 700.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -244,10 +217,7 @@ function run(){}
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use Ed25519 for new keys — faster and equally secure</li><li>Always set a passphrase on your private key</li><li>Only share the <strong>public</strong> key — never the private key</li><li>Set file permissions: <code>chmod 600</code> for private, <code>chmod 644</code> for public</li>
       </ul>
     </div>
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Box Shadow Generator — DevNova Tools</title>
-<meta name="description" content="Free CSS box shadow generator. Create box shadows visually with layer support and copy the CSS. No signup, works in your browser. Instant preview."/>
+<title>CSS Box Shadow Generator — Visual Shadow Builder Free</title>
+<meta name="description" content="Generate CSS box-shadow values visually. Adjust offset, blur, spread and color with live preview. Copy the CSS. Free, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I create an inset shadow?", "acceptedAnswer": {"@type": "Answer", "text": "Add the inset keyword: box-shadow: inset 0 2px 4px rgba(0,0,0,0.1). Inset shadows appear inside the element."}}, {"@type": "Question", "name": "Can I add multiple shadows?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — separate them with commas: box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.05)."}}, {"@type": "Question", "name": "What is the difference between blur and spread?", "acceptedAnswer": {"@type": "Answer", "text": "Blur controls the shadow softness (larger = softer). Spread controls the shadow size (positive = larger, negative = smaller than element)."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -182,7 +151,7 @@
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Box Shadow Generator?</h2>
-      <p>Box Shadow Generator is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>Box Shadow Generator creates CSS box-shadow values with a visual interface. Adjust horizontal and vertical offset, blur radius, spread radius, color and opacity with live preview. Supports multiple shadows, inset shadows and color with alpha transparency. Copy the generated CSS with one click. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -191,11 +160,11 @@
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Offset: 4px 4px, Blur: 12px, Spread: 0, Color: rgba(0,0,0,0.15)</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">box-shadow: 4px 4px 12px 0px rgba(0, 0, 0, 0.15);</div>
         </div>
       </div>
     </div>
@@ -203,17 +172,16 @@
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Creating elevation shadows for cards and modals</li><li>Building neumorphic (soft UI) shadow effects</li><li>Adding depth to buttons, dropdowns and popovers</li><li>Designing inset shadows for pressed button states</li><li>Generating consistent shadow values for design systems</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Box Shadow Syntax</h2><ul><li><code>box-shadow: offsetX offsetY blur spread color</code></li><li><code>box-shadow: 0 4px 8px rgba(0,0,0,0.1)</code> — subtle elevation</li><li><code>box-shadow: inset 0 2px 4px rgba(0,0,0,0.1)</code> — inner shadow</li><li>Multiple shadows: separate with commas</li><li>Use <code>rgba()</code> for semi-transparent shadows</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Too many shadows</strong> — multiple large box-shadows impact rendering performance, especially on scroll</li><li><strong>Opaque shadow colors</strong> — use rgba() with low alpha (0.1-0.3) for natural-looking shadows</li><li><strong>Forgetting inset keyword</strong> — without "inset," the shadow is outside. With it, the shadow is inside the element.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">How do I create an inset shadow? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Add the inset keyword: box-shadow: inset 0 2px 4px rgba(0,0,0,0.1). Inset shadows appear inside the element.</div></div><div class="faq-item"><div class="faq-q">Can I add multiple shadows? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — separate them with commas: box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.05).</div></div><div class="faq-item"><div class="faq-q">What is the difference between blur and spread? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Blur controls the shadow softness (larger = softer). Spread controls the shadow size (positive = larger, negative = smaller than element).</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -263,10 +231,7 @@
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use <code>rgba()</code> with alpha 0.1-0.3 for natural shadows</li><li>Combine multiple shadows for layered depth effects</li><li>Add <code>inset</code> for inner shadows (pressed button states)</li><li>Use <a href="/frontend/css-grid/">CSS Grid</a> or <a href="/frontend/flexbox/">Flexbox</a> for layout</li>
       </ul>
     </div>
 

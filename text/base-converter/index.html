@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Number Base Converter — DevNova Tools</title>
-<meta name="description" content="Free number base converter. Convert numbers between binary, octal, decimal, hexadecimal and any custom base. Shows all conversions at once. No signup required."/>
+<title>Number Base Converter Online — Binary, Octal, Decimal, Hex Free</title>
+<meta name="description" content="Convert numbers between binary (base 2), octal (base 8), decimal (base 10) and hexadecimal (base 16). Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is hexadecimal used for?", "acceptedAnswer": {"@type": "Answer", "text": "Hex is a compact way to represent binary data. Each hex digit represents 4 bits, so a byte (8 bits) is exactly 2 hex digits. It is used for colors, memory addresses, MAC addresses and encoding."}}, {"@type": "Question", "name": "How do I convert binary to decimal?", "acceptedAnswer": {"@type": "Answer", "text": "Each binary digit represents a power of 2. For example, 1101 = 8+4+0+1 = 13. This tool does it instantly."}}, {"@type": "Question", "name": "What are octal numbers used for?", "acceptedAnswer": {"@type": "Answer", "text": "Octal is primarily used in Unix file permissions: 755 means rwxr-xr-x, 644 means rw-r--r--."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -138,7 +107,7 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Number Base Converter?</h2>
-      <p>Number Base Converter is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>Number Base Converter transforms numbers between different numeral systems — binary (base 2), octal (base 8), decimal (base 10) and hexadecimal (base 16). Enter a number in any base and see it converted to all others instantly. Use it for programming, networking (subnet masks), color codes, or learning number systems. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -147,11 +116,13 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Decimal: 255</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Binary: 11111111
+Octal: 377
+Hex: FF</div>
         </div>
       </div>
     </div>
@@ -159,17 +130,16 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Converting between hex and binary for bitwise operations</li><li>Working with color codes (hex to decimal RGB values)</li><li>Understanding subnet masks and IP addressing</li><li>Debugging binary data and memory addresses</li><li>Learning numeral systems and base conversion</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Common Bases</h2><ul><li><strong>Binary (2)</strong> — used in hardware, bitwise operations, permissions (chmod)</li><li><strong>Octal (8)</strong> — Unix file permissions (755, 644)</li><li><strong>Decimal (10)</strong> — human-readable numbers</li><li><strong>Hexadecimal (16)</strong> — colors (#FF0000), memory addresses, MAC addresses</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Confusing 0x and 0b prefixes</strong> — 0xFF is hex (255), 0b1111 is binary (15). Without the prefix, the base is ambiguous.</li><li><strong>Octal in JavaScript</strong> — leading zeros (077) are octal in some contexts. Use 0o77 for explicit octal in modern JS.</li><li><strong>Case sensitivity in hex</strong> — FF and ff are the same value. Hex digits A-F are case-insensitive.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">What is hexadecimal used for? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Hex is a compact way to represent binary data. Each hex digit represents 4 bits, so a byte (8 bits) is exactly 2 hex digits. It is used for colors, memory addresses, MAC addresses and encoding.</div></div><div class="faq-item"><div class="faq-q">How do I convert binary to decimal? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Each binary digit represents a power of 2. For example, 1101 = 8+4+0+1 = 13. This tool does it instantly.</div></div><div class="faq-item"><div class="faq-q">What are octal numbers used for? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Octal is primarily used in Unix file permissions: 755 means rwxr-xr-x, 644 means rw-r--r--.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -219,10 +189,7 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Hex: each digit = 4 bits, so 1 byte = 2 hex digits</li><li>Binary prefix: <code>0b</code>, Hex prefix: <code>0x</code>, Octal prefix: <code>0o</code></li><li>Use for color conversion: #FF = 255 in decimal</li><li>Unix permissions use octal: 755 = rwxr-xr-x</li>
       </ul>
     </div>
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>JSON Schema Validator — DevNova Tools</title>
-<meta name="description" content="Free JSON Schema validator. Validate any JSON document against a JSON Schema and get detailed error messages. No login required. Works in your browser."/>
+<title>JSON Schema Validator Online — Validate JSON Against Schema Free</title>
+<meta name="description" content="Validate JSON data against a JSON Schema definition. See detailed error messages for invalid fields. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which JSON Schema draft versions are supported?", "acceptedAnswer": {"@type": "Answer", "text": "This validator supports Draft-07, which is the most widely used version. Most schemas are compatible across Draft-04, Draft-07 and 2020-12 for basic validation."}}, {"@type": "Question", "name": "Can I validate nested objects?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — define sub-schemas in the \"properties\" object. Nested objects are validated recursively."}}, {"@type": "Question", "name": "What does \"additionalProperties: false\" do?", "acceptedAnswer": {"@type": "Answer", "text": "It rejects any properties not explicitly defined in the schema. Without it, extra fields are silently accepted."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -139,7 +108,7 @@ function validate(d,s,p){const e=[];if(s.type){const t=s.type;if(t==='array'&&!A
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is JSON Schema Validator?</h2>
-      <p>JSON Schema Validator is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>JSON Schema Validator checks whether a JSON document conforms to a JSON Schema definition. Paste your schema and data, and get instant validation results with detailed error messages showing exactly which fields fail and why. Use it for API contract testing, form validation debugging, or verifying config files against their schema. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -148,11 +117,12 @@ function validate(d,s,p){const e=[];if(s.type){const t=s.type;if(t==='array'&&!A
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Schema: {"type":"object","properties":{"age":{"type":"integer"}}}
+Data: {"age":"thirty"}</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">✗ Invalid — /age: expected integer, got string</div>
         </div>
       </div>
     </div>
@@ -160,17 +130,16 @@ function validate(d,s,p){const e=[];if(s.type){const t=s.type;if(t==='array'&&!A
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Testing API request/response payloads against OpenAPI schemas</li><li>Debugging JSON Schema validation errors</li><li>Verifying configuration files match their expected schema</li><li>Testing form validation rules before implementing in code</li><li>Checking generated data against contract schemas</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 JSON Schema Keywords</h2><ul><li><code>type</code> — string, number, integer, boolean, object, array, null</li><li><code>required</code> — list of required property names</li><li><code>properties</code> — sub-schemas for each object property</li><li><code>items</code> — schema for array elements</li><li><code>enum</code> — list of allowed values</li><li><code>pattern</code> — regex pattern for strings</li><li><code>minimum</code>/<code>maximum</code> — numeric bounds</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Wrong type keyword</strong> — use "integer" for whole numbers and "number" for decimals. A schema with "integer" rejects 3.14.</li><li><strong>Missing required array</strong> — properties alone don't make fields required. Add a "required" array explicitly.</li><li><strong>Schema version mismatch</strong> — errors may differ between Draft-04, Draft-07 and 2020-12. Check which version your tools expect.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Which JSON Schema draft versions are supported? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">This validator supports Draft-07, which is the most widely used version. Most schemas are compatible across Draft-04, Draft-07 and 2020-12 for basic validation.</div></div><div class="faq-item"><div class="faq-q">Can I validate nested objects? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — define sub-schemas in the "properties" object. Nested objects are validated recursively.</div></div><div class="faq-item"><div class="faq-q">What does "additionalProperties: false" do? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">It rejects any properties not explicitly defined in the schema. Without it, extra fields are silently accepted.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -220,10 +189,7 @@ function validate(d,s,p){const e=[];if(s.type){const t=s.type;if(t==='array'&&!A
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Paste your schema on the left, data on the right</li><li>Use <a href="/json/schema-generator/">Schema Generator</a> to create schemas from samples</li><li>Add <code>"required"</code> explicitly — properties alone are optional</li><li>Use <code>"additionalProperties": false</code> for strict validation</li>
       </ul>
     </div>
 

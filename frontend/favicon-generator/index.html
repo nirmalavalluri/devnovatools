@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Favicon Generator — DevNova Tools</title>
-<meta name="description" content="Free favicon generator. Create favicons from text or emoji with custom background color. Download as SVG for modern browsers. No signup required."/>
+<title>Favicon Generator Online — Create Favicons from Text or Emoji Free</title>
+<meta name="description" content="Generate favicons from text, emoji or initials. Download as ICO, PNG and SVG. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What format is best for favicons?", "acceptedAnswer": {"@type": "Answer", "text": "Use SVG for modern browsers (scalable, supports dark mode), PNG for compatibility, and ICO as a fallback. Provide all three."}}, {"@type": "Question", "name": "How do I add a favicon to my website?", "acceptedAnswer": {"@type": "Answer", "text": "Add these to your HTML head: &lt;link rel=\"icon\" href=\"/favicon.svg\" type=\"image/svg+xml\"&gt; and &lt;link rel=\"icon\" href=\"/favicon.ico\" sizes=\"32x32\"&gt;."}}, {"@type": "Question", "name": "What size should Apple Touch Icon be?", "acceptedAnswer": {"@type": "Answer", "text": "Exactly 180x180 pixels. Name it apple-touch-icon.png and add a link tag: &lt;link rel=\"apple-touch-icon\" href=\"/apple-touch-icon.png\"&gt;."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -146,7 +115,7 @@ document.addEventListener('DOMContentLoaded',generate)
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Favicon Generator?</h2>
-      <p>Favicon Generator is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>Favicon Generator creates browser tab icons from text, emoji or initials. Choose a background color, font and size, then download the favicon as ICO, PNG (multiple sizes) and SVG formats. Use it when you need a quick favicon for a project without designing one from scratch. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -155,11 +124,13 @@ document.addEventListener('DOMContentLoaded',generate)
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Text: DN
+Background: #00C896
+Shape: Rounded square</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Generated files: favicon.ico (16x16, 32x32), apple-touch-icon.png (180x180), favicon.svg</div>
         </div>
       </div>
     </div>
@@ -167,17 +138,16 @@ document.addEventListener('DOMContentLoaded',generate)
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Creating quick favicons for new projects and prototypes</li><li>Generating favicons from company initials or emoji</li><li>Building multiple favicon sizes for different devices</li><li>Creating Apple Touch Icons for iOS home screens</li><li>Generating SVG favicons for modern browsers</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Favicon Sizes You Need</h2><ul><li><code>favicon.ico</code> — 16x16 and 32x32 (legacy browsers)</li><li><code>favicon-32x32.png</code> — modern browsers</li><li><code>apple-touch-icon.png</code> — 180x180 (iOS home screen)</li><li><code>favicon.svg</code> — scalable, supports dark mode with CSS</li><li><code>android-chrome-192x192.png</code> — Android PWA icon</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Only providing .ico</strong> — modern browsers prefer PNG or SVG favicons. Provide multiple formats.</li><li><strong>Wrong sizes</strong> — Apple requires exactly 180x180 for touch icons. Other sizes are ignored.</li><li><strong>No manifest reference</strong> — PWA icons need a web manifest file linking to the icon files.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">What format is best for favicons? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Use SVG for modern browsers (scalable, supports dark mode), PNG for compatibility, and ICO as a fallback. Provide all three.</div></div><div class="faq-item"><div class="faq-q">How do I add a favicon to my website? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Add these to your HTML head: &lt;link rel="icon" href="/favicon.svg" type="image/svg+xml"&gt; and &lt;link rel="icon" href="/favicon.ico" sizes="32x32"&gt;.</div></div><div class="faq-item"><div class="faq-q">What size should Apple Touch Icon be? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Exactly 180x180 pixels. Name it apple-touch-icon.png and add a link tag: &lt;link rel="apple-touch-icon" href="/apple-touch-icon.png"&gt;.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -227,10 +197,7 @@ document.addEventListener('DOMContentLoaded',generate)
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Provide SVG + PNG + ICO for maximum compatibility</li><li>Apple Touch Icon must be exactly 180x180 pixels</li><li>Use emoji for quick, recognizable favicons</li><li>SVG favicons support CSS dark mode with <code>prefers-color-scheme</code></li>
       </ul>
     </div>
 

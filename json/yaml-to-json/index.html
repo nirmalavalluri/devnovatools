@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>YAML to JSON — DevNova Tools</title>
-<meta name="description" content="Free YAML to JSON converter. Paste YAML and instantly convert to clean, formatted JSON. Supports nested objects and arrays. No login required."/>
+<title>YAML to JSON Converter Online — Transform YAML to JSON Free</title>
+<meta name="description" content="Convert YAML to JSON format instantly. Validates YAML syntax and produces clean JSON output. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it validate YAML syntax?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — if the YAML is invalid, the tool shows a parse error with details. Fixing the YAML and converting again validates it."}}, {"@type": "Question", "name": "Why does my YAML value \"yes\" become true?", "acceptedAnswer": {"@type": "Answer", "text": "YAML 1.1 treats yes, no, on, off as booleans. Quote the value (\"yes\") to keep it as a string."}}, {"@type": "Question", "name": "Can I convert multi-document YAML?", "acceptedAnswer": {"@type": "Answer", "text": "Multi-document YAML (separated by ---) is converted as the first document. Split multi-document files and convert each separately."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -186,7 +155,7 @@
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is YAML to JSON?</h2>
-      <p>YAML to JSON is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>YAML to JSON converts YAML documents into equivalent JSON structures. YAML is widely used for configuration (Kubernetes, Docker Compose, CI/CD pipelines) but APIs and programming languages often need JSON. This tool validates YAML syntax and produces clean, properly formatted JSON. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -195,11 +164,16 @@
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">name: Alice
+roles:
+  - admin
+  - dev
+config:
+  theme: dark</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">{"name":"Alice","roles":["admin","dev"],"config":{"theme":"dark"}}</div>
         </div>
       </div>
     </div>
@@ -207,17 +181,16 @@
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Converting Kubernetes YAML manifests to JSON for API calls</li><li>Transforming Docker Compose files to JSON for programmatic processing</li><li>Validating YAML syntax by converting to the stricter JSON format</li><li>Preparing CI/CD config data for JSON-based tools</li><li>Converting YAML data files to JSON for web applications</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 YAML to JSON Type Mapping</h2><ul><li>YAML strings → JSON strings (quoted)</li><li>YAML integers → JSON numbers</li><li>YAML floats → JSON numbers</li><li>YAML booleans (<code>true</code>/<code>false</code>/<code>yes</code>/<code>no</code>) → JSON <code>true</code>/<code>false</code></li><li>YAML null (<code>~</code> or <code>null</code>) → JSON <code>null</code></li><li>YAML sequences (<code>- item</code>) → JSON arrays</li><li>YAML mappings → JSON objects</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Tab indentation</strong> — YAML only allows spaces, never tabs. Tab characters cause parse errors.</li><li><strong>Unquoted special values</strong> — <code>yes</code>, <code>no</code>, <code>on</code>, <code>off</code> are parsed as booleans. Quote them if they are strings.</li><li><strong>Colon in values</strong> — values containing <code>: </code> (colon + space) must be quoted to avoid being parsed as key-value pairs.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Does it validate YAML syntax? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — if the YAML is invalid, the tool shows a parse error with details. Fixing the YAML and converting again validates it.</div></div><div class="faq-item"><div class="faq-q">Why does my YAML value "yes" become true? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">YAML 1.1 treats yes, no, on, off as booleans. Quote the value ("yes") to keep it as a string.</div></div><div class="faq-item"><div class="faq-q">Can I convert multi-document YAML? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Multi-document YAML (separated by ---) is converted as the first document. Split multi-document files and convert each separately.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -267,10 +240,7 @@
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use spaces only — YAML does not allow tabs</li><li>Quote values like <code>yes</code>/<code>no</code> if they are strings</li><li>Use <a href="/json/json-to-yaml/">JSON to YAML</a> for the reverse conversion</li><li>Use <a href="/devops/yaml-formatter/">YAML Formatter</a> to validate and format YAML</li>
       </ul>
     </div>
 

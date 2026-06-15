@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CORS Checker — DevNova Tools</title>
-<meta name="description" content="Free CORS checker. Test if an API endpoint supports CORS requests from your domain. Debug cross-origin request issues. No signup, works in your browser."/>
+<title>CORS Checker Online — Test Cross-Origin Headers Free</title>
+<meta name="description" content="Check CORS headers on any URL. Verify Access-Control-Allow-Origin, methods and credentials. Free, browser-based CORS debugger."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What does \"blocked by CORS policy\" mean?", "acceptedAnswer": {"@type": "Answer", "text": "The server did not include the right CORS headers to allow your frontend domain to access it. Check Access-Control-Allow-Origin in the response."}}, {"@type": "Question", "name": "What is a preflight request?", "acceptedAnswer": {"@type": "Answer", "text": "A preflight is an automatic OPTIONS request sent by the browser before non-simple requests (PUT, DELETE, custom headers). The server must respond with appropriate CORS headers."}}, {"@type": "Question", "name": "Can I use * for Allow-Origin?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but not when credentials (cookies) are included. For credentialed requests, the server must echo the specific requesting origin."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -140,7 +109,7 @@ function analyze(){document.getElementById('output').textContent='CORS Error Ana
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is CORS Checker?</h2>
-      <p>CORS Checker is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>CORS (Cross-Origin Resource Sharing) controls which websites can make requests to your API. This checker tests a URL and shows the CORS headers it returns — Access-Control-Allow-Origin, Allow-Methods, Allow-Headers and Allow-Credentials. Use it to debug "No Access-Control-Allow-Origin header" errors, verify API CORS configuration, or test preflight OPTIONS responses. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -149,11 +118,13 @@ function analyze(){document.getElementById('output').textContent='CORS Error Ana
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">https://api.example.com/data</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST
+Access-Control-Allow-Headers: Content-Type</div>
         </div>
       </div>
     </div>
@@ -161,17 +132,16 @@ function analyze(){document.getElementById('output').textContent='CORS Error Ana
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Debugging "blocked by CORS policy" errors in browser console</li><li>Verifying API CORS headers after configuration changes</li><li>Testing preflight OPTIONS request responses</li><li>Checking if credentials (cookies) are allowed cross-origin</li><li>Validating CORS setup before deploying frontend-to-API integrations</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Essential CORS Headers</h2><ul><li><code>Access-Control-Allow-Origin</code> — which origins can access the resource (<code>*</code> or specific domain)</li><li><code>Access-Control-Allow-Methods</code> — allowed HTTP methods (GET, POST, PUT, DELETE)</li><li><code>Access-Control-Allow-Headers</code> — allowed request headers</li><li><code>Access-Control-Allow-Credentials</code> — whether cookies/auth headers are allowed (true/false)</li><li><code>Access-Control-Max-Age</code> — how long preflight results can be cached (seconds)</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Using * with credentials</strong> — browsers reject <code>Access-Control-Allow-Origin: *</code> when credentials are included. Use the specific origin instead.</li><li><strong>Missing preflight handling</strong> — non-simple requests (PUT, DELETE, custom headers) trigger an OPTIONS preflight. Your server must respond to OPTIONS requests.</li><li><strong>Forgetting Content-Type header</strong> — requests with <code>Content-Type: application/json</code> require CORS to allow that header explicitly.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">What does "blocked by CORS policy" mean? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">The server did not include the right CORS headers to allow your frontend domain to access it. Check Access-Control-Allow-Origin in the response.</div></div><div class="faq-item"><div class="faq-q">What is a preflight request? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">A preflight is an automatic OPTIONS request sent by the browser before non-simple requests (PUT, DELETE, custom headers). The server must respond with appropriate CORS headers.</div></div><div class="faq-item"><div class="faq-q">Can I use * for Allow-Origin? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes, but not when credentials (cookies) are included. For credentialed requests, the server must echo the specific requesting origin.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -221,10 +191,7 @@ function analyze(){document.getElementById('output').textContent='CORS Error Ana
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Check browser DevTools Console for the exact CORS error message</li><li>Verify both simple requests (GET) and preflight (OPTIONS) responses</li><li>Use specific origins instead of <code>*</code> when credentials are needed</li><li>Test after every server-side CORS configuration change</li>
       </ul>
     </div>
 

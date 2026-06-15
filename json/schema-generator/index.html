@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>JSON Schema Generator — DevNova Tools</title>
-<meta name="description" content="Free JSON Schema generator. Automatically generate JSON Schema from any JSON sample. Export as JSON Schema Draft 7. No signup, works in your browser."/>
+<title>JSON Schema Generator Online — Generate Schema from JSON Free</title>
+<meta name="description" content="Generate a JSON Schema from a JSON sample automatically. Infers types, required fields and nested structures. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Which JSON Schema version is generated?", "acceptedAnswer": {"@type": "Answer", "text": "The output follows JSON Schema Draft-07, which is widely supported by validators, OpenAPI 3.0, and most programming language libraries."}}, {"@type": "Question", "name": "Can I use the schema with OpenAPI/Swagger?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — JSON Schema is the foundation of OpenAPI schema definitions. Paste the generated schema into your OpenAPI spec's components/schemas section."}}, {"@type": "Question", "name": "How do I mark fields as optional?", "acceptedAnswer": {"@type": "Answer", "text": "Remove field names from the \"required\" array in the generated schema. Fields not listed in \"required\" are treated as optional by validators."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -175,7 +144,7 @@
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is JSON Schema Generator?</h2>
-      <p>JSON Schema Generator is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>JSON Schema Generator analyzes a JSON sample and produces a JSON Schema definition that describes its structure — including types, required properties, nested objects and array item types. Use it to quickly create validation schemas for APIs, form inputs or configuration files without writing the schema by hand. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -184,11 +153,11 @@
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">{"name":"Alice","age":30,"email":"alice@example.com"}</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">{"type":"object","properties":{"name":{"type":"string"},"age":{"type":"integer"},"email":{"type":"string"}},"required":["name","age","email"]}</div>
         </div>
       </div>
     </div>
@@ -196,17 +165,16 @@
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Creating JSON Schema for REST API request/response validation</li><li>Generating schemas for OpenAPI/Swagger documentation</li><li>Building form validation rules from JSON data models</li><li>Documenting data structures for team communication</li><li>Creating config file validation schemas</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 What Gets Inferred</h2><ul><li><strong>Types</strong> — string, integer, number, boolean, null, object, array</li><li><strong>Required fields</strong> — all present fields are marked as required by default</li><li><strong>Nested objects</strong> — generate sub-schemas for nested structures</li><li><strong>Array item types</strong> — detects the type of array elements</li></ul><p>The generated schema uses JSON Schema Draft-07 format, compatible with most validators.</p></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Using incomplete samples</strong> — optional fields missing from your sample won't appear in the schema. Use the most complete JSON available.</li><li><strong>Single-item arrays</strong> — the item type is inferred from the first element. Mixed-type arrays need manual adjustment.</li><li><strong>Over-constraining</strong> — generated schemas mark all fields as required. Review and mark truly optional fields.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Which JSON Schema version is generated? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">The output follows JSON Schema Draft-07, which is widely supported by validators, OpenAPI 3.0, and most programming language libraries.</div></div><div class="faq-item"><div class="faq-q">Can I use the schema with OpenAPI/Swagger? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — JSON Schema is the foundation of OpenAPI schema definitions. Paste the generated schema into your OpenAPI spec's components/schemas section.</div></div><div class="faq-item"><div class="faq-q">How do I mark fields as optional? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Remove field names from the "required" array in the generated schema. Fields not listed in "required" are treated as optional by validators.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -256,10 +224,7 @@
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use the most complete JSON sample for accurate schema generation</li><li>Review the "required" array — not all fields may be mandatory</li><li>Use <a href="/json/schema-validator/">JSON Schema Validator</a> to test your schema</li><li>Compatible with OpenAPI/Swagger schema definitions</li>
       </ul>
     </div>
 

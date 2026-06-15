@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>JSON to Python — DevNova Tools</title>
-<meta name="description" content="Free JSON to Python generator. Convert JSON objects to Python dataclass or dict definitions. Supports nested structures. No signup, works in your browser."/>
+<title>JSON to Python Dict/Dataclass — Convert JSON to Python Free</title>
+<meta name="description" content="Convert JSON to Python dictionaries or dataclass definitions. Auto-generates type hints. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it generate dataclasses?", "acceptedAnswer": {"@type": "Answer", "text": "It generates Python dict literals. For dataclass or Pydantic model output, use the dict as a starting point and add type annotations manually, or use a dedicated tool."}}, {"@type": "Question", "name": "How does Python handle JSON null?", "acceptedAnswer": {"@type": "Answer", "text": "JSON null becomes Python None. When using json.loads(), this conversion is automatic."}}, {"@type": "Question", "name": "Can I use the output with type hints?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the generated code uses correct Python types. Add TypedDict or dataclass decorators for full static type checking with mypy."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -140,7 +109,7 @@ function genPy(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is JSON to Python?</h2>
-      <p>JSON to Python is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>JSON to Python converts a JSON sample into Python code — either as a typed dictionary literal or as dataclass definitions with type hints. Use it to quickly scaffold Python models from API responses, generate typed data structures, or create test fixtures from JSON samples. All processing happens in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -149,11 +118,15 @@ function genPy(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">{"name":"Alice","age":30,"tags":["dev","admin"]}</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">data = {
+    "name": "Alice",
+    "age": 30,
+    "tags": ["dev", "admin"]
+}</div>
         </div>
       </div>
     </div>
@@ -161,17 +134,16 @@ function genPy(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Creating Python dataclasses from API response samples</li><li>Generating typed dictionaries with TypedDict for type checking</li><li>Building test fixtures and mock data from JSON examples</li><li>Converting JSON config into Python dict literals</li><li>Scaffolding Pydantic models from JSON schema samples</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Python JSON Type Mapping</h2><ul><li>JSON string → <code>str</code></li><li>JSON number (integer) → <code>int</code></li><li>JSON number (decimal) → <code>float</code></li><li>JSON boolean → <code>bool</code></li><li>JSON null → <code>None</code></li><li>JSON array → <code>list</code></li><li>JSON object → <code>dict</code> or dataclass</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>True vs true</strong> — Python uses <code>True</code>/<code>False</code>/<code>None</code> (capitalized), not JSON's <code>true</code>/<code>false</code>/<code>null</code></li><li><strong>Single vs double quotes</strong> — Python allows both, but JSON requires double quotes. json.loads() handles this automatically.</li><li><strong>Large integers</strong> — Python handles arbitrary precision integers natively, but be careful when round-tripping through JSON (some parsers use float64)</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Does it generate dataclasses? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">It generates Python dict literals. For dataclass or Pydantic model output, use the dict as a starting point and add type annotations manually, or use a dedicated tool.</div></div><div class="faq-item"><div class="faq-q">How does Python handle JSON null? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">JSON null becomes Python None. When using json.loads(), this conversion is automatic.</div></div><div class="faq-item"><div class="faq-q">Can I use the output with type hints? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — the generated code uses correct Python types. Add TypedDict or dataclass decorators for full static type checking with mypy.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -221,10 +193,7 @@ function genPy(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Python uses <code>True</code>/<code>False</code>/<code>None</code>, not JSON's lowercase versions</li><li>Use <code>json.loads()</code> for runtime parsing, this tool for scaffolding</li><li>Add type hints for mypy/Pydantic compatibility</li><li>Also available: <a href="/json/json-to-typescript/">JSON to TypeScript</a>, <a href="/json/json-to-go/">JSON to Go</a></li>
       </ul>
     </div>
 

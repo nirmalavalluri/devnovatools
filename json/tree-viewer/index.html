@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>JSON Tree Viewer — DevNova Tools</title>
-<meta name="description" content="Free JSON tree viewer. Visualize and explore JSON data as an interactive collapsible tree. Navigate nested objects and arrays easily. No signup required."/>
+<title>JSON Tree Viewer Online — Visualize JSON Structure Free</title>
+<meta name="description" content="Visualize JSON as an interactive, collapsible tree. Explore nested objects and arrays with expand/collapse controls. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I search for a key in the tree?", "acceptedAnswer": {"@type": "Answer", "text": "Use your browser's Ctrl+F find feature to search for key names or values in the rendered tree."}}, {"@type": "Question", "name": "How deep can the nesting go?", "acceptedAnswer": {"@type": "Answer", "text": "There is no depth limit. Very deeply nested structures render correctly, though you may need to expand multiple levels to reach inner nodes."}}, {"@type": "Question", "name": "Can I edit JSON in the tree view?", "acceptedAnswer": {"@type": "Answer", "text": "This is a read-only viewer. Edit your JSON in the text input, and the tree updates automatically."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -139,7 +108,7 @@ function renderTree(v,k,d){const ind='\u00a0'.repeat(d*4);if(v===null)return'<di
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is JSON Tree Viewer?</h2>
-      <p>JSON Tree Viewer is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>JSON Tree Viewer renders JSON data as an interactive, collapsible tree structure. Each object and array becomes a node you can expand or collapse, making it easy to navigate deeply nested JSON. Use it to explore API responses, understand complex data structures, or find specific values in large JSON files. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -148,11 +117,11 @@ function renderTree(v,k,d){const ind='\u00a0'.repeat(d*4);if(v===null)return'<di
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">{"users":[{"name":"Alice","roles":["admin"]},{"name":"Bob","roles":["dev"]}]}</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Interactive tree: ▼ users (2 items) → ▼ [0] → name: "Alice", ▼ roles → "admin" ...</div>
         </div>
       </div>
     </div>
@@ -160,17 +129,16 @@ function renderTree(v,k,d){const ind='\u00a0'.repeat(d*4);if(v===null)return'<di
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Exploring large API response structures visually</li><li>Navigating deeply nested JSON without getting lost in brackets</li><li>Finding specific values or keys in complex JSON</li><li>Understanding unfamiliar JSON data structures</li><li>Debugging JSON formatting issues visually</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Tree Features</h2><ul><li><strong>Expand/Collapse</strong> — click any node to expand or collapse its children</li><li><strong>Type indicators</strong> — objects, arrays, strings, numbers and booleans are visually distinguished</li><li><strong>Array indexing</strong> — array elements show their index position</li><li><strong>Value preview</strong> — leaf values are displayed inline next to their keys</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Invalid JSON</strong> — the tree viewer requires valid JSON. Use the <a href="/json/validator/">JSON Validator</a> first to fix syntax errors.</li><li><strong>Very large files</strong> — JSON files over 5MB may be slow to render as a tree. Collapse sections you are not inspecting.</li><li><strong>Confusing objects and arrays</strong> — objects use <code>{}</code> and have named keys; arrays use <code>[]</code> and have numeric indices</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Can I search for a key in the tree? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Use your browser's Ctrl+F find feature to search for key names or values in the rendered tree.</div></div><div class="faq-item"><div class="faq-q">How deep can the nesting go? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">There is no depth limit. Very deeply nested structures render correctly, though you may need to expand multiple levels to reach inner nodes.</div></div><div class="faq-item"><div class="faq-q">Can I edit JSON in the tree view? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">This is a read-only viewer. Edit your JSON in the text input, and the tree updates automatically.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -220,10 +188,7 @@ function renderTree(v,k,d){const ind='\u00a0'.repeat(d*4);if(v===null)return'<di
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Click nodes to expand/collapse — navigate large JSON easily</li><li>Use <a href="/json/formatter/">JSON Formatter</a> to prettify before viewing</li><li>Use <a href="/json/validator/">JSON Validator</a> to fix errors first</li><li>Collapse sections you don't need to focus on the relevant data</li>
       </ul>
     </div>
 

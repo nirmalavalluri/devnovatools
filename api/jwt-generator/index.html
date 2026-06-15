@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>JWT Generator — DevNova Tools</title>
-<meta name="description" content="Free JWT generator. Create signed JWT tokens with custom headers, payload and secret. HS256, HS384 and HS512 support. No signup, works in your browser."/>
+<title>JWT Generator Online — Create JSON Web Tokens Free</title>
+<meta name="description" content="Generate JWT tokens with custom claims, expiry and algorithm. Supports HS256, HS384, HS512. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I use generated tokens in production?", "acceptedAnswer": {"@type": "Answer", "text": "These tokens are for testing and development. For production, generate tokens server-side with proper secrets and key management."}}, {"@type": "Question", "name": "What is the difference between HS256 and RS256?", "acceptedAnswer": {"@type": "Answer", "text": "HS256 uses a shared secret (symmetric). RS256 uses a public/private key pair (asymmetric). RS256 is preferred when multiple services need to verify tokens."}}, {"@type": "Question", "name": "How do I set token expiration?", "acceptedAnswer": {"@type": "Answer", "text": "Set the exp claim to a Unix timestamp. For example, current time + 3600 gives a 1-hour expiry. Use the <a href=\"/devops/timestamp/\">Timestamp Converter</a> to calculate Unix timestamps."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -139,7 +108,7 @@ async function generate(){const payload=document.getElementById('input').value.t
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is JWT Generator?</h2>
-      <p>JWT Generator is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>JWT Generator creates JSON Web Tokens with custom header, payload claims and signing. Set the algorithm (HS256, HS384, HS512), add standard claims (iss, sub, exp, iat) and custom data, then generate a signed token. Use it for testing API authentication, creating mock tokens for development, or learning JWT structure. Everything runs in your browser — your signing secret never leaves your computer.</p>
     </div>
 
     <!-- Example -->
@@ -148,11 +117,13 @@ async function generate(){const payload=document.getElementById('input').value.t
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Payload: {"sub":"user123","name":"Alice","role":"admin"}
+Secret: my-secret
+Algorithm: HS256</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzIiwibmFtZSI6IkFsaWNlIiwicm9sZSI6ImFkbWluIn0.signature...</div>
         </div>
       </div>
     </div>
@@ -160,17 +131,16 @@ async function generate(){const payload=document.getElementById('input').value.t
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Creating test JWT tokens for API development and debugging</li><li>Generating mock authentication tokens for frontend development</li><li>Testing API endpoints that require JWT authentication</li><li>Learning JWT structure (header, payload, signature)</li><li>Creating tokens with specific claims for integration testing</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Standard JWT Claims</h2><ul><li><code>iss</code> — issuer (who created the token)</li><li><code>sub</code> — subject (who the token is about)</li><li><code>aud</code> — audience (who the token is intended for)</li><li><code>exp</code> — expiration time (Unix timestamp)</li><li><code>iat</code> — issued at (Unix timestamp)</li><li><code>nbf</code> — not before (token not valid before this time)</li><li><code>jti</code> — JWT ID (unique identifier)</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>No expiration</strong> — always set <code>exp</code>. Tokens without expiry are valid forever if compromised.</li><li><strong>Sensitive data in payload</strong> — JWT payloads are Base64-encoded, not encrypted. Never put passwords or secrets in claims.</li><li><strong>Weak secrets</strong> — use at least 256-bit random secrets for HS256. Short passwords are vulnerable to brute-force.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Can I use generated tokens in production? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">These tokens are for testing and development. For production, generate tokens server-side with proper secrets and key management.</div></div><div class="faq-item"><div class="faq-q">What is the difference between HS256 and RS256? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">HS256 uses a shared secret (symmetric). RS256 uses a public/private key pair (asymmetric). RS256 is preferred when multiple services need to verify tokens.</div></div><div class="faq-item"><div class="faq-q">How do I set token expiration? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Set the exp claim to a Unix timestamp. For example, current time + 3600 gives a 1-hour expiry. Use the <a href="/devops/timestamp/">Timestamp Converter</a> to calculate Unix timestamps.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -220,10 +190,7 @@ async function generate(){const payload=document.getElementById('input').value.t
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Always set <code>exp</code> — tokens without expiry are dangerous</li><li>Never put passwords or secrets in JWT payload — it is not encrypted</li><li>Use <a href="/api/jwt-decoder/">JWT Decoder</a> to verify your generated tokens</li><li>Use at least 256-bit random secrets for HS256 signing</li>
       </ul>
     </div>
 

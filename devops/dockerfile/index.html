@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Dockerfile Linter — DevNova Tools</title>
-<meta name="description" content="Free Dockerfile generator. Generate Dockerfiles for Node.js, Python, Go, Java and more with best practices built in. No signup, works in your browser."/>
+<title>Dockerfile Generator Online — Build Docker Images Free</title>
+<meta name="description" content="Generate Dockerfiles for Node.js, Python, Go and more. Best practices included. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I use alpine or slim base images?", "acceptedAnswer": {"@type": "Answer", "text": "Alpine produces smaller images (~5MB vs ~100MB for Debian). Use alpine unless your app needs glibc-specific libraries, in which case use slim."}}, {"@type": "Question", "name": "What is a multi-stage build?", "acceptedAnswer": {"@type": "Answer", "text": "Multi-stage builds use separate stages for building (with dev dependencies) and running (only production files). The final image is much smaller."}}, {"@type": "Question", "name": "How do I reduce Docker image size?", "acceptedAnswer": {"@type": "Answer", "text": "Use alpine base images, multi-stage builds, .dockerignore, and combine RUN commands to reduce layers."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -139,7 +108,7 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Dockerfile Linter?</h2>
-      <p>Dockerfile Linter is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>Dockerfile Generator creates production-ready Dockerfiles based on your application type. Select your language/framework (Node.js, Python, Go, Java), configure settings, and get a Dockerfile following Docker best practices — multi-stage builds, non-root users, layer caching and minimal base images. Use it to containerize applications quickly without memorizing Dockerfile syntax. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -148,11 +117,19 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Language: Node.js
+Port: 3000
+Package Manager: npm</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --production
+COPY . .
+EXPOSE 3000
+CMD ["node", "server.js"]</div>
         </div>
       </div>
     </div>
@@ -160,17 +137,16 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Creating Dockerfiles for new projects without memorizing syntax</li><li>Following Docker best practices (multi-stage, non-root, layer caching)</li><li>Generating optimized Dockerfiles for CI/CD pipelines</li><li>Learning Dockerfile structure and common patterns</li><li>Quickly containerizing applications for deployment</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Docker Best Practices</h2><ul><li>Use <code>alpine</code> or <code>slim</code> base images for smaller containers</li><li>Copy package files first, then run install — this caches dependencies</li><li>Use <code>.dockerignore</code> to exclude node_modules, .git, etc.</li><li>Run as non-root user for security</li><li>Use multi-stage builds to separate build and runtime</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>No .dockerignore</strong> — without it, COPY includes everything (node_modules, .git), creating bloated images</li><li><strong>Running as root</strong> — containers should use a non-root user for security</li><li><strong>Not caching dependencies</strong> — COPY everything before npm install means reinstalling on every code change</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Should I use alpine or slim base images? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Alpine produces smaller images (~5MB vs ~100MB for Debian). Use alpine unless your app needs glibc-specific libraries, in which case use slim.</div></div><div class="faq-item"><div class="faq-q">What is a multi-stage build? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Multi-stage builds use separate stages for building (with dev dependencies) and running (only production files). The final image is much smaller.</div></div><div class="faq-item"><div class="faq-q">How do I reduce Docker image size? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Use alpine base images, multi-stage builds, .dockerignore, and combine RUN commands to reduce layers.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -220,10 +196,7 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use <code>alpine</code> base images for smallest containers</li><li>COPY package files before source code for better caching</li><li>Always add a <code>.dockerignore</code> file</li><li>Use <a href="/devops/docker-compose/">Docker Compose Generator</a> for multi-container setups</li>
       </ul>
     </div>
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CSS Grid Generator — DevNova Tools</title>
-<meta name="description" content="Free CSS Grid generator. Create CSS Grid layouts visually with a drag-and-drop interface and copy the CSS code. No signup required. Instant preview."/>
+<title>CSS Grid Generator — Visual Grid Layout Builder Free</title>
+<meta name="description" content="Build CSS Grid layouts visually. Set columns, rows, gaps and areas with live preview. Copy the CSS. Free, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "When should I use CSS Grid vs Flexbox?", "acceptedAnswer": {"@type": "Answer", "text": "Use Grid for 2D layouts (rows AND columns together) like page structures. Use Flexbox for 1D layouts (alignment in one direction) like navbars or card rows."}}, {"@type": "Question", "name": "What does fr mean?", "acceptedAnswer": {"@type": "Answer", "text": "fr stands for \"fraction.\" 1fr means one equal share of available space. Two columns of 1fr 2fr means the second column is twice as wide."}}, {"@type": "Question", "name": "Can I make a responsive grid without media queries?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — use repeat(auto-fit, minmax(250px, 1fr)) to create a grid that automatically adjusts the number of columns based on available width."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -144,7 +113,7 @@ document.addEventListener('DOMContentLoaded',run)
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is CSS Grid Generator?</h2>
-      <p>CSS Grid Generator is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>CSS Grid Generator creates grid layouts visually. Define columns, rows, gaps, alignment and named grid areas with a live preview. Copy the generated CSS for your project. Use it to prototype layouts, learn CSS Grid, or quickly build page structures without memorizing grid syntax. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -153,11 +122,16 @@ document.addEventListener('DOMContentLoaded',run)
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Columns: 1fr 1fr 1fr
+Rows: auto auto
+Gap: 16px</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: auto auto;
+gap: 16px;</div>
         </div>
       </div>
     </div>
@@ -165,17 +139,16 @@ document.addEventListener('DOMContentLoaded',run)
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Prototyping page layouts (header, sidebar, main, footer)</li><li>Building responsive grid systems for cards and galleries</li><li>Learning CSS Grid syntax with visual feedback</li><li>Creating dashboard layouts with fixed and flexible sections</li><li>Generating grid CSS for component libraries</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 CSS Grid Properties</h2><ul><li><code>grid-template-columns</code> — defines column sizes (px, fr, %, auto)</li><li><code>grid-template-rows</code> — defines row sizes</li><li><code>gap</code> — space between grid cells</li><li><code>grid-template-areas</code> — named layout regions</li><li><code>fr</code> — fractional unit (1fr = 1 equal share of available space)</li><li><code>repeat(3, 1fr)</code> — shorthand for <code>1fr 1fr 1fr</code></li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Confusing Grid and Flexbox</strong> — Grid is 2D (rows + columns). Flexbox is 1D (one direction). Use Grid for page layout, Flexbox for component alignment.</li><li><strong>Not using fr units</strong> — fixed pixel columns break responsive design. Use fr for flexible columns.</li><li><strong>Forgetting gap</strong> — without gap, grid items touch edges. Gap replaces the need for margin hacks.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">When should I use CSS Grid vs Flexbox? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Use Grid for 2D layouts (rows AND columns together) like page structures. Use Flexbox for 1D layouts (alignment in one direction) like navbars or card rows.</div></div><div class="faq-item"><div class="faq-q">What does fr mean? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">fr stands for "fraction." 1fr means one equal share of available space. Two columns of 1fr 2fr means the second column is twice as wide.</div></div><div class="faq-item"><div class="faq-q">Can I make a responsive grid without media queries? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — use repeat(auto-fit, minmax(250px, 1fr)) to create a grid that automatically adjusts the number of columns based on available width.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -225,10 +198,7 @@ document.addEventListener('DOMContentLoaded',run)
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use <code>fr</code> units for flexible columns: <code>1fr 2fr 1fr</code></li><li><code>repeat(auto-fit, minmax(250px, 1fr))</code> = responsive without media queries</li><li>Use Grid for 2D page layout, Flexbox for 1D component alignment</li><li>See also: <a href="/frontend/flexbox/">Flexbox Generator</a></li>
       </ul>
     </div>
 

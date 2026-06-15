@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>HTTP Header Analyzer — DevNova Tools</title>
-<meta name="description" content="Free HTTP headers reference. Look up any HTTP header — name, purpose and syntax. Complete 1xx-5xx and header reference. No signup required."/>
+<title>HTTP Header Analyzer Online — Inspect Request &amp; Response Headers</title>
+<meta name="description" content="Analyze HTTP headers for any URL. Check security headers, caching, CORS and content type. Free, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the most important security headers?", "acceptedAnswer": {"@type": "Answer", "text": "Strict-Transport-Security (HSTS), Content-Security-Policy (CSP), X-Frame-Options, X-Content-Type-Options and Referrer-Policy are the essential five."}}, {"@type": "Question", "name": "What does Cache-Control: no-cache mean?", "acceptedAnswer": {"@type": "Answer", "text": "It means the browser must revalidate the cached version with the server before using it. It does NOT mean \"don't cache.\" Use no-store for that."}}, {"@type": "Question", "name": "How do I add security headers to my site?", "acceptedAnswer": {"@type": "Answer", "text": "Add them in your web server config (Nginx, Apache), CDN settings (Cloudflare), or application middleware. Each header is a single line in the response."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -139,7 +108,7 @@ function run(){const q=document.getElementById('input').value.trim().toLowerCase
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is HTTP Header Analyzer?</h2>
-      <p>HTTP Header Analyzer is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>HTTP Header Analyzer fetches the headers from any URL and displays them in a readable format. It highlights security headers (CSP, HSTS, X-Frame-Options), caching directives, CORS headers and content type. Use it to audit your site's security posture, debug caching issues, or verify API response headers. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -148,11 +117,14 @@ function run(){const q=document.getElementById('input').value.trim().toLowerCase
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">https://example.com</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Content-Type: text/html; charset=UTF-8
+Strict-Transport-Security: max-age=31536000
+X-Frame-Options: DENY
+Cache-Control: public, max-age=3600</div>
         </div>
       </div>
     </div>
@@ -160,17 +132,16 @@ function run(){const q=document.getElementById('input').value.trim().toLowerCase
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Auditing security headers (CSP, HSTS, X-Frame-Options) on your website</li><li>Debugging caching issues (Cache-Control, ETag, Expires)</li><li>Checking CORS headers for API integration</li><li>Verifying Content-Type and encoding for API responses</li><li>Inspecting redirect chains and status codes</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Essential Security Headers</h2><ul><li><code>Strict-Transport-Security</code> — enforces HTTPS connections</li><li><code>Content-Security-Policy</code> — controls which resources can load</li><li><code>X-Frame-Options</code> — prevents clickjacking (DENY or SAMEORIGIN)</li><li><code>X-Content-Type-Options</code> — prevents MIME type sniffing (nosniff)</li><li><code>Referrer-Policy</code> — controls referer header information</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Missing HSTS</strong> — without Strict-Transport-Security, users can be downgraded to HTTP</li><li><strong>Overly permissive CSP</strong> — <code>unsafe-inline</code> and <code>unsafe-eval</code> weaken Content-Security-Policy significantly</li><li><strong>No-cache confusion</strong> — <code>no-cache</code> means "revalidate before using," not "never cache." Use <code>no-store</code> to prevent caching entirely.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">What are the most important security headers? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Strict-Transport-Security (HSTS), Content-Security-Policy (CSP), X-Frame-Options, X-Content-Type-Options and Referrer-Policy are the essential five.</div></div><div class="faq-item"><div class="faq-q">What does Cache-Control: no-cache mean? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">It means the browser must revalidate the cached version with the server before using it. It does NOT mean "don't cache." Use no-store for that.</div></div><div class="faq-item"><div class="faq-q">How do I add security headers to my site? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Add them in your web server config (Nginx, Apache), CDN settings (Cloudflare), or application middleware. Each header is a single line in the response.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -220,10 +191,7 @@ function run(){const q=document.getElementById('input').value.trim().toLowerCase
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Check for HSTS, CSP, X-Frame-Options on every site you deploy</li><li><code>no-cache</code> ≠ no caching — use <code>no-store</code> to prevent it</li><li>Use <a href="/api/cors-checker/">CORS Checker</a> for detailed CORS debugging</li><li>Test after every server configuration change</li>
       </ul>
     </div>
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Kubernetes YAML Validator — DevNova Tools</title>
-<meta name="description" content="Free Kubernetes YAML validator. Validate Kubernetes manifests for syntax errors and common misconfigurations. No signup, works in your browser."/>
+<title>Kubernetes YAML Validator Online — Validate K8s Manifests Free</title>
+<meta name="description" content="Validate Kubernetes YAML manifests for syntax errors and common issues. Supports Deployments, Services, ConfigMaps and more. Free, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does this validate against a specific Kubernetes version?", "acceptedAnswer": {"@type": "Answer", "text": "This tool checks YAML syntax and common structural patterns. For version-specific API validation, use kubectl --dry-run=client or kubeval."}}, {"@type": "Question", "name": "Can I validate multiple documents?", "acceptedAnswer": {"@type": "Answer", "text": "YAML documents separated by --- are validated individually. Each document is checked for valid syntax and structure."}}, {"@type": "Question", "name": "How do I fix \"error validating data\"?", "acceptedAnswer": {"@type": "Answer", "text": "Check for missing required fields (like selector in Deployments), wrong apiVersion, or typos in field names. This tool highlights the most common issues."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -138,7 +107,7 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Kubernetes YAML Validator?</h2>
-      <p>Kubernetes YAML Validator is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>Kubernetes YAML Validator checks your K8s manifests for YAML syntax errors and common structural issues. Paste a Deployment, Service, ConfigMap, Ingress or other manifest and get instant validation feedback. Use it before applying manifests to a cluster to catch errors early. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -147,11 +116,18 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 3</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">✓ Valid YAML syntax
+⚠ Missing spec.selector (required for Deployments)
+⚠ Missing spec.template</div>
         </div>
       </div>
     </div>
@@ -159,17 +135,16 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Validating YAML syntax before kubectl apply</li><li>Catching missing required fields in K8s manifests</li><li>Checking Deployment, Service and Ingress configurations</li><li>Reviewing manifests during code review</li><li>Learning Kubernetes manifest structure</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Common K8s Resources</h2><ul><li><code>Deployment</code> — manages pod replicas and rolling updates</li><li><code>Service</code> — exposes pods with stable networking</li><li><code>ConfigMap</code> — stores non-sensitive configuration data</li><li><code>Secret</code> — stores sensitive data (base64 encoded)</li><li><code>Ingress</code> — HTTP routing and load balancing</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Tab indentation</strong> — YAML requires spaces, never tabs. Kubernetes rejects manifests with tabs.</li><li><strong>Missing selector</strong> — Deployments require spec.selector.matchLabels that matches the pod template labels</li><li><strong>Wrong apiVersion</strong> — API versions change between Kubernetes releases. Check your cluster version.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Does this validate against a specific Kubernetes version? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">This tool checks YAML syntax and common structural patterns. For version-specific API validation, use kubectl --dry-run=client or kubeval.</div></div><div class="faq-item"><div class="faq-q">Can I validate multiple documents? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">YAML documents separated by --- are validated individually. Each document is checked for valid syntax and structure.</div></div><div class="faq-item"><div class="faq-q">How do I fix "error validating data"? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Check for missing required fields (like selector in Deployments), wrong apiVersion, or typos in field names. This tool highlights the most common issues.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -219,10 +194,7 @@ function run(){const i=document.getElementById('input').value.trim();const o=doc
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use spaces only — YAML does not allow tabs</li><li>Always include <code>selector.matchLabels</code> in Deployments</li><li>Use <a href="/devops/yaml-formatter/">YAML Formatter</a> to fix indentation first</li><li>Test with <code>kubectl apply --dry-run=client</code> for full validation</li>
       </ul>
     </div>
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Nginx Config Generator — DevNova Tools</title>
-<meta name="description" content="Free Nginx config generator. Generate Nginx server blocks for static sites, reverse proxies and SSL configuration. No login required."/>
+<title>Nginx Config Generator Online — Server Block &amp; Reverse Proxy Free</title>
+<meta name="description" content="Generate Nginx configuration for server blocks, reverse proxy, SSL, caching and security headers. Free, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I test my Nginx config?", "acceptedAnswer": {"@type": "Answer", "text": "Run nginx -t to check syntax before reloading. It validates the config without restarting the server."}}, {"@type": "Question", "name": "What is the difference between Nginx and Apache?", "acceptedAnswer": {"@type": "Answer", "text": "Nginx uses an event-driven architecture (better for concurrent connections). Apache uses a process-per-request model. Nginx is preferred for reverse proxy and static content."}}, {"@type": "Question", "name": "How do I set up HTTPS?", "acceptedAnswer": {"@type": "Answer", "text": "Add ssl_certificate and ssl_certificate_key directives pointing to your TLS certificate files. Use Let's Encrypt certbot for free certificates."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -144,7 +113,7 @@ document.addEventListener('DOMContentLoaded',generate)
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Nginx Config Generator?</h2>
-      <p>Nginx Config Generator is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>Nginx Config Generator creates Nginx server configuration blocks. Set up virtual hosts, reverse proxy to backend services, SSL/TLS termination, caching directives, security headers and gzip compression. Get ready-to-paste configuration that follows Nginx best practices. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -153,11 +122,21 @@ document.addEventListener('DOMContentLoaded',generate)
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Domain: example.com
+Proxy to: localhost:3000
+SSL: Yes
+Gzip: Yes</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">server {
+  listen 443 ssl;
+  server_name example.com;
+  ssl_certificate /etc/ssl/cert.pem;
+  location / {
+    proxy_pass http://localhost:3000;
+  }
+}</div>
         </div>
       </div>
     </div>
@@ -165,17 +144,16 @@ document.addEventListener('DOMContentLoaded',generate)
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Setting up reverse proxy to Node.js, Python or Go backends</li><li>Configuring SSL/TLS termination</li><li>Adding security headers (HSTS, CSP, X-Frame-Options)</li><li>Setting up gzip compression and browser caching</li><li>Creating virtual host configurations for multiple domains</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Key Nginx Directives</h2><ul><li><code>server_name</code> — domain(s) this server block handles</li><li><code>listen</code> — port and protocol (80, 443 ssl)</li><li><code>location</code> — URL path matching rules</li><li><code>proxy_pass</code> — forward requests to backend server</li><li><code>ssl_certificate</code> / <code>ssl_certificate_key</code> — TLS certificate files</li><li><code>gzip on</code> — enable response compression</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Missing trailing slash in proxy_pass</strong> — <code>proxy_pass http://backend/</code> strips the location prefix; without the slash it passes the full path</li><li><strong>No upstream health checks</strong> — backends can go down. Use upstream blocks with multiple servers for redundancy.</li><li><strong>Forgetting to reload</strong> — after config changes, run <code>nginx -t</code> then <code>nginx -s reload</code></li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">How do I test my Nginx config? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Run nginx -t to check syntax before reloading. It validates the config without restarting the server.</div></div><div class="faq-item"><div class="faq-q">What is the difference between Nginx and Apache? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Nginx uses an event-driven architecture (better for concurrent connections). Apache uses a process-per-request model. Nginx is preferred for reverse proxy and static content.</div></div><div class="faq-item"><div class="faq-q">How do I set up HTTPS? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Add ssl_certificate and ssl_certificate_key directives pointing to your TLS certificate files. Use Let's Encrypt certbot for free certificates.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -225,10 +203,7 @@ document.addEventListener('DOMContentLoaded',generate)
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Always run <code>nginx -t</code> before <code>nginx -s reload</code></li><li>Use <code>proxy_pass</code> with trailing slash to strip the location prefix</li><li>Use <a href="/devops/htaccess/">.htaccess Generator</a> if you use Apache instead</li><li>Add <code>gzip on</code> for 60-80% bandwidth savings on text content</li>
       </ul>
     </div>
 

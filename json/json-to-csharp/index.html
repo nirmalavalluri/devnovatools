@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>JSON to C# Class — DevNova Tools</title>
-<meta name="description" content="Free JSON to C# class generator. Convert JSON to C# model classes with properties and types. Supports nested objects. No signup, works in your browser."/>
+<title>JSON to C# Classes — Generate C# Models from JSON Free</title>
+<meta name="description" content="Convert JSON to C# class definitions instantly. Auto-generates properties, types and nested classes. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it handle nested objects?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — nested JSON objects generate separate C# classes that are referenced as properties in the parent class."}}, {"@type": "Question", "name": "Which JSON library should I use?", "acceptedAnswer": {"@type": "Answer", "text": "For .NET 6+ use the built-in System.Text.Json. For older .NET or advanced features, use Newtonsoft.Json (Json.NET)."}}, {"@type": "Question", "name": "How do I handle snake_case JSON keys?", "acceptedAnswer": {"@type": "Answer", "text": "Add [JsonPropertyName(\"snake_case_name\")] attributes to your properties, or configure a naming policy in your serializer options."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -140,7 +109,7 @@ function genCS(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is JSON to C# Class?</h2>
-      <p>JSON to C# Class is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>JSON to C# generates strongly-typed C# class definitions from a JSON sample. Paste any JSON and get ready-to-use C# classes with proper property types (string, int, bool, List, nested classes). Use it when consuming REST APIs, deserializing JSON with System.Text.Json or Newtonsoft.Json, or building DTOs for your .NET project. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -149,11 +118,16 @@ function genCS(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">{"name":"Alice","age":30,"active":true,"tags":["dev","admin"]}</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">public class Root {
+  public string Name { get; set; }
+  public int Age { get; set; }
+  public bool Active { get; set; }
+  public List&lt;string&gt; Tags { get; set; }
+}</div>
         </div>
       </div>
     </div>
@@ -161,17 +135,16 @@ function genCS(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Generating DTOs from REST API response samples</li><li>Creating model classes for System.Text.Json or Newtonsoft.Json deserialization</li><li>Building request/response models for ASP.NET Web API projects</li><li>Scaffolding Entity Framework models from JSON data</li><li>Converting API documentation examples into C# code</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Type Mapping</h2><ul><li>JSON string → <code>string</code></li><li>JSON number (integer) → <code>int</code> or <code>long</code></li><li>JSON number (decimal) → <code>double</code></li><li>JSON boolean → <code>bool</code></li><li>JSON null → <code>object</code> (nullable)</li><li>JSON array → <code>List&lt;T&gt;</code></li><li>JSON object → nested class</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Using sample data with wrong types</strong> — if a field is 0 in your sample, it maps to int even if it can be a decimal. Use representative sample data.</li><li><strong>Forgetting nullable types</strong> — fields that can be null in the API should use nullable types like <code>int?</code> or <code>string?</code></li><li><strong>Property naming</strong> — C# uses PascalCase by convention. Add <code>[JsonPropertyName("original_name")]</code> attributes if the JSON uses snake_case.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Does it handle nested objects? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — nested JSON objects generate separate C# classes that are referenced as properties in the parent class.</div></div><div class="faq-item"><div class="faq-q">Which JSON library should I use? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">For .NET 6+ use the built-in System.Text.Json. For older .NET or advanced features, use Newtonsoft.Json (Json.NET).</div></div><div class="faq-item"><div class="faq-q">How do I handle snake_case JSON keys? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Add [JsonPropertyName("snake_case_name")] attributes to your properties, or configure a naming policy in your serializer options.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -221,10 +194,7 @@ function genCS(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Use a realistic JSON sample for accurate type detection</li><li>Add <code>[JsonPropertyName]</code> for snake_case API fields</li><li>Use <code>int?</code> for nullable numeric fields</li><li>Also available: <a href="/json/json-to-typescript/">JSON to TypeScript</a>, <a href="/json/json-to-python/">JSON to Python</a></li>
       </ul>
     </div>
 

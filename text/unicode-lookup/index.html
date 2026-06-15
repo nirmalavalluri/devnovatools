@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Unicode Lookup — DevNova Tools</title>
-<meta name="description" content="Free Unicode character lookup. Search Unicode characters by name, code point or category. Find emojis, symbols and special characters. No signup required."/>
+<title>Unicode Character Lookup — Find Code Points &amp; Names Free</title>
+<meta name="description" content="Look up Unicode characters by name, code point or symbol. Find emoji, special characters and their code points. Free, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I type a Unicode character by code point?", "acceptedAnswer": {"@type": "Answer", "text": "In HTML, use the hex entity format. In JavaScript, use the backslash-u escape or String.fromCodePoint()."}}, {"@type": "Question", "name": "What causes garbled text?", "acceptedAnswer": {"@type": "Answer", "text": "The text is encoded in one format (like UTF-8) but read as another (like Latin-1). Fix the encoding declaration or convert the file."}}, {"@type": "Question", "name": "How many characters are in Unicode?", "acceptedAnswer": {"@type": "Answer", "text": "Over 149,000 characters covering 161 scripts, plus emoji, mathematical symbols and technical characters."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -138,7 +107,7 @@ function run(){const i=document.getElementById('input').value;const o=document.g
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Unicode Lookup?</h2>
-      <p>Unicode Lookup is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>Unicode Lookup lets you find Unicode characters by searching their name, entering a code point (U+xxxx), or pasting a character to see its details. For each character, see the official Unicode name, code point, UTF-8 encoding, HTML entity and category. Use it when working with special characters, emoji, mathematical symbols or any Unicode text. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -147,11 +116,11 @@ function run(){const i=document.getElementById('input').value;const o=document.g
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Search: "check mark" or paste the symbol</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">CHECK MARK — U+2713 — HTML: &amp;#10003; — UTF-8: E2 9C 93</div>
         </div>
       </div>
     </div>
@@ -159,17 +128,17 @@ function run(){const i=document.getElementById('input').value;const o=document.g
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Finding Unicode code points for special characters and emoji</li><li>Looking up HTML entities for symbols</li><li>Identifying unknown characters pasted from other sources</li><li>Finding the correct Unicode character for UI elements</li><li>Debugging encoding issues by inspecting character bytes</li></ul>
     </div>
 
-    <!-- FAQ -->
+
+    <div class="seo-section"><h2>📝 Unicode Basics</h2><ul><li>Every character has a unique code point: U+0041 = A</li><li>UTF-8 encodes code points into 1-4 bytes</li><li>Emoji are Unicode characters (U+1F600 range)</li><li>HTML entities: &amp;#8364; or &amp;euro; for the euro sign</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Confusing encoding and code point</strong> — the code point is the character ID, the encoding is how it is stored in bytes. They are different.</li><li><strong>Assuming 1 character = 1 byte</strong> — in UTF-8, characters can be 1-4 bytes. Emoji are typically 4 bytes.</li><li><strong>Mojibake (garbled text)</strong> — usually means UTF-8 data was read as Latin-1. Fix the encoding declaration.</li></ul></div>
+
+        <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">How do I type a Unicode character by code point? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">In HTML, use the hex entity format. In JavaScript, use the backslash-u escape or String.fromCodePoint().</div></div><div class="faq-item"><div class="faq-q">What causes garbled text? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">The text is encoded in one format (like UTF-8) but read as another (like Latin-1). Fix the encoding declaration or convert the file.</div></div><div class="faq-item"><div class="faq-q">How many characters are in Unicode? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Over 149,000 characters covering 161 scripts, plus emoji, mathematical symbols and technical characters.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -219,10 +188,7 @@ function run(){const i=document.getElementById('input').value;const o=document.g
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Search by name, code point (U+2713), or paste a character</li><li>Use HTML entities for special characters in web pages</li><li>UTF-8 characters can be 1-4 bytes — don't assume 1 byte per character</li><li>Garbled text usually means an encoding mismatch</li>
       </ul>
     </div>
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>JSON Diff — DevNova Tools</title>
-<meta name="description" content="Free JSON diff checker. Compare two JSON objects side by side and highlight differences. Find added, removed and changed keys instantly. No login required."/>
+<title>JSON Diff — Compare Two JSON Objects Online Free</title>
+<meta name="description" content="Compare two JSON objects and see structural differences highlighted. Find added, removed and changed keys instantly. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does key order matter?", "acceptedAnswer": {"@type": "Answer", "text": "No — JSON objects are unordered by specification. This tool compares by key name and value, regardless of order."}}, {"@type": "Question", "name": "Can it compare nested JSON?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the comparison is recursive. Nested objects and arrays are compared at every depth level."}}, {"@type": "Question", "name": "What about large JSON files?", "acceptedAnswer": {"@type": "Answer", "text": "Files up to a few MB work fine in the browser. For very large files (10MB+), the comparison may be slow."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -185,7 +154,7 @@
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is JSON Diff?</h2>
-      <p>JSON Diff is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>JSON Diff compares two JSON structures and highlights exactly what changed — added keys, removed keys, modified values and type changes. Paste JSON A on the left and JSON B on the right to see a clear, color-coded diff. Use it to compare API responses between versions, verify config changes, or debug data transformation pipelines. All processing happens in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -194,11 +163,11 @@
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">{"name":"Alice","age":30,"city":"NYC"}</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">{"name":"Alice","age":31,"city":"London"} — age: 30→31, city: NYC→London</div>
         </div>
       </div>
     </div>
@@ -206,17 +175,16 @@
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Comparing API responses between staging and production</li><li>Verifying config file changes before deploying</li><li>Debugging data transformation pipeline output</li><li>Checking what changed in a database record between snapshots</li><li>Reviewing JSON schema changes across API versions</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 What Gets Compared</h2><ul><li><strong>Added keys</strong> — keys present in JSON B but not in A</li><li><strong>Removed keys</strong> — keys present in A but not in B</li><li><strong>Changed values</strong> — same key, different value or type</li><li><strong>Nested objects</strong> — recursively compared at every level</li><li><strong>Array elements</strong> — compared by index position</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Key ordering</strong> — JSON objects are unordered; {"a":1,"b":2} equals {"b":2,"a":1}. This tool compares values, not key order.</li><li><strong>Floating point precision</strong> — 0.1+0.2 may appear as 0.30000000000000004 in one response. Normalize before comparing.</li><li><strong>Comparing arrays of objects</strong> — arrays are compared by index, not by a unique ID field. Reordered arrays show as completely different.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Does key order matter? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">No — JSON objects are unordered by specification. This tool compares by key name and value, regardless of order.</div></div><div class="faq-item"><div class="faq-q">Can it compare nested JSON? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — the comparison is recursive. Nested objects and arrays are compared at every depth level.</div></div><div class="faq-item"><div class="faq-q">What about large JSON files? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Files up to a few MB work fine in the browser. For very large files (10MB+), the comparison may be slow.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -266,10 +234,7 @@
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Paste original JSON on the left, modified on the right</li><li>Key order does not matter — only values are compared</li><li>Use <a href="/json/formatter/">JSON Formatter</a> to prettify before comparing</li><li>Green = added, red = removed, yellow = changed</li>
       </ul>
     </div>
 

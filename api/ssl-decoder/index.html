@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>SSL Certificate Decoder — DevNova Tools</title>
-<meta name="description" content="Free SSL certificate decoder. Paste an SSL certificate to decode and inspect the subject, issuer, validity dates and extensions. No login required."/>
+<title>SSL/TLS Certificate Decoder Online — Inspect Certificates Free</title>
+<meta name="description" content="Decode and inspect SSL/TLS certificates. View subject, issuer, validity dates, SANs and key details. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What format does this tool accept?", "acceptedAnswer": {"@type": "Answer", "text": "PEM format — the text block starting with -----BEGIN CERTIFICATE----- and ending with -----END CERTIFICATE-----."}}, {"@type": "Question", "name": "Can I check if my certificate chain is complete?", "acceptedAnswer": {"@type": "Answer", "text": "Paste the full chain (leaf + intermediates) and verify the issuer of each certificate matches the subject of the next."}}, {"@type": "Question", "name": "How do I find my SSL certificate?", "acceptedAnswer": {"@type": "Answer", "text": "In most web servers, the certificate file is configured in the SSL/TLS settings (ssl_certificate in Nginx, SSLCertificateFile in Apache)."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -139,7 +108,7 @@ async function checkSSL(){const d=document.getElementById('domain').value.trim()
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is SSL Certificate Decoder?</h2>
-      <p>SSL Certificate Decoder is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>SSL Certificate Decoder parses PEM-encoded SSL/TLS certificates and displays their details in a readable format — subject, issuer, validity dates, serial number, Subject Alternative Names (SANs), public key algorithm and fingerprint. Use it to inspect certificates before installation, verify cert chains, or debug TLS issues. Everything runs in your browser — your certificate data is never uploaded.</p>
     </div>
 
     <!-- Example -->
@@ -148,11 +117,16 @@ async function checkSSL(){const d=document.getElementById('domain').value.trim()
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">-----BEGIN CERTIFICATE-----
+MIIDxTCCAq2gAwIBAgIQ...
+-----END CERTIFICATE-----</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Subject: CN=example.com
+Issuer: CN=Let's Encrypt Authority X3
+Valid: 2026-01-01 to 2026-03-31
+SANs: example.com, www.example.com</div>
         </div>
       </div>
     </div>
@@ -160,17 +134,16 @@ async function checkSSL(){const d=document.getElementById('domain').value.trim()
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Inspecting SSL certificate details before installation</li><li>Verifying certificate chain and issuer</li><li>Checking certificate expiration dates</li><li>Viewing Subject Alternative Names (SANs) for multi-domain certs</li><li>Debugging TLS handshake failures</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Certificate Fields Explained</h2><ul><li><strong>Subject</strong> — the domain or entity the certificate is issued to</li><li><strong>Issuer</strong> — the Certificate Authority (CA) that signed it</li><li><strong>Validity</strong> — start and end dates (Not Before / Not After)</li><li><strong>SANs</strong> — Subject Alternative Names, additional domains covered</li><li><strong>Public Key</strong> — algorithm (RSA, ECDSA) and key size</li><li><strong>Fingerprint</strong> — SHA-256 hash for identification</li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Missing intermediate certificates</strong> — your server must send the full chain, not just the leaf cert</li><li><strong>Expired certificates</strong> — check the Not After date and set up renewal alerts</li><li><strong>Wrong SAN entries</strong> — if the certificate does not include the exact domain (including www vs non-www), browsers will reject it</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">What format does this tool accept? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">PEM format — the text block starting with -----BEGIN CERTIFICATE----- and ending with -----END CERTIFICATE-----.</div></div><div class="faq-item"><div class="faq-q">Can I check if my certificate chain is complete? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Paste the full chain (leaf + intermediates) and verify the issuer of each certificate matches the subject of the next.</div></div><div class="faq-item"><div class="faq-q">How do I find my SSL certificate? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">In most web servers, the certificate file is configured in the SSL/TLS settings (ssl_certificate in Nginx, SSLCertificateFile in Apache).</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -220,10 +193,7 @@ async function checkSSL(){const d=document.getElementById('domain').value.trim()
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Paste the full PEM block including BEGIN/END lines</li><li>Check the "Not After" date for expiration</li><li>Verify SANs include all your domains (including www)</li><li>Always include intermediate certificates in your server config</li>
       </ul>
     </div>
 

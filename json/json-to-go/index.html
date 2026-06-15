@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>JSON to Go Struct — DevNova Tools</title>
-<meta name="description" content="Free JSON to Go struct generator. Convert JSON objects to Go struct definitions with correct field tags. Supports nested objects. No login required."/>
+<title>JSON to Go Struct — Generate Go Types from JSON Free</title>
+<meta name="description" content="Convert JSON to Go struct definitions instantly. Auto-generates field names, types and json tags. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it add json struct tags?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — every field includes a json:\"original_key\" tag so marshaling and unmarshaling work correctly with the original JSON key names."}}, {"@type": "Question", "name": "How does it handle nested objects?", "acceptedAnswer": {"@type": "Answer", "text": "Nested JSON objects generate separate named struct types that are referenced as fields in the parent struct."}}, {"@type": "Question", "name": "What about optional/nullable fields?", "acceptedAnswer": {"@type": "Answer", "text": "Fields that could be null should use pointer types like *string or *int. You may need to adjust the generated output for nullable fields."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, works offline once loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -140,7 +109,7 @@ function genGo(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is JSON to Go Struct?</h2>
-      <p>JSON to Go Struct is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>JSON to Go generates Go struct definitions from a JSON sample. Paste any JSON and get properly typed Go structs with json struct tags for marshaling and unmarshaling. Field names are automatically converted to PascalCase following Go conventions. Use it when building Go APIs, consuming external REST services, or parsing JSON config files. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -149,11 +118,15 @@ function genGo(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">{"user_name":"Alice","age":30,"is_active":true}</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">type Root struct {
+  UserName string `json:"user_name"`
+  Age      int    `json:"age"`
+  IsActive bool   `json:"is_active"`
+}</div>
         </div>
       </div>
     </div>
@@ -161,17 +134,16 @@ function genGo(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Generating Go structs from REST API response samples</li><li>Building request/response types for Go HTTP handlers</li><li>Creating config structs for JSON configuration files</li><li>Scaffolding database models from JSON data</li><li>Converting API docs into Go type definitions</li></ul>
     </div>
+
+    <div class="seo-section"><h2>📝 Go Naming Conventions</h2><ul><li>Exported (public) fields start with uppercase: <code>UserName</code></li><li>JSON tags preserve the original key: <code>`json:"user_name"`</code></li><li>Acronyms stay uppercase: <code>ID</code>, <code>URL</code>, <code>HTTP</code></li><li>Use <code>omitempty</code> tag for optional fields: <code>`json:"name,omitempty"`</code></li></ul></div>
+    <div class="seo-section"><h2>⚠️ Common Mistakes</h2><ul><li><strong>Missing json tags</strong> — without tags, Go uses exact field name matching which fails on snake_case JSON</li><li><strong>Using interface{} everywhere</strong> — specify concrete types when possible for type safety</li><li><strong>Number precision</strong> — Go uses float64 for JSON numbers by default. Use json.Number or int64 for precise large integers.</li></ul></div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+      <div class="faq-item"><div class="faq-q">Does it add json struct tags? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — every field includes a json:"original_key" tag so marshaling and unmarshaling work correctly with the original JSON key names.</div></div><div class="faq-item"><div class="faq-q">How does it handle nested objects? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Nested JSON objects generate separate named struct types that are referenced as fields in the parent struct.</div></div><div class="faq-item"><div class="faq-q">What about optional/nullable fields? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Fields that could be null should use pointer types like *string or *int. You may need to adjust the generated output for nullable fields.</div></div><div class="faq-item"><div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Yes — all processing runs entirely in your browser. Your data is never sent to any server.</div></div><div class="faq-item"><div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div><div class="faq-a">Completely free — no login, no usage limits, works offline once loaded.</div></div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -221,10 +193,7 @@ function genGo(obj,name){if(!obj||typeof obj!=='object'||Array.isArray(obj))retu
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>All fields get <code>json:"key"</code> tags automatically</li><li>Add <code>omitempty</code> to tags for optional fields</li><li>Use pointer types (<code>*string</code>) for nullable JSON values</li><li>Also available: <a href="/json/json-to-csharp/">JSON to C#</a>, <a href="/json/json-to-python/">JSON to Python</a></li>
       </ul>
     </div>
 
