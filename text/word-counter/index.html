@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Word Counter — DevNova Tools</title>
-<meta name="description" content="Free word counter. Count words, characters, sentences, paragraphs and reading time for any text. Instant results as you type. No signup, works in your browser."/>
+<title>Word Counter &amp; Character Counter Online — Free Text Analysis</title>
+<meta name="description" content="Count words, characters, sentences, paragraphs and estimate reading time. Free, private, browser-based text analysis tool for writers and developers."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it count hyphenated words as one or two?", "acceptedAnswer": {"@type": "Answer", "text": "Hyphenated words like \"well-known\" are counted as one word, following the same convention as Microsoft Word and Google Docs."}}, {"@type": "Question", "name": "How accurate is the reading time estimate?", "acceptedAnswer": {"@type": "Answer", "text": "It uses 200 words per minute, which is the standard baseline for average adult reading speed. Technical or dense content may take 30-50% longer. The estimate is intentionally conservative."}}, {"@type": "Question", "name": "Can I check character limits for social media?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the character count (with spaces) matches what platforms like X/Twitter (280 chars), Instagram captions (2,200 chars) and meta descriptions (155 chars) use."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, and it works offline once the page is loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -175,7 +144,8 @@
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Word Counter?</h2>
-      <p>Word Counter is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>A word counter analyzes your text and reports word count, character count (with and without spaces), sentence count, paragraph count and estimated reading time. Writers use it to hit article length targets, developers use it to check string lengths for database fields or API limits, and students use it for essay requirements.</p>
+      <p>Paste any text and see live stats instantly. Everything runs in your browser — your text is never uploaded to any server.</p>
     </div>
 
     <!-- Example -->
@@ -184,11 +154,11 @@
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">The quick brown fox jumps over the lazy dog. This classic sentence contains every letter of the English alphabet.</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Words: 19 | Characters: 107 | Sentences: 2 | Paragraphs: 1 | Reading time: ~5 sec</div>
         </div>
       </div>
     </div>
@@ -196,17 +166,48 @@
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Checking blog post length for SEO (most guides recommend 1,500–2,500 words)</li>
+<li>Verifying character limits for meta descriptions (155 chars), tweets (280 chars) or SMS (160 chars)</li>
+<li>Meeting essay or article word count requirements</li>
+<li>Checking string lengths for database VARCHAR columns or API field limits</li>
+<li>Estimating reading time for documentation and articles</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>📝 How Reading Time is Calculated</h2>
+      <p>Average adult reading speed is approximately 200–250 words per minute for non-fiction content. This tool uses 200 WPM as the baseline, which gives a slightly conservative (longer) estimate — better to over-estimate reading time than under-estimate it.</p>
+      <p>Skim reading is faster (400–700 WPM), and technical content is slower (100–150 WPM). Adjust mentally based on your content type.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li><strong>Confusing characters with bytes</strong> — a character count is not the same as byte length. Unicode characters like emoji can use 4 bytes each.</li>
+        <li><strong>Including or excluding spaces</strong> — some platforms count characters with spaces, others without. This tool shows both.</li>
+        <li><strong>Hyphenated words</strong> — "well-known" is typically counted as one word in word processors but may count as two in some tools. This tool follows standard word-boundary rules.</li>
+        <li><strong>Relying on word count alone for SEO</strong> — content quality and relevance matter far more than hitting a specific word count.</li>
+      </ul>
     </div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
+        <div class="faq-q">Does it count hyphenated words as one or two? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Hyphenated words like "well-known" are counted as one word, following the same convention as Microsoft Word and Google Docs.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How accurate is the reading time estimate? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">It uses 200 words per minute, which is the standard baseline for average adult reading speed. Technical or dense content may take 30-50% longer. The estimate is intentionally conservative.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I check character limits for social media? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — the character count (with spaces) matches what platforms like X/Twitter (280 chars), Instagram captions (2,200 chars) and meta descriptions (155 chars) use.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server.</div>
+      </div><div class="faq-item">
         <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Completely free — no login, no usage limits, and it works offline once the page is loaded.</div>
+      </div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -256,10 +257,10 @@
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Blog posts: aim for 1,500–2,500 words for SEO</li>
+        <li>Meta descriptions: keep under 155 characters</li>
+        <li>Reading time = word count ÷ 200 words per minute</li>
+        <li>Character count includes spaces — check "without spaces" for precise limits</li>
       </ul>
     </div>
 

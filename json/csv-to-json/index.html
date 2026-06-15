@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CSV to JSON — DevNova Tools</title>
-<meta name="description" content="Free CSV to JSON converter. Upload or paste CSV data and convert to JSON array instantly. Supports custom delimiters and headers. No login required."/>
+<title>CSV to JSON Converter Online — Transform CSV Data to JSON Free</title>
+<meta name="description" content="Convert CSV data to a JSON array of objects instantly. Auto-detects headers, handles quoted fields and preserves data types. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does it auto-detect data types?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — numeric values become JSON numbers, true/false become booleans, and everything else stays as a string. If you need all values as strings, you can post-process the JSON output."}}, {"@type": "Question", "name": "Can I convert TSV (tab-separated) data?", "acceptedAnswer": {"@type": "Answer", "text": "This tool expects comma-separated input. For TSV data, replace all tabs with commas before pasting, or use a text editor find-and-replace."}}, {"@type": "Question", "name": "What happens with empty cells?", "acceptedAnswer": {"@type": "Answer", "text": "Empty cells become empty strings in the JSON output. If you need them as null values, you can find-and-replace \"\" with null in the output."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, and it works offline once the page is loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -181,7 +150,8 @@ Alice,30,NYC" oninput="run()" spellcheck="false"></textarea>
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is CSV to JSON?</h2>
-      <p>CSV to JSON is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>CSV to JSON converts comma-separated values into a JSON array of objects, using the first row as property names. Each subsequent row becomes a JSON object with key-value pairs matching the headers.</p>
+      <p>Use it to prepare spreadsheet data for API requests, convert database exports into JSON for web applications, or transform CSV files into a format your code can easily parse. Everything runs in your browser — your data is never uploaded.</p>
     </div>
 
     <!-- Example -->
@@ -190,11 +160,14 @@ Alice,30,NYC" oninput="run()" spellcheck="false"></textarea>
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">name,age,city
+Alice,30,NYC
+Bob,25,London</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">[{"name":"Alice","age":30,"city":"NYC"},
+ {"name":"Bob","age":25,"city":"London"}]</div>
         </div>
       </div>
     </div>
@@ -202,17 +175,48 @@ Alice,30,NYC" oninput="run()" spellcheck="false"></textarea>
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Preparing spreadsheet data for REST API POST requests</li>
+<li>Converting database CSV exports into JSON for web applications</li>
+<li>Importing Excel data into MongoDB, Firebase or other JSON-based stores</li>
+<li>Transforming CSV log files into structured JSON for analysis</li>
+<li>Building JSON seed data for testing from spreadsheet templates</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>📝 How CSV Parsing Works</h2>
+      <p>The parser follows the RFC 4180 standard: commas separate fields, double quotes wrap values that contain commas or newlines, and two consecutive double quotes inside a quoted field represent a literal quote. The first row is always treated as headers.</p>
+      <p>Numeric values are auto-detected and converted to JSON numbers. Values that look like <code>true</code>/<code>false</code> become JSON booleans. Everything else stays as a string.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li><strong>No header row</strong> — if your CSV has no headers, the first data row gets used as keys, producing meaningless property names</li>
+        <li><strong>Tab-separated data</strong> — TSV files use tabs, not commas. Replace tabs with commas first, or check if the tool auto-detects the delimiter.</li>
+        <li><strong>Trailing commas</strong> — extra commas at the end of rows create empty fields. Clean the CSV before converting.</li>
+        <li><strong>Mixed encodings</strong> — CSV files from Excel may use Windows-1252 encoding. Save as UTF-8 CSV for correct Unicode handling.</li>
+      </ul>
     </div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
+        <div class="faq-q">Does it auto-detect data types? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — numeric values become JSON numbers, true/false become booleans, and everything else stays as a string. If you need all values as strings, you can post-process the JSON output.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I convert TSV (tab-separated) data? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">This tool expects comma-separated input. For TSV data, replace all tabs with commas before pasting, or use a text editor find-and-replace.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What happens with empty cells? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Empty cells become empty strings in the JSON output. If you need them as null values, you can find-and-replace "" with null in the output.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server.</div>
+      </div><div class="faq-item">
         <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Completely free — no login, no usage limits, and it works offline once the page is loaded.</div>
+      </div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -262,10 +266,10 @@ Alice,30,NYC" oninput="run()" spellcheck="false"></textarea>
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>First row must be column headers — they become JSON keys</li>
+        <li>Numeric values are auto-converted to JSON numbers</li>
+        <li>Wrap values containing commas in double quotes</li>
+        <li>Use the <a href="/json/json-to-csv/">JSON to CSV</a> tool for the reverse conversion</li>
       </ul>
     </div>
 

@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>CSS Minifier — DevNova Tools</title>
-<meta name="description" content="Free CSS minifier. Remove whitespace, comments and optimize CSS to reduce file size. Instant results with a size comparison. No signup, works in your browser."/>
+<title>CSS Minifier Online — Compress CSS Files Free &amp; Private</title>
+<meta name="description" content="Minify CSS by removing whitespace, comments and redundant code. Reduce file size for faster page loads. Free, private, browser-based — no upload required."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How much smaller will my CSS get?", "acceptedAnswer": {"@type": "Answer", "text": "Typical savings are 20-40% from minification alone. Combined with gzip compression on your server, total savings reach 80-90%. The exact reduction depends on how much whitespace and comments your original CSS contains."}}, {"@type": "Question", "name": "Will minified CSS look the same in the browser?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — minification only removes characters that do not affect rendering. The CSS rules, selectors and property values are preserved exactly."}}, {"@type": "Question", "name": "Should I use this instead of a build tool?", "acceptedAnswer": {"@type": "Answer", "text": "For production workflows, use a build tool like cssnano, PostCSS or a bundler (Vite, Webpack). Use this tool for quick one-off minification, checking compression ratios, or when you do not have a build pipeline set up."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, and it works offline once the page is loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -176,7 +145,8 @@
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is CSS Minifier?</h2>
-      <p>CSS Minifier is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>A CSS minifier compresses your stylesheets by removing whitespace, line breaks, comments and unnecessary characters — without changing how the CSS works. The result is a smaller file that loads faster in the browser, improving page performance and Core Web Vitals scores.</p>
+      <p>Paste your CSS and get the minified output instantly. This tool runs entirely in your browser — your stylesheets are never uploaded to any server. Use it for quick one-off minification, or to check how much a build tool would save.</p>
     </div>
 
     <!-- Example -->
@@ -185,11 +155,15 @@
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">.header {
+  background-color: #333;
+  /* Main header */
+  padding: 20px;
+}</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">.header{background-color:#333;padding:20px}</div>
         </div>
       </div>
     </div>
@@ -197,17 +171,54 @@
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Reducing CSS file size before deploying to production</li>
+<li>Quick-checking how much your CSS compresses without setting up a build tool</li>
+<li>Minifying inline CSS for HTML email templates</li>
+<li>Preparing CSS for embedding in JavaScript bundles</li>
+<li>Comparing original vs minified size to find bloated stylesheets</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>📝 What CSS Minification Removes</h2>
+      <ul>
+        <li><strong>Whitespace</strong> — spaces, tabs, newlines between rules and properties</li>
+        <li><strong>Comments</strong> — <code>/* ... */</code> blocks (except <code>/*!</code> license comments in some tools)</li>
+        <li><strong>Semicolons</strong> — the last semicolon before a closing brace is optional</li>
+        <li><strong>Redundant zeros</strong> — <code>0.5em</code> → <code>.5em</code>, <code>0px</code> → <code>0</code></li>
+        <li><strong>Redundant units</strong> — <code>margin: 0px</code> → <code>margin:0</code></li>
+      </ul>
+      <p>Advanced minifiers (like cssnano in build pipelines) also merge duplicate selectors, shorten colors (<code>#ffffff</code> → <code>#fff</code>) and optimize shorthand properties.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li><strong>Minifying during development</strong> — always work with readable CSS and only minify for production. Use source maps if you need to debug minified CSS.</li>
+        <li><strong>Forgetting to test after minification</strong> — aggressive minification can occasionally break CSS that relies on specific whitespace (e.g. in <code>calc()</code> expressions). Always test the result.</li>
+        <li><strong>Double-minifying</strong> — running already-minified CSS through a minifier again wastes time and produces no additional savings</li>
+        <li><strong>Not combining with gzip</strong> — minification + gzip compression together typically reduce CSS by 80-90%</li>
+      </ul>
     </div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
+        <div class="faq-q">How much smaller will my CSS get? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Typical savings are 20-40% from minification alone. Combined with gzip compression on your server, total savings reach 80-90%. The exact reduction depends on how much whitespace and comments your original CSS contains.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Will minified CSS look the same in the browser? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — minification only removes characters that do not affect rendering. The CSS rules, selectors and property values are preserved exactly.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Should I use this instead of a build tool? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">For production workflows, use a build tool like cssnano, PostCSS or a bundler (Vite, Webpack). Use this tool for quick one-off minification, checking compression ratios, or when you do not have a build pipeline set up.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server.</div>
+      </div><div class="faq-item">
         <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Completely free — no login, no usage limits, and it works offline once the page is loaded.</div>
+      </div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -257,10 +268,10 @@
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Minify for production only — keep readable CSS during development</li>
+        <li>Combine minification with gzip for 80-90% total compression</li>
+        <li>Check the size reduction shown in the status bar</li>
+        <li>Use <a href="/frontend/html-beautifier/">HTML Beautifier</a> to format minified HTML</li>
       </ul>
     </div>
 

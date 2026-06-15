@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>URL Encoder/Decoder — DevNova Tools</title>
-<meta name="description" content="Free URL encoder and decoder. Encode special characters for URLs or decode percent-encoded strings instantly. No signup required. Works in your browser."/>
+<title>URL Encoder &amp; Decoder Online — Percent-Encode URLs Free</title>
+<meta name="description" content="Encode special characters in URLs with percent-encoding, or decode encoded URLs back to readable text. Free, private, browser-based — supports UTF-8."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between %20 and + for spaces?", "acceptedAnswer": {"@type": "Answer", "text": "In URL query strings (after the ?), + and %20 both represent a space. The + convention comes from HTML form encoding (application/x-www-form-urlencoded). In URL paths (before the ?), only %20 is valid — a literal + stays as a plus sign."}}, {"@type": "Question", "name": "Do I need to encode UTF-8 characters in URLs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — any character outside the ASCII safe set must be percent-encoded. Modern browsers display decoded Unicode in the address bar, but the actual HTTP request uses the encoded form. This tool handles UTF-8 encoding automatically."}}, {"@type": "Question", "name": "Why does my API return garbled text?", "acceptedAnswer": {"@type": "Answer", "text": "Usually double encoding: the URL was encoded twice, so the server sees literal %25 characters instead of decoded values. Decode the URL with this tool to check, and make sure your code encodes exactly once."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, and it works offline once the page is loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -173,7 +142,8 @@
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is URL Encoder/Decoder?</h2>
-      <p>URL Encoder/Decoder is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>URL encoding (also called percent-encoding) replaces unsafe characters in a URL with a <code>%</code> followed by two hex digits. For example, a space becomes <code>%20</code> and an ampersand becomes <code>%26</code>. This is required because URLs can only contain a limited set of ASCII characters — anything outside that set (spaces, Unicode, special symbols) must be encoded to be transmitted correctly.</p>
+      <p>This tool encodes text using JavaScript's <code>encodeURIComponent()</code>, which is the standard for encoding query parameters. It also decodes percent-encoded URLs back to readable text. Everything runs in your browser — your URLs are never sent to a server.</p>
     </div>
 
     <!-- Example -->
@@ -182,11 +152,11 @@
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">https://example.com/search?q=hello world&amp;lang=日本語</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">https%3A%2F%2Fexample.com%2Fsearch%3Fq%3Dhello%20world%26lang%3D%E6%97%A5%E6%9C%AC%E8%AA%9E</div>
         </div>
       </div>
     </div>
@@ -194,17 +164,48 @@
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Encoding query string parameters that contain spaces, ampersands or special characters</li>
+<li>Encoding non-ASCII characters (Unicode, accented letters, CJK) in URLs</li>
+<li>Debugging API requests where parameters arrive garbled or double-encoded</li>
+<li>Building OAuth signature base strings that require strict percent-encoding</li>
+<li>Preparing <code>mailto:</code> links with pre-filled subject and body text</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>📝 encodeURI vs encodeURIComponent</h2>
+      <p><code>encodeURI()</code> encodes a full URL but leaves characters like <code>:</code>, <code>/</code>, <code>?</code>, <code>&amp;</code> and <code>=</code> intact — it assumes the URL structure is already correct. <code>encodeURIComponent()</code> encodes everything except letters, digits, and <code>- _ . ~</code> — use it for individual parameter values.</p>
+      <p><strong>Rule of thumb:</strong> use <code>encodeURIComponent()</code> for values you are inserting into a URL, and <code>encodeURI()</code> only when encoding an entire URL that is already well-formed.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li><strong>Double encoding</strong> — encoding an already-encoded URL turns <code>%20</code> into <code>%2520</code>. Decode first, then re-encode if needed.</li>
+        <li><strong>Using encodeURI for parameter values</strong> — it leaves <code>&amp;</code> and <code>=</code> unencoded, which breaks query strings</li>
+        <li><strong>Forgetting to encode the <code>+</code> sign</strong> — in query strings, <code>+</code> means space; if your data contains a literal <code>+</code>, it must be encoded as <code>%2B</code></li>
+        <li><strong>Encoding the entire URL when only a parameter needs it</strong> — encoding <code>https://</code> breaks the URL</li>
+      </ul>
     </div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
+        <div class="faq-q">What is the difference between %20 and + for spaces? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">In URL query strings (after the ?), + and %20 both represent a space. The + convention comes from HTML form encoding (application/x-www-form-urlencoded). In URL paths (before the ?), only %20 is valid — a literal + stays as a plus sign.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Do I need to encode UTF-8 characters in URLs? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — any character outside the ASCII safe set must be percent-encoded. Modern browsers display decoded Unicode in the address bar, but the actual HTTP request uses the encoded form. This tool handles UTF-8 encoding automatically.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Why does my API return garbled text? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Usually double encoding: the URL was encoded twice, so the server sees literal %25 characters instead of decoded values. Decode the URL with this tool to check, and make sure your code encodes exactly once.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server.</div>
+      </div><div class="faq-item">
         <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Completely free — no login, no usage limits, and it works offline once the page is loaded.</div>
+      </div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -254,10 +255,10 @@
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Paste a full URL to see which characters get encoded</li>
+        <li>Use Encode for building query parameters, Decode for debugging</li>
+        <li>Check for <code>%25</code> in your URL — that means double encoding</li>
+        <li>Bookmark this page for quick URL debugging during API work</li>
       </ul>
     </div>
 

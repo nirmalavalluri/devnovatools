@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Text Diff Checker — DevNova Tools</title>
-<meta name="description" content="Free text diff checker. Compare two blocks of text and highlight added, removed and changed lines. Perfect for code and content review. No login required."/>
+<title>Text Diff Checker Online — Compare Two Texts Side by Side Free</title>
+<meta name="description" content="Compare two blocks of text and see differences highlighted line by line. Find additions, deletions and changes instantly. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I compare code files?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — paste any text including code, JSON, YAML, XML, SQL or plain text. The diff highlights changes regardless of format. For best results with code, make sure both versions use the same indentation style."}}, {"@type": "Question", "name": "Does it detect moved lines?", "acceptedAnswer": {"@type": "Answer", "text": "This tool performs a standard line-by-line diff. A line that moves to a different position shows as deleted from the original location and added at the new location. Dedicated code review tools can sometimes detect moves, but a line-level diff is the most reliable comparison."}}, {"@type": "Question", "name": "How do I ignore whitespace differences?", "acceptedAnswer": {"@type": "Answer", "text": "Trim trailing whitespace from both texts before pasting, or normalize indentation. If you are comparing code, use a code formatter on both versions first to eliminate formatting noise."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, and it works offline once the page is loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -179,7 +148,8 @@
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Text Diff Checker?</h2>
-      <p>Text Diff Checker is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>A diff checker compares two pieces of text and highlights exactly what changed — additions, deletions and modifications — line by line. Developers use it to review code changes, compare config files, check copy edits, verify API response differences and spot unintended modifications before committing.</p>
+      <p>This tool runs entirely in your browser. Paste your original text on the left and the modified version on the right, and differences are highlighted instantly. Your text is never uploaded to any server.</p>
     </div>
 
     <!-- Example -->
@@ -188,11 +158,12 @@
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">Original: "The API returns a 200 status code"
+Modified: "The API returns a 201 status code with a Location header"</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">Line 1: changed "200" → "201", added "with a Location header" — deletions in red, additions in green</div>
         </div>
       </div>
     </div>
@@ -200,17 +171,48 @@
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Reviewing code changes before committing to Git</li>
+<li>Comparing configuration files across environments (dev vs production)</li>
+<li>Checking what changed between two versions of a document or contract</li>
+<li>Verifying API response differences between endpoints or versions</li>
+<li>Spotting unintended whitespace, encoding or line-ending changes</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>📝 How Diff Algorithms Work</h2>
+      <p>Most diff tools use a variant of the <strong>Longest Common Subsequence (LCS)</strong> algorithm. It finds the longest sequence of lines that appear in both texts in order, then marks everything else as added or removed. The result is the minimum set of changes needed to transform text A into text B.</p>
+      <p>This is the same algorithm behind <code>git diff</code>, <code>diff</code> on Linux, and code review tools like GitHub Pull Requests.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li><strong>Trailing whitespace differences</strong> — invisible spaces at line ends show as changes. Trim both texts first if whitespace is not significant.</li>
+        <li><strong>Line ending mismatches</strong> — Windows (CRLF) vs Unix (LF) line endings create false diffs on every line. Normalize line endings before comparing.</li>
+        <li><strong>Comparing minified code</strong> — minified files show as one giant changed line. Beautify both files first, then diff.</li>
+        <li><strong>Encoding differences</strong> — UTF-8 vs Latin-1 can cause invisible character mismatches</li>
+      </ul>
     </div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
+        <div class="faq-q">Can I compare code files? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — paste any text including code, JSON, YAML, XML, SQL or plain text. The diff highlights changes regardless of format. For best results with code, make sure both versions use the same indentation style.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Does it detect moved lines? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">This tool performs a standard line-by-line diff. A line that moves to a different position shows as deleted from the original location and added at the new location. Dedicated code review tools can sometimes detect moves, but a line-level diff is the most reliable comparison.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">How do I ignore whitespace differences? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Trim trailing whitespace from both texts before pasting, or normalize indentation. If you are comparing code, use a code formatter on both versions first to eliminate formatting noise.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server.</div>
+      </div><div class="faq-item">
         <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Completely free — no login, no usage limits, and it works offline once the page is loaded.</div>
+      </div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -260,10 +262,10 @@
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>Paste the <strong>original</strong> on the left, <strong>modified</strong> on the right</li>
+        <li>Beautify minified code before diffing for readable results</li>
+        <li>Use this to verify config changes between environments</li>
+        <li>Great for checking what changed in API responses between versions</li>
       </ul>
     </div>
 

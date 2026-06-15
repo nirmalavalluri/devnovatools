@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Case Converter — DevNova Tools</title>
-<meta name="description" content="Free text case converter. Convert text between camelCase, PascalCase, snake_case, kebab-case, UPPER_CASE and more. No signup required. Works in your browser."/>
+<title>Case Converter Online — camelCase, snake_case, UPPER &amp; More Free</title>
+<meta name="description" content="Convert text between camelCase, PascalCase, snake_case, kebab-case, UPPER CASE, lower case and Title Case. Free, private, browser-based."/>
 <meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
@@ -23,38 +23,7 @@
 </script>
 <link rel="stylesheet" href="/assets/shared.css"/>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this tool free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 completely free, no login required, no usage limits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is my data private?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 all processing runs in your browser. Your data is never sent to any server."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does it work offline?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes \u2014 once the page is loaded, the tool works without an internet connection."
-      }
-    }
-  ]
-}
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the difference between camelCase and PascalCase?", "acceptedAnswer": {"@type": "Answer", "text": "camelCase starts with a lowercase letter (userProfile), PascalCase starts with an uppercase letter (UserProfile). In most languages, camelCase is for variables and functions, PascalCase is for classes and types."}}, {"@type": "Question", "name": "Which case should I use for REST API URLs?", "acceptedAnswer": {"@type": "Answer", "text": "kebab-case is the most common convention for URL paths (/user-profile/settings). For query parameters, both snake_case and camelCase are common — pick one and be consistent."}}, {"@type": "Question", "name": "Can I convert multiple words at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — paste any text with spaces, hyphens, underscores or mixed casing. The tool splits it into words and re-joins them in your chosen convention."}}, {"@type": "Question", "name": "Is my data private?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server."}}, {"@type": "Question", "name": "Is this tool free?", "acceptedAnswer": {"@type": "Answer", "text": "Completely free — no login, no usage limits, and it works offline once the page is loaded."}}]}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -187,7 +156,8 @@
     <!-- What is this tool -->
     <div class="seo-section">
       <h2>📖 What is Case Converter?</h2>
-      <p>Case Converter is a free online developer tool that helps you work faster. All processing happens in your browser — your data never leaves your computer.</p>
+      <p>A case converter transforms text between different naming conventions used in programming and writing. Paste any text and instantly convert it to camelCase, PascalCase, snake_case, kebab-case, SCREAMING_SNAKE_CASE, UPPER CASE, lower case, Title Case or Sentence case.</p>
+      <p>Developers use this when working across languages with different conventions — JavaScript uses camelCase, Python uses snake_case, CSS uses kebab-case, and constants use SCREAMING_SNAKE_CASE. Instead of retyping, paste and convert. Everything runs in your browser.</p>
     </div>
 
     <!-- Example -->
@@ -196,11 +166,14 @@
       <div class="example-grid">
         <div class="example-box">
           <div class="example-label">Input</div>
-          <div class="example-code">Paste your input and click Run</div>
+          <div class="example-code">user profile settings</div>
         </div>
         <div class="example-box">
           <div class="example-label">Output</div>
-          <div class="example-code">Processed output appears here</div>
+          <div class="example-code">camelCase: userProfileSettings
+PascalCase: UserProfileSettings
+snake_case: user_profile_settings
+kebab-case: user-profile-settings</div>
         </div>
       </div>
     </div>
@@ -208,17 +181,54 @@
     <!-- Use cases -->
     <div class="seo-section">
       <h2>🛠️ Common Use Cases</h2>
-      <ul><li>Speed up your development workflow</li>
-<li>Debug and test your data</li>
-<li>Share results with your team</li>
-<li>Learn how the format works</li></ul>
+      <ul><li>Converting variable names between JavaScript (camelCase) and Python (snake_case)</li>
+<li>Generating CSS class names in kebab-case from design specs</li>
+<li>Creating database column names in snake_case from UI labels</li>
+<li>Converting constants to SCREAMING_SNAKE_CASE</li>
+<li>Formatting titles and headings in Title Case</li></ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>📝 When to Use Each Case</h2>
+      <ul>
+        <li><strong>camelCase</strong> — JavaScript/TypeScript variables and functions, Java methods, JSON keys</li>
+        <li><strong>PascalCase</strong> — class names in most languages, React/Angular components, C# methods</li>
+        <li><strong>snake_case</strong> — Python variables and functions, Ruby, Rust, database columns, REST API parameters</li>
+        <li><strong>kebab-case</strong> — CSS classes, HTML attributes, URL slugs, CLI flags</li>
+        <li><strong>SCREAMING_SNAKE_CASE</strong> — constants in JavaScript, Java, Python, C, environment variables</li>
+        <li><strong>Title Case</strong> — headings, button labels, menu items</li>
+      </ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>⚠️ Common Mistakes</h2>
+      <ul>
+        <li><strong>Mixing conventions in one codebase</strong> — pick one naming convention per context (variables, classes, constants) and stick to it</li>
+        <li><strong>Acronyms in PascalCase</strong> — <code>HTMLParser</code> vs <code>HtmlParser</code>. Most style guides prefer the latter for readability.</li>
+        <li><strong>Using hyphens in variable names</strong> — kebab-case works in CSS and URLs but is invalid as a variable name in most programming languages</li>
+        <li><strong>Forgetting locale-sensitive casing</strong> — Turkish "i" uppercases to "İ", not "I". Use locale-aware functions for internationalized text.</li>
+      </ul>
     </div>
 
     <!-- FAQ -->
     <div class="seo-section">
       <h2>❓ Frequently Asked Questions</h2>
       <div class="faq-item">
+        <div class="faq-q">What is the difference between camelCase and PascalCase? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">camelCase starts with a lowercase letter (userProfile), PascalCase starts with an uppercase letter (UserProfile). In most languages, camelCase is for variables and functions, PascalCase is for classes and types.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Which case should I use for REST API URLs? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">kebab-case is the most common convention for URL paths (/user-profile/settings). For query parameters, both snake_case and camelCase are common — pick one and be consistent.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Can I convert multiple words at once? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — paste any text with spaces, hyphens, underscores or mixed casing. The tool splits it into words and re-joins them in your chosen convention.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes — all processing runs entirely in your browser using JavaScript. Your data is never sent to any server.</div>
+      </div><div class="faq-item">
         <div class="faq-q">Is this tool free? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Completely free — no login, no usage limits, and it works offline once the page is loaded.</div>
+      </div>
         <div class="faq-a">Yes — completely free, no login required, no usage limits.</div>
       </div><div class="faq-item">
         <div class="faq-q">Is my data private? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
@@ -268,10 +278,10 @@
     <div class="seo-section">
       <h2>⚡ Quick Tips</h2>
       <ul>
-        <li>Press <code>Ctrl+Enter</code> to run</li>
-        <li>Use <code>Copy Output</code> to copy results</li>
-        <li>Works offline after first load</li>
-        <li>No login or account needed</li>
+        <li>JavaScript → camelCase, Python → snake_case, CSS → kebab-case</li>
+        <li>Paste multi-word text — spaces, hyphens and underscores are auto-detected</li>
+        <li>Use SCREAMING_SNAKE_CASE for constants and environment variables</li>
+        <li>PascalCase for class names, camelCase for function names</li>
       </ul>
     </div>
 
