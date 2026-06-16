@@ -1,116 +1,125 @@
-# How to Decode a JWT Token (And What's Actually Inside It)
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>How to Decode a JWT Token (And What's Actually Inside It) | DevNova Tools Blog</title>
+<meta name="description" content="Learn how to decode a JWT token in seconds — see the header, payload and expiry. Free online JWT decoder that runs 100% in your browser. No login needed."/>
+<meta property="og:title" content="How to Decode a JWT Token (And What's Actually Inside It)"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/blog/how-to-decode-jwt-token/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+<link rel="stylesheet" href="/assets/community.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"How to Decode a JWT Token (And What's Actually Inside It)","description":"Learn how to decode a JWT token in seconds — see the header, payload and expiry. Free online JWT decoder that runs 100% in your browser.","datePublished":"2026-05-27","dateModified":"2026-05-27","author":{"@type":"Organization","name":"DevNova Tools","url":"https://devnovatools.com"},"publisher":{"@type":"Organization","name":"DevNova Tools","logo":{"@type":"ImageObject","url":"https://devnovatools.com/assets/og-image.png"}},"mainEntityOfPage":"https://devnovatools.com/blog/how-to-decode-jwt-token/"}
+</script>
+</head>
+<body>
+<article style="max-width:820px;margin:0 auto;padding:40px 24px 80px">
+  <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> <span>Security</span></div>
+  <div style="margin:24px 0 32px">
+    <span style="display:inline-flex;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:999px;color:#0066FF;background:#0066FF22;border:1px solid #0066FF44;margin-bottom:16px">Security</span>
+    <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px">How to Decode a JWT Token (And What's Actually Inside It)</h1>
+    <div style="display:flex;align-items:center;gap:16px;color:var(--text-muted);font-size:.85rem;flex-wrap:wrap">
+      <span>📅 May 27, 2026</span><span>⏱ 8 min read</span>
+      <a href="/api/jwt-decoder/" style="color:var(--green);font-weight:600">🛠️ Try the JWT Decoder →</a>
+    </div>
+  </div>
+  <div style="font-size:.95rem;line-height:1.85;color:var(--text-secondary)">
+    <style>
+    article h2{font-size:1.2rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-top:8px;border-top:1px solid var(--border)}
+    article h3{font-size:1.05rem;font-weight:700;color:var(--text);margin:20px 0 8px}
+    article pre{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;overflow-x:auto;margin:12px 0}
+    article code{font-family:var(--mono);font-size:.88rem;color:var(--green)}
+    article pre code{color:var(--text)}
+    article ul,article ol{padding-left:20px;margin:12px 0;display:flex;flex-direction:column;gap:6px}
+    article li{color:var(--text-secondary);line-height:1.6}
+    article p{margin-bottom:14px}
+    article strong{color:var(--text);font-weight:600}
+    article table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88rem}
+    article th{background:var(--bg-card);color:var(--text);padding:10px 12px;border:1px solid var(--border);text-align:left}
+    article td{padding:10px 12px;border:1px solid var(--border);color:var(--text-secondary)}
+    article td code{color:var(--green)}
+    </style>
 
-**Target keyword:** how to decode a JWT token | jwt decoder online | decode jwt token  
-**Meta description:** Learn how to decode a JWT token in seconds — see the header, payload and expiry. Free online JWT decoder that runs 100% in your browser. No login needed.
+    <p style="font-size:1.05rem;color:var(--text);border-left:3px solid var(--green);padding-left:16px;margin-bottom:24px">Ever received a JWT token from an API and wondered what's actually inside it? You're not alone. In this guide we'll decode a JWT token step by step, explain exactly what each part means, and show you the safest way to inspect tokens without risking your security.</p>
 
----
+    <h2>What Is a JWT Token?</h2>
+    <p>A JWT (JSON Web Token) is a compact, URL-safe way to represent claims between two parties. It's widely used for:</p>
+    <ul>
+      <li><strong>Authentication</strong> — proving who you are after login</li>
+      <li><strong>Authorization</strong> — proving what you're allowed to do</li>
+      <li><strong>Information exchange</strong> — securely passing data between services</li>
+    </ul>
+    <p>A JWT looks like this:</p>
+    <pre><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c</code></pre>
+    <p>It looks like random text — but it's actually three distinct parts separated by dots (<code>.</code>).</p>
 
-Ever received a JWT token from an API and wondered what's actually inside it? You're not alone. In this guide we'll decode a JWT token step by step, explain exactly what each part means, and show you the safest way to inspect tokens without risking your security.
+    <h2>The 3 Parts of a JWT Token</h2>
+    <p>Every JWT has exactly three parts:</p>
+    <pre><code>HEADER.PAYLOAD.SIGNATURE</code></pre>
 
-👉 **Want to decode a JWT right now?** Use our [free JWT Decoder](https://devnovatools.com/api/jwt-decoder/) — runs 100% in your browser, your token never leaves your computer.
-
----
-
-## What Is a JWT Token?
-
-A JWT (JSON Web Token) is a compact, URL-safe way to represent claims between two parties. It's widely used for:
-
-- **Authentication** — proving who you are after login
-- **Authorization** — proving what you're allowed to do
-- **Information exchange** — securely passing data between services
-
-A JWT looks like this:
-
-```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
-```
-
-It looks like random text — but it's actually three distinct parts separated by dots (`.`).
-
----
-
-## The 3 Parts of a JWT Token
-
-Every JWT has exactly three parts:
-
-```
-HEADER.PAYLOAD.SIGNATURE
-```
-
-### 1. Header
-The first part contains metadata about the token — specifically the algorithm used to sign it.
-
-Decoded it looks like:
-```json
-{
+    <h3>1. Header</h3>
+    <p>The first part contains metadata about the token — specifically the algorithm used to sign it. Decoded it looks like:</p>
+    <pre><code>{
   "alg": "HS256",
   "typ": "JWT"
-}
-```
+}</code></pre>
+    <ul>
+      <li><strong>alg</strong> — the signing algorithm (HS256, RS256, ES256 etc.)</li>
+      <li><strong>typ</strong> — always "JWT"</li>
+    </ul>
 
-- **alg** — the signing algorithm (HS256, RS256, ES256 etc.)
-- **typ** — always "JWT"
-
-### 2. Payload
-This is the most important part — it contains the actual **claims** (data) inside the token.
-
-Decoded it looks like:
-```json
-{
+    <h3>2. Payload</h3>
+    <p>This is the most important part — it contains the actual <strong>claims</strong> (data) inside the token. Decoded it looks like:</p>
+    <pre><code>{
   "sub": "1234567890",
   "name": "John Doe",
   "email": "john@example.com",
   "role": "admin",
   "iat": 1516239022,
   "exp": 1716239022
-}
-```
+}</code></pre>
+    <p>Common claims you'll see:</p>
+    <table>
+      <tr><th>Claim</th><th>Meaning</th></tr>
+      <tr><td><code>sub</code></td><td>Subject — the user ID</td></tr>
+      <tr><td><code>iss</code></td><td>Issuer — who created the token</td></tr>
+      <tr><td><code>aud</code></td><td>Audience — who the token is for</td></tr>
+      <tr><td><code>exp</code></td><td>Expiry — when the token expires (Unix timestamp)</td></tr>
+      <tr><td><code>iat</code></td><td>Issued at — when the token was created</td></tr>
+      <tr><td><code>nbf</code></td><td>Not before — token is invalid before this time</td></tr>
+      <tr><td><code>role</code></td><td>Custom claim — user's role (admin, user etc.)</td></tr>
+    </table>
 
-Common claims you'll see:
-| Claim | Meaning |
-|---|---|
-| `sub` | Subject — the user ID |
-| `iss` | Issuer — who created the token |
-| `aud` | Audience — who the token is for |
-| `exp` | Expiry — when the token expires (Unix timestamp) |
-| `iat` | Issued at — when the token was created |
-| `nbf` | Not before — token is invalid before this time |
-| `role` | Custom claim — user's role (admin, user etc.) |
+    <h3>3. Signature</h3>
+    <p>The third part is the cryptographic signature. It's used to <strong>verify</strong> the token hasn't been tampered with. You need the secret key to verify the signature — but you don't need it to decode and read the header and payload.</p>
 
-### 3. Signature
-The third part is the cryptographic signature. It's used to **verify** the token hasn't been tampered with. You need the secret key to verify the signature — but you don't need it to decode and read the header and payload.
+    <h2>How to Decode a JWT Token</h2>
+    <p>There are several ways to decode a JWT token:</p>
 
----
+    <h3>Method 1: Online JWT Decoder (Easiest &amp; Safest)</h3>
+    <p>Use <a href="/api/jwt-decoder/" style="color:var(--green)">DevNova Tools JWT Decoder</a> — it runs entirely in your browser so your token is never sent to any server.</p>
+    <ol>
+      <li>Go to <a href="/api/jwt-decoder/" style="color:var(--green)">devnovatools.com/api/jwt-decoder</a></li>
+      <li>Paste your JWT token in the input field</li>
+      <li>See the decoded header, payload and expiry instantly</li>
+    </ol>
+    <p><strong>Security tip:</strong> Many online JWT decoders send your token to their server. Never paste a production JWT into an untrusted tool — use one that runs client-side like DevNova Tools.</p>
 
-## How to Decode a JWT Token
-
-There are several ways to decode a JWT token:
-
-### Method 1: Online JWT Decoder (Easiest & Safest)
-
-Use [DevNova Tools JWT Decoder](https://devnovatools.com/api/jwt-decoder/) — it runs entirely in your browser so your token is never sent to any server.
-
-1. Go to [devnovatools.com/api/jwt-decoder](https://devnovatools.com/api/jwt-decoder/)
-2. Paste your JWT token in the input field
-3. See the decoded header, payload and expiry instantly
-
-⚠️ **Security tip:** Many online JWT decoders send your token to their server. Never paste a production JWT into an untrusted tool — use one that runs client-side like DevNova Tools.
-
----
-
-### Method 2: Decode JWT in JavaScript
-
-```javascript
-function decodeJWT(token) {
+    <h3>Method 2: Decode JWT in JavaScript</h3>
+    <pre><code>function decodeJWT(token) {
   const parts = token.split('.');
-  
+
   if (parts.length !== 3) {
     throw new Error('Invalid JWT token');
   }
-  
+
   const header = JSON.parse(atob(parts[0]));
   const payload = JSON.parse(atob(parts[1]));
-  
+
   return { header, payload };
 }
 
@@ -118,48 +127,37 @@ function decodeJWT(token) {
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
 const decoded = decodeJWT(token);
 console.log(decoded.payload);
-// { sub: '1234567890', name: 'John Doe', exp: 1716239022 }
-```
+// { sub: '1234567890', name: 'John Doe', exp: 1716239022 }</code></pre>
+    <p>Note: <code>atob()</code> decodes Base64. JWT uses Base64URL encoding which slightly differs — for production use a library like <code>jsonwebtoken</code> or <code>jwt-decode</code>.</p>
 
-Note: `atob()` decodes Base64. JWT uses Base64URL encoding which slightly differs — for production use a library like `jsonwebtoken` or `jwt-decode`.
-
----
-
-### Method 3: Decode JWT in Python
-
-```python
-import base64
+    <h3>Method 3: Decode JWT in Python</h3>
+    <pre><code>import base64
 import json
 
 def decode_jwt(token):
     parts = token.split('.')
-    
+
     if len(parts) != 3:
         raise ValueError('Invalid JWT token')
-    
+
     # Add padding if needed
     def decode_part(part):
         padding = 4 - len(part) % 4
         part += '=' * padding
         return json.loads(base64.urlsafe_b64decode(part))
-    
+
     header = decode_part(parts[0])
     payload = decode_part(parts[1])
-    
+
     return {'header': header, 'payload': payload}
 
 # Usage
 token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'
 decoded = decode_jwt(token)
-print(decoded['payload'])
-```
+print(decoded['payload'])</code></pre>
 
----
-
-### Method 4: Decode JWT in C# / .NET
-
-```csharp
-using System;
+    <h3>Method 4: Decode JWT in C# / .NET</h3>
+    <pre><code>using System;
 using System.Text;
 using System.Text.Json;
 
@@ -168,46 +166,40 @@ public static class JwtDecoder
     public static JsonElement DecodePayload(string token)
     {
         var parts = token.Split('.');
-        
+
         if (parts.Length != 3)
             throw new ArgumentException("Invalid JWT token");
-        
+
         // Fix Base64URL padding
         var payload = parts[1];
         payload = payload.Replace('-', '+').Replace('_', '/');
-        
+
         switch (payload.Length % 4)
         {
             case 2: payload += "=="; break;
             case 3: payload += "="; break;
         }
-        
+
         var bytes = Convert.FromBase64String(payload);
         var json = Encoding.UTF8.GetString(bytes);
-        
-        return JsonSerializer.Deserialize<JsonElement>(json);
+
+        return JsonSerializer.Deserialize&lt;JsonElement&gt;(json);
     }
 }
 
 // Usage
 var decoded = JwtDecoder.DecodePayload(token);
-Console.WriteLine(decoded.GetProperty("sub").GetString());
-```
+Console.WriteLine(decoded.GetProperty("sub").GetString());</code></pre>
 
----
-
-## How to Check If a JWT Is Expired
-
-The `exp` claim is a Unix timestamp. Here's how to check expiry:
-
-```javascript
-function isJWTExpired(token) {
+    <h2>How to Check If a JWT Is Expired</h2>
+    <p>The <code>exp</code> claim is a Unix timestamp. Here's how to check expiry:</p>
+    <pre><code>function isJWTExpired(token) {
   const { payload } = decodeJWT(token);
-  
+
   if (!payload.exp) return false; // No expiry set
-  
-  const now = Math.floor(Date.now() / 1000); // Current time in seconds
-  return payload.exp < now;
+
+  const now = Math.floor(Date.now() / 1000);
+  return payload.exp &lt; now;
 }
 
 // Usage
@@ -216,74 +208,68 @@ if (isJWTExpired(token)) {
 } else {
   const expiresIn = payload.exp - Math.floor(Date.now() / 1000);
   console.log(`Token expires in ${expiresIn} seconds`);
-}
-```
+}</code></pre>
+    <p>Or just use <a href="/api/jwt-decoder/" style="color:var(--green)">DevNova Tools JWT Decoder</a> — it automatically shows you if the token is expired and exactly when it expires.</p>
 
-Or just use [DevNova Tools JWT Decoder](https://devnovatools.com/api/jwt-decoder/) — it automatically shows you if the token is expired and exactly when it expires.
+    <h2>Common JWT Mistakes to Avoid</h2>
+    <ul>
+      <li><strong>Pasting tokens into untrusted decoders</strong> — Many online JWT tools send your token to their server. Always use a client-side tool or decode locally.</li>
+      <li><strong>Storing sensitive data in the payload</strong> — The payload is only Base64 encoded, not encrypted. Anyone with the token can read it. Never store passwords or sensitive PII in JWT payloads.</li>
+      <li><strong>Not checking expiry</strong> — Always validate the <code>exp</code> claim before trusting a token. Expired tokens should be rejected.</li>
+      <li><strong>Confusing decoding with verification</strong> — Decoding just reads the data. Verification checks the signature with the secret key. For authentication, you must verify — not just decode.</li>
+    </ul>
 
----
+    <h2>JWT Security Best Practices</h2>
+    <ul>
+      <li>Use short expiry times (15 min for access tokens)</li>
+      <li>Use refresh tokens for long-lived sessions</li>
+      <li>Always verify the signature server-side</li>
+      <li>Use HTTPS for all JWT transmission</li>
+      <li>Never store JWTs in localStorage (use httpOnly cookies)</li>
+      <li>Use strong secret keys (256-bit minimum for HS256)</li>
+      <li>Never put sensitive data (passwords, SSN) in the payload</li>
+      <li>Never use <code>alg: none</code> in production</li>
+    </ul>
 
-## Common JWT Mistakes to Avoid
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>Can I decode a JWT without the secret key?</strong><br/>
+    Yes — you can decode the header and payload without the secret key. The secret key is only needed to <em>verify</em> the signature. Decoding just reads the Base64-encoded data.</p>
 
-**1. Pasting tokens into untrusted decoders**
-Many online JWT tools send your token to their server. Always use a client-side tool or decode locally.
+    <p><strong>Is it safe to decode JWTs online?</strong><br/>
+    Only if the tool runs client-side in your browser. Many online decoders send your token to their server. Use <a href="/api/jwt-decoder/" style="color:var(--green)">DevNova Tools JWT Decoder</a> — it runs 100% in your browser with zero server transmission.</p>
 
-**2. Storing sensitive data in the payload**
-Remember — the payload is only Base64 encoded, not encrypted. Anyone with the token can read it. Never store passwords or sensitive PII in JWT payloads.
+    <p><strong>What's the difference between JWT and a session token?</strong><br/>
+    A session token is just a random ID stored in a database. A JWT is self-contained — all the user data is inside the token itself, so the server doesn't need to look it up.</p>
 
-**3. Not checking expiry**
-Always validate the `exp` claim before trusting a token. Expired tokens should be rejected.
+    <p><strong>Can I modify a JWT payload?</strong><br/>
+    You can modify the Base64-encoded payload, but the signature will then be invalid. Any server that verifies the signature will reject the tampered token.</p>
 
-**4. Confusing decoding with verification**
-Decoding just reads the data. Verification checks the signature with the secret key. For authentication, you must verify — not just decode.
+    <p><strong>What does <code>iat</code> mean in JWT?</strong><br/>
+    <code>iat</code> stands for "issued at" — it's the Unix timestamp of when the token was created.</p>
+  </div>
 
----
+  <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:28px;margin:48px 0;text-align:center">
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Decode any JWT instantly — free</div>
+    <p style="color:var(--text-secondary);margin-bottom:16px;font-size:.9rem">Paste a JWT token and see the decoded header, payload and expiry. Runs 100% in your browser — your token never leaves your computer.</p>
+    <a href="/api/jwt-decoder/" class="btn btn-primary">JWT Decoder →</a>
+    <a href="/api/jwt-generator/" class="btn btn-primary" style="margin-left:8px;background:transparent;border:1.5px solid var(--green);color:var(--green)">JWT Generator →</a>
+  </div>
 
-## JWT Security Best Practices
+  <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border)">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
 
-- ✅ Use short expiry times (15 min for access tokens)
-- ✅ Use refresh tokens for long-lived sessions
-- ✅ Always verify the signature server-side
-- ✅ Use HTTPS for all JWT transmission
-- ✅ Never store JWTs in localStorage (use httpOnly cookies)
-- ✅ Use strong secret keys (256-bit minimum for HS256)
-- ❌ Never put sensitive data (passwords, SSN) in the payload
-- ❌ Never use `alg: none` in production
-
----
-
-## Frequently Asked Questions
-
-**Can I decode a JWT without the secret key?**
-Yes — you can decode the header and payload without the secret key. The secret key is only needed to *verify* the signature. Decoding just reads the Base64-encoded data.
-
-**Is it safe to decode JWTs online?**
-Only if the tool runs client-side in your browser. Many online decoders send your token to their server. Use [DevNova Tools JWT Decoder](https://devnovatools.com/api/jwt-decoder/) — it runs 100% in your browser with zero server transmission.
-
-**What's the difference between JWT and a session token?**
-A session token is just a random ID stored in a database. A JWT is self-contained — all the user data is inside the token itself, so the server doesn't need to look it up.
-
-**Can I modify a JWT payload?**
-You can modify the Base64-encoded payload, but the signature will then be invalid. Any server that verifies the signature will reject the tampered token.
-
-**What does `iat` mean in JWT?**
-`iat` stands for "issued at" — it's the Unix timestamp of when the token was created.
-
-**How do I decode a JWT in the browser console?**
-```javascript
-const [header, payload] = token.split('.').slice(0, 2).map(p => JSON.parse(atob(p)));
-```
-
----
-
-## Related Tools on DevNova Tools
-
-- 🔐 [JWT Decoder](https://devnovatools.com/api/jwt-decoder/) — decode any JWT instantly
-- 🟦 [JSON Formatter](https://devnovatools.com/json/formatter/) — format JWT payload responses
-- 🔑 [Base64 Decoder](https://devnovatools.com/api/base64/) — decode Base64 manually
-- 🔒 [HMAC Generator](https://devnovatools.com/api/hmac/) — generate JWT signatures
-- 🆔 [UUID Generator](https://devnovatools.com/api/uuid-generator/) — generate IDs for JWT subjects
-
----
-
-*Written by the DevNova Tools team. All tools run 100% in your browser — your data never leaves your computer.*
+  <div class="blog-related-tools" style="margin:40px 0;padding:28px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px">
+    <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px">🛠️ Free Security &amp; API Tools</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+      <a href="/api/jwt-decoder/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔐</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">JWT Decoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Decode tokens instantly</div></div></a>
+      <a href="/json/formatter/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">📋</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">JSON Formatter</div><div style="font-size:.78rem;color:var(--text-secondary)">Format JWT payload responses</div></div></a>
+      <a href="/api/base64/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔒</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Base64 Decoder</div><div style="font-size:.78rem;color:var(--text-secondary)">Decode Base64 manually</div></div></a>
+      <a href="/api/hmac-generator/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔑</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">HMAC Generator</div><div style="font-size:.78rem;color:var(--text-secondary)">Generate JWT signatures</div></div></a>
+    </div>
+  </div>
+</article>
+<script src="/assets/layout.js"></script>
+<script src="/assets/community.js"></script>
+</body>
+</html>
