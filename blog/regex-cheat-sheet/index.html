@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Regex Cheat Sheet for Developers — Patterns, Examples &amp; Common Mistakes | DevNova Tools Blog</title>
+<meta name="description" content="The regex patterns developers actually use: email, URL, IP, date, phone. Syntax reference, greedy vs lazy, lookahead, and common mistakes with a live tester."/>
+<meta property="og:title" content="Regex Cheat Sheet for Developers — Patterns, Examples &amp; Common Mistakes"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/blog/regex-cheat-sheet/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+<link rel="stylesheet" href="/assets/community.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Regex Cheat Sheet for Developers — Patterns, Examples & Common Mistakes","description":"The regex patterns developers actually use: email, URL, IP, date, phone. Syntax reference, greedy vs lazy, lookahead, and common mistakes with a live tester.","datePublished":"2026-06-16","dateModified":"2026-06-16","author":{"@type":"Organization","name":"DevNova Tools","url":"https://devnovatools.com"},"publisher":{"@type":"Organization","name":"DevNova Tools","logo":{"@type":"ImageObject","url":"https://devnovatools.com/assets/og-image.png"}},"mainEntityOfPage":"https://devnovatools.com/blog/regex-cheat-sheet/"}
+</script>
+</head>
+<body>
+<article style="max-width:820px;margin:0 auto;padding:40px 24px 80px">
+  <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> <span>Text</span></div>
+  <div style="margin:24px 0 32px">
+    <span style="display:inline-flex;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:999px;color:#8B5CF6;background:#8B5CF622;border:1px solid #8B5CF644;margin-bottom:16px">Text</span>
+    <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px">Regex Cheat Sheet for Developers — Patterns, Examples &amp; Common Mistakes</h1>
+    <div style="display:flex;align-items:center;gap:16px;color:var(--text-muted);font-size:.85rem;flex-wrap:wrap">
+      <span>📅 June 16, 2026</span><span>⏱ 8 min read</span>
+      <a href="/text/regex-tester/" style="color:var(--green);font-weight:600">🛠️ Try the Regex Tester →</a>
+    </div>
+  </div>
+  <div style="font-size:.95rem;line-height:1.85;color:var(--text-secondary)">
+    <style>
+    article h2{font-size:1.2rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-top:8px;border-top:1px solid var(--border)}
+    article pre{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;overflow-x:auto;margin:12px 0}
+    article code{font-family:var(--mono);font-size:.88rem;color:var(--green)}
+    article pre code{color:var(--text)}
+    article ul,article ol{padding-left:20px;margin:12px 0;display:flex;flex-direction:column;gap:6px}
+    article li{color:var(--text-secondary);line-height:1.6}
+    article p{margin-bottom:14px}
+    article strong{color:var(--text);font-weight:600}
+    article table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88rem}
+    article th{background:var(--bg-card);color:var(--text);padding:10px 12px;border:1px solid var(--border);text-align:left}
+    article td{padding:10px 12px;border:1px solid var(--border);color:var(--text-secondary)}
+    article td code{color:var(--green)}
+    </style>
+
+    <p style="font-size:1.05rem;color:var(--text);border-left:3px solid var(--green);padding-left:16px;margin-bottom:24px">Regular expressions are one of those things you learn just enough of, use once, and then forget immediately. This is the reference you'll actually bookmark — every metacharacter, the patterns you'll copy most often, and the mistakes that waste hours of debugging.</p>
+
+    <h2>Metacharacters</h2>
+    <table>
+      <tr><th>Pattern</th><th>Matches</th><th>Example</th></tr>
+      <tr><td><code>.</code></td><td>Any character except newline</td><td><code>a.c</code> → abc, a1c, a-c</td></tr>
+      <tr><td><code>\d</code></td><td>Any digit (0-9)</td><td><code>\d{3}</code> → 123, 456</td></tr>
+      <tr><td><code>\D</code></td><td>Any non-digit</td><td><code>\D+</code> → abc, ---</td></tr>
+      <tr><td><code>\w</code></td><td>Word character (letter, digit, underscore)</td><td><code>\w+</code> → hello, var_1</td></tr>
+      <tr><td><code>\W</code></td><td>Non-word character</td><td><code>\W</code> → @, #, space</td></tr>
+      <tr><td><code>\s</code></td><td>Whitespace (space, tab, newline)</td><td><code>\s+</code> → "  ", "\t"</td></tr>
+      <tr><td><code>\S</code></td><td>Non-whitespace</td><td><code>\S+</code> → hello</td></tr>
+      <tr><td><code>\b</code></td><td>Word boundary</td><td><code>\bcat\b</code> → "cat" but not "scatter"</td></tr>
+    </table>
+
+    <h2>Quantifiers</h2>
+    <table>
+      <tr><th>Pattern</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td><code>*</code></td><td>0 or more (greedy)</td><td><code>a*</code> → "", a, aaa</td></tr>
+      <tr><td><code>+</code></td><td>1 or more (greedy)</td><td><code>a+</code> → a, aaa (not "")</td></tr>
+      <tr><td><code>?</code></td><td>0 or 1 (optional)</td><td><code>colou?r</code> → color, colour</td></tr>
+      <tr><td><code>{n}</code></td><td>Exactly n times</td><td><code>\d{4}</code> → 2026</td></tr>
+      <tr><td><code>{n,}</code></td><td>n or more times</td><td><code>\d{2,}</code> → 12, 123, 1234</td></tr>
+      <tr><td><code>{n,m}</code></td><td>Between n and m times</td><td><code>\d{2,4}</code> → 12, 123, 1234</td></tr>
+      <tr><td><code>*?</code></td><td>0 or more (lazy)</td><td>Matches as few as possible</td></tr>
+      <tr><td><code>+?</code></td><td>1 or more (lazy)</td><td>Matches as few as possible</td></tr>
+    </table>
+
+    <h2>Anchors and Boundaries</h2>
+    <table>
+      <tr><th>Pattern</th><th>Meaning</th></tr>
+      <tr><td><code>^</code></td><td>Start of string (or line with <code>m</code> flag)</td></tr>
+      <tr><td><code>$</code></td><td>End of string (or line with <code>m</code> flag)</td></tr>
+      <tr><td><code>\b</code></td><td>Word boundary — between <code>\w</code> and <code>\W</code></td></tr>
+      <tr><td><code>\B</code></td><td>Not a word boundary</td></tr>
+    </table>
+    <p><strong>Key distinction:</strong> <code>^abc</code> matches "abc" only at the start of a string. <code>abc</code> without the anchor matches "abc" anywhere in the string.</p>
+
+    <h2>Character Classes</h2>
+    <table>
+      <tr><th>Pattern</th><th>Matches</th></tr>
+      <tr><td><code>[abc]</code></td><td>Any one of a, b, or c</td></tr>
+      <tr><td><code>[a-z]</code></td><td>Any lowercase letter</td></tr>
+      <tr><td><code>[A-Z]</code></td><td>Any uppercase letter</td></tr>
+      <tr><td><code>[0-9]</code></td><td>Any digit (same as <code>\d</code>)</td></tr>
+      <tr><td><code>[a-zA-Z0-9]</code></td><td>Any alphanumeric character</td></tr>
+      <tr><td><code>[^abc]</code></td><td>Any character EXCEPT a, b, or c</td></tr>
+    </table>
+    <p>Inside <code>[]</code>, most special characters lose their meaning. A literal hyphen goes first or last: <code>[-a-z]</code> or <code>[a-z-]</code>. A literal <code>]</code> goes first: <code>[]a-z]</code>.</p>
+
+    <h2>Groups and Alternation</h2>
+    <table>
+      <tr><th>Pattern</th><th>Meaning</th></tr>
+      <tr><td><code>(abc)</code></td><td>Capturing group — captures "abc"</td></tr>
+      <tr><td><code>(?:abc)</code></td><td>Non-capturing group — groups without capturing</td></tr>
+      <tr><td><code>a|b</code></td><td>Alternation — matches a OR b</td></tr>
+      <tr><td><code>\1</code></td><td>Backreference — matches same text as group 1</td></tr>
+      <tr><td><code>(?&lt;name&gt;abc)</code></td><td>Named group — captured as "name"</td></tr>
+    </table>
+    <pre><code># Extract date parts with named groups
+(?&lt;year&gt;\d{4})-(?&lt;month&gt;\d{2})-(?&lt;day&gt;\d{2})
+Input:  2026-06-15
+Groups: year=2026, month=06, day=15</code></pre>
+
+    <h2>Greedy vs Lazy Matching</h2>
+    <p>This is the #1 source of unexpected regex behavior:</p>
+    <pre><code>Input: &lt;b&gt;hello&lt;/b&gt; world &lt;b&gt;foo&lt;/b&gt;
+
+Greedy:  &lt;b&gt;.*&lt;/b&gt;   → "&lt;b&gt;hello&lt;/b&gt; world &lt;b&gt;foo&lt;/b&gt;"  (entire string!)
+Lazy:    &lt;b&gt;.*?&lt;/b&gt;  → "&lt;b&gt;hello&lt;/b&gt;"  (first match only)</code></pre>
+    <p>Greedy (<code>.*</code>) matches as <strong>much</strong> as possible. Lazy (<code>.*?</code>) matches as <strong>little</strong> as possible. When you want the shortest match, always use the lazy version.</p>
+
+    <h2>Lookahead and Lookbehind</h2>
+    <table>
+      <tr><th>Pattern</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td><code>(?=abc)</code></td><td>Positive lookahead — followed by "abc"</td><td><code>\d+(?= USD)</code> → "100" in "100 USD"</td></tr>
+      <tr><td><code>(?!abc)</code></td><td>Negative lookahead — NOT followed by "abc"</td><td><code>\d+(?! USD)</code> → "200" in "200 EUR"</td></tr>
+      <tr><td><code>(?&lt;=abc)</code></td><td>Positive lookbehind — preceded by "abc"</td><td><code>(?&lt;=\$)\d+</code> → "50" in "$50"</td></tr>
+      <tr><td><code>(?&lt;!abc)</code></td><td>Negative lookbehind — NOT preceded by "abc"</td><td><code>(?&lt;!\$)\d+</code> → "50" in "€50"</td></tr>
+    </table>
+    <p>Lookarounds assert a condition without consuming characters — the matched text does not include the lookaround part.</p>
+
+    <h2>Patterns You'll Copy the Most</h2>
+    <table>
+      <tr><th>What</th><th>Pattern</th></tr>
+      <tr><td>Date (YYYY-MM-DD)</td><td><code>\d{4}-\d{2}-\d{2}</code></td></tr>
+      <tr><td>Email (basic)</td><td><code>[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}</code></td></tr>
+      <tr><td>URL (http/https)</td><td><code>https?://[^\s]+</code></td></tr>
+      <tr><td>IPv4 address</td><td><code>\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b</code></td></tr>
+      <tr><td>Phone (US)</td><td><code>\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}</code></td></tr>
+      <tr><td>Hex color</td><td><code>#[0-9a-fA-F]{3,8}</code></td></tr>
+      <tr><td>HTML tag</td><td><code>&lt;[^&gt;]+&gt;</code></td></tr>
+      <tr><td>Blank lines</td><td><code>^\s*$</code> (with <code>m</code> flag)</td></tr>
+      <tr><td>Trailing whitespace</td><td><code>\s+$</code> (with <code>m</code> flag)</td></tr>
+      <tr><td>Quoted string</td><td><code>"[^"]*"</code> or <code>'[^']*'</code></td></tr>
+    </table>
+    <p><strong>Important:</strong> the email regex above is a practical approximation, not RFC 5322 compliant. For production email validation, use your language's built-in validator or a library — regex alone cannot fully validate email addresses.</p>
+
+    <h2>Regex Flags</h2>
+    <table>
+      <tr><th>Flag</th><th>Name</th><th>Effect</th></tr>
+      <tr><td><code>g</code></td><td>Global</td><td>Find all matches, not just the first</td></tr>
+      <tr><td><code>i</code></td><td>Case-insensitive</td><td><code>/abc/i</code> matches ABC, Abc, etc.</td></tr>
+      <tr><td><code>m</code></td><td>Multiline</td><td><code>^</code> and <code>$</code> match line boundaries, not just string boundaries</td></tr>
+      <tr><td><code>s</code></td><td>Dotall</td><td><code>.</code> matches newline characters too</td></tr>
+    </table>
+
+    <h2>Common Mistakes</h2>
+    <ul>
+      <li><strong>Not escaping the dot</strong> — <code>.</code> matches any character. To match a literal period, use <code>\.</code>. The pattern <code>example.com</code> also matches "exampleXcom."</li>
+      <li><strong>Greedy matching surprises</strong> — <code>.*</code> grabs as much as it can. If you're extracting content between delimiters (like HTML tags), use <code>.*?</code> (lazy) or <code>[^&lt;]*</code> (negated class).</li>
+      <li><strong>Catastrophic backtracking</strong> — patterns like <code>(a+)+</code> can take exponential time on certain inputs. Avoid nested quantifiers on overlapping patterns.</li>
+      <li><strong>Using regex for HTML parsing</strong> — regex cannot handle nested structures. Use a proper HTML parser (DOMParser in JS, BeautifulSoup in Python) for anything beyond simple tag matching.</li>
+      <li><strong>Forgetting anchors</strong> — without <code>^</code> and <code>$</code>, your validation pattern matches substrings. <code>\d{3}</code> matches "123" inside "abc123xyz." Use <code>^\d{3}$</code> for exact match.</li>
+      <li><strong>Locale and Unicode issues</strong> — <code>\w</code> only matches ASCII word characters in most engines. For Unicode letters, use Unicode property escapes: <code>\p{L}</code> (JavaScript with <code>u</code> flag).</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>Which regex flavor should I learn?</strong><br/>
+    PCRE (Perl Compatible Regular Expressions) is the most widely used flavor. JavaScript, Python, Java and Go all use PCRE-like syntax with minor differences. Learn PCRE and you're covered for 95% of use cases.</p>
+
+    <p><strong>How do I debug a complex regex?</strong><br/>
+    Break it into parts and test each group separately. Use our <a href="/text/regex-tester/" style="color:var(--green)">Regex Tester</a> to see matches highlighted in real time. For complex patterns, add comments using the <code>x</code> (verbose) flag.</p>
+
+    <p><strong>Is there a performance cost to capturing groups?</strong><br/>
+    Yes, capturing groups allocate memory to store the matched text. Use non-capturing groups <code>(?:...)</code> when you don't need the captured value. In performance-critical code, this matters.</p>
+
+    <p><strong>Can regex match balanced brackets or nested structures?</strong><br/>
+    Standard regex cannot. Some flavors (PCRE, .NET) support recursive patterns, but it's better to use a parser for nested structures like HTML, JSON or programming languages.</p>
+  </div>
+
+  <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:28px;margin:48px 0;text-align:center">
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Test your regex patterns live — free</div>
+    <p style="color:var(--text-secondary);margin-bottom:16px;font-size:.9rem">Paste a regex and test text to see matches highlighted in real time. Supports flags, groups, and substitution. Runs 100% in your browser.</p>
+    <a href="/text/regex-tester/" class="btn btn-primary">Regex Tester →</a>
+    <a href="/text/regex-generator/" class="btn btn-primary" style="margin-left:8px;background:transparent;border:1.5px solid var(--green);color:var(--green)">Regex Generator →</a>
+  </div>
+
+  <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border)">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+
+  <div class="blog-related-tools" style="margin:40px 0;padding:28px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px">
+    <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px">🛠️ Free Text &amp; Dev Tools</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+      <a href="/text/regex-tester/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔍</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Regex Tester</div><div style="font-size:.78rem;color:var(--text-secondary)">Test patterns with live highlighting</div></div></a>
+      <a href="/text/regex-generator/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">⚡</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Regex Generator</div><div style="font-size:.78rem;color:var(--text-secondary)">Build patterns from examples</div></div></a>
+      <a href="/text/diff-checker/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">📝</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Diff Checker</div><div style="font-size:.78rem;color:var(--text-secondary)">Compare text side by side</div></div></a>
+      <a href="/text/text-escape/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔣</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">String Escape</div><div style="font-size:.78rem;color:var(--text-secondary)">Escape for JSON, HTML, URL, SQL</div></div></a>
+    </div>
+  </div>
+</article>
+<script src="/assets/layout.js"></script>
+<script src="/assets/community.js"></script>
+</body>
+</html>

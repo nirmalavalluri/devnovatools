@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Cron Expression Cheat Sheet — Every Schedule You'll Ever Need | DevNova Tools Blog</title>
+<meta name="description" content="Copy-paste cron expressions for every schedule: every 5 minutes, hourly, daily, weekly, monthly. Syntax reference, common mistakes, and a live cron tester."/>
+<meta property="og:title" content="Cron Expression Cheat Sheet — Every Schedule You'll Ever Need"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/blog/cron-expression-cheat-sheet/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+<link rel="stylesheet" href="/assets/community.css"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Cron Expression Cheat Sheet — Every Schedule You'll Ever Need","description":"Copy-paste cron expressions for every schedule: every 5 minutes, hourly, daily, weekly, monthly. Syntax reference, common mistakes, and a live cron tester.","datePublished":"2026-06-16","dateModified":"2026-06-16","author":{"@type":"Organization","name":"DevNova Tools","url":"https://devnovatools.com"},"publisher":{"@type":"Organization","name":"DevNova Tools","logo":{"@type":"ImageObject","url":"https://devnovatools.com/assets/og-image.png"}},"mainEntityOfPage":"https://devnovatools.com/blog/cron-expression-cheat-sheet/"}
+</script>
+</head>
+<body>
+<article style="max-width:820px;margin:0 auto;padding:40px 24px 80px">
+  <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> <span>DevOps</span></div>
+  <div style="margin:24px 0 32px">
+    <span style="display:inline-flex;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:999px;color:#F59E0B;background:#F59E0B22;border:1px solid #F59E0B44;margin-bottom:16px">DevOps</span>
+    <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px">Cron Expression Cheat Sheet — Every Schedule You'll Ever Need</h1>
+    <div style="display:flex;align-items:center;gap:16px;color:var(--text-muted);font-size:.85rem;flex-wrap:wrap">
+      <span>📅 June 16, 2026</span><span>⏱ 7 min read</span>
+      <a href="/devops/cron-tester/" style="color:var(--green);font-weight:600">🛠️ Try the Cron Tester →</a>
+    </div>
+  </div>
+  <div style="font-size:.95rem;line-height:1.85;color:var(--text-secondary)">
+    <style>
+    article h2{font-size:1.2rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-top:8px;border-top:1px solid var(--border)}
+    article pre{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;overflow-x:auto;margin:12px 0}
+    article code{font-family:var(--mono);font-size:.88rem;color:var(--green)}
+    article pre code{color:var(--text)}
+    article ul,article ol{padding-left:20px;margin:12px 0;display:flex;flex-direction:column;gap:6px}
+    article li{color:var(--text-secondary);line-height:1.6}
+    article p{margin-bottom:14px}
+    article strong{color:var(--text);font-weight:600}
+    article table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88rem}
+    article th{background:var(--bg-card);color:var(--text);padding:10px 12px;border:1px solid var(--border);text-align:left}
+    article td{padding:10px 12px;border:1px solid var(--border);color:var(--text-secondary)}
+    article td code{color:var(--green)}
+    </style>
+
+    <p style="font-size:1.05rem;color:var(--text);border-left:3px solid var(--green);padding-left:16px;margin-bottom:24px">Nobody memorizes cron syntax. You look it up, copy the expression, paste it, and move on. This page is the reference you'll keep coming back to — every common schedule, the field-by-field syntax, and the mistakes that silently break production jobs.</p>
+
+    <h2>The 5 Cron Fields</h2>
+    <p>A standard cron expression has five space-separated fields. Left to right, smallest unit to largest:</p>
+    <pre><code>┌───────────── minute (0-59)
+│ ┌───────────── hour (0-23)
+│ │ ┌───────────── day of month (1-31)
+│ │ │ ┌───────────── month (1-12 or JAN-DEC)
+│ │ │ │ ┌───────────── day of week (0-7, 0 and 7 = Sunday)
+│ │ │ │ │
+* * * * *</code></pre>
+    <p>The expression fires when <strong>all five fields match the current time</strong>. An asterisk (<code>*</code>) means "every value." A mnemonic: <strong>"Minute, Hour, Day, Month, Weekday"</strong> — left to right, small to big.</p>
+
+    <h2>Operators</h2>
+    <table>
+      <tr><th>Operator</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td><code>*</code></td><td>Every value</td><td><code>* * * * *</code> — every minute</td></tr>
+      <tr><td><code>,</code></td><td>List of values</td><td><code>0,15,30,45</code> — at minutes 0, 15, 30, 45</td></tr>
+      <tr><td><code>-</code></td><td>Range</td><td><code>9-17</code> — hours 9 through 17</td></tr>
+      <tr><td><code>/</code></td><td>Step (every Nth)</td><td><code>*/5</code> — every 5th value</td></tr>
+    </table>
+    <p><strong>Important:</strong> <code>*/5</code> in the minute field means "at minute 0, 5, 10, 15, 20..." — it is anchored to zero, not to the time you saved the job. If you save at 12:03, the next run is 12:05, not 12:08.</p>
+
+    <h2>Every-Minute and Every-N-Minutes</h2>
+    <table>
+      <tr><th>Schedule</th><th>Expression</th></tr>
+      <tr><td>Every minute</td><td><code>* * * * *</code></td></tr>
+      <tr><td>Every 5 minutes</td><td><code>*/5 * * * *</code></td></tr>
+      <tr><td>Every 10 minutes</td><td><code>*/10 * * * *</code></td></tr>
+      <tr><td>Every 15 minutes</td><td><code>*/15 * * * *</code></td></tr>
+      <tr><td>Every 30 minutes</td><td><code>*/30 * * * *</code></td></tr>
+    </table>
+    <p><code>* * * * *</code> means every single minute — 1,440 times per day. Make sure your job can complete in under 60 seconds, or you'll have overlapping runs.</p>
+
+    <h2>Hourly Schedules</h2>
+    <table>
+      <tr><th>Schedule</th><th>Expression</th></tr>
+      <tr><td>Every hour (at :00)</td><td><code>0 * * * *</code></td></tr>
+      <tr><td>Every hour at :30</td><td><code>30 * * * *</code></td></tr>
+      <tr><td>Every 2 hours</td><td><code>0 */2 * * *</code></td></tr>
+      <tr><td>Every 6 hours</td><td><code>0 */6 * * *</code></td></tr>
+      <tr><td>Every 12 hours</td><td><code>0 */12 * * *</code></td></tr>
+    </table>
+
+    <h2>Daily Schedules</h2>
+    <table>
+      <tr><th>Schedule</th><th>Expression</th></tr>
+      <tr><td>Midnight</td><td><code>0 0 * * *</code></td></tr>
+      <tr><td>6:00 AM</td><td><code>0 6 * * *</code></td></tr>
+      <tr><td>9:00 AM</td><td><code>0 9 * * *</code></td></tr>
+      <tr><td>Noon</td><td><code>0 12 * * *</code></td></tr>
+      <tr><td>5:00 PM</td><td><code>0 17 * * *</code></td></tr>
+      <tr><td>9:30 AM</td><td><code>30 9 * * *</code></td></tr>
+      <tr><td>Twice daily (9 AM and 6 PM)</td><td><code>0 9,18 * * *</code></td></tr>
+    </table>
+
+    <h2>Weekly Schedules</h2>
+    <table>
+      <tr><th>Schedule</th><th>Expression</th></tr>
+      <tr><td>Every Monday at 9 AM</td><td><code>0 9 * * 1</code></td></tr>
+      <tr><td>Every Friday at 5 PM</td><td><code>0 17 * * 5</code></td></tr>
+      <tr><td>Weekdays at 9 AM</td><td><code>0 9 * * 1-5</code></td></tr>
+      <tr><td>Weekends at midnight</td><td><code>0 0 * * 0,6</code></td></tr>
+      <tr><td>Sunday at midnight</td><td><code>0 0 * * 0</code></td></tr>
+      <tr><td>Mon, Wed, Fri at 8 AM</td><td><code>0 8 * * 1,3,5</code></td></tr>
+    </table>
+    <p><strong>Day-of-week numbering:</strong> 0 = Sunday, 1 = Monday, ..., 6 = Saturday, 7 = Sunday (again). Both 0 and 7 are Sunday. Use names (MON, TUE) if your system supports them.</p>
+
+    <h2>Monthly and Yearly Schedules</h2>
+    <table>
+      <tr><th>Schedule</th><th>Expression</th></tr>
+      <tr><td>1st of every month at midnight</td><td><code>0 0 1 * *</code></td></tr>
+      <tr><td>15th of every month at 9 AM</td><td><code>0 9 15 * *</code></td></tr>
+      <tr><td>Every quarter (Jan, Apr, Jul, Oct)</td><td><code>0 0 1 1,4,7,10 *</code></td></tr>
+      <tr><td>January 1st at midnight</td><td><code>0 0 1 1 *</code></td></tr>
+      <tr><td>Last day of month</td><td><code>Not possible in standard cron*</code></td></tr>
+    </table>
+    <p>*Standard 5-field cron cannot express "last day of month." Some schedulers (Quartz, AWS EventBridge) support the <code>L</code> character: <code>0 0 L * *</code>. For standard cron, use a wrapper script that checks if tomorrow is the 1st.</p>
+
+    <h2>Business Hours Pattern</h2>
+    <p>This is the most common real-world pattern — run during office hours on workdays:</p>
+    <pre><code>*/15 9-17 * * 1-5</code></pre>
+    <p>This means: every 15 minutes, between 9:00 AM and 5:59 PM, Monday through Friday. Perfect for health checks, sync jobs, or dashboard refreshes that only matter during business hours.</p>
+
+    <h2>Platform Differences</h2>
+    <p>Not all cron implementations are identical:</p>
+    <ul>
+      <li><strong>Standard crontab (Linux)</strong> — 5 fields, no seconds, no <code>L</code>/<code>W</code>/<code>#</code></li>
+      <li><strong>Quartz (Java/Spring)</strong> — 6-7 fields with seconds, supports <code>L</code>, <code>W</code>, <code>#</code></li>
+      <li><strong>AWS EventBridge</strong> — 6 fields with year, uses <code>?</code> for unspecified day-of-month or day-of-week</li>
+      <li><strong>GitHub Actions</strong> — standard 5 fields, runs in UTC only</li>
+      <li><strong>Kubernetes CronJob</strong> — standard 5 fields, timezone configurable since v1.27</li>
+    </ul>
+    <p>When in doubt, paste your expression into our <a href="/devops/cron-tester/" style="color:var(--green)">Cron Tester</a> to see the next run times before deploying.</p>
+
+    <h2>Common Mistakes</h2>
+    <ul>
+      <li><strong>Forgetting the timezone</strong> — cron runs in the server's system timezone. A job set for <code>0 9 * * *</code> runs at 9 AM <em>server time</em>. If your server is UTC and you're in EST, that's 4 AM your time. GitHub Actions always runs in UTC.</li>
+      <li><strong>Day-of-month AND day-of-week</strong> — in standard cron, specifying both creates an OR condition. <code>0 0 15 * 5</code> runs on the 15th of every month <em>and</em> every Friday, not "Friday the 15th."</li>
+      <li><strong>Overlapping runs</strong> — if a job takes 10 minutes and runs every 5 minutes, you'll have parallel instances. Use a lock file or <code>flock</code> to prevent overlap.</li>
+      <li><strong>No error handling</strong> — cron swallows output by default. Redirect to a log: <code>*/5 * * * * /path/to/script.sh >> /var/log/myjob.log 2>&1</code></li>
+      <li><strong>The <code>*/N</code> trap</strong> — <code>*/5</code> runs at minutes 0, 5, 10... not "every 5 minutes from when I saved." If you save at 12:03, the next run is still 12:05.</li>
+    </ul>
+
+    <h2>Quick Reference: Day-of-Week Numbers</h2>
+    <table>
+      <tr><th>Number</th><th>Day</th><th>Number</th><th>Day</th></tr>
+      <tr><td>0</td><td>Sunday</td><td>4</td><td>Thursday</td></tr>
+      <tr><td>1</td><td>Monday</td><td>5</td><td>Friday</td></tr>
+      <tr><td>2</td><td>Tuesday</td><td>6</td><td>Saturday</td></tr>
+      <tr><td>3</td><td>Wednesday</td><td>7</td><td>Sunday</td></tr>
+    </table>
+
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>How do I test a cron expression before deploying?</strong><br/>
+    Paste it into our <a href="/devops/cron-tester/" style="color:var(--green)">Cron Tester</a> to see a human-readable description and the next 5-10 run times. Or use <a href="/devops/cron-builder/" style="color:var(--green)">Cron Builder</a> to construct one visually.</p>
+
+    <p><strong>Can cron run a job every 45 seconds?</strong><br/>
+    No — standard cron's smallest unit is one minute. For sub-minute scheduling, use a loop inside the script, systemd timers, or a scheduler that supports seconds (like Quartz).</p>
+
+    <p><strong>Does <code>0 */2 * * *</code> run at every even hour or every 2 hours from midnight?</strong><br/>
+    Every even hour: 0:00, 2:00, 4:00, 6:00... The step is anchored to the field's minimum (0 for hours). It does not mean "every 2 hours from when the job was created."</p>
+
+    <p><strong>How do I run a job on the last day of every month?</strong><br/>
+    Standard cron can't express this directly. Use a script wrapper: <code>[ "$(date +\%d -d tomorrow)" = "01" ] && /path/to/job.sh</code>. Or use a scheduler that supports the <code>L</code> character.</p>
+  </div>
+
+  <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:28px;margin:48px 0;text-align:center">
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Test your cron expression instantly — free</div>
+    <p style="color:var(--text-secondary);margin-bottom:16px;font-size:.9rem">Paste any cron expression and see the next run times plus a human-readable description. Runs 100% in your browser.</p>
+    <a href="/devops/cron-tester/" class="btn btn-primary">Cron Tester →</a>
+    <a href="/devops/cron-builder/" class="btn btn-primary" style="margin-left:8px;background:transparent;border:1.5px solid var(--green);color:var(--green)">Cron Builder →</a>
+  </div>
+
+  <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border)">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+
+  <div class="blog-related-tools" style="margin:40px 0;padding:28px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px">
+    <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px">🛠️ Free DevOps Tools</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+      <a href="/devops/cron-tester/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">⏰</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Cron Tester</div><div style="font-size:.78rem;color:var(--text-secondary)">Validate & preview schedules</div></div></a>
+      <a href="/devops/cron-builder/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔧</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Cron Builder</div><div style="font-size:.78rem;color:var(--text-secondary)">Build expressions visually</div></div></a>
+      <a href="/devops/curl-generator/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🌐</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">cURL Generator</div><div style="font-size:.78rem;color:var(--text-secondary)">Build HTTP requests visually</div></div></a>
+      <a href="/devops/dockerfile/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🐳</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Dockerfile Generator</div><div style="font-size:.78rem;color:var(--text-secondary)">Production-ready Dockerfiles</div></div></a>
+    </div>
+  </div>
+</article>
+<script src="/assets/layout.js"></script>
+<script src="/assets/community.js"></script>
+</body>
+</html>
