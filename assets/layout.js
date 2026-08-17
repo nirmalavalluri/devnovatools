@@ -192,6 +192,7 @@ const CATS=[
 {id:'database',name:'Database Tools',icon:'🗄️',color:'#34D399',desc:'SQL formatting, ORM generation and schema tools'},
 {id:'diagramming',name:'Diagramming',icon:'📊',color:'#FB7185',desc:'Mermaid diagrams, flowcharts, ERDs and more'},
 {id:'packages',name:'Package & Version',icon:'📦',color:'#60A5FA',desc:'npm, PyPI search, semver and dependency tools'},
+{id:'image',name:'Image & Media',icon:'🖼️',color:'#FBBF24',desc:'Compress, inspect and generate image files'},
 ];
 
 const LOGO_SVG=`<svg width="168" height="36" viewBox="0 0 168 36" xmlns="http://www.w3.org/2000/svg">

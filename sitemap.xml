@@ -62,13 +62,6 @@
   </url>
 
   <url>
-    <loc>https://devnovatools.com/blog/cron-job-expressions-guide/</loc>
-    <lastmod>2026-05-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <url>
     <loc>https://devnovatools.com/blog/10-regex-patterns-developers/</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
@@ -90,8 +83,50 @@
   </url>
 
   <url>
-    <loc>https://devnovatools.com/blog/css-grid-vs-flexbox/</loc>
-    <lastmod>2026-05-30</lastmod>
+    <loc>https://devnovatools.com/blog/cron-job-syntax/</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/blog/bitwise-calculator/</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/blog/html-beautifier/</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/blog/free-developer-tools/</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/blog/how-to-decode-jwt-token/</loc>
+    <lastmod>2026-05-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/blog/how-to-format-validate-json/</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/blog/what-is-base64-encoding/</loc>
+    <lastmod>2026-06-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
