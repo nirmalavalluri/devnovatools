@@ -1,2 +1,6 @@
 https://www.devnovatools.com/* https://devnovatools.com/:splat 301!
 /home / 301
+
+# Consolidated duplicate/thin blog posts into their fuller canonical versions
+/blog/cron-job-expressions-guide/ /blog/cron-job-syntax/ 301
+/blog/css-grid-vs-flexbox/ /blog/css-flexbox-vs-grid/ 301
