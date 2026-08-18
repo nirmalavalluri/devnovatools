@@ -107,7 +107,7 @@ indexHtml = indexHtml.replace(
   `<div class="tool-grid" id="tool-grid">\n    ${toolsHtml}\n  </div>\n  </div>`
 );
 indexHtml = indexHtml.replace(
-  /<span id="tool-count"><\/span>/,
+  /<span id="tool-count">[^<]*<\/span>/,
   `<span id="tool-count">${builtTools.length} tools</span>`
 );
 

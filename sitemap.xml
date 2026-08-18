@@ -30,6 +30,19 @@
   </url>
 
   <url>
+    <loc>https://devnovatools.com/blog/how-to-read-sql-queries/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://devnovatools.com/blog/how-to-search-python-packages/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://devnovatools.com/blog/html-entities-explained/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
@@ -267,6 +280,13 @@
   <url>
     <loc>https://devnovatools.com/json/validator/</loc>
     <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/json/repair/</loc>
+    <lastmod>2026-08-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

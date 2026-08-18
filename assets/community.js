@@ -192,6 +192,30 @@ function renderTestimonials() {
 // ── BLOG ARTICLES ──────────────────────────────────────────────
 const BLOG_POSTS = [
   {
+    emoji: '🔍',
+    bgColor: 'rgba(0,200,150,0.12)',
+    tag: 'Database',
+    tagColor: '#00C896',
+    tagBg: 'rgba(0,200,150,0.12)',
+    title: 'How to Read Any SQL Query in Plain English',
+    excerpt: 'The real execution order behind SELECT, FROM, JOIN, WHERE, GROUP BY and HAVING — plus subqueries, CTEs and window functions, with a worked example.',
+    date: 'Aug 2026',
+    readTime: '7 min read',
+    slug: 'how-to-read-sql-queries',
+  },
+  {
+    emoji: '🐍',
+    bgColor: 'rgba(96,165,250,0.12)',
+    tag: 'Packages',
+    tagColor: '#60A5FA',
+    tagBg: 'rgba(96,165,250,0.12)',
+    title: 'How to Search for Python Packages the Right Way',
+    excerpt: 'pip search stopped working years ago. Here is how to actually find Python packages on PyPI, and what to check before you install one.',
+    date: 'Aug 2026',
+    readTime: '6 min read',
+    slug: 'how-to-search-python-packages',
+  },
+  {
     emoji: '⏰',
     bgColor: 'rgba(245,158,11,0.12)',
     tag: 'DevOps',

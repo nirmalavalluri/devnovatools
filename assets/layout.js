@@ -49,6 +49,7 @@ const DevNova=(()=>{
 const ALL_TOOLS=[
 {name:'JSON Formatter',desc:'Format & beautify JSON',path:'/json/formatter/',cat:'JSON & Data',catId:'json',icon:'🟦'},
 {name:'JSON Validator',desc:'Validate JSON syntax',path:'/json/validator/',cat:'JSON & Data',catId:'json',icon:'✅'},
+{name:'JSON Repair',desc:'Fix broken JSON from LLMs',path:'/json/repair/',cat:'JSON & Data',catId:'json',icon:'🩹'},
 {name:'JSON Minifier',desc:'Minify & compress JSON',path:'/json/minifier/',cat:'JSON & Data',catId:'json',icon:'🗜️'},
 {name:'JSON Tree Viewer',desc:'Visualize JSON as tree',path:'/json/tree-viewer/',cat:'JSON & Data',catId:'json',icon:'🌳'},
 {name:'JSON Diff',desc:'Compare two JSON objects',path:'/json/diff/',cat:'JSON & Data',catId:'json',icon:'🔀'},

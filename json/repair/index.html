@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>JSON Repair — Fix Broken JSON from ChatGPT & LLM Output</title>
+<meta name="description" content="Free JSON repair tool. Fixes broken JSON from ChatGPT, Claude and other LLMs — trailing commas, single quotes, unquoted keys, markdown fences and Python literals. No login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:site" content="@devnovatools"/>
+<link rel="canonical" href="https://devnovatools.com/json/repair/"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="apple-touch-icon" href="/favicon.svg"/>
+<meta name="author" content="DevNova Tools"/>
+<meta name="copyright" content="© 2026 DevNova Tools — devnovatools.com"/>
+<meta name="robots" content="index, follow"/>
+<meta name="revisit-after" content="7 days"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON Repair","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online JSON repair tool. Automatically fixes common JSON syntax errors — trailing commas, single quotes, unquoted keys, comments, markdown fences and Python literals — commonly seen in output from ChatGPT, Claude and other LLMs.","url":"https://devnovatools.com/json/repair/"}
+</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why is JSON from ChatGPT or Claude often broken?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LLMs generate JSON as text, not through a real parser, so they commonly add trailing commas, wrap the output in markdown code fences, use single quotes instead of double quotes, leave object keys unquoted, or mix in Python literals like True, False and None."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does JSON Repair fix automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It strips markdown code fences and surrounding prose text, removes trailing commas, converts single-quoted strings to double quotes, quotes unquoted object keys, strips // and /* */ comments, and converts Python-style True/False/None to true/false/null."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this the same as the JSON Validator or JSON Formatter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. JSON Validator only reports errors, and JSON Formatter only re-indents already-valid JSON. JSON Repair is specifically for JSON that fails to parse — it attempts to fix the syntax first, then pretty-prints the result."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use JSON Repair",
+  "description": "Fix broken or malformed JSON output, commonly from LLMs, and get valid pretty-printed JSON back.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Open the tool",
+      "text": "Navigate to JSON Repair on DevNova Tools"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Paste the broken JSON",
+      "text": "Paste the malformed JSON, including any surrounding text or markdown fences, into the input panel"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Get the fixed result",
+      "text": "The tool repairs common syntax issues automatically and lists exactly what it changed"
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Copy the output",
+      "text": "Click Copy to copy the valid, pretty-printed JSON to your clipboard"
+    }
+  ],
+  "totalTime": "PT1M",
+  "tool": {
+    "@type": "HowToTool",
+    "name": "JSON Repair"
+  }
+}
+</script>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb">
+      <a href="/">Home</a> <span>›</span>
+      <a href="/json/">JSON & Data</a> <span>›</span>
+      <span>JSON Repair</span>
+    </div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#00C89622;border:1px solid #00C89644">🩹</div>
+      <h1 class="tool-name">JSON Repair</h1>
+    </div>
+    <p class="tool-desc">Fix broken JSON — trailing commas, single quotes, unquoted keys and markdown fences — commonly from ChatGPT, Claude and other LLMs.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML='';document.getElementById('changes').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy Output</button>
+    </div>
+  </div>
+
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Broken JSON</span>
+        <div class="panel-actions">
+          <button class="btn-icon" title="Clear" onclick="document.getElementById('input').value='';run()">✕</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="input" class="panel-textarea" placeholder="Paste broken JSON here — e.g.&#10;```json&#10;{name: 'Alice', active: True, tags: ['a','b',],}&#10;```" oninput="run()" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-label">Repaired JSON</span>
+        <div class="panel-actions">
+          <button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="output" class="panel-output" spellcheck="false"></div>
+      </div>
+      <div class="status-bar">
+        <span id="status" class="badge badge-info"></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="changes" style="margin-top:16px"></div>
+</main>
+
+<script src="/assets/layout.js"></script>
+<script>
+function repairJSON(raw) {
+  let s = raw;
+  const changes = [];
+
+  const fenced = s.match(/^\s*```(?:json)?\s*\n?([\s\S]*?)\n?```\s*$/i);
+  if (fenced) { s = fenced[1]; changes.push('Removed markdown code fence'); }
+
+  try {
+    JSON.parse(s);
+    return { ok: true, out: JSON.stringify(JSON.parse(s), null, 2), changes: changes.length ? changes : ['No changes needed — already valid JSON'] };
+  } catch (e) { /* fall through to repair */ }
+
+  const firstBrace = s.search(/[{\[]/);
+  if (firstBrace > 0) {
+    const open = s[firstBrace];
+    const close = open === '{' ? '}' : ']';
+    const lastClose = s.lastIndexOf(close);
+    if (lastClose > firstBrace) {
+      const trimmed = s.slice(firstBrace, lastClose + 1);
+      if (trimmed !== s.trim()) { s = trimmed; changes.push('Trimmed surrounding text outside the JSON'); }
+    }
+  }
+
+  let out = '';
+  let i = 0;
+  const n = s.length;
+  let sawSingleQuoteFix = false, sawCommentStrip = false, sawBareKeyFix = false, sawTrailingComma = false, sawPyLiteral = false;
+
+  while (i < n) {
+    const c = s[i];
+
+    if (c === '/' && s[i + 1] === '/') {
+      sawCommentStrip = true;
+      while (i < n && s[i] !== '\n') i++;
+      continue;
+    }
+    if (c === '/' && s[i + 1] === '*') {
+      sawCommentStrip = true;
+      i += 2;
+      while (i < n && !(s[i] === '*' && s[i + 1] === '/')) i++;
+      i += 2;
+      continue;
+    }
+    if (c === '"') {
+      out += c; i++;
+      while (i < n && s[i] !== '"') {
+        if (s[i] === '\\' && i + 1 < n) { out += s[i] + s[i + 1]; i += 2; continue; }
+        out += s[i]; i++;
+      }
+      out += '"'; i++;
+      continue;
+    }
+    if (c === "'") {
+      sawSingleQuoteFix = true;
+      i++;
+      let buf = '"';
+      while (i < n && s[i] !== "'") {
+        if (s[i] === '\\' && i + 1 < n) {
+          if (s[i + 1] === "'") { buf += "'"; i += 2; continue; }
+          buf += s[i] + s[i + 1]; i += 2; continue;
+        }
+        if (s[i] === '"') { buf += '\\"'; i++; continue; }
+        buf += s[i]; i++;
+      }
+      buf += '"';
+      i++;
+      out += buf;
+      continue;
+    }
+    if (c === ',') {
+      let j = i + 1;
+      while (j < n && /\s/.test(s[j])) j++;
+      if (s[j] === '}' || s[j] === ']') { sawTrailingComma = true; i++; continue; }
+      out += c; i++; continue;
+    }
+    if (/[A-Za-z_$]/.test(c)) {
+      let j = i;
+      while (j < n && /[A-Za-z0-9_$]/.test(s[j])) j++;
+      const word = s.slice(i, j);
+      let k = j;
+      while (k < n && /\s/.test(s[k])) k++;
+      const isKey = s[k] === ':';
+      if (isKey) { sawBareKeyFix = true; out += '"' + word + '"'; }
+      else if (word === 'True') { sawPyLiteral = true; out += 'true'; }
+      else if (word === 'False') { sawPyLiteral = true; out += 'false'; }
+      else if (word === 'None') { sawPyLiteral = true; out += 'null'; }
+      else if (word === 'NaN' || word === 'Infinity') { sawPyLiteral = true; out += 'null'; }
+      else { out += word; }
+      i = j;
+      continue;
+    }
+    out += c; i++;
+  }
+
+  if (sawCommentStrip) changes.push('Removed comments');
+  if (sawSingleQuoteFix) changes.push('Converted single-quoted strings to double quotes');
+  if (sawBareKeyFix) changes.push('Quoted unquoted object keys');
+  if (sawTrailingComma) changes.push('Removed trailing commas');
+  if (sawPyLiteral) changes.push('Converted Python-style literals (True/False/None) to JSON');
+
+  try {
+    const parsed = JSON.parse(out);
+    return { ok: true, out: JSON.stringify(parsed, null, 2), changes: changes.length ? changes : ['No changes needed — already valid JSON'] };
+  } catch (e) {
+    return { ok: false, out, changes, error: e.message };
+  }
+}
+
+function run() {
+  const input = document.getElementById('input').value.trim();
+  const out = document.getElementById('output');
+  const changesEl = document.getElementById('changes');
+  if (!input) { out.textContent = ''; changesEl.innerHTML = ''; setStatus('', ''); return; }
+
+  const result = repairJSON(input);
+  if (result.ok) {
+    out.textContent = result.out;
+    setStatus('success', '✓ Repaired — valid JSON');
+    changesEl.innerHTML = '<div class="finding-evidence" style="font-size:.82rem;color:var(--text-secondary);background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:10px 14px"><strong style="color:var(--text)">Changes made:</strong><ul style="margin:6px 0 0;padding-left:18px">' + result.changes.map(c => '<li>' + c + '</li>').join('') + '</ul></div>';
+  } else {
+    out.textContent = result.out;
+    setStatus('error', '✗ Could not fully repair — ' + result.error);
+    changesEl.innerHTML = '<div class="finding-evidence" style="font-size:.82rem;color:var(--text-secondary);background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:10px 14px"><strong style="color:var(--text)">Applied fixes, but still invalid:</strong><ul style="margin:6px 0 0;padding-left:18px">' + (result.changes.length ? result.changes.map(c => '<li>' + c + '</li>').join('') : '<li>No automatic fix matched this error</li>') + '</ul></div>';
+  }
+}
+function setStatus(type, msg) { const s = document.getElementById('status'); s.className = 'badge badge-' + (type || 'info'); s.textContent = msg; }
+</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is JSON Repair?</h2>
+      <p>JSON Repair fixes JSON that fails to parse because of common syntax issues — the kind that show up constantly in output copied from ChatGPT, Claude, Gemini or any other LLM. It strips markdown code fences and stray prose, removes trailing commas, converts single-quoted strings to double quotes, quotes unquoted keys, strips comments, and converts Python-style <code>True</code>/<code>False</code>/<code>None</code> to valid JSON — then tells you exactly what it changed.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">```json
+{name: 'Alice', active: True, tags: ['a','b',],}
+```</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">{
+  "name": "Alice",
+  "active": true,
+  "tags": [
+    "a",
+    "b"
+  ]
+}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul>
+        <li>Fixing JSON pasted straight out of a ChatGPT or Claude response</li>
+        <li>Cleaning up JSON that still has its markdown code fence attached</li>
+        <li>Converting Python dict literals (<code>True</code>/<code>False</code>/<code>None</code>) to valid JSON</li>
+        <li>Recovering JSON from logs or config files with trailing commas</li>
+        <li>Turning JavaScript object literals (unquoted keys, single quotes) into strict JSON</li>
+      </ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">Why is JSON from ChatGPT or Claude often broken? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">LLMs generate JSON as text, not through a real parser, so they commonly add trailing commas, wrap the output in markdown code fences, use single quotes instead of double quotes, leave object keys unquoted, or mix in Python literals like True, False and None.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">What does JSON Repair fix automatically? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">It strips markdown code fences and surrounding prose text, removes trailing commas, converts single-quoted strings to double quotes, quotes unquoted object keys, strips // and /* */ comments, and converts Python-style True/False/None to true/false/null.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Is this the same as the JSON Validator or JSON Formatter? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">No. JSON Validator only reports errors, and JSON Formatter only re-indents already-valid JSON. JSON Repair is specifically for JSON that fails to parse — it attempts to fix the syntax first, then pretty-prints the result.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All repair logic runs entirely in your browser using JavaScript. Nothing is ever sent to our servers — including whatever LLM output you're pasting in. You can even use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section"><h2>🔗 Related Tools</h2><div class="related-grid"><a href="/json/validator/" class="related-card"><span>✅</span><span class="related-card-name">JSON Validator</span></a><a href="/json/formatter/" class="related-card"><span>🟦</span><span class="related-card-name">JSON Formatter</span></a><a href="/json/schema-validator/" class="related-card"><span>🔍</span><span class="related-card-name">Schema Validator</span></a><a href="/api/jwt-decoder/" class="related-card"><span>🔐</span><span class="related-card-name">JWT Decoder</span></a></div></div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Paste output straight from an LLM, fences and all</li>
+        <li>Use <code>Copy Output</code> to copy the fixed JSON</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/" style="color:var(--cat-json)">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/" style="color:var(--cat-api)">🔐 API & Security Tools</a></li>
+        <li><a href="/text/" style="color:var(--cat-text)">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/" style="color:var(--cat-devops)">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/" style="color:var(--cat-frontend)">🟢 Frontend Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
+</body>
+</html>

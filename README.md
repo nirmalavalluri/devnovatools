@@ -51,13 +51,14 @@ Most online developer tools have one or more of these problems:
 
 ## 🗂️ All Tools
 
-### 🟦 JSON & Data — 21 tools
+### 🟦 JSON & Data — 22 tools
 > [Browse all JSON tools →](https://devnovatools.com/json/)
 
 | Tool | Description |
 |---|---|
 | [JSON Formatter](https://devnovatools.com/json/formatter/) | Format, beautify and pretty-print JSON with customizable indentation |
 | [JSON Validator](https://devnovatools.com/json/validator/) | Validate JSON syntax with detailed error messages and line numbers |
+| [JSON Repair](https://devnovatools.com/json/repair/) | Fix broken JSON from ChatGPT, Claude and other LLMs automatically |
 | [JSON Minifier](https://devnovatools.com/json/minifier/) | Compress JSON to its smallest possible size |
 | [JSON Diff](https://devnovatools.com/json/diff/) | Compare two JSON objects and highlight differences |
 | [CSV to JSON](https://devnovatools.com/json/csv-to-json/) | Convert CSV data to JSON array with automatic header detection |
