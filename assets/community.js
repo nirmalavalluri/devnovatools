@@ -192,6 +192,18 @@ function renderTestimonials() {
 // ── BLOG ARTICLES ──────────────────────────────────────────────
 const BLOG_POSTS = [
   {
+    emoji: '📊',
+    bgColor: 'rgba(255,107,53,0.12)',
+    tag: 'DevOps',
+    tagColor: '#FF6B35',
+    tagBg: 'rgba(255,107,53,0.12)',
+    title: 'How to Parse Log Files: Formats, Patterns and Tools',
+    excerpt: 'Common log formats (Apache, Nginx, JSON, syslog), the regex to pull structured fields out of each, and when to reach for a real parser instead of grep.',
+    date: 'Aug 2026',
+    readTime: '6 min read',
+    slug: 'how-to-parse-log-files',
+  },
+  {
     emoji: '🔍',
     bgColor: 'rgba(0,200,150,0.12)',
     tag: 'Database',

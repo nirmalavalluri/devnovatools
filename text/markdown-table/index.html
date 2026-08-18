@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Markdown Table Generator — CSV/TSV to Markdown Table Online</title>
+<meta name="description" content="Free Markdown table generator. Paste CSV, TSV or pipe-delimited data and get a perfectly aligned GitHub-flavored Markdown table instantly. No login required."/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:site" content="@devnovatools"/>
+<link rel="canonical" href="https://devnovatools.com/text/markdown-table/"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="apple-touch-icon" href="/favicon.svg"/>
+<meta name="author" content="DevNova Tools"/>
+<meta name="copyright" content="© 2026 DevNova Tools — devnovatools.com"/>
+<meta name="robots" content="index, follow"/>
+<meta name="revisit-after" content="7 days"/>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Markdown Table Generator","applicationCategory":"DeveloperApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online Markdown table generator. Converts CSV, TSV or pipe-delimited data into a perfectly aligned GitHub-flavored Markdown table.","url":"https://devnovatools.com/text/markdown-table/"}
+</script>
+<link rel="stylesheet" href="/assets/shared.css"/>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What input formats does this tool accept?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CSV (comma-separated), TSV (tab-separated, e.g. pasted directly from Excel or Google Sheets), and pipe-delimited data. The delimiter is detected automatically from the first line."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it handle commas inside quoted fields?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Fields wrapped in double quotes can contain commas, newlines, or escaped double quotes (\"\") and are parsed correctly, matching standard CSV quoting rules."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are the columns padded with extra spaces?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Markdown doesn't require aligned columns in the source, but padding every cell to the same width makes the raw .md file readable as a table before it's even rendered. Rendered output is identical either way."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to use Markdown Table Generator",
+  "description": "Convert CSV, TSV or pipe-delimited data into a Markdown table.",
+  "step": [
+    {"@type": "HowToStep", "name": "Open the tool", "text": "Navigate to Markdown Table Generator on DevNova Tools"},
+    {"@type": "HowToStep", "name": "Paste your data", "text": "Paste CSV, TSV or pipe-delimited data into the input panel"},
+    {"@type": "HowToStep", "name": "Get the table", "text": "A properly aligned Markdown table is generated instantly"},
+    {"@type": "HowToStep", "name": "Copy the output", "text": "Click Copy to copy the Markdown table to your clipboard"}
+  ],
+  "totalTime": "PT1M",
+  "tool": {"@type": "HowToTool", "name": "Markdown Table Generator"}
+}
+</script>
+</head>
+<body>
+<main class="tool-page">
+  <div class="tool-header">
+    <div class="breadcrumb"><a href="/">Home</a> › <a href="/text/">Text & Parsing</a> › <span>Markdown Table Generator</span></div>
+    <div class="tool-title-row">
+      <div class="tool-icon-wrap" style="background:#7B61FF22;border:1px solid #7B61FF44">📊</div>
+      <h1 class="tool-name">Markdown Table Generator</h1>
+    </div>
+    <p class="tool-desc">Paste CSV, TSV or pipe-delimited data and get a perfectly aligned Markdown table.</p>
+    <div class="tool-actions">
+      <button class="btn btn-primary btn-sm" onclick="run()">▶ Run</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('input').value='';document.getElementById('output').textContent='';document.getElementById('output').innerHTML=''">Clear</button>
+      <button class="btn btn-ghost btn-sm" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button>
+    </div>
+  </div>
+  <div class="tool-body">
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">CSV / TSV / Pipe-delimited</span></div>
+      <div class="panel-body"><textarea id="input" class="panel-textarea" placeholder="name,age,city&#10;Alice,30,NYC&#10;Bob,25,LA" oninput="run()" spellcheck="false"></textarea></div>
+    </div>
+    <div class="panel">
+      <div class="panel-header"><span class="panel-label">Markdown Table</span><div class="panel-actions"><button class="copy-btn" onclick="DevNova.copyToClipboard(document.getElementById('output').textContent||document.getElementById('output').innerText,this)">Copy</button></div></div>
+      <div class="panel-body"><div id="output" class="panel-output"></div></div>
+      <div class="status-bar"><span id="status" class="badge badge-info"></span></div>
+    </div>
+  </div>
+</main>
+<script src="/assets/layout.js"></script>
+<script>
+function parseDelimited(text, delim) {
+  const rows = [];
+  let row = [], cell = '', inQuotes = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else inQuotes = false; }
+      else cell += c;
+    } else {
+      if (c === '"') inQuotes = true;
+      else if (c === delim) { row.push(cell); cell = ''; }
+      else if (c === '\n') { row.push(cell); rows.push(row); row = []; cell = ''; }
+      else if (c === '\r') { /* skip */ }
+      else cell += c;
+    }
+  }
+  if (cell.length || row.length) { row.push(cell); rows.push(row); }
+  return rows.filter(r => r.some(c => c.trim() !== ''));
+}
+function detectDelimiter(text) {
+  const firstLine = text.split('\n')[0] || '';
+  const counts = { '\t': (firstLine.match(/\t/g) || []).length, ',': (firstLine.match(/,/g) || []).length, '|': (firstLine.match(/\|/g) || []).length };
+  let best = ',', bestCount = -1;
+  for (const d of ['\t', ',', '|']) { if (counts[d] > bestCount) { bestCount = counts[d]; best = d; } }
+  return bestCount > 0 ? best : ',';
+}
+function toMarkdownTable(text) {
+  const delim = detectDelimiter(text.trim());
+  const rows = parseDelimited(text.trim(), delim).map(r => r.map(c => c.trim()));
+  if (rows.length === 0) return { table: '', delim, rowCount: 0, colCount: 0 };
+  const colCount = Math.max(...rows.map(r => r.length));
+  const norm = rows.map(r => { const rr = r.slice(0, colCount); while (rr.length < colCount) rr.push(''); return rr; });
+  const esc = s => s.replace(/\|/g, '\\|').replace(/\n/g, ' ');
+  const widths = Array(colCount).fill(3);
+  norm.forEach(r => r.forEach((c, i) => { widths[i] = Math.max(widths[i], esc(c).length); }));
+  const pad = (s, w) => s + ' '.repeat(Math.max(0, w - s.length));
+  const lines = [];
+  lines.push('| ' + norm[0].map((c, i) => pad(esc(c), widths[i])).join(' | ') + ' |');
+  lines.push('| ' + widths.map(w => '-'.repeat(w)).join(' | ') + ' |');
+  for (let i = 1; i < norm.length; i++) lines.push('| ' + norm[i].map((c, j) => pad(esc(c), widths[j])).join(' | ') + ' |');
+  const delimName = delim === '\t' ? 'tab' : delim === ',' ? 'comma' : 'pipe';
+  return { table: lines.join('\n'), delim: delimName, rowCount: norm.length - 1, colCount };
+}
+function run() {
+  const input = document.getElementById('input').value;
+  const out = document.getElementById('output');
+  if (!input.trim()) { out.textContent = ''; setStatus('', ''); return; }
+  const result = toMarkdownTable(input);
+  out.textContent = result.table;
+  setStatus('success', `✓ ${result.colCount} columns × ${result.rowCount} rows (detected ${result.delim}-delimited)`);
+}
+function setStatus(type, msg) { const s = document.getElementById('status'); s.className = 'badge badge-' + (type || 'info'); s.textContent = msg; }
+</script>
+
+<!-- SEO CONTENT -->
+<section class="seo-content">
+  <div class="seo-main">
+
+    <div class="seo-section">
+      <h2>📖 What is this tool?</h2>
+      <p>Markdown Table Generator converts CSV, TSV (tab-separated, like data copied straight from Excel or Google Sheets) or pipe-delimited data into a properly formatted GitHub-flavored Markdown table — with columns padded and aligned so the raw source is readable too, not just the rendered output.</p>
+    </div>
+
+    <div class="seo-section">
+      <h2>💡 Example</h2>
+      <div class="example-grid">
+        <div class="example-box">
+          <div class="example-label">Input</div>
+          <div class="example-code">name,age,city
+Alice,30,NYC
+Bob,25,LA</div>
+        </div>
+        <div class="example-box">
+          <div class="example-label">Output</div>
+          <div class="example-code">| name  | age | city |
+| ----- | --- | ---- |
+| Alice | 30  | NYC  |
+| Bob   | 25  | LA   |</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🛠️ Common Use Cases</h2>
+      <ul>
+        <li>Turning a spreadsheet range into a table for a README or wiki page</li>
+        <li>Converting API or database query results into documentation tables</li>
+        <li>Building comparison tables for blog posts or GitHub issues</li>
+        <li>Formatting CSV exports for pull request descriptions</li>
+      </ul>
+    </div>
+
+    <div class="seo-section">
+      <h2>❓ Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-q">What input formats does this tool accept? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">CSV (comma-separated), TSV (tab-separated, e.g. pasted directly from Excel or Google Sheets), and pipe-delimited data. The delimiter is detected automatically from the first line.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Does it handle commas inside quoted fields? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Yes. Fields wrapped in double quotes can contain commas, newlines, or escaped double quotes ("") and are parsed correctly, matching standard CSV quoting rules.</div>
+      </div><div class="faq-item">
+        <div class="faq-q">Why are the columns padded with extra spaces? <span style="color:var(--text-muted);font-size:.8rem">▾</span></div>
+        <div class="faq-a">Markdown doesn't require aligned columns in the source, but padding every cell to the same width makes the raw .md file readable as a table before it's even rendered. Rendered output is identical either way.</div>
+      </div>
+    </div>
+
+    <div class="privacy-box">
+      <span class="privacy-icon">🔒</span>
+      <div class="privacy-text"><strong>Your data stays private.</strong> All processing happens entirely in your browser. Nothing is ever sent to our servers. You can use this tool offline after the page loads.</div>
+    </div>
+
+    <div class="seo-section">
+      <h2>🔗 Related Tools</h2>
+      <div class="related-grid"><a href="/json/csv-to-json/" class="related-card"><span>📊</span><span class="related-card-name">CSV to JSON</span></a><a href="/text/case-converter/" class="related-card"><span>Aa</span><span class="related-card-name">Case Converter</span></a><a href="/text/diff-checker/" class="related-card"><span>↔️</span><span class="related-card-name">Text Diff Checker</span></a><a href="/text/markdown-preview/" class="related-card"><span>📝</span><span class="related-card-name">Markdown Preview</span></a></div>
+    </div>
+
+  </div>
+
+  <aside class="seo-sidebar">
+    <div class="seo-section">
+      <h2>⚡ Quick Tips</h2>
+      <ul>
+        <li>Paste directly from Excel or Sheets — tabs are auto-detected</li>
+        <li>Quoted CSV fields with commas inside are handled correctly</li>
+        <li>Works offline after first load</li>
+        <li>No login or account needed</li>
+      </ul>
+    </div>
+    <div class="seo-section">
+      <h2>🗂️ More Categories</h2>
+      <ul>
+        <li><a href="/json/">🟦 JSON & Data Tools</a></li>
+        <li><a href="/api/">🔐 API & Security Tools</a></li>
+        <li><a href="/text/">✍️ Text & Parsing Tools</a></li>
+        <li><a href="/devops/">⚙️ DevOps & Infra Tools</a></li>
+        <li><a href="/frontend/">🟢 Frontend Tools</a></li>
+      </ul>
+    </div>
+  </aside>
+</section>
+
+</body>
+</html>

@@ -80,6 +80,7 @@ const ALL_TOOLS=[
 {name:'CORS Checker',desc:'Check CORS headers',path:'/api/cors-checker/',cat:'API & Security',catId:'api',icon:'🔗'},
 {name:'SSL Certificate Decoder',desc:'Decode SSL certificates',path:'/api/ssl-decoder/',cat:'API & Security',catId:'api',icon:'🔓'},
 {name:'Regex Tester',desc:'Test regular expressions',path:'/text/regex-tester/',cat:'Text & Parsing',catId:'text',icon:'✍️'},
+{name:'Markdown Table Generator',desc:'CSV/TSV to Markdown table',path:'/text/markdown-table/',cat:'Text & Parsing',catId:'text',icon:'📊'},
 {name:'Regex Generator',desc:'Generate regex patterns',path:'/text/regex-generator/',cat:'Text & Parsing',catId:'text',icon:'🤖'},
 {name:'XPath Tester',desc:'Test XPath expressions',path:'/text/xpath-tester/',cat:'Text & Parsing',catId:'text',icon:'🎯'},
 {name:'Text Diff Checker',desc:'Compare two texts',path:'/text/diff-checker/',cat:'Text & Parsing',catId:'text',icon:'↔️'},

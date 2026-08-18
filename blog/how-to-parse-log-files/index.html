@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>How to Parse Log Files: Formats, Patterns and Tools | DevNova Tools Blog</title>
+<meta name="description" content="A practical guide to parsing log files — common log formats (Apache, Nginx, JSON, syslog), regex patterns for each, and when to reach for a real log parser."/>
+<meta property="og:title" content="How to Parse Log Files: Formats, Patterns and Tools"/>
+<meta property="og:image" content="https://devnovatools.com/assets/og-image.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="canonical" href="https://devnovatools.com/blog/how-to-parse-log-files/"/>
+<link rel="stylesheet" href="/assets/shared.css"/>
+<link rel="stylesheet" href="/assets/community.css"/>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Article", "headline": "How to Parse Log Files: Formats, Patterns and Tools", "description": "A practical guide to parsing log files — common log formats (Apache, Nginx, JSON, syslog), regex patterns for each, and when to reach for a real log parser.", "datePublished": "2026-08-18", "dateModified": "2026-08-18", "author": {"@type": "Organization", "name": "DevNova Tools", "url": "https://devnovatools.com"}, "publisher": {"@type": "Organization", "name": "DevNova Tools", "logo": {"@type": "ImageObject", "url": "https://devnovatools.com/assets/og-image.png"}}, "mainEntityOfPage": "https://devnovatools.com/blog/how-to-parse-log-files/"}
+</script>
+</head>
+<body>
+<article style="max-width:820px;margin:0 auto;padding:40px 24px 80px">
+  <div class="breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/blog/">Blog</a> <span>›</span> <span>DevOps</span></div>
+  <div style="margin:24px 0 32px">
+    <span style="display:inline-flex;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 12px;border-radius:999px;color:#FF6B35;background:#FF6B3522;border:1px solid #FF6B3544;margin-bottom:16px">DevOps</span>
+    <h1 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:12px">How to Parse Log Files: Formats, Patterns and Tools</h1>
+    <div style="display:flex;align-items:center;gap:16px;color:var(--text-muted);font-size:.85rem;flex-wrap:wrap">
+      <span>📅 August 18, 2026</span><span>⏱ 6 min read</span>
+      <a href="/devops/log-parser/" style="color:var(--green);font-weight:600">🛠️ Try the Log Parser →</a>
+    </div>
+  </div>
+  <div style="font-size:.95rem;line-height:1.85;color:var(--text-secondary)">
+    <style>
+    article h2{font-size:1.2rem;font-weight:700;color:var(--text);margin:28px 0 10px;padding-top:8px;border-top:1px solid var(--border)}
+    article pre{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;overflow-x:auto;margin:12px 0}
+    article code{font-family:var(--mono);font-size:.88rem;color:var(--green)}
+    article pre code{color:var(--text)}
+    article ul,article ol{padding-left:20px;margin:12px 0;display:flex;flex-direction:column;gap:6px}
+    article li{color:var(--text-secondary);line-height:1.6}
+    article p{margin-bottom:14px}
+    article strong{color:var(--text);font-weight:600}
+    article table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.88rem}
+    article th{background:var(--bg-card);color:var(--text);padding:10px 12px;border:1px solid var(--border);text-align:left}
+    article td{padding:10px 12px;border:1px solid var(--border);color:var(--text-secondary)}
+    </style>
+
+    <p style="font-size:1.05rem;color:var(--text);border-left:3px solid var(--green);padding-left:16px;margin-bottom:24px">Every production incident starts the same way: staring at a wall of log lines, trying to find the one that matters. This guide covers the log formats you'll actually run into, the regex to pull structured fields out of each, and when it's worth reaching for a real parser instead of grep.</p>
+
+    <h2>The Log Formats You'll Actually See</h2>
+    <table>
+      <tr><th>Format</th><th>Used by</th><th>Structure</th></tr>
+      <tr><td>Common Log Format (CLF)</td><td>Apache</td><td>Fixed fields, space-separated</td></tr>
+      <tr><td>Combined Log Format</td><td>Apache, Nginx</td><td>CLF plus referrer and user-agent</td></tr>
+      <tr><td>JSON lines</td><td>Modern apps, structured logging libraries</td><td>One JSON object per line</td></tr>
+      <tr><td>Syslog (RFC 3164 / 5424)</td><td>System daemons, network devices</td><td>Priority, timestamp, host, tag, message</td></tr>
+      <tr><td>Custom application logs</td><td>Everything else</td><td>Whatever the developer chose</td></tr>
+    </table>
+
+    <h2>Apache/Nginx Combined Log Format</h2>
+    <p>This is the one you'll meet most often for web server access logs:</p>
+    <pre><code>127.0.0.1 - frank [10/Oct/2026:13:55:36 -0700] "GET /apache_pb.gif HTTP/1.0" 200 2326 "http://www.example.com/start.html" "Mozilla/5.0"</code></pre>
+    <p>Regex to pull out the key fields:</p>
+    <pre><code>^(\S+) \S+ (\S+) \[([^\]]+)\] "(\S+) (\S+) (\S+)" (\d+) (\d+) "([^"]*)" "([^"]*)"</code></pre>
+    <table>
+      <tr><th>Group</th><th>Field</th><th>Example</th></tr>
+      <tr><td>1</td><td>Client IP</td><td>127.0.0.1</td></tr>
+      <tr><td>2</td><td>Authenticated user</td><td>frank</td></tr>
+      <tr><td>3</td><td>Timestamp</td><td>10/Oct/2026:13:55:36 -0700</td></tr>
+      <tr><td>4</td><td>HTTP method</td><td>GET</td></tr>
+      <tr><td>5</td><td>Request path</td><td>/apache_pb.gif</td></tr>
+      <tr><td>6</td><td>HTTP version</td><td>HTTP/1.0</td></tr>
+      <tr><td>7</td><td>Status code</td><td>200</td></tr>
+      <tr><td>8</td><td>Response size</td><td>2326</td></tr>
+      <tr><td>9</td><td>Referrer</td><td>http://www.example.com/start.html</td></tr>
+      <tr><td>10</td><td>User agent</td><td>Mozilla/5.0</td></tr>
+    </table>
+
+    <h2>JSON Lines Logs</h2>
+    <p>Modern applications increasingly log structured JSON, one object per line, which is far easier to query but still needs the right approach:</p>
+    <pre><code>{"timestamp":"2026-08-18T09:12:03Z","level":"error","service":"api","message":"connection timeout","request_id":"a1b2c3"}
+{"timestamp":"2026-08-18T09:12:05Z","level":"info","service":"api","message":"request completed","request_id":"a1b2c4"}</code></pre>
+    <p>Because each line is standalone valid JSON, you don't need regex at all — parse each line with your language's JSON parser and filter on whatever fields you need:</p>
+    <pre><code># Find all error-level lines
+cat app.log | jq -c 'select(.level == "error")'
+
+# Extract just the messages
+cat app.log | jq -r '.message'</code></pre>
+
+    <h2>Syslog Format</h2>
+    <pre><code>&lt;34&gt;Oct 10 22:14:15 mymachine su: 'su root' failed for lonvick on /dev/pts/8</code></pre>
+    <p>The number in angle brackets is the priority value (facility × 8 + severity). Regex to extract the common fields:</p>
+    <pre><code>^&lt;(\d+)&gt;(\w+\s+\d+\s+[\d:]+)\s+(\S+)\s+([^:]+):\s*(.*)$</code></pre>
+    <p>Groups: priority, timestamp, hostname, tag/process, message.</p>
+
+    <h2>Regex Patterns You'll Reuse Constantly</h2>
+    <table>
+      <tr><th>What to match</th><th>Pattern</th></tr>
+      <tr><td>IPv4 address</td><td><code>\b(?:\d{1,3}\.){3}\d{1,3}\b</code></td></tr>
+      <tr><td>ISO 8601 timestamp</td><td><code>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}</code></td></tr>
+      <tr><td>HTTP status code</td><td><code>\s([1-5]\d{2})\s</code></td></tr>
+      <tr><td>UUID</td><td><code>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}</code></td></tr>
+      <tr><td>Quoted string (handles escaped quotes)</td><td><code>"(?:[^"\\]|\\.)*"</code></td></tr>
+      <tr><td>Key=value pairs</td><td><code>(\w+)=("[^"]*"|\S+)</code></td></tr>
+    </table>
+
+    <h2>grep, awk and Friends — When They're Enough</h2>
+    <p>For a quick one-off look at a log file, the classic Unix tools are still the fastest option:</p>
+    <pre><code># Count requests per status code
+awk '{print $9}' access.log | sort | uniq -c | sort -rn
+
+# Find all 5xx errors
+grep -E ' 5[0-9]{2} ' access.log
+
+# Extract unique IPs
+awk '{print $1}' access.log | sort -u
+
+# Tail and filter in real time
+tail -f app.log | grep --line-buffered "ERROR"</code></pre>
+    <p>These get you far, but they fall apart fast once you need to correlate fields across lines, parse timestamps into a real date range, or handle multiple log formats in one pass.</p>
+
+    <h2>When to Reach for a Real Parser Instead</h2>
+    <p>Move past ad-hoc regex and grep pipelines once you find yourself:</p>
+    <ul>
+      <li>Writing the same regex from memory (or Stack Overflow) every time you debug an incident</li>
+      <li>Needing to filter by a time range, not just text matching</li>
+      <li>Correlating multiple log formats (app logs + access logs + syslog) in the same investigation</li>
+      <li>Wanting structured output (JSON/CSV) to feed into another tool, rather than raw matched text</li>
+    </ul>
+    <p>👉 Paste raw log lines into our free <a href="/devops/log-parser/" style="color:var(--green)">Log Parser</a> and get structured fields out automatically — no regex to remember or rewrite.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>What's the difference between Common Log Format and Combined Log Format?</strong><br/>
+    Combined Log Format is Common Log Format plus two extra fields: the referrer and the user agent. Nginx and Apache both default to Combined in most modern configs.</p>
+
+    <p><strong>How do I parse a log file with an unfamiliar/custom format?</strong><br/>
+    Look for the most stable delimiters first — brackets, quotes, and consistent field order are usually there even in custom formats. Build your regex outward from the parts you recognize (timestamp, IP, status code) rather than trying to match the whole line at once.</p>
+
+    <p><strong>Is JSON logging actually easier to parse than plain text?</strong><br/>
+    Almost always, yes — you trade a small amount of extra log volume (JSON is more verbose than plain text) for not needing any regex at all. Most log aggregation tools also prefer structured JSON input.</p>
+
+    <p><strong>What tool should I use to test a log-parsing regex before deploying it?</strong><br/>
+    Our free <a href="/text/regex-tester/" style="color:var(--green)">Regex Tester</a> lets you test a pattern against real sample log lines with live highlighting before you commit to it.</p>
+  </div>
+
+  <div style="background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px;padding:28px;margin:48px 0;text-align:center">
+    <div style="font-size:1.1rem;font-weight:700;margin-bottom:8px">Parse log files without writing regex — free & instant</div>
+    <p style="color:var(--text-secondary);margin-bottom:16px;font-size:.9rem">Paste raw log lines and get structured fields back automatically. No login required.</p>
+    <a href="/devops/log-parser/" class="btn btn-primary">Log Parser →</a>
+  </div>
+
+  <div style="margin-top:40px;padding-top:24px;border-top:1px solid var(--border)">
+    <div class="blog-grid" id="blog-grid"></div>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="blog-related-tools" style="margin:40px 0;padding:28px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:16px">
+    <h3 style="font-size:1.1rem;font-weight:700;margin:0 0 16px;display:flex;align-items:center;gap:8px">🛠️ Free DevOps Tools</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">
+      <a href="/devops/log-parser/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">📊</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Log Parser</div><div style="font-size:.78rem;color:var(--text-secondary)">Parse log files</div></div></a>
+      <a href="/text/regex-tester/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">✍️</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Regex Tester</div><div style="font-size:.78rem;color:var(--text-secondary)">Test regular expressions</div></div></a>
+      <a href="/network/port-reference/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">🔌</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">Port Reference</div><div style="font-size:.78rem;color:var(--text-secondary)">TCP/UDP ports reference</div></div></a>
+      <a href="/devops/http-status/" class="related-card" style="text-decoration:none;display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:10px;padding:12px 16px;transition:all .2s" onmouseover="this.style.borderColor='var(--green)'" onmouseout="this.style.borderColor='var(--border)'"><span style="font-size:1.3rem">📡</span><div><div style="font-size:.88rem;font-weight:600;color:var(--text)">HTTP Status Codes</div><div style="font-size:.78rem;color:var(--text-secondary)">Complete HTTP reference</div></div></a>
+    </div>
+  </div>
+</article>
+<script src="/assets/layout.js"></script>
+<script src="/assets/community.js"></script>
+</body>
+</html>

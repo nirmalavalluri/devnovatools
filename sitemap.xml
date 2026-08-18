@@ -488,6 +488,20 @@
   </url>
 
   <url>
+    <loc>https://devnovatools.com/text/markdown-table/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://devnovatools.com/blog/how-to-parse-log-files/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
     <loc>https://devnovatools.com/text/regex-tester/</loc>
     <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
